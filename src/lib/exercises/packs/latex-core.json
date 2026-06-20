@@ -1,0 +1,155 @@
+{
+	"pack": "latex-core",
+	"exercises": [
+		{
+			"id": "latex-001",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Which command typesets the fraction $\\frac{a}{b}$?",
+			"choices": ["\\frac{a}{b}", "\\fraction{a}{b}", "\\div{a}{b}", "a \\over b{}"],
+			"answer": "\\frac{a}{b}",
+			"explanation": "`\\frac{numerator}{denominator}`. (`\\over` exists but is plain TeX and discouraged.)",
+			"tags": ["commands"]
+		},
+		{
+			"id": "latex-002",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the Greek letter $\\alpha$?",
+			"answer": "\\alpha",
+			"accepted": ["\\alpha", "alpha"],
+			"explanation": "Lowercase Greek letters are their names: `\\alpha`, `\\beta`, `\\gamma`…",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-003",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which source produces $\\sum_{i=1}^{n} i$?",
+			"choices": [
+				"\\sum_{i=1}^{n} i",
+				"\\sigma_{i=1}^{n} i",
+				"\\sum^{i=1}_{n} i",
+				"\\Sum{i=1}{n} i"
+			],
+			"answer": "\\sum_{i=1}^{n} i",
+			"explanation": "`_` sets the lower limit, `^` the upper. `\\Sigma` is just the letter, without limit behaviour.",
+			"tags": ["commands"]
+		},
+		{
+			"id": "latex-004",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What command typesets the square root $\\sqrt{x}$?",
+			"answer": "\\sqrt{x}",
+			"accepted": ["\\sqrt{x}", "\\sqrt", "sqrt", "sqrt{x}"],
+			"explanation": "`\\sqrt{x}`; n-th roots take an optional argument: `\\sqrt[3]{x}`.",
+			"tags": ["commands"]
+		},
+		{
+			"id": "latex-005",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "How do you write $x_i$ (x with subscript i)?",
+			"answer": "x_i",
+			"accepted": ["x_i", "x_{i}"],
+			"explanation": "`_` introduces a subscript; braces are needed only for multi-character subscripts, e.g. `x_{ij}`.",
+			"tags": ["basics"]
+		},
+		{
+			"id": "latex-006",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the command for the infinity symbol $\\infty$?",
+			"answer": "\\infty",
+			"accepted": ["\\infty", "infty"],
+			"explanation": "`\\infty` — not `\\infinity`.",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-007",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the difference between \\( … \\) and \\[ … \\] in LaTeX?",
+			"choices": [
+				"Inline math vs. display math",
+				"Display math vs. inline math",
+				"Text mode vs. math mode",
+				"They are identical"
+			],
+			"answer": "Inline math vs. display math",
+			"explanation": "\\( … \\) flows inside a paragraph; \\[ … \\] is set on its own centred line.",
+			"tags": ["modes"]
+		},
+		{
+			"id": "latex-008",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the command for $\\leq$ (less than or equal)?",
+			"answer": "\\leq",
+			"accepted": ["\\leq", "\\le", "leq", "le"],
+			"explanation": "`\\leq` (or the shorthand `\\le`); similarly `\\geq`/`\\ge`.",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-009",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write, by hand or in your head, the LaTeX source for the quadratic formula: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ Then reveal and compare.",
+			"answer": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+			"explanation": "Key pieces: `\\frac{}{}`, `\\pm`, `\\sqrt{}`, and `b^2` for the superscript.",
+			"tags": ["writing"]
+		},
+		{
+			"id": "latex-010",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Which environment produces a numbered display equation in LaTeX?",
+			"choices": ["equation", "align*", "math", "displaymath"],
+			"answer": "equation",
+			"explanation": "`equation` numbers its content. Starred variants (`equation*`, `align*`) suppress numbering; `align` numbers each line.",
+			"tags": ["environments"]
+		},
+		{
+			"id": "latex-011",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for a $2 \\times 2$ matrix in parentheses: $$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$$ Then reveal and compare.",
+			"answer": "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
+			"explanation": "`pmatrix` (from amsmath) adds the parentheses; `&` separates columns, `\\\\` separates rows. Cousins: `bmatrix` […], `vmatrix` |…|.",
+			"tags": ["environments", "writing"]
+		},
+		{
+			"id": "latex-012",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What is the command for the partial derivative symbol $\\partial$?",
+			"answer": "\\partial",
+			"accepted": ["\\partial", "partial"],
+			"explanation": "`\\partial`, as in `\\frac{\\partial f}{\\partial x}`.",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-013",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 5,
+			"prompt": "Write the LaTeX source for the Gaussian integral: $$\\int_0^\\infty e^{-x^2}\\, dx = \\frac{\\sqrt{\\pi}}{2}$$ Then reveal and compare (including the thin space before $dx$).",
+			"answer": "\\int_0^\\infty e^{-x^2}\\, dx = \\frac{\\sqrt{\\pi}}{2}",
+			"explanation": "`\\int_0^\\infty` for the limits, `e^{-x^2}` needs braces around the full exponent, and `\\,` is the thin space conventionally placed before the differential.",
+			"tags": ["writing", "integrals"]
+		}
+	]
+}

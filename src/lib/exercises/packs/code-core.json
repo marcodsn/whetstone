@@ -1,0 +1,191 @@
+{
+	"pack": "code-core",
+	"exercises": [
+		{
+			"id": "code-001",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(type(3 / 2))" },
+			"choices": [
+				"<class 'int'>",
+				"<class 'float'>",
+				"<class 'fraction'>",
+				"1.5"
+			],
+			"answer": "<class 'float'>",
+			"explanation": "In Python 3, `/` is true division and always yields a float. Floor division is `//`.",
+			"tags": ["python", "predict-output"]
+		},
+		{
+			"id": "code-002",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What does this JavaScript print?",
+			"code": { "lang": "javascript", "src": "console.log(typeof null);" },
+			"answer": "object",
+			"accepted": ["object", "\"object\"", "'object'"],
+			"explanation": "A famous historical bug, kept for compatibility: `typeof null` is `\"object\"`.",
+			"tags": ["javascript", "predict-output"]
+		},
+		{
+			"id": "code-003",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print([i * 2 for i in range(4)])" },
+			"answer": "[0, 2, 4, 6]",
+			"accepted": ["[0, 2, 4, 6]", "[0,2,4,6]", "0 2 4 6", "0,2,4,6"],
+			"explanation": "`range(4)` is 0–3; each element is doubled.",
+			"tags": ["python", "predict-output"]
+		},
+		{
+			"id": "code-004",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What does this JavaScript evaluate to?",
+			"code": { "lang": "javascript", "src": "[1, 2, 3].map(parseInt)" },
+			"choices": [
+				"[1, 2, 3]",
+				"[1, NaN, NaN]",
+				"[NaN, NaN, NaN]",
+				"[1, 1, 1]"
+			],
+			"answer": "[1, NaN, NaN]",
+			"explanation": "`map` passes the index as the second argument, which `parseInt` treats as the radix: `parseInt('2', 1)` and `parseInt('3', 2)` are NaN.",
+			"tags": ["javascript", "gotcha"]
+		},
+		{
+			"id": "code-005",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(\"desserts\"[::-1])" },
+			"answer": "stressed",
+			"explanation": "`[::-1]` reverses the string.",
+			"tags": ["python", "predict-output"]
+		},
+		{
+			"id": "code-006",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is the value of `5 ^ 3` in Python?",
+			"answer": "6",
+			"explanation": "`^` is bitwise XOR, not exponentiation: $101_2 \\oplus 011_2 = 110_2 = 6$. Exponentiation is `**`.",
+			"tags": ["python", "bitwise", "gotcha"]
+		},
+		{
+			"id": "code-007",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "def f(x, acc=[]):\n    acc.append(x)\n    return acc\n\nf(1)\nprint(f(2))"
+			},
+			"choices": ["[2]", "[1, 2]", "[[1], [2]]", "[2, 1]"],
+			"answer": "[1, 2]",
+			"explanation": "Default arguments are evaluated once at definition time — the same list is shared across calls.",
+			"tags": ["python", "gotcha"]
+		},
+		{
+			"id": "code-008",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print?",
+			"code": { "lang": "javascript", "src": "console.log(0.1 + 0.2 === 0.3);" },
+			"answer": "false",
+			"explanation": "IEEE 754 floating point: $0.1 + 0.2 = 0.30000000000000004$.",
+			"tags": ["javascript", "floats"]
+		},
+		{
+			"id": "code-009",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "funcs = [lambda: i for i in range(3)]\nprint(funcs[0]())"
+			},
+			"choices": ["0", "1", "2", "It raises NameError"],
+			"answer": "2",
+			"explanation": "The lambdas close over the variable `i`, not its value at creation; after the loop, `i` is 2.",
+			"tags": ["python", "closures", "gotcha"]
+		},
+		{
+			"id": "code-010",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(bool(\"False\"))" },
+			"answer": "True",
+			"accepted": ["True", "true"],
+			"explanation": "Any non-empty string is truthy — including the string \"False\".",
+			"tags": ["python", "gotcha"]
+		},
+		{
+			"id": "code-011",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "What does this JavaScript print?",
+			"code": {
+				"lang": "javascript",
+				"src": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}"
+			},
+			"choices": ["0 1 2", "3 3 3", "0 0 0", "2 2 2"],
+			"answer": "3 3 3",
+			"explanation": "`var` is function-scoped: all three callbacks share one `i`, which is 3 by the time they run. With `let` it would print 0 1 2.",
+			"tags": ["javascript", "scoping", "async"]
+		},
+		{
+			"id": "code-012",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(sum(range(1, 5), 10))" },
+			"answer": "20",
+			"explanation": "`sum(iterable, start)`: $10 + 1 + 2 + 3 + 4 = 20$.",
+			"tags": ["python", "stdlib"]
+		},
+		{
+			"id": "code-013",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "What is the worst-case time complexity of binary search on a sorted array of $n$ elements?",
+			"choices": ["$O(1)$", "$O(\\log n)$", "$O(n)$", "$O(n \\log n)$"],
+			"answer": "$O(\\log n)$",
+			"explanation": "Each comparison halves the search interval.",
+			"tags": ["complexity", "algorithms"]
+		},
+		{
+			"id": "code-014",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "What happens when this Python runs?",
+			"code": { "lang": "python", "src": "a = (1, [2, 3])\na[1] += [4]\nprint(a)" },
+			"choices": [
+				"Prints (1, [2, 3, 4]) with no error",
+				"Raises TypeError and a is unchanged",
+				"Raises TypeError, but a becomes (1, [2, 3, 4])",
+				"Raises SyntaxError"
+			],
+			"answer": "Raises TypeError, but a becomes (1, [2, 3, 4])",
+			"explanation": "`+=` mutates the list in place (so the change sticks), then tries to assign back into the tuple, which raises TypeError. Both things happen.",
+			"tags": ["python", "gotcha", "mutability"]
+		}
+	]
+}

@@ -1,0 +1,381 @@
+/* ================================================================
+   SCOPE — Self-Cognitive Observation and Performance Evaluation
+   Design system shared with marcodsn.me, plus app-layer styles.
+   ================================================================ */
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+
+:root {
+    color-scheme: light;
+
+    /* — Colors — */
+    --color-bg: #f9f7f4;
+    --color-surface: #f1efec;
+    --color-surface-alt: #e8e6e2;
+    --color-border: #dcdad6;
+    --color-border-light: #e6e4e0;
+
+    --color-text: #1a1a1a;
+    --color-text-secondary: #4a4a4a;
+    --color-text-muted: #6b6b6b;
+    --color-text-subtle: #a0a0a0;
+
+    --color-accent: #3d3d3d;
+    --color-accent-hover: #1a1a1a;
+
+    --color-link: #4a4a4a;
+    --color-link-hover: #1a1a1a;
+
+    --color-selection: rgba(0, 0, 0, 0.08);
+
+    /* — Verdict colors (the only chroma in the app) — */
+    --color-correct: #1a7f37;
+    --color-correct-bg: rgba(26, 127, 55, 0.07);
+    --color-wrong: #b3261e;
+    --color-wrong-bg: rgba(179, 38, 30, 0.06);
+
+    /* — Typography — */
+    --font-ui: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    --font-prose: "Bitter", Georgia, "Times New Roman", serif;
+    --font-heading: "EB Garamond", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.9375rem;
+    --text-md: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2.25rem;
+
+    --leading-tight: 1.25;
+    --leading-snug: 1.4;
+    --leading-normal: 1.7;
+    --leading-loose: 1.85;
+
+    /* — Spacing scale (4px base) — */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+
+    /* — Layout — */
+    --content-width: 720px;
+
+    /* — Radii — */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-full: 9999px;
+
+    /* — Shadows — */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04);
+
+    /* — Transitions — */
+    --transition-fast: 120ms ease;
+    --transition-normal: 200ms ease;
+
+    /* — Code — */
+    --code-bg: #fdfcfb;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-bg: #161513;
+    --color-surface: #1d1c19;
+    --color-surface-alt: #262420;
+    --color-border: #302d28;
+    --color-border-light: #26241f;
+
+    --color-text: #ece9e3;
+    --color-text-secondary: #b8b4ac;
+    --color-text-muted: #8b8781;
+    --color-text-subtle: #5e5b55;
+
+    --color-accent: #c7c3bc;
+    --color-accent-hover: #ece9e3;
+
+    --color-link: #b8b4ac;
+    --color-link-hover: #ece9e3;
+
+    --color-selection: rgba(255, 255, 255, 0.1);
+
+    --color-correct: #4ac26b;
+    --color-correct-bg: rgba(74, 194, 107, 0.08);
+    --color-wrong: #e5736c;
+    --color-wrong-bg: rgba(229, 115, 108, 0.08);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    --code-bg: #141311;
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+
+html {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: var(--leading-normal);
+    min-height: 100%;
+}
+
+::selection {
+    background: var(--color-selection);
+    color: inherit;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration-color: var(--color-text-subtle);
+    text-underline-offset: 0.15em;
+    transition:
+        color var(--transition-fast),
+        text-decoration-color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-text-muted);
+}
+
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-mono);
+    font-weight: 400;
+}
+
+/* ── App shell ─────────────────────────────────────────────────── */
+
+.shell {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-6) var(--space-20);
+}
+
+@media (max-width: 640px) {
+    .shell {
+        padding: var(--space-4) var(--space-4) var(--space-16);
+    }
+}
+
+.site-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-10);
+}
+
+.wordmark {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.wordmark:hover {
+    color: var(--color-text);
+}
+
+.site-nav {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+    font-size: var(--text-sm);
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+    color: var(--color-text);
+}
+
+/* ── Typographic atoms ─────────────────────────────────────────── */
+
+.overline {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.heading {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+}
+
+.num {
+    font-variant-numeric: tabular-nums;
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.delta-up {
+    color: var(--color-correct);
+}
+
+.delta-down {
+    color: var(--color-wrong);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-text-subtle);
+    color: var(--color-text);
+}
+
+.btn-primary {
+    background: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-bg);
+}
+
+.btn-primary:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+}
+
+kbd.key {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-bottom-width: 2px;
+    border-radius: var(--radius-sm);
+    padding: 0 0.4em;
+    line-height: 1.6;
+}
+
+/* ── Exercise prose (KaTeX + inline code inside prompts) ───────── */
+
+.prose {
+    font-family: var(--font-prose);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+}
+
+.prose code {
+    font-size: 0.85em;
+    background: var(--color-surface);
+    padding: 0.12em 0.35em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-light);
+}
+
+.prose .katex {
+    font-size: 1.02em;
+}
+
+.prose .katex-display {
+    margin: var(--space-4) 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: var(--space-1) 0;
+}
+
+pre.codeblock {
+    background: var(--code-bg);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: var(--space-4) 0;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-subtle);
+}

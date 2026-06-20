@@ -1,0 +1,165 @@
+{
+	"pack": "math-core",
+	"exercises": [
+		{
+			"id": "math-001",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Compute mentally: $17 \\times 6$",
+			"choices": ["96", "102", "106", "112"],
+			"answer": "102",
+			"explanation": "$17 \\times 6 = (17 \\times 5) + 17 = 85 + 17 = 102$.",
+			"tags": ["arithmetic", "mental-math"]
+		},
+		{
+			"id": "math-002",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "Compute: $48 + 27 \\times 2$",
+			"answer": "102",
+			"explanation": "Multiplication first: $27 \\times 2 = 54$, then $48 + 54 = 102$.",
+			"tags": ["arithmetic", "order-of-operations"]
+		},
+		{
+			"id": "math-003",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A shirt costs €80 after a 20% discount. What was the original price in euros?",
+			"answer": "100",
+			"accepted": ["100", "€100", "100 euros", "100€"],
+			"explanation": "If $0.8x = 80$, then $x = 100$. (Adding 20% back to 80 gives 96 — the classic mistake.)",
+			"tags": ["percentages", "trick"]
+		},
+		{
+			"id": "math-004",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What is the next number in the sequence? $2,\\ 6,\\ 12,\\ 20,\\ 30,\\ ?$",
+			"choices": ["36", "40", "42", "44"],
+			"answer": "42",
+			"explanation": "Differences are $4, 6, 8, 10$ — so the next gap is $12$, giving $42$. (The terms are $n^2+n$.)",
+			"tags": ["sequences"]
+		},
+		{
+			"id": "math-005",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is $\\operatorname{lcm}(12, 18)$?",
+			"answer": "36",
+			"explanation": "$12 = 2^2 \\cdot 3$, $18 = 2 \\cdot 3^2$, so $\\operatorname{lcm} = 2^2 \\cdot 3^2 = 36$.",
+			"tags": ["number-theory"]
+		},
+		{
+			"id": "math-006",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is 15% of 240?",
+			"answer": "36",
+			"explanation": "10% is 24, 5% is 12; $24 + 12 = 36$.",
+			"tags": ["percentages", "mental-math"]
+		},
+		{
+			"id": "math-007",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the sum of all integers from 1 to 100?",
+			"answer": "5050",
+			"explanation": "Gauss pairing: $\\frac{100 \\cdot 101}{2} = 5050$.",
+			"tags": ["arithmetic", "series"]
+		},
+		{
+			"id": "math-008",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Two fair dice are rolled. What is the probability that the sum is 8?",
+			"choices": ["$1/6$", "$5/36$", "$1/9$", "$7/36$"],
+			"answer": "$5/36$",
+			"explanation": "Favourable outcomes: $(2,6),(3,5),(4,4),(5,3),(6,2)$ — five out of 36.",
+			"tags": ["probability"]
+		},
+		{
+			"id": "math-009",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Solve for $x$: $\\ 3x - 7 = 2x + 5$",
+			"answer": "12",
+			"accepted": ["12", "x=12", "x = 12"],
+			"explanation": "Subtract $2x$ from both sides: $x - 7 = 5$, so $x = 12$.",
+			"tags": ["algebra"]
+		},
+		{
+			"id": "math-010",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A bat and a ball cost €1.10 together. The bat costs €1.00 more than the ball. How much does the ball cost?",
+			"choices": ["€0.10", "€0.05", "€0.15", "€1.00"],
+			"answer": "€0.05",
+			"explanation": "If the ball costs $x$, then $x + (x + 1) = 1.10$, so $x = 0.05$. The intuitive answer (€0.10) makes the difference only €0.90.",
+			"tags": ["trick", "algebra"]
+		},
+		{
+			"id": "math-011",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Given that $2^{10} = 1024$, what is $2^{16}$?",
+			"choices": ["32768", "65536", "131072", "16384"],
+			"answer": "65536",
+			"explanation": "$2^{16} = 2^{10} \\cdot 2^6 = 1024 \\cdot 64 = 65536$.",
+			"tags": ["powers", "mental-math"]
+		},
+		{
+			"id": "math-012",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What is the value of the derivative of $f(x) = x^3 \\ln x$ at $x = 1$?",
+			"answer": "1",
+			"accepted": ["1", "1.0"],
+			"explanation": "$f'(x) = 3x^2 \\ln x + x^2$. At $x=1$: $0 + 1 = 1$.",
+			"tags": ["calculus"]
+		},
+		{
+			"id": "math-013",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "How many trailing zeros does $25!$ have?",
+			"answer": "6",
+			"explanation": "Count factors of 5: $\\lfloor 25/5 \\rfloor + \\lfloor 25/25 \\rfloor = 5 + 1 = 6$.",
+			"tags": ["number-theory"]
+		},
+		{
+			"id": "math-014",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Evaluate: $\\displaystyle\\int_0^1 x e^x \\, dx$",
+			"answer": "1",
+			"accepted": ["1", "1.0"],
+			"explanation": "Integration by parts: $[xe^x - e^x]_0^1 = (e - e) - (0 - 1) = 1$.",
+			"tags": ["calculus", "integration"]
+		},
+		{
+			"id": "math-015",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "How many non-empty subsets does a set with 6 elements have?",
+			"choices": ["63", "64", "120", "31"],
+			"answer": "63",
+			"explanation": "$2^6 = 64$ subsets in total, minus the empty set: $63$.",
+			"tags": ["combinatorics"]
+		}
+	]
+}

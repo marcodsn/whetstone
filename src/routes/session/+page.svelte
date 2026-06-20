@@ -1,0 +1,238 @@
+<script lang="ts">
+	import { page } from '$app/state';
+	import type { Attempt, Domain, Exercise } from '$lib/types';
+	import { DOMAINS, DOMAIN_LABELS } from '$lib/types';
+	import { buildSession, type SessionSpec } from '$lib/session';
+	import { loadAttempts, saveAttempt, computeStats } from '$lib/scoring';
+	import ExerciseCard from '$lib/components/ExerciseCard.svelte';
+
+	function specFromUrl(): SessionSpec {
+		const q = page.url.searchParams;
+		const mode = (q.get('mode') ?? 'daily') as SessionSpec['mode'];
+		const domain = q.get('domain') as Domain | null;
+		const n = Math.max(1, Math.min(30, parseInt(q.get('n') ?? '10', 10) || 10));
+		return {
+			mode,
+			domain: domain && DOMAINS.includes(domain) ? domain : undefined,
+			n
+		};
+	}
+
+	const spec = specFromUrl();
+	const startStats = computeStats(loadAttempts());
+	const session: Exercise[] = buildSession(spec, loadAttempts());
+
+	let index = $state(0);
+	let results: { exercise: Exercise; correct: boolean }[] = $state([]);
+	let done = $derived(index >= session.length);
+	let current = $derived(session[index]);
+
+	let endStats = $derived(done ? computeStats(loadAttempts()) : null);
+	let score = $derived(results.filter((r) => r.correct).length);
+
+	function onresult(correct: boolean) {
+		const ex = session[index];
+		const attempt: Attempt = {
+			exerciseId: ex.id,
+			domain: ex.domain,
+			difficulty: ex.difficulty,
+			correct,
+			ts: Date.now()
+		};
+		saveAttempt(attempt);
+		results.push({ exercise: ex, correct });
+	}
+
+	function onnext() {
+		index += 1;
+	}
+
+	let sessionTitle = $derived(
+		spec.mode === 'domain' && spec.domain
+			? `${DOMAIN_LABELS[spec.domain]} session`
+			: spec.mode === 'daily'
+				? "Today's session"
+				: 'Mixed session'
+	);
+
+	let touchedDomains = $derived([...new Set(results.map((r) => r.exercise.domain))]);
+</script>
+
+{#if session.length === 0}
+	<p class="muted">No exercises available for this selection.</p>
+	<p><a href="/">← Back to the observatory</a></p>
+{:else if !done}
+	<div class="session-head">
+		<span class="overline">{sessionTitle}</span>
+		<span class="progress num">{index + 1} / {session.length}</span>
+	</div>
+	<div class="progress-rail" aria-hidden="true">
+		<div class="progress-fill" style="width: {(index / session.length) * 100}%"></div>
+	</div>
+
+	<ExerciseCard exercise={current} {onresult} {onnext} />
+
+	<p class="hints muted">
+		<kbd class="key">1</kbd>–<kbd class="key">4</kbd> select · <kbd class="key">↵</kbd> submit / continue
+	</p>
+{:else}
+	<section class="report">
+		<p class="overline">Session report</p>
+		<h1 class="heading report-score">
+			<span class="num">{score}</span><span class="of num"> / {session.length}</span>
+		</h1>
+		<p class="report-line muted">
+			{score === session.length
+				? 'A clean sheet. The instrument detects no degradation.'
+				: score >= session.length * 0.7
+					? 'Solid. The misses below are tomorrow’s material.'
+					: 'Rust detected — exactly what this instrument is for.'}
+		</p>
+
+		{#if endStats}
+			<table class="recap-ratings">
+				<tbody>
+					{#each touchedDomains as d}
+						{@const delta = Math.round(endStats[d].rating - startStats[d].rating)}
+						<tr>
+							<td>{DOMAIN_LABELS[d]}</td>
+							<td class="right num">{Math.round(endStats[d].rating)}</td>
+							<td class="right num" class:delta-up={delta > 0} class:delta-down={delta < 0}>
+								{delta > 0 ? '+' : ''}{delta}
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		{/if}
+
+		<ol class="recap">
+			{#each results as r, i}
+				<li>
+					<span class="mark" class:ok={r.correct} class:ko={!r.correct}>{r.correct ? '✓' : '✗'}</span>
+					<span class="recap-q num">{i + 1}.</span>
+					<span class="recap-prompt">{r.exercise.prompt.replace(/\$\$?/g, '').slice(0, 80)}</span>
+					<span class="recap-domain muted">{DOMAIN_LABELS[r.exercise.domain]}</span>
+				</li>
+			{/each}
+		</ol>
+
+		<div class="report-actions">
+			<a class="btn btn-primary" href="/">Back to the observatory</a>
+			<button
+				class="btn"
+				onclick={() => {
+					location.reload();
+				}}>Another round</button
+			>
+		</div>
+	</section>
+{/if}
+
+<style>
+	.session-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: var(--space-2);
+	}
+
+	.progress {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+	}
+
+	.progress-rail {
+		height: 2px;
+		background: var(--color-border-light);
+		border-radius: var(--radius-full);
+		margin-bottom: var(--space-8);
+		overflow: hidden;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: var(--color-text-secondary);
+		transition: width var(--transition-normal);
+	}
+
+	.hints {
+		font-size: var(--text-xs);
+		margin-top: var(--space-5);
+		text-align: center;
+	}
+
+	.report-score {
+		font-size: var(--text-3xl);
+		margin: var(--space-2) 0;
+	}
+
+	.of {
+		color: var(--color-text-subtle);
+		font-size: var(--text-xl);
+	}
+
+	.report-line {
+		font-family: var(--font-prose);
+		margin-bottom: var(--space-8);
+	}
+
+	.recap-ratings {
+		border-collapse: collapse;
+		font-size: var(--text-sm);
+		margin-bottom: var(--space-8);
+		min-width: 280px;
+	}
+
+	.recap-ratings td {
+		padding: var(--space-2) var(--space-4) var(--space-2) 0;
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.right {
+		text-align: right;
+	}
+
+	.recap {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		font-size: var(--text-sm);
+		margin-bottom: var(--space-10);
+	}
+
+	.recap li {
+		display: flex;
+		gap: var(--space-3);
+		align-items: baseline;
+	}
+
+	.mark.ok {
+		color: var(--color-correct);
+	}
+
+	.mark.ko {
+		color: var(--color-wrong);
+	}
+
+	.recap-q {
+		color: var(--color-text-subtle);
+	}
+
+	.recap-prompt {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.recap-domain {
+		font-size: var(--text-xs);
+	}
+
+	.report-actions {
+		display: flex;
+		gap: var(--space-3);
+	}
+</style>

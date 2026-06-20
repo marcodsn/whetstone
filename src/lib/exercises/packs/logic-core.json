@@ -1,0 +1,161 @@
+{
+	"pack": "logic-core",
+	"exercises": [
+		{
+			"id": "logic-001",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "All blorps are fizzy. Some fizzy things are green. Which conclusion necessarily follows?",
+			"choices": [
+				"Some blorps are green",
+				"All fizzy things are blorps",
+				"Some green things are blorps",
+				"None of these necessarily follows"
+			],
+			"answer": "None of these necessarily follows",
+			"explanation": "The green fizzy things might all be non-blorps. 'Some A are B' plus 'all C are A' tells you nothing about C∩B.",
+			"tags": ["syllogism"]
+		},
+		{
+			"id": "logic-002",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the next letter? $O,\\ T,\\ T,\\ F,\\ F,\\ S,\\ S,\\ E,\\ ?$",
+			"choices": ["N", "T", "E", "O"],
+			"answer": "N",
+			"explanation": "Initials of One, Two, Three, Four… the next is Nine.",
+			"tags": ["lateral", "sequences"]
+		},
+		{
+			"id": "logic-003",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "How many months of the year have 28 days?",
+			"answer": "12",
+			"accepted": ["12", "twelve", "all", "all of them"],
+			"explanation": "Every month has at least 28 days.",
+			"tags": ["trick"]
+		},
+		{
+			"id": "logic-004",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "\"If it rains, the street gets wet. The street is wet. Therefore it rained.\" Is this argument logically valid?",
+			"choices": [
+				"Yes — it follows directly",
+				"No — the street could be wet for another reason",
+				"Yes, but only if it actually rained",
+				"It is valid but unsound"
+			],
+			"answer": "No — the street could be wet for another reason",
+			"explanation": "This is the fallacy of affirming the consequent: $P \\to Q$ and $Q$ do not imply $P$.",
+			"tags": ["fallacies", "propositional"]
+		},
+		{
+			"id": "logic-005",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Mary's father has five daughters: Nana, Nene, Nini, Nono, and…?",
+			"answer": "Mary",
+			"accepted": ["mary"],
+			"explanation": "The fifth daughter is Mary herself — not Nunu.",
+			"tags": ["trick"]
+		},
+		{
+			"id": "logic-006",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "On an island, knights always tell the truth and knaves always lie. A says: \"We are both knaves.\" What are A and B?",
+			"choices": [
+				"A is a knave, B is a knight",
+				"A is a knight, B is a knave",
+				"Both are knaves",
+				"Both are knights"
+			],
+			"answer": "A is a knave, B is a knight",
+			"explanation": "A knight can't say \"we are both knaves\" (it would be a lie). So A is a knave and the statement is false — meaning they are not both knaves, so B is a knight.",
+			"tags": ["knights-knaves"]
+		},
+		{
+			"id": "logic-007",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A farmer has 17 sheep. All but 9 die. How many sheep remain?",
+			"answer": "9",
+			"accepted": ["9", "nine"],
+			"explanation": "\"All but 9\" means 9 survive.",
+			"tags": ["trick", "reading"]
+		},
+		{
+			"id": "logic-008",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Four cards show $A$, $K$, $2$, $7$. Each has a letter on one side and a number on the other. Rule to test: \"If a card has a vowel, then it has an even number on the back.\" Which cards must you flip?",
+			"choices": ["$A$ and $2$", "$A$ and $7$", "Only $A$", "$A$, $2$ and $7$"],
+			"answer": "$A$ and $7$",
+			"explanation": "Flip $A$ (vowel must have even back) and $7$ (an odd number must not hide a vowel). The $2$ tells you nothing — the rule doesn't say even numbers need vowels.",
+			"tags": ["wason", "propositional"]
+		},
+		{
+			"id": "logic-009",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Three light switches downstairs control one bulb upstairs. You may flip switches as much as you like, but you can go upstairs only once. How do you determine which switch controls the bulb? Work it out, then reveal.",
+			"answer": "Turn switch 1 on for a few minutes, then turn it off and turn switch 2 on. Go upstairs: if the bulb is lit, it's switch 2; if it's off but warm, switch 1; if off and cold, switch 3.",
+			"explanation": "The trick is realising a bulb carries information in two channels: light and heat.",
+			"tags": ["lateral", "classic"]
+		},
+		{
+			"id": "logic-010",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In a room of 100 people, 99% are programmers. How many programmers must leave so that programmers make up 98% of the room?",
+			"choices": ["1", "2", "50", "98"],
+			"answer": "50",
+			"explanation": "There is 1 non-programmer. For them to be 2% of the room, the room must have 50 people — so 50 programmers must leave.",
+			"tags": ["trick", "percentages"]
+		},
+		{
+			"id": "logic-011",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "Gear A meshes with gear B, and gear B meshes with gear C. If gear A turns clockwise, which way does gear C turn?",
+			"answer": "clockwise",
+			"accepted": ["clockwise", "cw", "same as a", "same direction as a"],
+			"explanation": "Each mesh reverses direction: A cw → B ccw → C cw.",
+			"tags": ["spatial"]
+		},
+		{
+			"id": "logic-012",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Before Mount Everest was discovered, what was the highest mountain on Earth?",
+			"choices": ["K2", "Mount Everest", "Kangchenjunga", "Mont Blanc"],
+			"answer": "Mount Everest",
+			"explanation": "It was still the highest — it just hadn't been measured yet.",
+			"tags": ["trick"]
+		},
+		{
+			"id": "logic-013",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 5,
+			"prompt": "Five rational pirates (A–E, A most senior) must divide 100 gold coins. The most senior proposes a split; all pirates (including the proposer) vote. If at least half accept, it passes; otherwise the proposer is thrown overboard and the next most senior proposes. Each pirate maximises coins, prefers survival, and prefers throwing others overboard when indifferent. What does A propose? Reason it out from the end, then reveal.",
+			"answer": "A proposes: A gets 98, B gets 0, C gets 1, D gets 0, E gets 1. (With two pirates, D takes all 100. With three, C offers E one coin. With four, B offers C and... working backwards, A needs two extra votes and buys C and E for one coin each.)",
+			"explanation": "Backward induction: solve the 2-pirate case first and walk up. Each proposer buys the cheapest votes — the pirates who would get nothing in the next round.",
+			"tags": ["game-theory", "classic"]
+		}
+	]
+}
