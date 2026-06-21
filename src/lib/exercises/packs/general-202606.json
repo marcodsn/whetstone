@@ -1,0 +1,93 @@
+{
+	"pack": "general-202606",
+	"exercises": [
+		{
+			"id": "gen-015",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A farmer has 17 sheep. All but 9 die. How many sheep are left?",
+			"choices": ["8", "9", "17", "26"],
+			"answer": "9",
+			"explanation": "\"All but 9 die\" means 9 survive. The 17 and the subtraction are bait.",
+			"tags": ["trick"]
+		},
+		{
+			"id": "gen-016",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "How many months of the year have 28 days?",
+			"choices": ["1", "2", "11", "All 12"],
+			"answer": "All 12",
+			"explanation": "Every month has at least 28 days; only February is limited to exactly 28 (in common years).",
+			"tags": ["trick"]
+		},
+		{
+			"id": "gen-017",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost, in cents?",
+			"answer": "5",
+			"accepted": ["5", "5 cents", "5c", "$0.05", "0.05", "0.05 dollars"],
+			"explanation": "If the ball were 10¢ the bat would be $1.10, totaling $1.20. Solve: ball = $0.05, bat = $1.05. The intuitive \"10 cents\" is the classic trap.",
+			"tags": ["trick", "arithmetic"]
+		},
+		{
+			"id": "gen-018",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What color is an aircraft's \"black box\" flight recorder?",
+			"choices": ["Black", "Orange", "Yellow", "Silver"],
+			"answer": "Orange",
+			"explanation": "It is painted bright orange to be found after a crash; \"black box\" is just a nickname.",
+			"tags": ["trick", "aviation"]
+		},
+		{
+			"id": "gen-019",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Which is the hottest planet in the Solar System?",
+			"choices": ["Mercury", "Venus", "Mars", "Jupiter"],
+			"answer": "Venus",
+			"explanation": "Venus (~465 °C surface) is hotter than Mercury despite being farther from the Sun — its thick CO₂ atmosphere traps heat in a runaway greenhouse effect.",
+			"tags": ["astronomy", "trick"]
+		},
+		{
+			"id": "gen-020",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A plane crashes exactly on the border between the United States and Canada. Where are the survivors buried?",
+			"choices": ["In the United States", "In Canada", "Survivors are not buried", "Split evenly between both"],
+			"answer": "Survivors are not buried",
+			"explanation": "Survivors are, by definition, still alive. The border detail is a distraction.",
+			"tags": ["trick"]
+		},
+		{
+			"id": "gen-021",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Which country contains the most natural lakes?",
+			"choices": ["Canada", "Russia", "United States", "Finland"],
+			"answer": "Canada",
+			"explanation": "Canada holds well over half of the world's natural lakes — roughly two million of them.",
+			"tags": ["geography"]
+		},
+		{
+			"id": "gen-022",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "On an analog clock at exactly 3:15, what is the angle in degrees between the hour and minute hands?",
+			"answer": "7.5",
+			"accepted": ["7.5", "7.5 degrees", "7.5°", "7.5 deg"],
+			"explanation": "The minute hand is at 90°. The hour hand has crept a quarter of the way from 3 to 4: 90° + 0.25 × 30° = 97.5°. The gap is 7.5°.",
+			"tags": ["trick", "geometry"]
+		}
+	]
+}

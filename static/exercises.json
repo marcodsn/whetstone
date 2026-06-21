@@ -1,5 +1,188 @@
 [
 	{
+		"id": "code-015",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(3 * \"ab\")"
+		},
+		"answer": "ababab",
+		"accepted": [
+			"ababab",
+			"\"ababab\"",
+			"'ababab'"
+		],
+		"explanation": "`*` between an int and a string repeats the string; `3 * \"ab\"` is \"ababab\".",
+		"tags": [
+			"python",
+			"predict-output",
+			"strings"
+		]
+	},
+	{
+		"id": "code-016",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(2 ** 3 ** 2)"
+		},
+		"choices": [
+			"64",
+			"512",
+			"256",
+			"12"
+		],
+		"answer": "512",
+		"explanation": "`**` is right-associative, so this is `2 ** (3 ** 2)` = `2 ** 9` = 512, not `(2 ** 3) ** 2` = 64.",
+		"tags": [
+			"python",
+			"operators",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-017",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(list(range(2, 10, 3)))"
+		},
+		"answer": "[2, 5, 8]",
+		"accepted": [
+			"[2, 5, 8]",
+			"[2,5,8]",
+			"2 5 8",
+			"2,5,8"
+		],
+		"explanation": "`range(start, stop, step)` is half-open: 2, 5, 8 — the next value 11 is past the stop of 10.",
+		"tags": [
+			"python",
+			"predict-output",
+			"stdlib"
+		]
+	},
+	{
+		"id": "code-018",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(typeof NaN);"
+		},
+		"answer": "number",
+		"accepted": [
+			"number",
+			"\"number\"",
+			"'number'"
+		],
+		"explanation": "NaN (\"not a number\") is, paradoxically, of type `number` — it lives in the floating-point domain.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-019",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(typeof typeof 1);"
+		},
+		"choices": [
+			"number",
+			"string",
+			"object",
+			"undefined"
+		],
+		"answer": "string",
+		"explanation": "`typeof 1` is the string \"number\", and `typeof` of any string is \"string\". `typeof` always returns a string.",
+		"tags": [
+			"javascript",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-020",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print([] == False)"
+		},
+		"choices": [
+			"True",
+			"False",
+			"[]",
+			"Raises TypeError"
+		],
+		"answer": "False",
+		"explanation": "An empty list is *falsy* (so `if []:` skips), but it is not *equal* to `False`. `==` compares values, and `[] == False` is False.",
+		"tags": [
+			"python",
+			"gotcha",
+			"truthiness"
+		]
+	},
+	{
+		"id": "code-021",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(\"banana\".count(\"a\"))"
+		},
+		"answer": "3",
+		"explanation": "`str.count` counts non-overlapping occurrences; \"banana\" has an 'a' at indices 1, 3, and 5.",
+		"tags": [
+			"python",
+			"predict-output",
+			"strings"
+		]
+	},
+	{
+		"id": "code-022",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print({True: 'a', 1: 'b', 1.0: 'c'})"
+		},
+		"choices": [
+			"{True: 'c'}",
+			"{True: 'a', 1: 'b', 1.0: 'c'}",
+			"{1: 'c'}",
+			"{True: 'a'}"
+		],
+		"answer": "{True: 'c'}",
+		"explanation": "`True`, `1`, and `1.0` hash equal and compare equal, so they are the same dict key. The key keeps its first form (True) but the value is overwritten to the last assigned ('c').",
+		"tags": [
+			"python",
+			"gotcha",
+			"dictionaries"
+		]
+	},
+	{
 		"id": "code-001",
 		"domain": "code",
 		"type": "choice",
@@ -288,6 +471,1465 @@
 			"python",
 			"gotcha",
 			"mutability"
+		]
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three boxes (A, B, and C) are in front of you. One contains a gold coin, and the other two are empty. Each box has a label:\nBox A: 'The gold is in Box B.'\nBox B: 'The gold is in this box.'\nBox C: 'The gold is not in Box A.'\n\nIf exactly one of these labels is true, which box contains the gold?",
+		"choices": [
+			"Box A",
+			"Box B",
+			"Box C",
+			"Not enough information"
+		],
+		"answer": "Box C",
+		"explanation": "If the gold were in A, all labels would be false. If in B, all would be true. If in C, only label C is true, satisfying the condition.",
+		"tags": [
+			"deduction",
+			"puzzles",
+			"generated"
+		],
+		"id": "gen-logic-001"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "All glips are glops. All glops are glups. Which of the following must be true?",
+		"choices": [
+			"All glips are glups.",
+			"All glups are glips.",
+			"All glops are glips.",
+			"Some glups are not glops."
+		],
+		"answer": "All glips are glups.",
+		"explanation": "This follows the transitive property: if $A \\subseteq B$ and $B \\subseteq C$, then $A \\subseteq C$.",
+		"tags": [
+			"syllogism",
+			"deduction",
+			"generated"
+		],
+		"id": "gen-logic-002"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie). \n\nA says: \"I am a Knight.\"\nB says: \"A is a Knight.\"\nC says: \"I am a Spy.\"\n\nWhich of the following is a valid assignment of roles?",
+		"choices": [
+			"A: Knight, B: Spy, C: Knave",
+			"A: Knight, B: Knave, C: Spy",
+			"A: Spy, B: Knight, C: Knave",
+			"A: Knave, B: Spy, C: Knight"
+		],
+		"answer": "A: Knight, B: Spy, C: Knave",
+		"explanation": "C cannot be the Knight (he'd be lying) or the Spy (which would make B a Knave telling the truth). Thus C is the Knave, and since B's statement is true, B must be the Spy, leaving A as the Knight.",
+		"tags": [
+			"knights and knaves",
+			"deduction",
+			"puzzles",
+			"generated"
+		],
+		"id": "gen-logic-003"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three boxes are labeled 'Apple', 'Orange', and 'Banana'. You are told that every single label is incorrect. If the box labeled 'Apple' contains the orange, what fruit is in the box labeled 'Banana'?",
+		"choices": [
+			"Apple",
+			"Orange",
+			"Banana",
+			"Not enough information"
+		],
+		"answer": "Apple",
+		"explanation": "Since all labels are wrong, the 'Banana' box cannot contain a banana. Because the orange is in the 'Apple' box, the only remaining fruit for the 'Banana' box is the apple.",
+		"tags": [
+			"deduction",
+			"constraints",
+			"generated"
+		],
+		"id": "gen-logic-004"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three suspects—Alex, Blake, and Casey—are being questioned about a theft. It is known that exactly one of them is the thief and exactly one of them is telling the truth.\n\nAlex says: \"I am not the thief.\"\nBlake says: \"Alex is telling the truth.\"\nCasey says: \"Blake is lying.\"\n\nWho is the thief?",
+		"choices": [
+			"Alex",
+			"Blake",
+			"Casey",
+			"Cannot be determined"
+		],
+		"answer": "Alex",
+		"explanation": "If Alex is the thief, then Alex's statement is false, Blake's statement is false, and Casey's statement is true, satisfying the requirement of exactly one truth-teller. If either Blake or Casey were the thief, both Alex and Blake would be telling the truth.",
+		"tags": [
+			"deduction",
+			"logic puzzle",
+			"generated"
+		],
+		"id": "gen-logic-005"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the contrapositive of the conditional statement: 'If $P$, then $Q$'?",
+		"choices": [
+			"If $Q$, then $P$",
+			"If not $P$, then not $Q$",
+			"If not $Q$, then not $P$",
+			"If $P$ and not $Q$"
+		],
+		"answer": "If not $Q$, then not $P$",
+		"explanation": "The contrapositive of 'If $P$, then $Q$' is 'If not $Q$, then not $P$'. This statement is logically equivalent to the original.",
+		"tags": [
+			"propositional logic",
+			"conditionals",
+			"generated"
+		],
+		"id": "gen-logic-006"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which of the following is logically equivalent to the expression $(P \\lor Q) \\land \\neg P$?",
+		"choices": [
+			"$\\neg P \\land Q$",
+			"$\\neg P \\lor Q$",
+			"$P \\land Q$",
+			"$\\neg Q$"
+		],
+		"answer": "$\\neg P \\land Q$",
+		"explanation": "Using the distributive law, $(P \\lor Q) \\land \\neg P$ simplifies to $(P \\land \\neg P) \\lor (Q \\land \\neg P)$. Since $(P \\land \\neg P)$ is a contradiction (always false), we are left with $\\neg P \\land Q$.",
+		"tags": [
+			"boolean algebra",
+			"propositional logic",
+			"generated"
+		],
+		"id": "gen-logic-007"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Three people—X, Y, and Z—are making statements. It is known that exactly one of them is telling the truth and the other two are lying.\n\nX says: 'Y is lying.'\nY says: 'Z is lying.'\nZ says: 'X and Y are both lying.'\n\nWho is telling the truth?",
+		"choices": [
+			"X",
+			"Y",
+			"Z",
+			"None of them"
+		],
+		"answer": "Y",
+		"explanation": "If Y is telling the truth, then X is lying (making X's statement false), Z is lying (making Y's statement true), and Z's statement is false because Y is telling the truth. This is the only consistent scenario.",
+		"tags": [
+			"deduction",
+			"liars",
+			"generated"
+		],
+		"id": "gen-logic-008"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Three people—A, B, and C—are each either a Knight (always tells the truth) or a Knave (always lies). \n\nA says: 'B and C are the same type.'\nB says: 'A and C are the same type.'\nC says: 'At least one of us is a Knave.'\n\nWhich of the following is true?",
+		"choices": [
+			"A is a Knight, B is a Knight, C is a Knight",
+			"A is a Knave, B is a Knight, C is a Knight",
+			"A is a Knave, B is a Knave, C is a Knight",
+			"A is a Knight, B is a Knave, C is a Knave"
+		],
+		"answer": "A is a Knave, B is a Knave, C is a Knight",
+		"explanation": "If C were a Knave, his statement would be false, implying everyone is a Knight, which is a contradiction. Thus C is a Knight. If A were a Knight, B would have to be a Knight (to match C), but that would make C's statement false. Therefore, A must be a Knave, which implies B and C are different, making B a Knave.",
+		"tags": [
+			"knights and knaves",
+			"deduction",
+			"generated"
+		],
+		"id": "gen-logic-009"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the logical negation of the statement: 'All birds can fly'?",
+		"choices": [
+			"No birds can fly",
+			"Some birds can fly",
+			"Some birds cannot fly",
+			"All birds can fly"
+		],
+		"answer": "Some birds cannot fly",
+		"explanation": "The negation of a universal statement ('All $A$ are $B$') is an existential statement ('Some $A$ are not $B$'). You only need one counterexample to disprove a universal claim.",
+		"tags": [
+			"quantifiers",
+			"negation",
+			"generated"
+		],
+		"id": "gen-logic-010"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Three prisoners are standing in a line, one behind the other, all facing forward. Each is wearing either a red or a blue hat.\n\n- Prisoner 3 (at the back) can see the hats of Prisoner 2 and Prisoner 1.\n- Prisoner 2 (in the middle) can see the hat of Prisoner 1.\n- Prisoner 1 (at the front) can see no one.\n\nA guard says: 'At least one of you is wearing a red hat.'\n\nThe guard asks Prisoner 3: 'Do you know your hat color?' Prisoner 3 says: 'No.'\n\nThe guard asks Prisoner 2: 'Do you know your hat color?' Prisoner 2 says: 'No.'\n\nFinally, the guard asks Prisoner 1: 'Do you know your hat color?' Prisoner 1 says: 'Yes.'\n\nWhat color is Prisoner 1's hat?",
+		"choices": [
+			"Red",
+			"Blue",
+			"Cannot be determined",
+			"Either Red or Blue"
+		],
+		"answer": "Red",
+		"explanation": "If Prisoner 1 were wearing blue, Prisoner 2 would have known they were wearing red after hearing Prisoner 3's 'No' (as P3's 'No' implies that P1 and P2 are not both wearing blue). Since Prisoner 2 also said 'No', Prisoner 1 must be wearing red.",
+		"tags": [
+			"deduction",
+			"induction",
+			"puzzles",
+			"generated"
+		],
+		"id": "gen-logic-011"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You are shown four cards: `[A]`, `[K]`, `[4]`, and `[7]`. Each card has a letter on one side and a number on the other. The rule is: 'If a card has a vowel on one side, then it must have an even number on the other side.' Which card(s) must you turn over to test if the rule is being violated?",
+		"choices": [
+			"`[A]` and `[4]`",
+			"`[A]` and `[7]`",
+			"`[A]`, `[K]`, and `[4]`",
+			"`[A]`, `[K]`, and `[7]`"
+		],
+		"answer": "`[A]` and `[7]`",
+		"explanation": "To test $P \\implies Q$, you must check $P$ (to see if $Q$ follows) and $\\neg Q$ (to see if $P$ was actually true). Checking `[4]` (the $Q$ case) is unnecessary because the rule doesn't forbid consonants from having even numbers.",
+		"tags": [
+			"deduction",
+			"conditional",
+			"wason",
+			"generated"
+		],
+		"id": "gen-logic-012"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie).\n\nA says: 'C is the Knave.'\nB says: 'A is the Knight.'\nC says: 'I am the Spy.'\n\nWho is the Spy?",
+		"choices": [
+			"A",
+			"B",
+			"C",
+			"Cannot be determined"
+		],
+		"answer": "B",
+		"explanation": "If C were the Knight, his statement would be a lie. If B were the Knight, A would also be a Knight, which is impossible. Thus, A must be the Knight, C is the Knave, and B is the Spy.",
+		"tags": [
+			"knights-and-knaves",
+			"deduction",
+			"generated"
+		],
+		"id": "gen-logic-013"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three suspects—Amy, Bob, and Cal—are being questioned about a theft. It is known that exactly one of them is guilty. \n\nAmy: \"Bob is guilty.\"\nBob: \"Cal is guilty.\"\nCal: \"I am not guilty.\"\n\nIf exactly two of these statements are true, who is guilty?",
+		"choices": [
+			"Amy",
+			"Bob",
+			"Cal",
+			"It cannot be determined"
+		],
+		"answer": "Bob",
+		"explanation": "If Bob is guilty, Amy's statement is true, Bob's is false, and Cal's is true, which satisfies the condition of exactly two true statements.",
+		"tags": [
+			"deduction",
+			"puzzle",
+			"generated"
+		],
+		"id": "gen-logic-014"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Aria is taller than Ben. Chloe is taller than Aria. Ben is taller than David. Who is the shortest?",
+		"choices": [
+			"Aria",
+			"Ben",
+			"Chloe",
+			"David"
+		],
+		"answer": "David",
+		"explanation": "By combining the inequalities, we establish the order: Chloe > Aria > Ben > David. Therefore, David is the shortest.",
+		"tags": [
+			"deduction",
+			"ordering",
+			"generated"
+		],
+		"id": "gen-logic-015"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Four suspects—Arthur, Bernice, Charles, and Diana—are being questioned. It is known that exactly one of them is the spy and exactly one of their statements is true.\n\nArthur: \"Bernice is the spy.\"\nBernice: \"Diana is the spy.\"\nCharles: \"I am not the spy.\"\nDiana: \"Bernice is lying.\"\n\nWho is the spy?",
+		"choices": [
+			"Arthur",
+			"Bernice",
+			"Charles",
+			"Diana"
+		],
+		"answer": "Charles",
+		"explanation": "Bernice and Diana's statements are contradictory, meaning one of them must be true. Since only one statement is true, Arthur and Charles must be lying. If Charles is lying when he says 'I am not the spy,' he must be the spy.",
+		"tags": [
+			"deduction",
+			"puzzles",
+			"contradiction",
+			"generated"
+		],
+		"id": "gen-logic-016"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Three boxes are labeled Red, Blue, and Green. Each contains exactly one ball (Red, Blue, or Green), and no box contains a ball of its own color. If the Green box contains the Red ball, which box contains the Blue ball?",
+		"choices": [
+			"Red box",
+			"Blue box",
+			"Green box",
+			"Cannot be determined"
+		],
+		"answer": "Red box",
+		"explanation": "With the Red ball in the Green box, the remaining balls are Blue and Green. Since the Blue box cannot contain the Blue ball, it must contain the Green ball, leaving the Blue ball for the Red box.",
+		"tags": [
+			"deduction",
+			"puzzle",
+			"generated"
+		],
+		"id": "gen-logic-017"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Two cards are drawn without replacement from a standard 52-card deck. What is the probability that both cards are hearts?",
+		"choices": [
+			"$1/16$",
+			"$1/17$",
+			"$1/26$",
+			"$1/34$"
+		],
+		"answer": "$1/17$",
+		"explanation": "The probability the first card is a heart is $\\frac{13}{52} = \\frac{1}{4}$. Given the first was a heart, there are 12 hearts left out of 51 cards, so $\\frac{12}{51} = \\frac{4}{17}$. Multiplying these gives $\\frac{1}{4} \\times \\frac{4}{17} = \\frac{1}{17}$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-001"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A farmer has chickens and cows. There are 35 heads and 94 legs in total. How many cows does the farmer have?",
+		"answer": "12",
+		"accepted": [
+			"12"
+		],
+		"explanation": "Let $C$ be cows and $H$ be chickens. $C + H = 35$ and $4C + 2H = 94$. Subtracting twice the first equation from the second gives $2C = 24$, so $C = 12$.",
+		"tags": [
+			"algebra",
+			"word-problem",
+			"linear-equations",
+			"generated"
+		],
+		"id": "gen-math-002"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "How many distinct ways can the letters in the word \"LEVEL\" be rearranged?",
+		"choices": [
+			"120",
+			"60",
+			"30",
+			"24"
+		],
+		"answer": "30",
+		"explanation": "The total number of permutations of 5 letters is $5! = 120$. Since the letters 'L' and 'E' each appear twice, we divide by $2! \\times 2! = 4$, giving $120 / 4 = 30$.",
+		"tags": [
+			"combinatorics",
+			"permutations",
+			"generated"
+		],
+		"id": "gen-math-003"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If $x + y = 10$ and $xy = 21$, what is the value of $x^2 + y^2$?",
+		"choices": [
+			"42",
+			"58",
+			"79",
+			"100"
+		],
+		"answer": "58",
+		"explanation": "Using the identity $(x+y)^2 = x^2 + 2xy + y^2$, we have $10^2 = x^2 + y^2 + 2(21)$, which simplifies to $100 - 42 = 58$.",
+		"tags": [
+			"algebra",
+			"identities",
+			"generated"
+		],
+		"id": "gen-math-004"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A bag contains 4 red balls and 6 blue balls. If two balls are drawn at random without replacement, what is the probability that they are different colors?",
+		"choices": [
+			"4/15",
+			"8/15",
+			"12/15",
+			"1/2"
+		],
+		"answer": "8/15",
+		"explanation": "The total number of ways to choose 2 balls from 10 is $\\binom{10}{2} = 45$. The number of ways to choose one red and one blue ball is $4 \\times 6 = 24$. Thus, the probability is $24/45$, which simplifies to $8/15$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-005"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A random integer is chosen from 1 to 30 inclusive. What is the probability that the number is a multiple of 3 or 5?",
+		"choices": [
+			"8/15",
+			"7/15",
+			"4/15",
+			"1/3"
+		],
+		"answer": "7/15",
+		"explanation": "There are 10 multiples of 3 and 6 multiples of 5 in the range. Since 15 and 30 are counted in both groups, there are $10 + 6 - 2 = 14$ unique multiples. The probability is $14/30 = 7/15$.",
+		"tags": [
+			"probability",
+			"inclusion-exclusion",
+			"number-theory",
+			"generated"
+		],
+		"id": "gen-math-006"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the remainder when $2^{10}$ is divided by 11?",
+		"choices": [
+			"1",
+			"2",
+			"5",
+			"10"
+		],
+		"answer": "1",
+		"explanation": "By Fermat's Little Theorem, $a^{p-1} \\equiv 1 \\pmod p$ for any prime $p$ not dividing $a$. Alternatively, $1024 = 11 \\times 93 + 1$.",
+		"tags": [
+			"number-theory",
+			"modular-arithmetic",
+			"generated"
+		],
+		"id": "gen-math-007"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A rectangular garden has a diagonal of 13 meters and one side of 5 meters. What is the perimeter of the garden in meters?",
+		"answer": "34",
+		"accepted": [
+			"34",
+			"34m",
+			"34 meters"
+		],
+		"explanation": "Using the Pythagorean theorem, the missing side is $\\sqrt{13^2 - 5^2} = \\sqrt{169 - 25} = 12$. The perimeter is $2 \\times (5 + 12) = 34$.",
+		"tags": [
+			"geometry",
+			"pythagoras",
+			"perimeter",
+			"generated"
+		],
+		"id": "gen-math-008"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "At a party, every person shakes hands with every other person exactly once. If there were 66 handshakes in total, how many people were at the party?",
+		"answer": "12",
+		"accepted": [
+			"12",
+			"12 people"
+		],
+		"explanation": "The number of handshakes for $n$ people is $\\frac{n(n-1)}{2}$. Solving $\\frac{n(n-1)}{2} = 66$ gives $n(n-1) = 132$, and $12 \\times 11 = 132$.",
+		"tags": [
+			"combinatorics",
+			"algebra",
+			"generated"
+		],
+		"id": "gen-math-009"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Solve for $x$: $\\sqrt{x + 7} = x - 5$",
+		"answer": "9",
+		"accepted": [
+			"9"
+		],
+		"explanation": "Squaring both sides gives $x^2 - 11x + 18 = 0$, which factors to $(x-9)(x-2)=0$. The value $x=2$ is extraneous because it results in $\\sqrt{9} = -3$, which is false.",
+		"tags": [
+			"algebra",
+			"extraneous-solution",
+			"square-root",
+			"generated"
+		],
+		"id": "gen-math-010"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Two fair six-sided dice are rolled. What is the probability that the product of the two numbers rolled is a multiple of 4?",
+		"choices": [
+			"1/4",
+			"1/3",
+			"5/12",
+			"7/18"
+		],
+		"answer": "5/12",
+		"explanation": "There are 36 total outcomes. The product is a multiple of 4 if at least one die is 4 (11 outcomes) or if both dice are even but neither is 4: $(2,2), (2,6), (6,2), (6,6)$ (4 outcomes). $15/36 = 5/12$.",
+		"tags": [
+			"probability",
+			"dice",
+			"number-theory",
+			"generated"
+		],
+		"id": "gen-math-011"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A fair coin is flipped 4 times. What is the probability of getting exactly 2 heads? Express your answer as a simplified fraction.",
+		"answer": "3/8",
+		"accepted": [
+			"3/8",
+			"0.375"
+		],
+		"explanation": "There are $2^4 = 16$ possible outcomes. The number of ways to choose 2 heads out of 4 flips is $\\binom{4}{2} = 6$. The probability is $6/16$, which simplifies to $3/8$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-012"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers is a prime number? Express your answer as a simplified fraction.",
+		"choices": [
+			"1/3",
+			"5/12",
+			"7/18",
+			"11/36"
+		],
+		"answer": "5/12",
+		"explanation": "The possible prime sums are 2, 3, 5, 7, and 11. There are $1 + 2 + 4 + 6 + 2 = 15$ ways to achieve these sums out of 36 total outcomes; $15/36$ simplifies to $5/12$.",
+		"tags": [
+			"probability",
+			"number-theory",
+			"generated"
+		],
+		"id": "gen-math-013"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The sum of the interior angles of a convex polygon is $1080^\\circ$. How many sides does the polygon have?",
+		"choices": [
+			"6",
+			"7",
+			"8",
+			"10"
+		],
+		"answer": "8",
+		"explanation": "The formula for the sum of interior angles is $(n-2) \\times 180^\\circ$. Dividing $1080$ by $180$ gives $6$, so $n-2 = 6$, which means $n = 8$.",
+		"tags": [
+			"geometry",
+			"polygons",
+			"algebra",
+			"generated"
+		],
+		"id": "gen-math-014"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "How many pairs of positive integers $(x, y)$ satisfy the equation $xy + x + y = 71$?",
+		"answer": "10",
+		"accepted": [
+			"10"
+		],
+		"explanation": "Adding 1 to both sides allows the equation to be factored as $(x+1)(y+1) = 72$. Since $x, y \\ge 1$, we look for pairs of factors of 72 that are both $\\ge 2$; there are 12 total divisors of 72, and we exclude the two cases where a factor is 1.",
+		"tags": [
+			"algebra",
+			"number-theory",
+			"generated"
+		],
+		"id": "gen-math-015"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "A bag contains 3 red balls and 3 blue balls. Balls are drawn one by one without replacement. What is the probability that at no point during the process the number of red balls drawn is greater than the number of blue balls drawn? Express your answer as a simplified fraction.",
+		"answer": "1/4",
+		"accepted": [
+			"1/4",
+			"0.25",
+			"25%"
+		],
+		"explanation": "This is a problem of counting Dyck paths. The total number of ways to arrange the balls is $\\binom{6}{3} = 20$, and the number of valid paths is the 3rd Catalan number $C_3 = \\frac{1}{3+1}\\binom{6}{3} = 5$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"catalan-numbers",
+			"generated"
+		],
+		"id": "gen-math-016"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "Calculate the sum of the infinite series: $$\\sum_{n=1}^{\\infty} \\frac{n}{2^n}$$",
+		"answer": "2",
+		"accepted": [
+			"2"
+		],
+		"explanation": "This is an arithmetico-geometric series. By calculating $S - \\frac{1}{2}S$, we obtain the geometric series $\\sum_{n=1}^{\\infty} \\frac{1}{2^n} = 1$, which implies $\\frac{1}{2}S = 1$, so $S = 2$.",
+		"tags": [
+			"series",
+			"algebra",
+			"calculus",
+			"generated"
+		],
+		"id": "gen-math-017"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "A fair coin is flipped repeatedly. What is the expected number of flips until the sequence Heads, Tails, Heads appears?",
+		"choices": [
+			"8",
+			"10",
+			"12",
+			"14"
+		],
+		"answer": "10",
+		"explanation": "Let $E$ be the expected flips, $E_H$ the expected remaining flips after an $H$, and $E_{HT}$ after $HT$. The transitions give $E = 2 + E_H$, $E_H = 2 + E_{HT}$, and $E_{HT} = 1 + 0.5E$. Solving this system yields $E = 10$.",
+		"tags": [
+			"probability",
+			"expected-value",
+			"stochastic-processes",
+			"generated"
+		],
+		"id": "gen-math-018"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Find the sum of all real roots of the equation $x^4 - 4x^3 + 6x^2 - 4x - 15 = 0$.",
+		"answer": "2",
+		"accepted": [
+			"2",
+			"two",
+			"2.0"
+		],
+		"explanation": "Recognize that $x^4 - 4x^3 + 6x^2 - 4x + 1 = (x-1)^4$. The equation can be rewritten as $(x-1)^4 - 16 = 0$, which means $(x-1)^4 = 16$. The real roots are $x-1 = 2$ and $x-1 = -2$, giving $x=3$ and $x=-1$. Their sum is $2$. (Note: Vieta's formulas would give the sum of all roots, including complex ones, which is $4$.)",
+		"tags": [
+			"algebra",
+			"polynomials",
+			"roots",
+			"generated"
+		],
+		"id": "gen-math-019"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "A sphere of radius 3 is inscribed in a cube. A smaller sphere is placed in one of the corners of the cube such that it is tangent to the three faces meeting at that corner and also tangent to the large sphere. What is its radius?",
+		"choices": [
+			"$6 - 3\\sqrt{3}$",
+			"$3\\sqrt{3} - 3$",
+			"$6 - 2\\sqrt{3}$",
+			"$3 - \\sqrt{3}$"
+		],
+		"answer": "$6 - 3\\sqrt{3}$",
+		"explanation": "Let the small sphere have radius $r$. Its center is at $(r, r, r)$ and the large sphere's center is at $(3, 3, 3)$. The distance between centers is $\\sqrt{3(3-r)^2} = (3-r)\\sqrt{3}$. Setting this equal to the sum of the radii, $3+r$, and solving for $r$ yields $r = 6 - 3\\sqrt{3}$.",
+		"tags": [
+			"geometry",
+			"3d-geometry",
+			"algebra",
+			"generated"
+		],
+		"id": "gen-math-020"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Compute mentally: $16 \\times 25$",
+		"choices": [
+			"300",
+			"400",
+			"425",
+			"600"
+		],
+		"answer": "400",
+		"explanation": "A quick way to solve this is to rewrite it as $4 \\times (4 \\times 25)$, which simplifies to $4 \\times 100 = 400$.",
+		"tags": [
+			"arithmetic",
+			"mental-math",
+			"generated"
+		],
+		"id": "gen-math-022"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is $25\\%$ of $60$?",
+		"choices": [
+			"10",
+			"15",
+			"20",
+			"25"
+		],
+		"answer": "15",
+		"explanation": "$25\\%$ is equivalent to one quarter, and $\\frac{60}{4} = 15$.",
+		"tags": [
+			"percentages",
+			"arithmetic",
+			"generated"
+		],
+		"id": "gen-math-023"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn one after another without replacement. What is the probability that both marbles are the same color?",
+		"choices": [
+			"$13/28$",
+			"$15/28$",
+			"$17/32$",
+			"$5/14$"
+		],
+		"answer": "$13/28$",
+		"explanation": "The probability of drawing two red marbles is $\\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56}$, and two blue marbles is $\\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56}$. The sum is $\\frac{26}{56} = \\frac{13}{28}$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-024"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Find the sum of the first 20 terms of the arithmetic progression: $3, 7, 11, 15, \\dots$",
+		"choices": [
+			"780",
+			"820",
+			"860",
+			"900"
+		],
+		"answer": "820",
+		"explanation": "The first term $a_1 = 3$ and the common difference $d = 4$. The 20th term is $a_{20} = 3 + (20-1) \\times 4 = 79$. The sum is $\\frac{20}{2}(3 + 79) = 10 \\times 82 = 820$.",
+		"tags": [
+			"arithmetic",
+			"sequences",
+			"generated"
+		],
+		"id": "gen-math-025"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the remainder when $25$ is divided by $4$?",
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"3"
+		],
+		"answer": "1",
+		"explanation": "Since $25 = (6 \\times 4) + 1$, the remainder is $1$.",
+		"tags": [
+			"arithmetic",
+			"modulo",
+			"generated"
+		],
+		"id": "gen-math-026"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Find the coefficient of $x^5$ in the polynomial expansion of $(1 + x + x^2)^6$.",
+		"answer": "126",
+		"accepted": [
+			"126"
+		],
+		"explanation": "Use the identity $(1+x+x^2)^6 = \\frac{(1-x^3)^6}{(1-x)^6}$. The expansion is $(1 - 6x^3 + 15x^6 - \\dots) \\sum_{n=0}^{\\infty} \\binom{n+5}{5} x^n$. The $x^5$ term is $1 \\cdot \\binom{10}{5} - 6 \\cdot \\binom{7}{5} = 252 - 126 = 126$.",
+		"tags": [
+			"algebra",
+			"combinatorics",
+			"polynomials",
+			"binomial-theorem",
+			"generated"
+		],
+		"id": "gen-math-027"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A rectangle has a perimeter of 28 cm and an area of 40 cm². What is the length of its longer side?",
+		"choices": [
+			"4",
+			"7",
+			"10",
+			"14"
+		],
+		"answer": "10",
+		"explanation": "If the sides are $l$ and $w$, then $2(l+w)=28 \\implies l+w=14$, and $lw=40$. The factors of 40 that sum to 14 are 10 and 4, so the longer side is 10.",
+		"tags": [
+			"algebra",
+			"geometry",
+			"generated"
+		],
+		"id": "gen-math-028"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "How many integers $n$ in the range $1 \\le n \\le 100$ are coprime to 30?",
+		"answer": "26",
+		"accepted": [
+			"26"
+		],
+		"explanation": "Using the Principle of Inclusion-Exclusion to count numbers not divisible by 2, 3, or 5: $100 - (50 + 33 + 20) + (16 + 10 + 6) - 3 = 26$.",
+		"tags": [
+			"number-theory",
+			"combinatorics",
+			"inclusion-exclusion",
+			"generated"
+		],
+		"id": "gen-math-029"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is $13^2$?",
+		"choices": [
+			"144",
+			"156",
+			"169",
+			"196"
+		],
+		"answer": "169",
+		"explanation": "$13^2 = 13 \\times 13 = 169$.",
+		"tags": [
+			"arithmetic",
+			"squares",
+			"generated"
+		],
+		"id": "gen-math-030"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are red?",
+		"choices": [
+			"2/15",
+			"4/25",
+			"8/15",
+			"1/6"
+		],
+		"answer": "2/15",
+		"explanation": "The probability of the first marble being red is $4/10$. Since there is no replacement, the probability of the second being red is $3/9$, resulting in $\\frac{4}{10} \\times \\frac{3}{9} = \\frac{12}{90} = \\frac{2}{15}$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-031"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Compute: $3^3$",
+		"choices": [
+			"9",
+			"18",
+			"27",
+			"81"
+		],
+		"answer": "27",
+		"explanation": "$3^3 = 3 \\times 3 \\times 3 = 27$.",
+		"tags": [
+			"arithmetic",
+			"powers",
+			"generated"
+		],
+		"id": "gen-math-032"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "If $x > 0$ and $\\sqrt{x + \\sqrt{x + \\sqrt{x + \\dots}}} = 5$, find $x$.",
+		"answer": "20",
+		"accepted": [
+			"20"
+		],
+		"explanation": "Let $y = \\sqrt{x + \\sqrt{x + \\dots}}$. This implies $y = \\sqrt{x + y}$. Substituting $y = 5$ yields $5 = \\sqrt{x + 5}$, so $25 = x + 5$, which means $x = 20$.",
+		"tags": [
+			"algebra",
+			"nested-radicals",
+			"limits",
+			"generated"
+		],
+		"id": "gen-math-033"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "A row of 12 seats is available. In how many ways can 4 seats be selected such that no two selected seats are adjacent?",
+		"answer": "126",
+		"accepted": [
+			"126"
+		],
+		"explanation": "Using the formula $\\binom{n-k+1}{k}$ for choosing $k$ non-adjacent items from $n$, we calculate $\\binom{12-4+1}{4} = \\binom{9}{4} = \\frac{9 \\times 8 \\times 7 \\times 6}{4 \\times 3 \\times 2 \\times 1} = 126$.",
+		"tags": [
+			"combinatorics",
+			"counting",
+			"generated"
+		],
+		"id": "gen-math-034"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Compute: $14 \\times 4$",
+		"choices": [
+			"52",
+			"54",
+			"56",
+			"58"
+		],
+		"answer": "56",
+		"explanation": "$14 \\times 4 = (10 \\times 4) + (4 \\times 4) = 40 + 16 = 56$.",
+		"tags": [
+			"arithmetic",
+			"mental-math",
+			"generated"
+		],
+		"id": "gen-math-035"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Compute mentally: $12 \\times 11$",
+		"choices": [
+			"121",
+			"132",
+			"142",
+			"144"
+		],
+		"answer": "132",
+		"explanation": "$12 \\times 10 = 120$, and $120 + 12 = 132$.",
+		"tags": [
+			"arithmetic",
+			"multiplication",
+			"generated"
+		],
+		"id": "gen-math-036"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Let $x, y, z$ be real numbers such that $x + y + z = 6$, $x^2 + y^2 + z^2 = 14$, and $x^3 + y^3 + z^3 = 36$. Find the value of $xyz$.",
+		"answer": "6",
+		"accepted": [
+			"6"
+		],
+		"explanation": "First, find $xy + yz + zx = 11$ using the identity $(x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx)$. Then, use the cubic identity $x^3 + y^3 + z^3 - 3xyz = (x + y + z)(x^2 + y^2 + z^2 - (xy + yz + zx))$ to solve for $xyz$.",
+		"tags": [
+			"algebra",
+			"symmetric-polynomials",
+			"newton-sums",
+			"generated"
+		],
+		"id": "gen-math-037"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Compute mentally: $21 \\times 19$",
+		"choices": [
+			"381",
+			"399",
+			"401",
+			"419"
+		],
+		"answer": "399",
+		"explanation": "Use the difference of squares identity: $21 \\times 19 = (20 + 1)(20 - 1) = 20^2 - 1^2 = 400 - 1 = 399$.",
+		"tags": [
+			"arithmetic",
+			"mental-math",
+			"algebra",
+			"generated"
+		],
+		"id": "gen-math-038"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are blue?",
+		"choices": [
+			"1/3",
+			"9/25",
+			"1/2",
+			"3/10"
+		],
+		"answer": "1/3",
+		"explanation": "The probability of drawing the first blue marble is $\\frac{6}{10}$. Since the marble is not replaced, there are now 5 blue marbles left out of 9 total marbles. The probability is $\\frac{6}{10} \\times \\frac{5}{9} = \\frac{30}{90} = \\frac{1}{3}$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		],
+		"id": "gen-math-039"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Compute: $4^3 - 3^2$",
+		"choices": [
+			"37",
+			"55",
+			"61",
+			"64"
+		],
+		"answer": "55",
+		"explanation": "$4^3 = 64$ and $3^2 = 9$, so $64 - 9 = 55$. A common error is to use $3^3 = 27$ instead of $3^2$, which leads to $37$.",
+		"tags": [
+			"arithmetic",
+			"powers",
+			"generated"
+		],
+		"id": "gen-math-040"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the value of $\\frac{3}{4} + \\frac{2}{3}$?",
+		"choices": [
+			"$\\frac{5}{7}$",
+			"$\\frac{17}{12}$",
+			"$\\frac{1}{2}$",
+			"$\\frac{9}{8}$"
+		],
+		"answer": "$\\frac{17}{12}$",
+		"explanation": "To add fractions, find a common denominator: $\\frac{3}{4} = \\frac{9}{12}$ and $\\frac{2}{3} = \\frac{8}{12}$. Summing them gives $\\frac{17}{12}$.",
+		"tags": [
+			"arithmetic",
+			"fractions",
+			"generated"
+		],
+		"id": "gen-math-041"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What are the last two digits of $7^{2024}$?",
+		"choices": [
+			"01",
+			"07",
+			"43",
+			"49"
+		],
+		"answer": "01",
+		"explanation": "The last two digits follow a cycle of four: $7^1 \\equiv 07$, $7^2 \\equiv 49$, $7^3 \\equiv 43$, and $7^4 \\equiv 01 \\pmod{100}$. Since $2024$ is a multiple of 4, the last two digits are $01$.",
+		"tags": [
+			"number-theory",
+			"modular-arithmetic",
+			"patterns",
+			"generated"
+		],
+		"id": "gen-math-042"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Evaluate the following limit: $\\lim_{n \\to \\infty} \\frac{(n!)^{1/n}}{n}$",
+		"answer": "1/e",
+		"accepted": [
+			"1/e",
+			"e^-1",
+			"e^{-1}"
+		],
+		"explanation": "Recognizing $\\ln(\\frac{(n!)^{1/n}}{n}) = \\frac{1}{n} \\sum_{k=1}^n \\ln(\\frac{k}{n})$ as a Riemann sum for $\\int_0^1 \\ln(x) \\, dx = -1$ implies the limit is $e^{-1}$.",
+		"tags": [
+			"calculus",
+			"limits",
+			"analysis",
+			"generated"
+		],
+		"id": "gen-math-043"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "A regular decagon has 10 vertices. How many ways can 3 vertices be chosen such that no two of the chosen vertices are adjacent?",
+		"choices": [
+			"50",
+			"60",
+			"70",
+			"120"
+		],
+		"answer": "50",
+		"explanation": "Total combinations are $\\binom{10}{3} = 120$. There are 10 ways to choose 3 consecutive vertices. For the cases with exactly 2 consecutive vertices, there are 10 edges, and for each edge, there are 6 possible third vertices that are not adjacent to the edge. Thus, $120 - 10 - (10 \\times 6) = 50$.",
+		"tags": [
+			"combinatorics",
+			"geometry",
+			"generated"
+		],
+		"id": "gen-math-044"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A cube has a total surface area of $150$. What is the length of its space diagonal?",
+		"choices": [
+			"5",
+			"$5\\sqrt{2}$",
+			"$5\\sqrt{3}$",
+			"15"
+		],
+		"answer": "$5\\sqrt{3}$",
+		"explanation": "First, $6s^2 = 150$ gives a side length of $s = 5$. The space diagonal of a cube is $s\\sqrt{3}$, which is $5\\sqrt{3}$.",
+		"tags": [
+			"geometry",
+			"3d",
+			"algebra",
+			"generated"
+		],
+		"id": "gen-math-045"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Solve for $x$: $\\log_2(x) + \\log_2(x - 2) = 3$",
+		"choices": [
+			"2",
+			"4",
+			"6",
+			"8"
+		],
+		"answer": "4",
+		"explanation": "Combine the logarithms: $\\log_2(x(x - 2)) = 3$, which implies $x^2 - 2x = 2^3 = 8$. Solving the quadratic $x^2 - 2x - 8 = 0$ gives $x = 4$ and $x = -2$, but we must discard $x = -2$ because the argument of a logarithm must be positive.",
+		"tags": [
+			"algebra",
+			"logarithms",
+			"generated"
+		],
+		"id": "gen-math-046"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is $25\\%$ of $48$?",
+		"choices": [
+			"8",
+			"12",
+			"16",
+			"24"
+		],
+		"answer": "12",
+		"explanation": "$25\\%$ is equivalent to $\\frac{1}{4}$, and $48 \\div 4 = 12$.",
+		"tags": [
+			"arithmetic",
+			"percentages",
+			"generated"
+		],
+		"id": "gen-math-047"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Compute: $13 \\times 5$",
+		"choices": [
+			"55",
+			"60",
+			"65",
+			"70"
+		],
+		"answer": "65",
+		"explanation": "$13 \\times 5 = 65$.",
+		"tags": [
+			"arithmetic",
+			"mental-math",
+			"generated"
+		],
+		"id": "gen-math-048"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "How many positive integer divisors does the number $720$ have?",
+		"choices": [
+			"24",
+			"30",
+			"36",
+			"48"
+		],
+		"answer": "30",
+		"explanation": "The prime factorization of $720$ is $2^4 \\cdot 3^2 \\cdot 5^1$. The number of divisors is found by adding 1 to each exponent and multiplying them: $(4+1)(2+1)(1+1) = 5 \\times 3 \\times 2 = 30$.",
+		"tags": [
+			"number-theory",
+			"divisors",
+			"generated"
+		],
+		"id": "gen-math-049"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The perimeter of a rectangle is $30\\text{ cm}$. If the length is $3\\text{ cm}$ longer than the width, what is the area of the rectangle in $\\text{cm}^2$?",
+		"choices": [
+			"54",
+			"45",
+			"60",
+			"30"
+		],
+		"answer": "54",
+		"explanation": "Let $w$ be the width. The length is $w + 3$. The perimeter equation is $2(w + w + 3) = 30$, which simplifies to $4w + 6 = 30$. Solving for $w$ gives $w = 6$. The length is $6 + 3 = 9$, so the area is $6 \\times 9 = 54$.",
+		"tags": [
+			"algebra",
+			"geometry",
+			"generated"
+		],
+		"id": "gen-math-050"
+	},
+	{
+		"id": "gen-015",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A farmer has 17 sheep. All but 9 die. How many sheep are left?",
+		"choices": [
+			"8",
+			"9",
+			"17",
+			"26"
+		],
+		"answer": "9",
+		"explanation": "\"All but 9 die\" means 9 survive. The 17 and the subtraction are bait.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-016",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "How many months of the year have 28 days?",
+		"choices": [
+			"1",
+			"2",
+			"11",
+			"All 12"
+		],
+		"answer": "All 12",
+		"explanation": "Every month has at least 28 days; only February is limited to exactly 28 (in common years).",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-017",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost, in cents?",
+		"answer": "5",
+		"accepted": [
+			"5",
+			"5 cents",
+			"5c",
+			"$0.05",
+			"0.05",
+			"0.05 dollars"
+		],
+		"explanation": "If the ball were 10¢ the bat would be $1.10, totaling $1.20. Solve: ball = $0.05, bat = $1.05. The intuitive \"10 cents\" is the classic trap.",
+		"tags": [
+			"trick",
+			"arithmetic"
+		]
+	},
+	{
+		"id": "gen-018",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What color is an aircraft's \"black box\" flight recorder?",
+		"choices": [
+			"Black",
+			"Orange",
+			"Yellow",
+			"Silver"
+		],
+		"answer": "Orange",
+		"explanation": "It is painted bright orange to be found after a crash; \"black box\" is just a nickname.",
+		"tags": [
+			"trick",
+			"aviation"
+		]
+	},
+	{
+		"id": "gen-019",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which is the hottest planet in the Solar System?",
+		"choices": [
+			"Mercury",
+			"Venus",
+			"Mars",
+			"Jupiter"
+		],
+		"answer": "Venus",
+		"explanation": "Venus (~465 °C surface) is hotter than Mercury despite being farther from the Sun — its thick CO₂ atmosphere traps heat in a runaway greenhouse effect.",
+		"tags": [
+			"astronomy",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-020",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A plane crashes exactly on the border between the United States and Canada. Where are the survivors buried?",
+		"choices": [
+			"In the United States",
+			"In Canada",
+			"Survivors are not buried",
+			"Split evenly between both"
+		],
+		"answer": "Survivors are not buried",
+		"explanation": "Survivors are, by definition, still alive. The border detail is a distraction.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-021",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which country contains the most natural lakes?",
+		"choices": [
+			"Canada",
+			"Russia",
+			"United States",
+			"Finland"
+		],
+		"answer": "Canada",
+		"explanation": "Canada holds well over half of the world's natural lakes — roughly two million of them.",
+		"tags": [
+			"geography"
+		]
+	},
+	{
+		"id": "gen-022",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "On an analog clock at exactly 3:15, what is the angle in degrees between the hour and minute hands?",
+		"answer": "7.5",
+		"accepted": [
+			"7.5",
+			"7.5 degrees",
+			"7.5°",
+			"7.5 deg"
+		],
+		"explanation": "The minute hand is at 90°. The hour hand has crept a quarter of the way from 3 to 4: 90° + 0.25 × 30° = 97.5°. The gap is 7.5°.",
+		"tags": [
+			"trick",
+			"geometry"
 		]
 	},
 	{
@@ -799,6 +2441,122 @@
 		"tags": [
 			"hiragana",
 			"writing"
+		]
+	},
+	{
+		"id": "latex-014",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the multiplication sign $\\times$?",
+		"answer": "\\times",
+		"accepted": [
+			"\\times",
+			"times"
+		],
+		"explanation": "`\\times` gives the cross; `\\cdot` gives the centered dot $\\cdot$. A bare `x` is just the letter.",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-015",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is the command for the Greek letter $\\pi$?",
+		"answer": "\\pi",
+		"accepted": [
+			"\\pi",
+			"pi"
+		],
+		"explanation": "`\\pi`; the capital is `\\Pi`, which is also the product operator's letter.",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-016",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which command typesets a vector with an arrow, $\\vec{v}$?",
+		"choices": [
+			"\\vec{v}",
+			"\\arrow{v}",
+			"\\vector{v}",
+			"\\overarrow{v}"
+		],
+		"answer": "\\vec{v}",
+		"explanation": "`\\vec{v}` puts a little arrow over the symbol; `\\overrightarrow{AB}` draws a full-width arrow for multi-letter spans.",
+		"tags": [
+			"commands"
+		]
+	},
+	{
+		"id": "latex-017",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How do you typeset the blackboard-bold real numbers $\\mathbb{R}$?",
+		"answer": "\\mathbb{R}",
+		"accepted": [
+			"\\mathbb{R}",
+			"mathbb{R}",
+			"\\mathbb R"
+		],
+		"explanation": "`\\mathbb{R}` (blackboard bold, from amssymb). Useful for $\\mathbb{N}, \\mathbb{Z}, \\mathbb{Q}, \\mathbb{C}$ too.",
+		"tags": [
+			"symbols",
+			"fonts"
+		]
+	},
+	{
+		"id": "latex-018",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which source produces $\\lim_{x \\to 0}$?",
+		"choices": [
+			"\\lim_{x \\to 0}",
+			"\\lim^{x \\to 0}",
+			"\\Lim_{x \\to 0}",
+			"\\limit_{x \\to 0}"
+		],
+		"answer": "\\lim_{x \\to 0}",
+		"explanation": "`\\lim` is the operator; `_{...}` places the condition beneath it in display mode. `\\to` is the arrow.",
+		"tags": [
+			"commands",
+			"operators"
+		]
+	},
+	{
+		"id": "latex-019",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What command produces the binomial coefficient $\\binom{n}{k}$?",
+		"answer": "\\binom{n}{k}",
+		"accepted": [
+			"\\binom{n}{k}",
+			"binom{n}{k}"
+		],
+		"explanation": "`\\binom{n}{k}` (from amsmath). The older `{n \\choose k}` works too but is discouraged.",
+		"tags": [
+			"commands"
+		]
+	},
+	{
+		"id": "latex-020",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for Euler's identity: $$e^{i\\pi} + 1 = 0$$ Then reveal and compare.",
+		"answer": "e^{i\\pi} + 1 = 0",
+		"explanation": "The exponent `i\\pi` needs braces — `e^{i\\pi}` — so the whole thing is raised, not just `i`.",
+		"tags": [
+			"writing",
+			"symbols"
 		]
 	},
 	{

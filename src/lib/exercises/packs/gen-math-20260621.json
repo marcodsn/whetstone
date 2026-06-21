@@ -14,8 +14,7 @@
 			"tags": [
 				"algebra",
 				"number-theory",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-015"
 		},
@@ -35,8 +34,7 @@
 				"probability",
 				"combinatorics",
 				"catalan-numbers",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-016"
 		},
@@ -54,8 +52,7 @@
 				"series",
 				"algebra",
 				"calculus",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-017"
 		},
@@ -76,8 +73,7 @@
 				"probability",
 				"expected-value",
 				"stochastic-processes",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-018"
 		},
@@ -97,8 +93,7 @@
 				"algebra",
 				"polynomials",
 				"roots",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-019"
 		},
@@ -119,31 +114,9 @@
 				"geometry",
 				"3d-geometry",
 				"algebra",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-020"
-		},
-		{
-			"domain": "math",
-			"type": "choice",
-			"difficulty": 3,
-			"prompt": "If $a + b = 10$ and $a^2 + b^2 = 58$, what is the value of $ab$?",
-			"choices": [
-				"21",
-				"42",
-				"58",
-				"100"
-			],
-			"answer": "21",
-			"explanation": "Using the identity $(a + b)^2 = a^2 + 2ab + b^2$, we substitute the known values: $10^2 = 58 + 2ab$, which simplifies to $100 = 58 + 2ab$. Solving for $ab$ gives $2ab = 42$, so $ab = 21$.",
-			"tags": [
-				"algebra",
-				"identities",
-				"generated",
-				"unreviewed"
-			],
-			"id": "gen-math-021"
 		},
 		{
 			"domain": "math",
@@ -161,8 +134,7 @@
 			"tags": [
 				"arithmetic",
 				"mental-math",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-022"
 		},
@@ -182,8 +154,7 @@
 			"tags": [
 				"percentages",
 				"arithmetic",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-023"
 		},
@@ -203,8 +174,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-024"
 		},
@@ -224,8 +194,7 @@
 			"tags": [
 				"arithmetic",
 				"sequences",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-025"
 		},
@@ -245,8 +214,7 @@
 			"tags": [
 				"arithmetic",
 				"modulo",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-026"
 		},
@@ -265,8 +233,7 @@
 				"combinatorics",
 				"polynomials",
 				"binomial-theorem",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-027"
 		},
@@ -286,8 +253,7 @@
 			"tags": [
 				"algebra",
 				"geometry",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-028"
 		},
@@ -305,8 +271,7 @@
 				"number-theory",
 				"combinatorics",
 				"inclusion-exclusion",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-029"
 		},
@@ -326,8 +291,7 @@
 			"tags": [
 				"arithmetic",
 				"squares",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-030"
 		},
@@ -347,8 +311,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-031"
 		},
@@ -368,8 +331,7 @@
 			"tags": [
 				"arithmetic",
 				"powers",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-032"
 		},
@@ -387,8 +349,7 @@
 				"algebra",
 				"nested-radicals",
 				"limits",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-033"
 		},
@@ -405,8 +366,7 @@
 			"tags": [
 				"combinatorics",
 				"counting",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-034"
 		},
@@ -426,8 +386,7 @@
 			"tags": [
 				"arithmetic",
 				"mental-math",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-035"
 		},
@@ -447,8 +406,7 @@
 			"tags": [
 				"arithmetic",
 				"multiplication",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-036"
 		},
@@ -466,8 +424,7 @@
 				"algebra",
 				"symmetric-polynomials",
 				"newton-sums",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-037"
 		},
@@ -488,8 +445,7 @@
 				"arithmetic",
 				"mental-math",
 				"algebra",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-038"
 		},
@@ -509,8 +465,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-039"
 		},
@@ -530,8 +485,7 @@
 			"tags": [
 				"arithmetic",
 				"powers",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-040"
 		},
@@ -551,8 +505,7 @@
 			"tags": [
 				"arithmetic",
 				"fractions",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-041"
 		},
@@ -573,8 +526,7 @@
 				"number-theory",
 				"modular-arithmetic",
 				"patterns",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-042"
 		},
@@ -594,8 +546,7 @@
 				"calculus",
 				"limits",
 				"analysis",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-043"
 		},
@@ -615,8 +566,7 @@
 			"tags": [
 				"combinatorics",
 				"geometry",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-044"
 		},
@@ -637,8 +587,7 @@
 				"geometry",
 				"3d",
 				"algebra",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-045"
 		},
@@ -658,8 +607,7 @@
 			"tags": [
 				"algebra",
 				"logarithms",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-046"
 		},
@@ -679,8 +627,7 @@
 			"tags": [
 				"arithmetic",
 				"percentages",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-047"
 		},
@@ -700,8 +647,7 @@
 			"tags": [
 				"arithmetic",
 				"mental-math",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-048"
 		},
@@ -721,8 +667,7 @@
 			"tags": [
 				"number-theory",
 				"divisors",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-049"
 		},
@@ -742,32 +687,9 @@
 			"tags": [
 				"algebra",
 				"geometry",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-050"
-		},
-		{
-			"domain": "math",
-			"type": "choice",
-			"difficulty": 4,
-			"prompt": "How many integers between 1 and 100 (inclusive) are not divisible by 2, 3, or 5?",
-			"choices": [
-				"24",
-				"26",
-				"28",
-				"30"
-			],
-			"answer": "26",
-			"explanation": "Using the Principle of Inclusion-Exclusion, the number of integers divisible by 2, 3, or 5 is $50 + 33 + 20 - (16 + 10 + 6) + 3 = 74$. Subtracting this from 100 gives 26.",
-			"tags": [
-				"number-theory",
-				"combinatorics",
-				"inclusion-exclusion",
-				"generated",
-				"unreviewed"
-			],
-			"id": "gen-math-051"
 		}
 	]
 }

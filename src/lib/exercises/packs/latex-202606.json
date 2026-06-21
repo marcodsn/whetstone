@@ -1,0 +1,81 @@
+{
+	"pack": "latex-202606",
+	"exercises": [
+		{
+			"id": "latex-014",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the multiplication sign $\\times$?",
+			"answer": "\\times",
+			"accepted": ["\\times", "times"],
+			"explanation": "`\\times` gives the cross; `\\cdot` gives the centered dot $\\cdot$. A bare `x` is just the letter.",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-015",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is the command for the Greek letter $\\pi$?",
+			"answer": "\\pi",
+			"accepted": ["\\pi", "pi"],
+			"explanation": "`\\pi`; the capital is `\\Pi`, which is also the product operator's letter.",
+			"tags": ["symbols"]
+		},
+		{
+			"id": "latex-016",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which command typesets a vector with an arrow, $\\vec{v}$?",
+			"choices": ["\\vec{v}", "\\arrow{v}", "\\vector{v}", "\\overarrow{v}"],
+			"answer": "\\vec{v}",
+			"explanation": "`\\vec{v}` puts a little arrow over the symbol; `\\overrightarrow{AB}` draws a full-width arrow for multi-letter spans.",
+			"tags": ["commands"]
+		},
+		{
+			"id": "latex-017",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "How do you typeset the blackboard-bold real numbers $\\mathbb{R}$?",
+			"answer": "\\mathbb{R}",
+			"accepted": ["\\mathbb{R}", "mathbb{R}", "\\mathbb R"],
+			"explanation": "`\\mathbb{R}` (blackboard bold, from amssymb). Useful for $\\mathbb{N}, \\mathbb{Z}, \\mathbb{Q}, \\mathbb{C}$ too.",
+			"tags": ["symbols", "fonts"]
+		},
+		{
+			"id": "latex-018",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which source produces $\\lim_{x \\to 0}$?",
+			"choices": ["\\lim_{x \\to 0}", "\\lim^{x \\to 0}", "\\Lim_{x \\to 0}", "\\limit_{x \\to 0}"],
+			"answer": "\\lim_{x \\to 0}",
+			"explanation": "`\\lim` is the operator; `_{...}` places the condition beneath it in display mode. `\\to` is the arrow.",
+			"tags": ["commands", "operators"]
+		},
+		{
+			"id": "latex-019",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What command produces the binomial coefficient $\\binom{n}{k}$?",
+			"answer": "\\binom{n}{k}",
+			"accepted": ["\\binom{n}{k}", "binom{n}{k}"],
+			"explanation": "`\\binom{n}{k}` (from amsmath). The older `{n \\choose k}` works too but is discouraged.",
+			"tags": ["commands"]
+		},
+		{
+			"id": "latex-020",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for Euler's identity: $$e^{i\\pi} + 1 = 0$$ Then reveal and compare.",
+			"answer": "e^{i\\pi} + 1 = 0",
+			"explanation": "The exponent `i\\pi` needs braces — `e^{i\\pi}` — so the whole thing is raised, not just `i`.",
+			"tags": ["writing", "symbols"]
+		}
+	]
+}

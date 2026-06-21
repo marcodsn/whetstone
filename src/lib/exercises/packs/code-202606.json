@@ -1,0 +1,100 @@
+{
+	"pack": "code-202606",
+	"exercises": [
+		{
+			"id": "code-015",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(3 * \"ab\")" },
+			"answer": "ababab",
+			"accepted": ["ababab", "\"ababab\"", "'ababab'"],
+			"explanation": "`*` between an int and a string repeats the string; `3 * \"ab\"` is \"ababab\".",
+			"tags": ["python", "predict-output", "strings"]
+		},
+		{
+			"id": "code-016",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(2 ** 3 ** 2)" },
+			"choices": ["64", "512", "256", "12"],
+			"answer": "512",
+			"explanation": "`**` is right-associative, so this is `2 ** (3 ** 2)` = `2 ** 9` = 512, not `(2 ** 3) ** 2` = 64.",
+			"tags": ["python", "operators", "gotcha"]
+		},
+		{
+			"id": "code-017",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(list(range(2, 10, 3)))" },
+			"answer": "[2, 5, 8]",
+			"accepted": ["[2, 5, 8]", "[2,5,8]", "2 5 8", "2,5,8"],
+			"explanation": "`range(start, stop, step)` is half-open: 2, 5, 8 — the next value 11 is past the stop of 10.",
+			"tags": ["python", "predict-output", "stdlib"]
+		},
+		{
+			"id": "code-018",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this JavaScript print?",
+			"code": { "lang": "javascript", "src": "console.log(typeof NaN);" },
+			"answer": "number",
+			"accepted": ["number", "\"number\"", "'number'"],
+			"explanation": "NaN (\"not a number\") is, paradoxically, of type `number` — it lives in the floating-point domain.",
+			"tags": ["javascript", "predict-output", "gotcha"]
+		},
+		{
+			"id": "code-019",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print?",
+			"code": { "lang": "javascript", "src": "console.log(typeof typeof 1);" },
+			"choices": ["number", "string", "object", "undefined"],
+			"answer": "string",
+			"explanation": "`typeof 1` is the string \"number\", and `typeof` of any string is \"string\". `typeof` always returns a string.",
+			"tags": ["javascript", "gotcha"]
+		},
+		{
+			"id": "code-020",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print([] == False)" },
+			"choices": ["True", "False", "[]", "Raises TypeError"],
+			"answer": "False",
+			"explanation": "An empty list is *falsy* (so `if []:` skips), but it is not *equal* to `False`. `==` compares values, and `[] == False` is False.",
+			"tags": ["python", "gotcha", "truthiness"]
+		},
+		{
+			"id": "code-021",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print(\"banana\".count(\"a\"))" },
+			"answer": "3",
+			"explanation": "`str.count` counts non-overlapping occurrences; \"banana\" has an 'a' at indices 1, 3, and 5.",
+			"tags": ["python", "predict-output", "strings"]
+		},
+		{
+			"id": "code-022",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "What does this Python print?",
+			"code": { "lang": "python", "src": "print({True: 'a', 1: 'b', 1.0: 'c'})" },
+			"choices": ["{True: 'c'}", "{True: 'a', 1: 'b', 1.0: 'c'}", "{1: 'c'}", "{True: 'a'}"],
+			"answer": "{True: 'c'}",
+			"explanation": "`True`, `1`, and `1.0` hash equal and compare equal, so they are the same dict key. The key keeps its first form (True) but the value is overwritten to the last assigned ('c').",
+			"tags": ["python", "gotcha", "dictionaries"]
+		}
+	]
+}

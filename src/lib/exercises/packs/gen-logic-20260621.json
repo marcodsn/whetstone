@@ -17,8 +17,7 @@
 			"tags": [
 				"deduction",
 				"puzzles",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-001"
 		},
@@ -38,8 +37,7 @@
 			"tags": [
 				"syllogism",
 				"deduction",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-002"
 		},
@@ -60,8 +58,7 @@
 				"knights and knaves",
 				"deduction",
 				"puzzles",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-003"
 		},
@@ -81,8 +78,7 @@
 			"tags": [
 				"deduction",
 				"constraints",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-004"
 		},
@@ -102,8 +98,7 @@
 			"tags": [
 				"deduction",
 				"logic puzzle",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-005"
 		},
@@ -123,8 +118,7 @@
 			"tags": [
 				"propositional logic",
 				"conditionals",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-006"
 		},
@@ -144,8 +138,7 @@
 			"tags": [
 				"boolean algebra",
 				"propositional logic",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-007"
 		},
@@ -165,8 +158,7 @@
 			"tags": [
 				"deduction",
 				"liars",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-008"
 		},
@@ -186,8 +178,7 @@
 			"tags": [
 				"knights and knaves",
 				"deduction",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-009"
 		},
@@ -207,8 +198,7 @@
 			"tags": [
 				"quantifiers",
 				"negation",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-010"
 		},
@@ -229,8 +219,7 @@
 				"deduction",
 				"induction",
 				"puzzles",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-011"
 		},
@@ -251,8 +240,7 @@
 				"deduction",
 				"conditional",
 				"wason",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-012"
 		},
@@ -272,8 +260,7 @@
 			"tags": [
 				"knights-and-knaves",
 				"deduction",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-013"
 		},
@@ -293,8 +280,7 @@
 			"tags": [
 				"deduction",
 				"puzzle",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-014"
 		},
@@ -314,8 +300,7 @@
 			"tags": [
 				"deduction",
 				"ordering",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-015"
 		},
@@ -336,8 +321,7 @@
 				"deduction",
 				"puzzles",
 				"contradiction",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-016"
 		},
@@ -357,8 +341,7 @@
 			"tags": [
 				"deduction",
 				"puzzle",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-logic-017"
 		}

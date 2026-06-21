@@ -17,8 +17,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-001"
 		},
@@ -36,8 +35,7 @@
 				"algebra",
 				"word-problem",
 				"linear-equations",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-002"
 		},
@@ -57,8 +55,7 @@
 			"tags": [
 				"combinatorics",
 				"permutations",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-003"
 		},
@@ -78,8 +75,7 @@
 			"tags": [
 				"algebra",
 				"identities",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-004"
 		},
@@ -99,8 +95,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-005"
 		},
@@ -121,8 +116,7 @@
 				"probability",
 				"inclusion-exclusion",
 				"number-theory",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-006"
 		},
@@ -142,8 +136,7 @@
 			"tags": [
 				"number-theory",
 				"modular-arithmetic",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-007"
 		},
@@ -163,8 +156,7 @@
 				"geometry",
 				"pythagoras",
 				"perimeter",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-008"
 		},
@@ -182,8 +174,7 @@
 			"tags": [
 				"combinatorics",
 				"algebra",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-009"
 		},
@@ -201,8 +192,7 @@
 				"algebra",
 				"extraneous-solution",
 				"square-root",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-010"
 		},
@@ -223,8 +213,7 @@
 				"probability",
 				"dice",
 				"number-theory",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-011"
 		},
@@ -242,8 +231,7 @@
 			"tags": [
 				"probability",
 				"combinatorics",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-012"
 		},
@@ -263,8 +251,7 @@
 			"tags": [
 				"probability",
 				"number-theory",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-013"
 		},
@@ -285,8 +272,7 @@
 				"geometry",
 				"polygons",
 				"algebra",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-math-014"
 		}
