@@ -102,7 +102,12 @@ scoring stay untouched so history remains comparable.
 
 - New pack: drop a JSON file in `src/lib/exercises/packs/` — nothing to
   register.
-- New domain: add it to `DOMAINS`/`DOMAIN_LABELS` in `src/lib/types.ts` and
-  write `prompts/domains/<name>.md` for the generator.
+- New domain: add one entry to `DOMAIN_LIST` in `src/lib/types.ts` (id + label —
+  labels, the session picker, and scoring all derive from it), write
+  `prompts/domains/<id>.md` for the generator (the generator auto-discovers its
+  domains from that folder), and drop at least one pack with exercises.
+- Choosing what to train: the home page has a checkbox per domain. Daily and
+  mixed sessions draw only from the checked domains; the selection is saved and
+  travels inside exported history.
 - Prompts support `$KaTeX$`, `$$display math$$`, and `` `inline code` ``;
   multi-line snippets go in the `code` field.

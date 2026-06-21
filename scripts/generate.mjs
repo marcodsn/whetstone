@@ -51,7 +51,14 @@ function loadEnv(file) {
 
 loadEnv(join(ROOT, '.env'));
 
-const DOMAINS = ['math', 'logic', 'code', 'japanese', 'latex', 'general'];
+// Domains are discovered from the per-domain guidance files so there's no second
+// list to keep in sync with the app — adding prompts/domains/<id>.md (plus the
+// matching entry in src/lib/types.ts) is enough to make <id> generatable.
+const DOMAINS_DIR = join(PROMPTS_DIR, 'domains');
+const DOMAINS = readdirSync(DOMAINS_DIR)
+	.filter((f) => f.endsWith('.md'))
+	.map((f) => f.replace(/\.md$/, ''))
+	.sort();
 const TYPES = ['choice', 'input', 'self'];
 
 // ── args ──────────────────────────────────────────────────────────

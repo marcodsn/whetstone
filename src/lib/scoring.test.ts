@@ -163,6 +163,16 @@ describe('importAttempts — format stability & de-dupe', () => {
 		expect(() => importAttempts('[{"foo":1}]')).toThrow();
 	});
 
+	it('imports the attempts out of an export envelope (not just a bare array)', () => {
+		const json = JSON.stringify({
+			version: 1,
+			selectedDomains: ['math'],
+			attempts: [attempt({ exerciseId: 'a', ts: 1 })]
+		});
+		expect(importAttempts(json).added).toBe(1);
+		expect(loadAttempts().length).toBe(1);
+	});
+
 	it('drops entries with an unknown domain but keeps valid ones', () => {
 		const json = JSON.stringify([
 			attempt({ exerciseId: 'good', ts: 1 }),

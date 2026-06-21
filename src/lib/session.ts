@@ -73,13 +73,27 @@ export interface SessionSpec {
 	n: number;
 }
 
-export function buildSession(spec: SessionSpec, attempts: Attempt[]): Exercise[] {
+/**
+ * Build a session.
+ *
+ * `allowedDomains` restricts daily / mixed sessions to the domains the user
+ * elected to be tested on (see prefs.ts). It is ignored for explicit `domain`
+ * sessions — training a single domain is always allowed — and an empty/omitted
+ * list falls back to every domain so a session is never empty.
+ */
+export function buildSession(
+	spec: SessionSpec,
+	attempts: Attempt[],
+	allowedDomains?: Domain[]
+): Exercise[] {
 	const rng = spec.mode === 'daily' ? mulberry32(dateSeed()) : mulberry32(Date.now() & 0xffffffff);
 	if (spec.mode === 'domain' && spec.domain) {
 		return pick(byDomain(spec.domain), spec.n, attempts, rng);
 	}
-	// daily / all: spread across domains, then fill
-	const picked = pick(exercises, spec.n * 3, attempts, rng);
+	// daily / all: spread across the selected domains, then fill
+	const allowed = allowedDomains && allowedDomains.length ? new Set(allowedDomains) : null;
+	const pool = allowed ? exercises.filter((e) => allowed.has(e.domain)) : exercises;
+	const picked = pick(pool, spec.n * 3, attempts, rng);
 	const perDomain = new Map<Domain, Exercise[]>();
 	for (const ex of picked) {
 		const list = perDomain.get(ex.domain) ?? [];

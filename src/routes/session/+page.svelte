@@ -4,6 +4,7 @@
 	import { DOMAINS, DOMAIN_LABELS } from '$lib/types';
 	import { buildSession, type SessionSpec } from '$lib/session';
 	import { loadAttempts, saveAttempt, computeStats } from '$lib/scoring';
+	import { loadSelectedDomains } from '$lib/prefs';
 	import ExerciseCard from '$lib/components/ExerciseCard.svelte';
 
 	function specFromUrl(): SessionSpec {
@@ -20,7 +21,7 @@
 
 	const spec = specFromUrl();
 	const startStats = computeStats(loadAttempts());
-	const session: Exercise[] = buildSession(spec, loadAttempts());
+	const session: Exercise[] = buildSession(spec, loadAttempts(), loadSelectedDomains());
 
 	let index = $state(0);
 	let results: { exercise: Exercise; correct: boolean }[] = $state([]);

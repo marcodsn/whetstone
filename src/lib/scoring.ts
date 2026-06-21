@@ -37,6 +37,24 @@ export function exportAttempts(): string {
 	return JSON.stringify(loadAttempts(), null, 2);
 }
 
+/**
+ * The full export the app downloads: the attempt log plus the user's domain
+ * selection, wrapped in a small envelope. `importAttempts` still reads legacy
+ * bare-array exports, so this is a backward-compatible superset.
+ */
+export function exportData(selectedDomains: Domain[]): string {
+	return JSON.stringify(
+		{
+			version: 1,
+			exportedAt: new Date().toISOString(),
+			selectedDomains,
+			attempts: loadAttempts()
+		},
+		null,
+		2
+	);
+}
+
 function isAttempt(x: unknown): x is Attempt {
 	if (!x || typeof x !== 'object') return false;
 	const a = x as Record<string, unknown>;
@@ -55,6 +73,10 @@ function isAttempt(x: unknown): x is Attempt {
  * store. De-dupes on exerciseId+ts so re-importing the same file is a no-op and
  * importing into a non-empty store is safe. Returns how many new attempts were
  * added. Throws if the input isn't a recognizable SCOPE export.
+ *
+ * Accepts both shapes: a legacy bare array of attempts, and the newer envelope
+ * `{ attempts: [...], selectedDomains: [...] }` from `exportData`. (Domain
+ * preferences in the envelope are applied separately — see prefs.ts.)
  */
 export function importAttempts(json: string): { added: number; total: number } {
 	let parsed: unknown;
@@ -63,8 +85,13 @@ export function importAttempts(json: string): { added: number; total: number } {
 	} catch {
 		throw new Error('That file is not valid JSON.');
 	}
-	if (!Array.isArray(parsed)) throw new Error('Expected a JSON array of attempts.');
-	const incoming = parsed.filter(isAttempt);
+	const list = Array.isArray(parsed)
+		? parsed
+		: parsed && typeof parsed === 'object' && Array.isArray((parsed as { attempts?: unknown }).attempts)
+			? (parsed as { attempts: unknown[] }).attempts
+			: null;
+	if (!list) throw new Error('Expected a SCOPE export (a JSON array of attempts).');
+	const incoming = list.filter(isAttempt);
 	if (incoming.length === 0) throw new Error('No valid attempts found — is this a SCOPE export?');
 
 	const merged = loadAttempts();

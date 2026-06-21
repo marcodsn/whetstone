@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { DOMAINS, DOMAIN_LABELS } from '$lib/types';
-	import type { Attempt } from '$lib/types';
+	import type { Attempt, Domain } from '$lib/types';
 	import { exercises, byDomain } from '$lib/exercises';
-	import { loadAttempts, computeStats, currentStreak, clearAttempts, exportAttempts, importAttempts, BASE_RATING } from '$lib/scoring';
+	import { loadAttempts, computeStats, currentStreak, clearAttempts, exportData, importAttempts, BASE_RATING } from '$lib/scoring';
+	import { loadSelectedDomains, saveSelectedDomains, selectedDomainsFromExport } from '$lib/prefs';
 	import Sparkline from '$lib/components/Sparkline.svelte';
 
 	let attempts: Attempt[] = $state(loadAttempts());
@@ -11,6 +12,22 @@
 	let totalAttempts = $derived(attempts.length);
 	let attemptedIds = $derived(new Set(attempts.map((a) => a.exerciseId)));
 
+	// Domains the user has elected to be tested on in daily / mixed sessions.
+	let selected: Set<Domain> = $state(new Set(loadSelectedDomains()));
+	let selectedCount = $derived(selected.size);
+
+	function toggleDomain(d: Domain) {
+		const next = new Set(selected);
+		if (next.has(d)) {
+			if (next.size === 1) return; // keep at least one — an empty session is useless
+			next.delete(d);
+		} else {
+			next.add(d);
+		}
+		selected = next;
+		saveSelectedDomains([...next]);
+	}
+
 	function ratingDelta(history: number[]): number {
 		if (history.length < 2) return 0;
 		const recent = history.slice(-11); // last 10 attempts
@@ -18,7 +35,7 @@
 	}
 
 	function doExport() {
-		const blob = new Blob([exportAttempts()], { type: 'application/json' });
+		const blob = new Blob([exportData([...selected])], { type: 'application/json' });
 		const a = document.createElement('a');
 		a.href = URL.createObjectURL(blob);
 		a.download = `scope-attempts-${new Date().toISOString().slice(0, 10)}.json`;
@@ -45,12 +62,26 @@
 		input.value = ''; // let the same file be picked again later
 		if (!file) return;
 		try {
-			const { added, total } = importAttempts(await file.text());
+			const text = await file.text();
+			const { added, total } = importAttempts(text);
 			attempts = loadAttempts();
+			// Restore the domain selection if the export carried one (legacy bare-array
+			// exports don't, in which case the local selection is left untouched).
+			let domainNote = '';
+			try {
+				const fromExport = selectedDomainsFromExport(JSON.parse(text));
+				if (fromExport && fromExport.length) {
+					selected = new Set(fromExport);
+					saveSelectedDomains(fromExport);
+					domainNote = ` Domain selection restored (${fromExport.length}).`;
+				}
+			} catch {
+				// already imported the attempts; a prefs hiccup shouldn't fail the import
+			}
 			alert(
-				added === 0
+				(added === 0
 					? `Already up to date — no new attempts imported (${total} total).`
-					: `Imported ${added} attempt${added === 1 ? '' : 's'} (${total} total).`
+					: `Imported ${added} attempt${added === 1 ? '' : 's'} (${total} total).`) + domainNote
 			);
 		} catch (err) {
 			alert(`Import failed: ${err instanceof Error ? err.message : String(err)}`);
@@ -83,6 +114,7 @@
 	<table class="domain-table">
 		<thead>
 			<tr>
+				<th class="check-col" title="Include in daily &amp; mixed sessions">Test</th>
 				<th>Domain</th>
 				<th class="right">Rating</th>
 				<th class="right">Trend</th>
@@ -97,7 +129,16 @@
 				{@const delta = ratingDelta(s.history)}
 				{@const pool = byDomain(d)}
 				{@const seen = pool.filter((e) => attemptedIds.has(e.id)).length}
-				<tr>
+				<tr class:deselected={!selected.has(d)}>
+					<td class="check-col">
+						<input
+							type="checkbox"
+							class="domain-check"
+							checked={selected.has(d)}
+							onchange={() => toggleDomain(d)}
+							aria-label="Include {DOMAIN_LABELS[d]} in daily and mixed sessions"
+						/>
+					</td>
 					<td class="domain-name">{DOMAIN_LABELS[d]}</td>
 					<td class="right num rating">
 						{Math.round(s.rating)}
@@ -129,7 +170,9 @@
 	</table>
 	<p class="rating-note muted">
 		Ratings start at {BASE_RATING} and move like Elo: harder exercises risk less on a miss and pay
-		more on a hit. The trend column shows your last 30 graded attempts.
+		more on a hit. The trend column shows your last 30 graded attempts. Daily and mixed sessions
+		draw only from the <strong>{selectedCount}</strong> checked domain{selectedCount === 1 ? '' : 's'};
+		“Train” always runs the domain you pick. Your selection rides along in exports.
 	</p>
 </section>
 
@@ -210,6 +253,29 @@
 		text-align: right;
 	}
 
+	.check-col {
+		width: 1px;
+		white-space: nowrap;
+		text-align: center;
+	}
+
+	.domain-check {
+		cursor: pointer;
+		accent-color: var(--color-text);
+		width: 1rem;
+		height: 1rem;
+		vertical-align: middle;
+	}
+
+	.domain-table tbody tr.deselected {
+		color: var(--color-text-muted);
+	}
+
+	.domain-table tbody tr.deselected .domain-name,
+	.domain-table tbody tr.deselected .rating {
+		color: var(--color-text-muted);
+	}
+
 	.domain-name {
 		font-family: var(--font-heading);
 		font-size: var(--text-md);
@@ -271,10 +337,11 @@
 	}
 
 	@media (max-width: 640px) {
-		.domain-table th:nth-child(3),
-		.domain-table td:nth-child(3),
-		.domain-table th:nth-child(5),
-		.domain-table td:nth-child(5) {
+		/* hide Trend (4th) and Seen (6th); the leading checkbox is column 1 */
+		.domain-table th:nth-child(4),
+		.domain-table td:nth-child(4),
+		.domain-table th:nth-child(6),
+		.domain-table td:nth-child(6) {
 			display: none;
 		}
 	}
