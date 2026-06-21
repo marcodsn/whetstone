@@ -21,6 +21,13 @@ function load(): Exercise[] {
 				console.warn(`[scope] answer not among choices for ${ex.id} — skipped`);
 				continue;
 			}
+			// Generated exercises stay tagged "unreviewed" until a human (or the
+			// monthly audit) verifies the answer and drops the tag. Keep them out
+			// of builds so unverified items never affect scores; show them in dev
+			// so they can be eyeballed. See prompts/claude-update.md.
+			if ((ex.tags ?? []).includes('unreviewed') && !import.meta.env.DEV) {
+				continue;
+			}
 			seen.add(ex.id);
 			all.push(ex);
 		}

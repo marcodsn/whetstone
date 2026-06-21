@@ -56,6 +56,20 @@
 	);
 
 	let touchedDomains = $derived([...new Set(results.map((r) => r.exercise.domain))]);
+
+	// Choice exercises bind number keys 1..N; show the honest range, not a fixed 1–4.
+	let choiceCount = $derived(current?.type === 'choice' ? (current.choices?.length ?? 0) : 0);
+
+	// Any self-graded exercise means some of the rating movement is self-reported.
+	let hasSelfGraded = $derived(results.some((r) => r.exercise.type === 'self'));
+
+	function anotherRound() {
+		// A daily session is date-seeded, so reloading would re-roll the very same
+		// set. Send the user into a fresh mixed round instead; other modes reseed
+		// on load, so a plain reload already gives new material.
+		if (spec.mode === 'daily') location.href = `/session?mode=all&n=${session.length}`;
+		else location.reload();
+	}
 </script>
 
 {#if session.length === 0}
@@ -73,7 +87,8 @@
 	<ExerciseCard exercise={current} {onresult} {onnext} />
 
 	<p class="hints muted">
-		<kbd class="key">1</kbd>–<kbd class="key">4</kbd> select · <kbd class="key">↵</kbd> submit / continue
+		{#if choiceCount > 0}<kbd class="key">1</kbd>–<kbd class="key">{choiceCount}</kbd> select ·
+		{/if}<kbd class="key">↵</kbd> submit / continue
 	</p>
 {:else}
 	<section class="report">
@@ -104,6 +119,9 @@
 					{/each}
 				</tbody>
 			</table>
+			{#if hasSelfGraded}
+				<p class="self-note muted">Self-graded items contribute self-reported ratings.</p>
+			{/if}
 		{/if}
 
 		<ol class="recap">
@@ -119,12 +137,7 @@
 
 		<div class="report-actions">
 			<a class="btn btn-primary" href="/">Back to the observatory</a>
-			<button
-				class="btn"
-				onclick={() => {
-					location.reload();
-				}}>Another round</button
-			>
+			<button class="btn" onclick={anotherRound}>Another round</button>
 		</div>
 	</section>
 {/if}
@@ -191,6 +204,11 @@
 
 	.right {
 		text-align: right;
+	}
+
+	.self-note {
+		font-size: var(--text-xs);
+		margin: calc(-1 * var(--space-6)) 0 var(--space-8);
 	}
 
 	.recap {

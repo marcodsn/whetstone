@@ -10,13 +10,18 @@ JSON packs in `src/lib/exercises/packs/` — the schema is in `src/lib/types.ts`
 and the authoring rules in `prompts/generator-system.md`. Do the following, in
 order:
 
-1. **Audit generated packs.** For every exercise tagged `unreviewed` (files
-   named `gen-*.json`), verify the answer is actually correct by working the
-   problem yourself. Fix wrong answers/explanations, delete exercises that are
-   unsalvageable (ambiguous, duplicate in spirit, or not solvable without a
-   computer), and remove the `unreviewed` tag from everything that survives.
-   For code exercises, mentally execute the snippet — or actually run it —
-   before approving.
+1. **Audit generated packs.** Start with `npm run audit` — it lists every
+   exercise still tagged `unreviewed` (id, domain, prompt, answer) across the
+   `gen-*.json` packs, so you don't need to open every file to find the work.
+   For each one, verify the answer is actually correct by working the problem
+   yourself. Then open only the packs that need changes: fix wrong
+   answers/explanations, delete exercises that are unsalvageable (ambiguous,
+   duplicate in spirit, or not solvable without a computer), and remove the
+   `unreviewed` tag from everything that survives. For code exercises, mentally
+   execute the snippet — or actually run it — before approving. Note: the pack
+   loader hides `unreviewed` exercises in builds, so until you drop the tag an
+   exercise stays out of the live app and out of scores — `npm run audit`
+   should print nothing when you're done.
 
 2. **Check balance.** Count exercises per domain and per difficulty
    (`node -e` over the JSON is fine). If a domain is starved or skewed easy,

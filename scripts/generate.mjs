@@ -27,6 +27,30 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PACKS_DIR = join(ROOT, 'src', 'lib', 'exercises', 'packs');
 const PROMPTS_DIR = join(ROOT, 'prompts');
 
+// ── .env (optional, no dependency) ────────────────────────────────
+// Loads KEY=VALUE lines from a .env file at the project root so the model and
+// endpoint can be configured without exporting shell vars. Real environment
+// variables and --flags still win. Supports comments, quotes, and an optional
+// `export ` prefix. See .env.example.
+function loadEnv(file) {
+	if (!existsSync(file)) return;
+	for (let line of readFileSync(file, 'utf8').split('\n')) {
+		line = line.trim();
+		if (!line || line.startsWith('#')) continue;
+		if (line.startsWith('export ')) line = line.slice(7).trim();
+		const eq = line.indexOf('=');
+		if (eq === -1) continue;
+		const key = line.slice(0, eq).trim();
+		if (!key || key in process.env) continue; // existing env takes precedence
+		let val = line.slice(eq + 1).trim();
+		if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'")))
+			val = val.slice(1, -1);
+		process.env[key] = val;
+	}
+}
+
+loadEnv(join(ROOT, '.env'));
+
 const DOMAINS = ['math', 'logic', 'code', 'japanese', 'latex', 'general'];
 const TYPES = ['choice', 'input', 'self'];
 
@@ -40,6 +64,7 @@ function parseArgs(argv) {
 		if (k === '--domain') (args.domain = v), i++;
 		else if (k === '--count') (args.count = parseInt(v, 10)), i++;
 		else if (k === '--difficulty') (args.difficulty = v), i++;
+		else if (k === '--weights') (args.weights = v), i++;
 		else if (k === '--model') (args.model = v), i++;
 		else if (k === '--base-url') (args.baseUrl = v), i++;
 		else if (k === '--help' || k === '-h') args.help = true;
@@ -56,7 +81,11 @@ Usage: node scripts/generate.mjs --domain <${DOMAINS.join('|')}> [options]
 
 Options:
   --count <n>          number of exercises to generate (default 5)
-  --difficulty <a-b>   difficulty range 1-5 (default 2-4)
+  --difficulty <spec>  difficulty buckets 1-5 (default 2-4). Comma-separated
+                       levels or ranges, e.g. "3" or "2-4" or "1-2,3,4-5".
+  --weights <list>     relative weight per --difficulty bucket, aligned by
+                       index, e.g. --difficulty 1-2,3,4-5 --weights 10,20,10.
+                       Omit for an equal (uniform) distribution.
   --model <name>       override SCOPE_MODEL
   --base-url <url>     override SCOPE_BASE_URL
 
@@ -71,9 +100,35 @@ const BASE_URL = args.baseUrl ?? process.env.SCOPE_BASE_URL ?? 'http://localhost
 const API_KEY = process.env.SCOPE_API_KEY ?? 'local';
 const MODEL = args.model ?? process.env.SCOPE_MODEL ?? 'qwen2.5:32b';
 
-const [dMin, dMax] = args.difficulty.includes('-')
-	? args.difficulty.split('-').map(Number)
-	: [Number(args.difficulty), Number(args.difficulty)];
+// ── difficulty buckets + weights ──────────────────────────────────
+// --difficulty 1-2,3,4-5  --weights 10,20,10
+//   weighted-pick a bucket, then uniform within it. No --weights = equal,
+//   which for a single bucket is just uniform over the range (the old default).
+function parseRange(s) {
+	const [a, b] = s.includes('-') ? s.split('-').map(Number) : [Number(s), Number(s)];
+	if (!Number.isInteger(a) || !Number.isInteger(b) || a < 1 || b > 5 || a > b)
+		throw new Error(`bad difficulty bucket "${s}" (expect levels 1-5 as "n" or "lo-hi")`);
+	return [a, b];
+}
+
+const buckets = args.difficulty.split(',').map((s) => parseRange(s.trim()));
+const weights = args.weights ? args.weights.split(',').map(Number) : buckets.map(() => 1);
+if (weights.length !== buckets.length)
+	throw new Error(
+		`--weights has ${weights.length} value(s) but --difficulty has ${buckets.length} bucket(s)`
+	);
+if (weights.some((w) => !(w >= 0) || w === Infinity))
+	throw new Error('--weights must be non-negative numbers');
+const totalWeight = weights.reduce((a, b) => a + b, 0);
+if (totalWeight <= 0) throw new Error('--weights must sum to a positive number');
+
+function pickDifficulty() {
+	let r = Math.random() * totalWeight;
+	let i = 0;
+	while (i < weights.length - 1 && (r -= weights[i]) >= 0) i++;
+	const [lo, hi] = buckets[i];
+	return lo + Math.floor(Math.random() * (hi - lo + 1));
+}
 
 // ── existing material (for ids, few-shot, dedupe) ─────────────────
 
@@ -199,13 +254,16 @@ const outPack = existsSync(outFile)
 	: { pack: `gen-${args.domain}-${today}`, exercises: [] };
 
 console.log(`SCOPE generator — ${MODEL} @ ${BASE_URL}`);
-console.log(`Domain: ${args.domain}, count: ${args.count}, difficulty: ${dMin}-${dMax}\n`);
+const distLabel = buckets
+	.map(([lo, hi], i) => `${lo === hi ? lo : `${lo}-${hi}`}×${weights[i]}`)
+	.join(', ');
+console.log(`Domain: ${args.domain}, count: ${args.count}, difficulty: ${distLabel}\n`);
 
 const recentPrompts = domainExisting.slice(-20).map((e) => e.prompt.slice(0, 100));
 let accepted = 0;
 
 for (let i = 0; i < args.count; i++) {
-	const difficulty = dMin + Math.floor(Math.random() * (dMax - dMin + 1));
+	const difficulty = pickDifficulty();
 	let ok = false;
 	for (let attempt = 1; attempt <= 3 && !ok; attempt++) {
 		try {

@@ -1,0 +1,773 @@
+{
+	"pack": "gen-math-20260621",
+	"exercises": [
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "How many pairs of positive integers $(x, y)$ satisfy the equation $xy + x + y = 71$?",
+			"answer": "10",
+			"accepted": [
+				"10"
+			],
+			"explanation": "Adding 1 to both sides allows the equation to be factored as $(x+1)(y+1) = 72$. Since $x, y \\ge 1$, we look for pairs of factors of 72 that are both $\\ge 2$; there are 12 total divisors of 72, and we exclude the two cases where a factor is 1.",
+			"tags": [
+				"algebra",
+				"number-theory",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-015"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "A bag contains 3 red balls and 3 blue balls. Balls are drawn one by one without replacement. What is the probability that at no point during the process the number of red balls drawn is greater than the number of blue balls drawn? Express your answer as a simplified fraction.",
+			"answer": "1/4",
+			"accepted": [
+				"1/4",
+				"0.25",
+				"25%"
+			],
+			"explanation": "This is a problem of counting Dyck paths. The total number of ways to arrange the balls is $\\binom{6}{3} = 20$, and the number of valid paths is the 3rd Catalan number $C_3 = \\frac{1}{3+1}\\binom{6}{3} = 5$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"catalan-numbers",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-016"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "Calculate the sum of the infinite series: $$\\sum_{n=1}^{\\infty} \\frac{n}{2^n}$$",
+			"answer": "2",
+			"accepted": [
+				"2"
+			],
+			"explanation": "This is an arithmetico-geometric series. By calculating $S - \\frac{1}{2}S$, we obtain the geometric series $\\sum_{n=1}^{\\infty} \\frac{1}{2^n} = 1$, which implies $\\frac{1}{2}S = 1$, so $S = 2$.",
+			"tags": [
+				"series",
+				"algebra",
+				"calculus",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-017"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "A fair coin is flipped repeatedly. What is the expected number of flips until the sequence Heads, Tails, Heads appears?",
+			"choices": [
+				"8",
+				"10",
+				"12",
+				"14"
+			],
+			"answer": "10",
+			"explanation": "Let $E$ be the expected flips, $E_H$ the expected remaining flips after an $H$, and $E_{HT}$ after $HT$. The transitions give $E = 2 + E_H$, $E_H = 2 + E_{HT}$, and $E_{HT} = 1 + 0.5E$. Solving this system yields $E = 10$.",
+			"tags": [
+				"probability",
+				"expected-value",
+				"stochastic-processes",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-018"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Find the sum of all real roots of the equation $x^4 - 4x^3 + 6x^2 - 4x - 15 = 0$.",
+			"answer": "2",
+			"accepted": [
+				"2",
+				"two",
+				"2.0"
+			],
+			"explanation": "Recognize that $x^4 - 4x^3 + 6x^2 - 4x + 1 = (x-1)^4$. The equation can be rewritten as $(x-1)^4 - 16 = 0$, which means $(x-1)^4 = 16$. The real roots are $x-1 = 2$ and $x-1 = -2$, giving $x=3$ and $x=-1$. Their sum is $2$. (Note: Vieta's formulas would give the sum of all roots, including complex ones, which is $4$.)",
+			"tags": [
+				"algebra",
+				"polynomials",
+				"roots",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-019"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "A sphere of radius 3 is inscribed in a cube. A smaller sphere is placed in one of the corners of the cube such that it is tangent to the three faces meeting at that corner and also tangent to the large sphere. What is its radius?",
+			"choices": [
+				"$6 - 3\\sqrt{3}$",
+				"$3\\sqrt{3} - 3$",
+				"$6 - 2\\sqrt{3}$",
+				"$3 - \\sqrt{3}$"
+			],
+			"answer": "$6 - 3\\sqrt{3}$",
+			"explanation": "Let the small sphere have radius $r$. Its center is at $(r, r, r)$ and the large sphere's center is at $(3, 3, 3)$. The distance between centers is $\\sqrt{3(3-r)^2} = (3-r)\\sqrt{3}$. Setting this equal to the sum of the radii, $3+r$, and solving for $r$ yields $r = 6 - 3\\sqrt{3}$.",
+			"tags": [
+				"geometry",
+				"3d-geometry",
+				"algebra",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-020"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "If $a + b = 10$ and $a^2 + b^2 = 58$, what is the value of $ab$?",
+			"choices": [
+				"21",
+				"42",
+				"58",
+				"100"
+			],
+			"answer": "21",
+			"explanation": "Using the identity $(a + b)^2 = a^2 + 2ab + b^2$, we substitute the known values: $10^2 = 58 + 2ab$, which simplifies to $100 = 58 + 2ab$. Solving for $ab$ gives $2ab = 42$, so $ab = 21$.",
+			"tags": [
+				"algebra",
+				"identities",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-021"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Compute mentally: $16 \\times 25$",
+			"choices": [
+				"300",
+				"400",
+				"425",
+				"600"
+			],
+			"answer": "400",
+			"explanation": "A quick way to solve this is to rewrite it as $4 \\times (4 \\times 25)$, which simplifies to $4 \\times 100 = 400$.",
+			"tags": [
+				"arithmetic",
+				"mental-math",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-022"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is $25\\%$ of $60$?",
+			"choices": [
+				"10",
+				"15",
+				"20",
+				"25"
+			],
+			"answer": "15",
+			"explanation": "$25\\%$ is equivalent to one quarter, and $\\frac{60}{4} = 15$.",
+			"tags": [
+				"percentages",
+				"arithmetic",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-023"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn one after another without replacement. What is the probability that both marbles are the same color?",
+			"choices": [
+				"$13/28$",
+				"$15/28$",
+				"$17/32$",
+				"$5/14$"
+			],
+			"answer": "$13/28$",
+			"explanation": "The probability of drawing two red marbles is $\\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56}$, and two blue marbles is $\\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56}$. The sum is $\\frac{26}{56} = \\frac{13}{28}$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-024"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Find the sum of the first 20 terms of the arithmetic progression: $3, 7, 11, 15, \\dots$",
+			"choices": [
+				"780",
+				"820",
+				"860",
+				"900"
+			],
+			"answer": "820",
+			"explanation": "The first term $a_1 = 3$ and the common difference $d = 4$. The 20th term is $a_{20} = 3 + (20-1) \\times 4 = 79$. The sum is $\\frac{20}{2}(3 + 79) = 10 \\times 82 = 820$.",
+			"tags": [
+				"arithmetic",
+				"sequences",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-025"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the remainder when $25$ is divided by $4$?",
+			"choices": [
+				"0",
+				"1",
+				"2",
+				"3"
+			],
+			"answer": "1",
+			"explanation": "Since $25 = (6 \\times 4) + 1$, the remainder is $1$.",
+			"tags": [
+				"arithmetic",
+				"modulo",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-026"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Find the coefficient of $x^5$ in the polynomial expansion of $(1 + x + x^2)^6$.",
+			"answer": "126",
+			"accepted": [
+				"126"
+			],
+			"explanation": "Use the identity $(1+x+x^2)^6 = \\frac{(1-x^3)^6}{(1-x)^6}$. The expansion is $(1 - 6x^3 + 15x^6 - \\dots) \\sum_{n=0}^{\\infty} \\binom{n+5}{5} x^n$. The $x^5$ term is $1 \\cdot \\binom{10}{5} - 6 \\cdot \\binom{7}{5} = 252 - 126 = 126$.",
+			"tags": [
+				"algebra",
+				"combinatorics",
+				"polynomials",
+				"binomial-theorem",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-027"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A rectangle has a perimeter of 28 cm and an area of 40 cm². What is the length of its longer side?",
+			"choices": [
+				"4",
+				"7",
+				"10",
+				"14"
+			],
+			"answer": "10",
+			"explanation": "If the sides are $l$ and $w$, then $2(l+w)=28 \\implies l+w=14$, and $lw=40$. The factors of 40 that sum to 14 are 10 and 4, so the longer side is 10.",
+			"tags": [
+				"algebra",
+				"geometry",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-028"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "How many integers $n$ in the range $1 \\le n \\le 100$ are coprime to 30?",
+			"answer": "26",
+			"accepted": [
+				"26"
+			],
+			"explanation": "Using the Principle of Inclusion-Exclusion to count numbers not divisible by 2, 3, or 5: $100 - (50 + 33 + 20) + (16 + 10 + 6) - 3 = 26$.",
+			"tags": [
+				"number-theory",
+				"combinatorics",
+				"inclusion-exclusion",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-029"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is $13^2$?",
+			"choices": [
+				"144",
+				"156",
+				"169",
+				"196"
+			],
+			"answer": "169",
+			"explanation": "$13^2 = 13 \\times 13 = 169$.",
+			"tags": [
+				"arithmetic",
+				"squares",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-030"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are red?",
+			"choices": [
+				"2/15",
+				"4/25",
+				"8/15",
+				"1/6"
+			],
+			"answer": "2/15",
+			"explanation": "The probability of the first marble being red is $4/10$. Since there is no replacement, the probability of the second being red is $3/9$, resulting in $\\frac{4}{10} \\times \\frac{3}{9} = \\frac{12}{90} = \\frac{2}{15}$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-031"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Compute: $3^3$",
+			"choices": [
+				"9",
+				"18",
+				"27",
+				"81"
+			],
+			"answer": "27",
+			"explanation": "$3^3 = 3 \\times 3 \\times 3 = 27$.",
+			"tags": [
+				"arithmetic",
+				"powers",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-032"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "If $x > 0$ and $\\sqrt{x + \\sqrt{x + \\sqrt{x + \\dots}}} = 5$, find $x$.",
+			"answer": "20",
+			"accepted": [
+				"20"
+			],
+			"explanation": "Let $y = \\sqrt{x + \\sqrt{x + \\dots}}$. This implies $y = \\sqrt{x + y}$. Substituting $y = 5$ yields $5 = \\sqrt{x + 5}$, so $25 = x + 5$, which means $x = 20$.",
+			"tags": [
+				"algebra",
+				"nested-radicals",
+				"limits",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-033"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "A row of 12 seats is available. In how many ways can 4 seats be selected such that no two selected seats are adjacent?",
+			"answer": "126",
+			"accepted": [
+				"126"
+			],
+			"explanation": "Using the formula $\\binom{n-k+1}{k}$ for choosing $k$ non-adjacent items from $n$, we calculate $\\binom{12-4+1}{4} = \\binom{9}{4} = \\frac{9 \\times 8 \\times 7 \\times 6}{4 \\times 3 \\times 2 \\times 1} = 126$.",
+			"tags": [
+				"combinatorics",
+				"counting",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-034"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Compute: $14 \\times 4$",
+			"choices": [
+				"52",
+				"54",
+				"56",
+				"58"
+			],
+			"answer": "56",
+			"explanation": "$14 \\times 4 = (10 \\times 4) + (4 \\times 4) = 40 + 16 = 56$.",
+			"tags": [
+				"arithmetic",
+				"mental-math",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-035"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Compute mentally: $12 \\times 11$",
+			"choices": [
+				"121",
+				"132",
+				"142",
+				"144"
+			],
+			"answer": "132",
+			"explanation": "$12 \\times 10 = 120$, and $120 + 12 = 132$.",
+			"tags": [
+				"arithmetic",
+				"multiplication",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-036"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Let $x, y, z$ be real numbers such that $x + y + z = 6$, $x^2 + y^2 + z^2 = 14$, and $x^3 + y^3 + z^3 = 36$. Find the value of $xyz$.",
+			"answer": "6",
+			"accepted": [
+				"6"
+			],
+			"explanation": "First, find $xy + yz + zx = 11$ using the identity $(x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx)$. Then, use the cubic identity $x^3 + y^3 + z^3 - 3xyz = (x + y + z)(x^2 + y^2 + z^2 - (xy + yz + zx))$ to solve for $xyz$.",
+			"tags": [
+				"algebra",
+				"symmetric-polynomials",
+				"newton-sums",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-037"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Compute mentally: $21 \\times 19$",
+			"choices": [
+				"381",
+				"399",
+				"401",
+				"419"
+			],
+			"answer": "399",
+			"explanation": "Use the difference of squares identity: $21 \\times 19 = (20 + 1)(20 - 1) = 20^2 - 1^2 = 400 - 1 = 399$.",
+			"tags": [
+				"arithmetic",
+				"mental-math",
+				"algebra",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-038"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are blue?",
+			"choices": [
+				"1/3",
+				"9/25",
+				"1/2",
+				"3/10"
+			],
+			"answer": "1/3",
+			"explanation": "The probability of drawing the first blue marble is $\\frac{6}{10}$. Since the marble is not replaced, there are now 5 blue marbles left out of 9 total marbles. The probability is $\\frac{6}{10} \\times \\frac{5}{9} = \\frac{30}{90} = \\frac{1}{3}$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-039"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Compute: $4^3 - 3^2$",
+			"choices": [
+				"37",
+				"55",
+				"61",
+				"64"
+			],
+			"answer": "55",
+			"explanation": "$4^3 = 64$ and $3^2 = 9$, so $64 - 9 = 55$. A common error is to use $3^3 = 27$ instead of $3^2$, which leads to $37$.",
+			"tags": [
+				"arithmetic",
+				"powers",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-040"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What is the value of $\\frac{3}{4} + \\frac{2}{3}$?",
+			"choices": [
+				"$\\frac{5}{7}$",
+				"$\\frac{17}{12}$",
+				"$\\frac{1}{2}$",
+				"$\\frac{9}{8}$"
+			],
+			"answer": "$\\frac{17}{12}$",
+			"explanation": "To add fractions, find a common denominator: $\\frac{3}{4} = \\frac{9}{12}$ and $\\frac{2}{3} = \\frac{8}{12}$. Summing them gives $\\frac{17}{12}$.",
+			"tags": [
+				"arithmetic",
+				"fractions",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-041"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "What are the last two digits of $7^{2024}$?",
+			"choices": [
+				"01",
+				"07",
+				"43",
+				"49"
+			],
+			"answer": "01",
+			"explanation": "The last two digits follow a cycle of four: $7^1 \\equiv 07$, $7^2 \\equiv 49$, $7^3 \\equiv 43$, and $7^4 \\equiv 01 \\pmod{100}$. Since $2024$ is a multiple of 4, the last two digits are $01$.",
+			"tags": [
+				"number-theory",
+				"modular-arithmetic",
+				"patterns",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-042"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Evaluate the following limit: $\\lim_{n \\to \\infty} \\frac{(n!)^{1/n}}{n}$",
+			"answer": "1/e",
+			"accepted": [
+				"1/e",
+				"e^-1",
+				"e^{-1}"
+			],
+			"explanation": "Recognizing $\\ln(\\frac{(n!)^{1/n}}{n}) = \\frac{1}{n} \\sum_{k=1}^n \\ln(\\frac{k}{n})$ as a Riemann sum for $\\int_0^1 \\ln(x) \\, dx = -1$ implies the limit is $e^{-1}$.",
+			"tags": [
+				"calculus",
+				"limits",
+				"analysis",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-043"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "A regular decagon has 10 vertices. How many ways can 3 vertices be chosen such that no two of the chosen vertices are adjacent?",
+			"choices": [
+				"50",
+				"60",
+				"70",
+				"120"
+			],
+			"answer": "50",
+			"explanation": "Total combinations are $\\binom{10}{3} = 120$. There are 10 ways to choose 3 consecutive vertices. For the cases with exactly 2 consecutive vertices, there are 10 edges, and for each edge, there are 6 possible third vertices that are not adjacent to the edge. Thus, $120 - 10 - (10 \\times 6) = 50$.",
+			"tags": [
+				"combinatorics",
+				"geometry",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-044"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A cube has a total surface area of $150$. What is the length of its space diagonal?",
+			"choices": [
+				"5",
+				"$5\\sqrt{2}$",
+				"$5\\sqrt{3}$",
+				"15"
+			],
+			"answer": "$5\\sqrt{3}$",
+			"explanation": "First, $6s^2 = 150$ gives a side length of $s = 5$. The space diagonal of a cube is $s\\sqrt{3}$, which is $5\\sqrt{3}$.",
+			"tags": [
+				"geometry",
+				"3d",
+				"algebra",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-045"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Solve for $x$: $\\log_2(x) + \\log_2(x - 2) = 3$",
+			"choices": [
+				"2",
+				"4",
+				"6",
+				"8"
+			],
+			"answer": "4",
+			"explanation": "Combine the logarithms: $\\log_2(x(x - 2)) = 3$, which implies $x^2 - 2x = 2^3 = 8$. Solving the quadratic $x^2 - 2x - 8 = 0$ gives $x = 4$ and $x = -2$, but we must discard $x = -2$ because the argument of a logarithm must be positive.",
+			"tags": [
+				"algebra",
+				"logarithms",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-046"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is $25\\%$ of $48$?",
+			"choices": [
+				"8",
+				"12",
+				"16",
+				"24"
+			],
+			"answer": "12",
+			"explanation": "$25\\%$ is equivalent to $\\frac{1}{4}$, and $48 \\div 4 = 12$.",
+			"tags": [
+				"arithmetic",
+				"percentages",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-047"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Compute: $13 \\times 5$",
+			"choices": [
+				"55",
+				"60",
+				"65",
+				"70"
+			],
+			"answer": "65",
+			"explanation": "$13 \\times 5 = 65$.",
+			"tags": [
+				"arithmetic",
+				"mental-math",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-048"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "How many positive integer divisors does the number $720$ have?",
+			"choices": [
+				"24",
+				"30",
+				"36",
+				"48"
+			],
+			"answer": "30",
+			"explanation": "The prime factorization of $720$ is $2^4 \\cdot 3^2 \\cdot 5^1$. The number of divisors is found by adding 1 to each exponent and multiplying them: $(4+1)(2+1)(1+1) = 5 \\times 3 \\times 2 = 30$.",
+			"tags": [
+				"number-theory",
+				"divisors",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-049"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The perimeter of a rectangle is $30\\text{ cm}$. If the length is $3\\text{ cm}$ longer than the width, what is the area of the rectangle in $\\text{cm}^2$?",
+			"choices": [
+				"54",
+				"45",
+				"60",
+				"30"
+			],
+			"answer": "54",
+			"explanation": "Let $w$ be the width. The length is $w + 3$. The perimeter equation is $2(w + w + 3) = 30$, which simplifies to $4w + 6 = 30$. Solving for $w$ gives $w = 6$. The length is $6 + 3 = 9$, so the area is $6 \\times 9 = 54$.",
+			"tags": [
+				"algebra",
+				"geometry",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-050"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "How many integers between 1 and 100 (inclusive) are not divisible by 2, 3, or 5?",
+			"choices": [
+				"24",
+				"26",
+				"28",
+				"30"
+			],
+			"answer": "26",
+			"explanation": "Using the Principle of Inclusion-Exclusion, the number of integers divisible by 2, 3, or 5 is $50 + 33 + 20 - (16 + 10 + 6) + 3 = 74$. Subtracting this from 100 gives 26.",
+			"tags": [
+				"number-theory",
+				"combinatorics",
+				"inclusion-exclusion",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-051"
+		}
+	]
+}

@@ -1,0 +1,294 @@
+{
+	"pack": "gen-math-20260620",
+	"exercises": [
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Two cards are drawn without replacement from a standard 52-card deck. What is the probability that both cards are hearts?",
+			"choices": [
+				"$1/16$",
+				"$1/17$",
+				"$1/26$",
+				"$1/34$"
+			],
+			"answer": "$1/17$",
+			"explanation": "The probability the first card is a heart is $\\frac{13}{52} = \\frac{1}{4}$. Given the first was a heart, there are 12 hearts left out of 51 cards, so $\\frac{12}{51} = \\frac{4}{17}$. Multiplying these gives $\\frac{1}{4} \\times \\frac{4}{17} = \\frac{1}{17}$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-001"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A farmer has chickens and cows. There are 35 heads and 94 legs in total. How many cows does the farmer have?",
+			"answer": "12",
+			"accepted": [
+				"12"
+			],
+			"explanation": "Let $C$ be cows and $H$ be chickens. $C + H = 35$ and $4C + 2H = 94$. Subtracting twice the first equation from the second gives $2C = 24$, so $C = 12$.",
+			"tags": [
+				"algebra",
+				"word-problem",
+				"linear-equations",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-002"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "How many distinct ways can the letters in the word \"LEVEL\" be rearranged?",
+			"choices": [
+				"120",
+				"60",
+				"30",
+				"24"
+			],
+			"answer": "30",
+			"explanation": "The total number of permutations of 5 letters is $5! = 120$. Since the letters 'L' and 'E' each appear twice, we divide by $2! \\times 2! = 4$, giving $120 / 4 = 30$.",
+			"tags": [
+				"combinatorics",
+				"permutations",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-003"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "If $x + y = 10$ and $xy = 21$, what is the value of $x^2 + y^2$?",
+			"choices": [
+				"42",
+				"58",
+				"79",
+				"100"
+			],
+			"answer": "58",
+			"explanation": "Using the identity $(x+y)^2 = x^2 + 2xy + y^2$, we have $10^2 = x^2 + y^2 + 2(21)$, which simplifies to $100 - 42 = 58$.",
+			"tags": [
+				"algebra",
+				"identities",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-004"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A bag contains 4 red balls and 6 blue balls. If two balls are drawn at random without replacement, what is the probability that they are different colors?",
+			"choices": [
+				"4/15",
+				"8/15",
+				"12/15",
+				"1/2"
+			],
+			"answer": "8/15",
+			"explanation": "The total number of ways to choose 2 balls from 10 is $\\binom{10}{2} = 45$. The number of ways to choose one red and one blue ball is $4 \\times 6 = 24$. Thus, the probability is $24/45$, which simplifies to $8/15$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-005"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A random integer is chosen from 1 to 30 inclusive. What is the probability that the number is a multiple of 3 or 5?",
+			"choices": [
+				"8/15",
+				"7/15",
+				"4/15",
+				"1/3"
+			],
+			"answer": "7/15",
+			"explanation": "There are 10 multiples of 3 and 6 multiples of 5 in the range. Since 15 and 30 are counted in both groups, there are $10 + 6 - 2 = 14$ unique multiples. The probability is $14/30 = 7/15$.",
+			"tags": [
+				"probability",
+				"inclusion-exclusion",
+				"number-theory",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-006"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the remainder when $2^{10}$ is divided by 11?",
+			"choices": [
+				"1",
+				"2",
+				"5",
+				"10"
+			],
+			"answer": "1",
+			"explanation": "By Fermat's Little Theorem, $a^{p-1} \\equiv 1 \\pmod p$ for any prime $p$ not dividing $a$. Alternatively, $1024 = 11 \\times 93 + 1$.",
+			"tags": [
+				"number-theory",
+				"modular-arithmetic",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-007"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A rectangular garden has a diagonal of 13 meters and one side of 5 meters. What is the perimeter of the garden in meters?",
+			"answer": "34",
+			"accepted": [
+				"34",
+				"34m",
+				"34 meters"
+			],
+			"explanation": "Using the Pythagorean theorem, the missing side is $\\sqrt{13^2 - 5^2} = \\sqrt{169 - 25} = 12$. The perimeter is $2 \\times (5 + 12) = 34$.",
+			"tags": [
+				"geometry",
+				"pythagoras",
+				"perimeter",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-008"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "At a party, every person shakes hands with every other person exactly once. If there were 66 handshakes in total, how many people were at the party?",
+			"answer": "12",
+			"accepted": [
+				"12",
+				"12 people"
+			],
+			"explanation": "The number of handshakes for $n$ people is $\\frac{n(n-1)}{2}$. Solving $\\frac{n(n-1)}{2} = 66$ gives $n(n-1) = 132$, and $12 \\times 11 = 132$.",
+			"tags": [
+				"combinatorics",
+				"algebra",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-009"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Solve for $x$: $\\sqrt{x + 7} = x - 5$",
+			"answer": "9",
+			"accepted": [
+				"9"
+			],
+			"explanation": "Squaring both sides gives $x^2 - 11x + 18 = 0$, which factors to $(x-9)(x-2)=0$. The value $x=2$ is extraneous because it results in $\\sqrt{9} = -3$, which is false.",
+			"tags": [
+				"algebra",
+				"extraneous-solution",
+				"square-root",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-010"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Two fair six-sided dice are rolled. What is the probability that the product of the two numbers rolled is a multiple of 4?",
+			"choices": [
+				"1/4",
+				"1/3",
+				"5/12",
+				"7/18"
+			],
+			"answer": "5/12",
+			"explanation": "There are 36 total outcomes. The product is a multiple of 4 if at least one die is 4 (11 outcomes) or if both dice are even but neither is 4: $(2,2), (2,6), (6,2), (6,6)$ (4 outcomes). $15/36 = 5/12$.",
+			"tags": [
+				"probability",
+				"dice",
+				"number-theory",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-011"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A fair coin is flipped 4 times. What is the probability of getting exactly 2 heads? Express your answer as a simplified fraction.",
+			"answer": "3/8",
+			"accepted": [
+				"3/8",
+				"0.375"
+			],
+			"explanation": "There are $2^4 = 16$ possible outcomes. The number of ways to choose 2 heads out of 4 flips is $\\binom{4}{2} = 6$. The probability is $6/16$, which simplifies to $3/8$.",
+			"tags": [
+				"probability",
+				"combinatorics",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-012"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers is a prime number? Express your answer as a simplified fraction.",
+			"choices": [
+				"1/3",
+				"5/12",
+				"7/18",
+				"11/36"
+			],
+			"answer": "5/12",
+			"explanation": "The possible prime sums are 2, 3, 5, 7, and 11. There are $1 + 2 + 4 + 6 + 2 = 15$ ways to achieve these sums out of 36 total outcomes; $15/36$ simplifies to $5/12$.",
+			"tags": [
+				"probability",
+				"number-theory",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-013"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The sum of the interior angles of a convex polygon is $1080^\\circ$. How many sides does the polygon have?",
+			"choices": [
+				"6",
+				"7",
+				"8",
+				"10"
+			],
+			"answer": "8",
+			"explanation": "The formula for the sum of interior angles is $(n-2) \\times 180^\\circ$. Dividing $1080$ by $180$ gives $6$, so $n-2 = 6$, which means $n = 8$.",
+			"tags": [
+				"geometry",
+				"polygons",
+				"algebra",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-math-014"
+		}
+	]
+}

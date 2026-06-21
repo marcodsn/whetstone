@@ -1,7 +1,10 @@
 import type { Attempt, Domain } from '$lib/types';
 import { DOMAINS } from '$lib/types';
 
-const STORAGE_KEY = 'scope.attempts.v1';
+// In dev the build also surfaces "unreviewed" generated exercises (see
+// exercises/index.ts) so they can be eyeballed. Attempts on those must NOT land
+// in the real log, so dev writes to a separate key. Production is always v1.
+const STORAGE_KEY = import.meta.env.DEV ? 'scope.attempts.dev' : 'scope.attempts.v1';
 
 export const BASE_RATING = 1000;
 const K = 24;
@@ -32,6 +35,57 @@ export function clearAttempts(): void {
 
 export function exportAttempts(): string {
 	return JSON.stringify(loadAttempts(), null, 2);
+}
+
+function isAttempt(x: unknown): x is Attempt {
+	if (!x || typeof x !== 'object') return false;
+	const a = x as Record<string, unknown>;
+	return (
+		typeof a.exerciseId === 'string' &&
+		typeof a.domain === 'string' &&
+		(DOMAINS as readonly string[]).includes(a.domain) &&
+		typeof a.difficulty === 'number' &&
+		typeof a.correct === 'boolean' &&
+		typeof a.ts === 'number'
+	);
+}
+
+/**
+ * Merge an exported attempt log (the JSON array from `exportAttempts`) into the
+ * store. De-dupes on exerciseId+ts so re-importing the same file is a no-op and
+ * importing into a non-empty store is safe. Returns how many new attempts were
+ * added. Throws if the input isn't a recognizable SCOPE export.
+ */
+export function importAttempts(json: string): { added: number; total: number } {
+	let parsed: unknown;
+	try {
+		parsed = JSON.parse(json);
+	} catch {
+		throw new Error('That file is not valid JSON.');
+	}
+	if (!Array.isArray(parsed)) throw new Error('Expected a JSON array of attempts.');
+	const incoming = parsed.filter(isAttempt);
+	if (incoming.length === 0) throw new Error('No valid attempts found — is this a SCOPE export?');
+
+	const merged = loadAttempts();
+	const seen = new Set(merged.map((a) => `${a.exerciseId}|${a.ts}`));
+	let added = 0;
+	for (const a of incoming) {
+		const key = `${a.exerciseId}|${a.ts}`;
+		if (seen.has(key)) continue;
+		seen.add(key);
+		merged.push({
+			exerciseId: a.exerciseId,
+			domain: a.domain,
+			difficulty: a.difficulty,
+			correct: a.correct,
+			ts: a.ts
+		});
+		added++;
+	}
+	merged.sort((a, b) => a.ts - b.ts);
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+	return { added, total: merged.length };
 }
 
 function eloStep(rating: number, opponent: number, won: boolean): number {

@@ -2,7 +2,7 @@
 	import { DOMAINS, DOMAIN_LABELS } from '$lib/types';
 	import type { Attempt } from '$lib/types';
 	import { exercises, byDomain } from '$lib/exercises';
-	import { loadAttempts, computeStats, currentStreak, clearAttempts, exportAttempts, BASE_RATING } from '$lib/scoring';
+	import { loadAttempts, computeStats, currentStreak, clearAttempts, exportAttempts, importAttempts, BASE_RATING } from '$lib/scoring';
 	import Sparkline from '$lib/components/Sparkline.svelte';
 
 	let attempts: Attempt[] = $state(loadAttempts());
@@ -30,6 +30,30 @@
 		if (confirm('Erase all attempt history? This cannot be undone (consider exporting first).')) {
 			clearAttempts();
 			attempts = loadAttempts();
+		}
+	}
+
+	let fileInput: HTMLInputElement;
+
+	function doImport() {
+		fileInput.click();
+	}
+
+	async function onFile(e: Event) {
+		const input = e.target as HTMLInputElement;
+		const file = input.files?.[0];
+		input.value = ''; // let the same file be picked again later
+		if (!file) return;
+		try {
+			const { added, total } = importAttempts(await file.text());
+			attempts = loadAttempts();
+			alert(
+				added === 0
+					? `Already up to date — no new attempts imported (${total} total).`
+					: `Imported ${added} attempt${added === 1 ? '' : 's'} (${total} total).`
+			);
+		} catch (err) {
+			alert(`Import failed: ${err instanceof Error ? err.message : String(err)}`);
 		}
 	}
 </script>
@@ -112,7 +136,16 @@
 <footer class="data-row">
 	<button class="link-btn" onclick={doExport}>Export history</button>
 	<span class="sep">·</span>
+	<button class="link-btn" onclick={doImport}>Import history</button>
+	<span class="sep">·</span>
 	<button class="link-btn" onclick={doReset}>Reset history</button>
+	<input
+		bind:this={fileInput}
+		type="file"
+		accept="application/json,.json"
+		onchange={onFile}
+		hidden
+	/>
 </footer>
 
 <style>

@@ -1,5 +1,6 @@
 import type { Attempt, Domain, Exercise } from '$lib/types';
 import { exercises, byDomain } from '$lib/exercises';
+import { computeStats } from '$lib/scoring';
 
 /** Deterministic RNG (mulberry32) so the daily session is the same all day. */
 function mulberry32(seed: number) {
@@ -50,6 +51,22 @@ function pick(pool: Exercise[], n: number, attempts: Attempt[], rng: () => numbe
 	return ordered.slice(0, n);
 }
 
+/**
+ * Lowest-rated domain first, so weakness gets the early round-robin slots. Ties
+ * — including untouched domains, all at BASE_RATING — are broken with the seeded
+ * rng so the focus still rotates day to day rather than fixing on alphabetical order.
+ */
+export function orderByWeakness(
+	domains: Domain[],
+	stats: Record<Domain, { rating: number }>,
+	rng: () => number
+): Domain[] {
+	const jitter = new Map(domains.map((d) => [d, rng()]));
+	return [...domains].sort(
+		(a, b) => stats[a].rating - stats[b].rating || jitter.get(a)! - jitter.get(b)!
+	);
+}
+
 export interface SessionSpec {
 	mode: 'daily' | 'domain' | 'all';
 	domain?: Domain;
@@ -69,8 +86,11 @@ export function buildSession(spec: SessionSpec, attempts: Attempt[]): Exercise[]
 		list.push(ex);
 		perDomain.set(ex.domain, list);
 	}
+	// Weakness targeting: serve the lowest-rated domains first so the round-robin
+	// fill (which stops once we hit spec.n) favours rust over strengths.
 	const result: Exercise[] = [];
-	const domains = shuffle([...perDomain.keys()], rng);
+	const stats = computeStats(attempts);
+	const domains = orderByWeakness([...perDomain.keys()], stats, rng);
 	let i = 0;
 	while (result.length < spec.n && domains.length > 0) {
 		const idx = i % domains.length;
@@ -93,16 +113,35 @@ function normalize(s: string): string {
 		.replace(/^["'`]|["'`]$/g, '');
 }
 
+/**
+ * Parse a human-typed number, tolerating both English and European grouping:
+ *   "1,000" / "1,000,000"   → thousands-grouped, comma stripped
+ *   "1.234.567,89"          → European, dots grouped + comma decimal
+ *   "12,5"                  → comma decimal
+ *   "12.0" / "1234.5"       → plain
+ * Returns NaN when the string isn't a clean number (so non-numeric answers fall
+ * through to exact-string matching instead of being coerced — e.g. "1,000" must
+ * never become 1).
+ */
+function toNumber(s: string): number {
+	const t = s.replace(/\s/g, '');
+	if (/^[+-]?\d{1,3}(,\d{3})+(\.\d+)?$/.test(t)) return Number(t.replace(/,/g, ''));
+	if (/^[+-]?\d{1,3}(\.\d{3})+(,\d+)?$/.test(t)) return Number(t.replace(/\./g, '').replace(',', '.'));
+	if (/^[+-]?\d+,\d+$/.test(t)) return Number(t.replace(',', '.'));
+	if (/^[+-]?\d*\.?\d+$/.test(t)) return Number(t);
+	return NaN;
+}
+
 export function checkInput(ex: Exercise, given: string): boolean {
 	const g = normalize(given);
 	if (!g) return false;
 	const candidates = [ex.answer, ...(ex.accepted ?? [])].map(normalize);
 	if (candidates.includes(g)) return true;
-	// numeric tolerance: "12.0" matches "12"
-	const num = Number(g.replace(',', '.'));
+	// numeric tolerance: "12.0" matches "12", "1,000" matches "1000"
+	const num = toNumber(g);
 	if (!Number.isNaN(num)) {
 		for (const c of candidates) {
-			const cn = Number(c.replace(',', '.'));
+			const cn = toNumber(c);
 			if (!Number.isNaN(cn) && Math.abs(cn - num) < 1e-9) return true;
 		}
 	}

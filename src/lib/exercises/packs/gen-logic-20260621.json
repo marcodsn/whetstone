@@ -1,0 +1,366 @@
+{
+	"pack": "gen-logic-20260621",
+	"exercises": [
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three boxes (A, B, and C) are in front of you. One contains a gold coin, and the other two are empty. Each box has a label:\nBox A: 'The gold is in Box B.'\nBox B: 'The gold is in this box.'\nBox C: 'The gold is not in Box A.'\n\nIf exactly one of these labels is true, which box contains the gold?",
+			"choices": [
+				"Box A",
+				"Box B",
+				"Box C",
+				"Not enough information"
+			],
+			"answer": "Box C",
+			"explanation": "If the gold were in A, all labels would be false. If in B, all would be true. If in C, only label C is true, satisfying the condition.",
+			"tags": [
+				"deduction",
+				"puzzles",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-001"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "All glips are glops. All glops are glups. Which of the following must be true?",
+			"choices": [
+				"All glips are glups.",
+				"All glups are glips.",
+				"All glops are glips.",
+				"Some glups are not glops."
+			],
+			"answer": "All glips are glups.",
+			"explanation": "This follows the transitive property: if $A \\subseteq B$ and $B \\subseteq C$, then $A \\subseteq C$.",
+			"tags": [
+				"syllogism",
+				"deduction",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-002"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie). \n\nA says: \"I am a Knight.\"\nB says: \"A is a Knight.\"\nC says: \"I am a Spy.\"\n\nWhich of the following is a valid assignment of roles?",
+			"choices": [
+				"A: Knight, B: Spy, C: Knave",
+				"A: Knight, B: Knave, C: Spy",
+				"A: Spy, B: Knight, C: Knave",
+				"A: Knave, B: Spy, C: Knight"
+			],
+			"answer": "A: Knight, B: Spy, C: Knave",
+			"explanation": "C cannot be the Knight (he'd be lying) or the Spy (which would make B a Knave telling the truth). Thus C is the Knave, and since B's statement is true, B must be the Spy, leaving A as the Knight.",
+			"tags": [
+				"knights and knaves",
+				"deduction",
+				"puzzles",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-003"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three boxes are labeled 'Apple', 'Orange', and 'Banana'. You are told that every single label is incorrect. If the box labeled 'Apple' contains the orange, what fruit is in the box labeled 'Banana'?",
+			"choices": [
+				"Apple",
+				"Orange",
+				"Banana",
+				"Not enough information"
+			],
+			"answer": "Apple",
+			"explanation": "Since all labels are wrong, the 'Banana' box cannot contain a banana. Because the orange is in the 'Apple' box, the only remaining fruit for the 'Banana' box is the apple.",
+			"tags": [
+				"deduction",
+				"constraints",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-004"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three suspects—Alex, Blake, and Casey—are being questioned about a theft. It is known that exactly one of them is the thief and exactly one of them is telling the truth.\n\nAlex says: \"I am not the thief.\"\nBlake says: \"Alex is telling the truth.\"\nCasey says: \"Blake is lying.\"\n\nWho is the thief?",
+			"choices": [
+				"Alex",
+				"Blake",
+				"Casey",
+				"Cannot be determined"
+			],
+			"answer": "Alex",
+			"explanation": "If Alex is the thief, then Alex's statement is false, Blake's statement is false, and Casey's statement is true, satisfying the requirement of exactly one truth-teller. If either Blake or Casey were the thief, both Alex and Blake would be telling the truth.",
+			"tags": [
+				"deduction",
+				"logic puzzle",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-005"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the contrapositive of the conditional statement: 'If $P$, then $Q$'?",
+			"choices": [
+				"If $Q$, then $P$",
+				"If not $P$, then not $Q$",
+				"If not $Q$, then not $P$",
+				"If $P$ and not $Q$"
+			],
+			"answer": "If not $Q$, then not $P$",
+			"explanation": "The contrapositive of 'If $P$, then $Q$' is 'If not $Q$, then not $P$'. This statement is logically equivalent to the original.",
+			"tags": [
+				"propositional logic",
+				"conditionals",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-006"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which of the following is logically equivalent to the expression $(P \\lor Q) \\land \\neg P$?",
+			"choices": [
+				"$\\neg P \\land Q$",
+				"$\\neg P \\lor Q$",
+				"$P \\land Q$",
+				"$\\neg Q$"
+			],
+			"answer": "$\\neg P \\land Q$",
+			"explanation": "Using the distributive law, $(P \\lor Q) \\land \\neg P$ simplifies to $(P \\land \\neg P) \\lor (Q \\land \\neg P)$. Since $(P \\land \\neg P)$ is a contradiction (always false), we are left with $\\neg P \\land Q$.",
+			"tags": [
+				"boolean algebra",
+				"propositional logic",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-007"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Three people—X, Y, and Z—are making statements. It is known that exactly one of them is telling the truth and the other two are lying.\n\nX says: 'Y is lying.'\nY says: 'Z is lying.'\nZ says: 'X and Y are both lying.'\n\nWho is telling the truth?",
+			"choices": [
+				"X",
+				"Y",
+				"Z",
+				"None of them"
+			],
+			"answer": "Y",
+			"explanation": "If Y is telling the truth, then X is lying (making X's statement false), Z is lying (making Y's statement true), and Z's statement is false because Y is telling the truth. This is the only consistent scenario.",
+			"tags": [
+				"deduction",
+				"liars",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-008"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "Three people—A, B, and C—are each either a Knight (always tells the truth) or a Knave (always lies). \n\nA says: 'B and C are the same type.'\nB says: 'A and C are the same type.'\nC says: 'At least one of us is a Knave.'\n\nWhich of the following is true?",
+			"choices": [
+				"A is a Knight, B is a Knight, C is a Knight",
+				"A is a Knave, B is a Knight, C is a Knight",
+				"A is a Knave, B is a Knave, C is a Knight",
+				"A is a Knight, B is a Knave, C is a Knave"
+			],
+			"answer": "A is a Knave, B is a Knave, C is a Knight",
+			"explanation": "If C were a Knave, his statement would be false, implying everyone is a Knight, which is a contradiction. Thus C is a Knight. If A were a Knight, B would have to be a Knight (to match C), but that would make C's statement false. Therefore, A must be a Knave, which implies B and C are different, making B a Knave.",
+			"tags": [
+				"knights and knaves",
+				"deduction",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-009"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the logical negation of the statement: 'All birds can fly'?",
+			"choices": [
+				"No birds can fly",
+				"Some birds can fly",
+				"Some birds cannot fly",
+				"All birds can fly"
+			],
+			"answer": "Some birds cannot fly",
+			"explanation": "The negation of a universal statement ('All $A$ are $B$') is an existential statement ('Some $A$ are not $B$'). You only need one counterexample to disprove a universal claim.",
+			"tags": [
+				"quantifiers",
+				"negation",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-010"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "Three prisoners are standing in a line, one behind the other, all facing forward. Each is wearing either a red or a blue hat.\n\n- Prisoner 3 (at the back) can see the hats of Prisoner 2 and Prisoner 1.\n- Prisoner 2 (in the middle) can see the hat of Prisoner 1.\n- Prisoner 1 (at the front) can see no one.\n\nA guard says: 'At least one of you is wearing a red hat.'\n\nThe guard asks Prisoner 3: 'Do you know your hat color?' Prisoner 3 says: 'No.'\n\nThe guard asks Prisoner 2: 'Do you know your hat color?' Prisoner 2 says: 'No.'\n\nFinally, the guard asks Prisoner 1: 'Do you know your hat color?' Prisoner 1 says: 'Yes.'\n\nWhat color is Prisoner 1's hat?",
+			"choices": [
+				"Red",
+				"Blue",
+				"Cannot be determined",
+				"Either Red or Blue"
+			],
+			"answer": "Red",
+			"explanation": "If Prisoner 1 were wearing blue, Prisoner 2 would have known they were wearing red after hearing Prisoner 3's 'No' (as P3's 'No' implies that P1 and P2 are not both wearing blue). Since Prisoner 2 also said 'No', Prisoner 1 must be wearing red.",
+			"tags": [
+				"deduction",
+				"induction",
+				"puzzles",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-011"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "You are shown four cards: `[A]`, `[K]`, `[4]`, and `[7]`. Each card has a letter on one side and a number on the other. The rule is: 'If a card has a vowel on one side, then it must have an even number on the other side.' Which card(s) must you turn over to test if the rule is being violated?",
+			"choices": [
+				"`[A]` and `[4]`",
+				"`[A]` and `[7]`",
+				"`[A]`, `[K]`, and `[4]`",
+				"`[A]`, `[K]`, and `[7]`"
+			],
+			"answer": "`[A]` and `[7]`",
+			"explanation": "To test $P \\implies Q$, you must check $P$ (to see if $Q$ follows) and $\\neg Q$ (to see if $P$ was actually true). Checking `[4]` (the $Q$ case) is unnecessary because the rule doesn't forbid consonants from having even numbers.",
+			"tags": [
+				"deduction",
+				"conditional",
+				"wason",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-012"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie).\n\nA says: 'C is the Knave.'\nB says: 'A is the Knight.'\nC says: 'I am the Spy.'\n\nWho is the Spy?",
+			"choices": [
+				"A",
+				"B",
+				"C",
+				"Cannot be determined"
+			],
+			"answer": "B",
+			"explanation": "If C were the Knight, his statement would be a lie. If B were the Knight, A would also be a Knight, which is impossible. Thus, A must be the Knight, C is the Knave, and B is the Spy.",
+			"tags": [
+				"knights-and-knaves",
+				"deduction",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-013"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three suspects—Amy, Bob, and Cal—are being questioned about a theft. It is known that exactly one of them is guilty. \n\nAmy: \"Bob is guilty.\"\nBob: \"Cal is guilty.\"\nCal: \"I am not guilty.\"\n\nIf exactly two of these statements are true, who is guilty?",
+			"choices": [
+				"Amy",
+				"Bob",
+				"Cal",
+				"It cannot be determined"
+			],
+			"answer": "Bob",
+			"explanation": "If Bob is guilty, Amy's statement is true, Bob's is false, and Cal's is true, which satisfies the condition of exactly two true statements.",
+			"tags": [
+				"deduction",
+				"puzzle",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-014"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Aria is taller than Ben. Chloe is taller than Aria. Ben is taller than David. Who is the shortest?",
+			"choices": [
+				"Aria",
+				"Ben",
+				"Chloe",
+				"David"
+			],
+			"answer": "David",
+			"explanation": "By combining the inequalities, we establish the order: Chloe > Aria > Ben > David. Therefore, David is the shortest.",
+			"tags": [
+				"deduction",
+				"ordering",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-015"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Four suspects—Arthur, Bernice, Charles, and Diana—are being questioned. It is known that exactly one of them is the spy and exactly one of their statements is true.\n\nArthur: \"Bernice is the spy.\"\nBernice: \"Diana is the spy.\"\nCharles: \"I am not the spy.\"\nDiana: \"Bernice is lying.\"\n\nWho is the spy?",
+			"choices": [
+				"Arthur",
+				"Bernice",
+				"Charles",
+				"Diana"
+			],
+			"answer": "Charles",
+			"explanation": "Bernice and Diana's statements are contradictory, meaning one of them must be true. Since only one statement is true, Arthur and Charles must be lying. If Charles is lying when he says 'I am not the spy,' he must be the spy.",
+			"tags": [
+				"deduction",
+				"puzzles",
+				"contradiction",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-016"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Three boxes are labeled Red, Blue, and Green. Each contains exactly one ball (Red, Blue, or Green), and no box contains a ball of its own color. If the Green box contains the Red ball, which box contains the Blue ball?",
+			"choices": [
+				"Red box",
+				"Blue box",
+				"Green box",
+				"Cannot be determined"
+			],
+			"answer": "Red box",
+			"explanation": "With the Red ball in the Green box, the remaining balls are Blue and Green. Since the Blue box cannot contain the Blue ball, it must contain the Green ball, leaving the Blue ball for the Red box.",
+			"tags": [
+				"deduction",
+				"puzzle",
+				"generated",
+				"unreviewed"
+			],
+			"id": "gen-logic-017"
+		}
+	]
+}
