@@ -1,4 +1,4 @@
-# SCOPE — Improvement Plan
+# Whetstone — Improvement Plan
 
 Full backlog from the project review. Checked items are implemented; unchecked
 items are proposed but not yet done. Numbers reference the original review.
@@ -6,7 +6,7 @@ items are proposed but not yet done. Numbers reference the original review.
 ## Constraints (do not break)
 
 - App stays **fully static** — no runtime LLM/API calls.
-- **Attempt-log format** (`Attempt` shape, `scope.attempts.v1` array) must stay stable so ratings remain comparable over months.
+- **Attempt-log format** (`Attempt` shape, `whetstone.attempts.v1` array) must stay stable so ratings remain comparable over months.
 - **Elo semantics** in `scoring.ts` stay stable unless the change is deliberate and documented.
 
 ## Correctness / footguns

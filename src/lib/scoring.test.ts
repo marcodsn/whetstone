@@ -157,7 +157,7 @@ describe('importAttempts — format stability & de-dupe', () => {
 		expect(loadAttempts().length).toBe(2);
 	});
 
-	it('rejects junk and non-SCOPE data', () => {
+	it('rejects junk and non-Whetstone data', () => {
 		expect(() => importAttempts('not json')).toThrow();
 		expect(() => importAttempts('{}')).toThrow();
 		expect(() => importAttempts('[{"foo":1}]')).toThrow();

@@ -73,75 +73,88 @@
 	}
 </script>
 
-{#if session.length === 0}
-	<p class="muted">No exercises available for this selection.</p>
-	<p><a href="/">← Back to the observatory</a></p>
-{:else if !done}
-	<div class="session-head">
-		<span class="overline">{sessionTitle}</span>
-		<span class="progress num">{index + 1} / {session.length}</span>
-	</div>
-	<div class="progress-rail" aria-hidden="true">
-		<div class="progress-fill" style="width: {(index / session.length) * 100}%"></div>
-	</div>
-
-	<ExerciseCard exercise={current} {onresult} {onnext} />
-
-	<p class="hints muted">
-		{#if choiceCount > 0}<kbd class="key">1</kbd>–<kbd class="key">{choiceCount}</kbd> select ·
-		{/if}<kbd class="key">↵</kbd> submit / continue
-	</p>
-{:else}
-	<section class="report">
-		<p class="overline">Session report</p>
-		<h1 class="heading report-score">
-			<span class="num">{score}</span><span class="of num"> / {session.length}</span>
-		</h1>
-		<p class="report-line muted">
-			{score === session.length
-				? 'A clean sheet. The instrument detects no degradation.'
-				: score >= session.length * 0.7
-					? 'Solid. The misses below are tomorrow’s material.'
-					: 'Rust detected — exactly what this instrument is for.'}
-		</p>
-
-		{#if endStats}
-			<table class="recap-ratings">
-				<tbody>
-					{#each touchedDomains as d}
-						{@const delta = Math.round(endStats[d].rating - startStats[d].rating)}
-						<tr>
-							<td>{DOMAIN_LABELS[d]}</td>
-							<td class="right num">{Math.round(endStats[d].rating)}</td>
-							<td class="right num" class:delta-up={delta > 0} class:delta-down={delta < 0}>
-								{delta > 0 ? '+' : ''}{delta}
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-			{#if hasSelfGraded}
-				<p class="self-note muted">Self-graded items contribute self-reported ratings.</p>
-			{/if}
-		{/if}
-
-		<ol class="recap">
-			{#each results as r, i}
-				<li>
-					<span class="mark" class:ok={r.correct} class:ko={!r.correct}>{r.correct ? '✓' : '✗'}</span>
-					<span class="recap-q num">{i + 1}.</span>
-					<span class="recap-prompt">{r.exercise.prompt.replace(/\$\$?/g, '').slice(0, 80)}</span>
-					<span class="recap-domain muted">{DOMAIN_LABELS[r.exercise.domain]}</span>
-				</li>
-			{/each}
-		</ol>
-
-		<div class="report-actions">
-			<a class="btn btn-primary" href="/">Back to the observatory</a>
-			<button class="btn" onclick={anotherRound}>Another round</button>
+<div class="page">
+	{#if session.length === 0}
+		<p class="muted">No exercises available for this selection.</p>
+		<p><a href="/">← Back to the dashboard</a></p>
+	{:else if !done}
+		<div class="session-head">
+			<span class="overline">{sessionTitle}</span>
+			<span class="progress num">{index + 1} / {session.length}</span>
 		</div>
-	</section>
-{/if}
+		<div class="progress-rail" aria-hidden="true">
+			<div class="progress-fill" style="width: {(index / session.length) * 100}%"></div>
+		</div>
+
+		<ExerciseCard exercise={current} {onresult} {onnext} />
+
+		<p class="hints muted">
+			{#if choiceCount > 0}<kbd class="key">1</kbd>–<kbd class="key">{choiceCount}</kbd> select ·
+			{/if}<kbd class="key">↵</kbd> submit / continue
+		</p>
+	{:else}
+		<section class="report">
+			<header class="post-header">
+				<p class="overline">Session report</p>
+				<h1 class="report-score num">{score}<span class="of"> / {session.length}</span></h1>
+				<p class="post-subtitle">
+					{score === session.length
+						? 'A clean sheet — the edge held.'
+						: score >= session.length * 0.7
+							? 'Solid. The misses below are tomorrow’s grindstone.'
+							: 'Dull spots found — exactly what the stone is for.'}
+				</p>
+			</header>
+
+			<div class="article-body">
+				{#if endStats}
+					<table class="data-table recap-ratings">
+						<thead>
+							<tr>
+								<th>Domain</th>
+								<th class="right">Rating</th>
+								<th class="right">Δ</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each touchedDomains as d}
+								{@const delta = Math.round(endStats[d].rating - startStats[d].rating)}
+								<tr>
+									<td>{DOMAIN_LABELS[d]}</td>
+									<td class="right num">{Math.round(endStats[d].rating)}</td>
+									<td class="right num" class:delta-up={delta > 0} class:delta-down={delta < 0}>
+										{delta > 0 ? '+' : ''}{delta}
+									</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+					{#if hasSelfGraded}
+						<p class="self-note muted">Self-graded items contribute self-reported ratings.</p>
+					{/if}
+				{/if}
+
+				<ol class="recap">
+					{#each results as r, i}
+						<li>
+							<span class="mark" class:ok={r.correct} class:ko={!r.correct}
+								>{r.correct ? '✓' : '✗'}</span
+							>
+							<span class="recap-q num">{i + 1}.</span>
+							<span class="recap-prompt">{r.exercise.prompt.replace(/\$\$?/g, '').slice(0, 80)}</span>
+							<span class="recap-domain muted">{DOMAIN_LABELS[r.exercise.domain]}</span>
+						</li>
+					{/each}
+				</ol>
+
+				<div class="report-actions">
+					<a class="btn btn-primary" href="/">Back to dashboard</a>
+					<button class="btn" onclick={anotherRound}>Another round</button>
+				</div>
+			</div>
+		</section>
+	{/if}
+</div>
 
 <style>
 	.session-head {
@@ -176,40 +189,37 @@
 		text-align: center;
 	}
 
-	.report-score {
-		font-size: var(--text-3xl);
-		margin: var(--space-2) 0;
+	/* ── Report ─────────────────────────────────────────────────── */
+
+	.report .post-header {
+		margin-bottom: var(--space-8);
+		padding-bottom: var(--space-6);
 	}
 
-	.of {
+	.report-score {
+		font-family: var(--font-heading);
+		font-size: var(--text-3xl);
+		font-weight: 500;
+		line-height: var(--leading-tight);
+		margin-bottom: var(--space-4);
+		color: var(--color-text);
+	}
+
+	.report-score .of {
 		color: var(--color-text-subtle);
 		font-size: var(--text-xl);
 	}
 
-	.report-line {
-		font-family: var(--font-prose);
-		margin-bottom: var(--space-8);
-	}
-
 	.recap-ratings {
-		border-collapse: collapse;
-		font-size: var(--text-sm);
-		margin-bottom: var(--space-8);
+		width: auto;
 		min-width: 280px;
-	}
-
-	.recap-ratings td {
-		padding: var(--space-2) var(--space-4) var(--space-2) 0;
-		border-bottom: 1px solid var(--color-border-light);
-	}
-
-	.right {
-		text-align: right;
+		margin: 0 auto var(--space-8);
 	}
 
 	.self-note {
 		font-size: var(--text-xs);
 		margin: calc(-1 * var(--space-6)) 0 var(--space-8);
+		text-align: center;
 	}
 
 	.recap {
@@ -219,6 +229,8 @@
 		gap: var(--space-2);
 		font-size: var(--text-sm);
 		margin-bottom: var(--space-10);
+		padding: 0;
+		font-family: var(--font-ui);
 	}
 
 	.recap li {
@@ -253,5 +265,6 @@
 	.report-actions {
 		display: flex;
 		gap: var(--space-3);
+		justify-content: center;
 	}
 </style>

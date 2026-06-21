@@ -38,7 +38,7 @@
 		const blob = new Blob([exportData([...selected])], { type: 'application/json' });
 		const a = document.createElement('a');
 		a.href = URL.createObjectURL(blob);
-		a.download = `scope-attempts-${new Date().toISOString().slice(0, 10)}.json`;
+		a.download = `whetstone-attempts-${new Date().toISOString().slice(0, 10)}.json`;
 		a.click();
 		URL.revokeObjectURL(a.href);
 	}
@@ -89,168 +89,123 @@
 	}
 </script>
 
-<section class="intro">
-	<p class="overline">Self-Cognitive Observation and Performance Evaluation</p>
-	<h1 class="heading title">The instrument is pointed at you.</h1>
-	<p class="lede">
-		{exercises.length} exercises across {DOMAINS.length} domains.
-		{#if totalAttempts > 0}
-			You have logged <span class="num">{totalAttempts}</span> attempts{streak > 1
-				? ` and are on a ${streak}-day streak`
-				: ''}.
-		{:else}
-			No observations recorded yet — establish your baseline.
-		{/if}
-	</p>
+<div class="page">
+	<header class="post-header">
+		<h1>Whetstone</h1>
+		<p class="post-subtitle">
+			A whetstone doesn't do the cutting — it just keeps the blade sharp through friction.
+		</p>
+		<div class="resource-links">
+			<a class="resource-link primary" href="/session?mode=daily&n=10">Begin today's session</a>
+			<a class="resource-link" href="/session?mode=all&n=5">Quick five</a>
+		</div>
+	</header>
 
-	<div class="cta-row">
-		<a class="btn btn-primary" href="/session?mode=daily&n=10">Begin today's session</a>
-		<a class="btn" href="/session?mode=all&n=5">Quick five</a>
-	</div>
-</section>
+	<div class="article-body">
+		<p class="intro-text">
+			{exercises.length} exercises across {DOMAINS.length} domains, with an Elo-style rating per
+			domain so you can watch yourself sharpen — or rust.
+			{#if totalAttempts > 0}
+				You have logged <strong class="num">{totalAttempts}</strong> attempt{totalAttempts === 1
+					? ''
+					: 's'}{streak > 1 ? ` and are on a ${streak}-day streak` : ''}.
+			{:else}
+				No sessions yet — run one to establish your baseline.
+			{/if}
+		</p>
 
-<section class="domains">
-	<h2 class="overline section-label">Domains</h2>
-	<table class="domain-table">
-		<thead>
-			<tr>
-				<th class="check-col" title="Include in daily &amp; mixed sessions">Test</th>
-				<th>Domain</th>
-				<th class="right">Rating</th>
-				<th class="right">Trend</th>
-				<th class="right">Accuracy</th>
-				<th class="right">Seen</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each DOMAINS as d}
-				{@const s = stats[d]}
-				{@const delta = ratingDelta(s.history)}
-				{@const pool = byDomain(d)}
-				{@const seen = pool.filter((e) => attemptedIds.has(e.id)).length}
-				<tr class:deselected={!selected.has(d)}>
-					<td class="check-col">
-						<input
-							type="checkbox"
-							class="domain-check"
-							checked={selected.has(d)}
-							onchange={() => toggleDomain(d)}
-							aria-label="Include {DOMAIN_LABELS[d]} in daily and mixed sessions"
-						/>
-					</td>
-					<td class="domain-name">{DOMAIN_LABELS[d]}</td>
-					<td class="right num rating">
-						{Math.round(s.rating)}
-						{#if s.attempts > 0 && Math.abs(delta) >= 1}
-							<span class="delta num" class:delta-up={delta > 0} class:delta-down={delta < 0}>
-								{delta > 0 ? '+' : ''}{Math.round(delta)}
-							</span>
-						{/if}
-					</td>
-					<td class="right">
-						<div class="spark-cell">
-							{#if s.history.length >= 3}
-								<Sparkline values={s.history.slice(-30)} width={96} height={24} />
-							{:else}
-								<span class="muted">—</span>
-							{/if}
-						</div>
-					</td>
-					<td class="right num">
-						{s.attempts ? `${Math.round(s.accuracy * 100)}%` : '—'}
-					</td>
-					<td class="right num muted">{seen}/{pool.length}</td>
-					<td class="right">
-						<a class="btn btn-sm" href="/session?mode=domain&domain={d}&n=8">Train</a>
-					</td>
+		<h2 class="section-label">Domains</h2>
+
+		<table class="data-table domain-table">
+			<thead>
+				<tr>
+					<th class="check-col" title="Include in daily &amp; mixed sessions">Test</th>
+					<th>Domain</th>
+					<th class="right">Rating</th>
+					<th class="right">Trend</th>
+					<th class="right">Accuracy</th>
+					<th class="right">Seen</th>
+					<th></th>
 				</tr>
-			{/each}
-		</tbody>
-	</table>
-	<p class="rating-note muted">
-		Ratings start at {BASE_RATING} and move like Elo: harder exercises risk less on a miss and pay
-		more on a hit. The trend column shows your last 30 graded attempts. Daily and mixed sessions
-		draw only from the <strong>{selectedCount}</strong> checked domain{selectedCount === 1 ? '' : 's'};
-		“Train” always runs the domain you pick. Your selection rides along in exports.
-	</p>
-</section>
+			</thead>
+			<tbody>
+				{#each DOMAINS as d}
+					{@const s = stats[d]}
+					{@const delta = ratingDelta(s.history)}
+					{@const pool = byDomain(d)}
+					{@const seen = pool.filter((e) => attemptedIds.has(e.id)).length}
+					<tr class:deselected={!selected.has(d)}>
+						<td class="check-col">
+							<input
+								type="checkbox"
+								class="domain-check"
+								checked={selected.has(d)}
+								onchange={() => toggleDomain(d)}
+								aria-label="Include {DOMAIN_LABELS[d]} in daily and mixed sessions"
+							/>
+						</td>
+						<td class="domain-name">{DOMAIN_LABELS[d]}</td>
+						<td class="right num rating">
+							{Math.round(s.rating)}
+							{#if s.attempts > 0 && Math.abs(delta) >= 1}
+								<span class="delta num" class:delta-up={delta > 0} class:delta-down={delta < 0}>
+									{delta > 0 ? '+' : ''}{Math.round(delta)}
+								</span>
+							{/if}
+						</td>
+						<td class="right">
+							<div class="spark-cell">
+								{#if s.history.length >= 3}
+									<Sparkline values={s.history.slice(-30)} width={96} height={24} />
+								{:else}
+									<span class="muted">—</span>
+								{/if}
+							</div>
+						</td>
+						<td class="right num">
+							{s.attempts ? `${Math.round(s.accuracy * 100)}%` : '—'}
+						</td>
+						<td class="right num muted">{seen}/{pool.length}</td>
+						<td class="right">
+							<a class="btn btn-sm" href="/session?mode=domain&domain={d}&n=8">Train</a>
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
 
-<footer class="data-row">
-	<button class="link-btn" onclick={doExport}>Export history</button>
-	<span class="sep">·</span>
-	<button class="link-btn" onclick={doImport}>Import history</button>
-	<span class="sep">·</span>
-	<button class="link-btn" onclick={doReset}>Reset history</button>
-	<input
-		bind:this={fileInput}
-		type="file"
-		accept="application/json,.json"
-		onchange={onFile}
-		hidden
-	/>
-</footer>
+		<p class="rating-note muted">
+			Ratings start at {BASE_RATING} and move like Elo: harder exercises risk less on a miss and pay
+			more on a hit. The trend column shows your last 30 graded attempts. Daily and mixed sessions
+			draw only from the <strong>{selectedCount}</strong> checked domain{selectedCount === 1
+				? ''
+				: 's'}; “Train” always runs the domain you pick. Your selection rides along in exports.
+		</p>
+
+		<div class="data-row">
+			<button class="link-btn" onclick={doExport}>Export history</button>
+			<span class="sep">·</span>
+			<button class="link-btn" onclick={doImport}>Import history</button>
+			<span class="sep">·</span>
+			<button class="link-btn" onclick={doReset}>Reset history</button>
+			<input
+				bind:this={fileInput}
+				type="file"
+				accept="application/json,.json"
+				onchange={onFile}
+				hidden
+			/>
+		</div>
+	</div>
+</div>
 
 <style>
-	.intro {
-		margin-bottom: var(--space-12);
-	}
-
-	.title {
-		font-size: var(--text-3xl);
-		margin: var(--space-3) 0 var(--space-4);
-	}
-
-	.lede {
-		font-family: var(--font-prose);
-		font-size: var(--text-md);
-		color: var(--color-text-secondary);
-		max-width: 50ch;
-		margin-bottom: var(--space-6);
-	}
-
-	.cta-row {
-		display: flex;
-		gap: var(--space-3);
-		flex-wrap: wrap;
-	}
-
-	.section-label {
-		margin-bottom: var(--space-4);
+	.intro-text {
+		max-width: 56ch;
 	}
 
 	.domain-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: var(--text-sm);
-	}
-
-	.domain-table th {
-		font-size: var(--text-xs);
-		font-weight: 500;
-		letter-spacing: 0.06em;
-		color: var(--color-text-muted);
-		text-align: left;
-		padding: var(--space-2) var(--space-3);
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.domain-table td {
-		padding: var(--space-3);
-		border-bottom: 1px solid var(--color-border-light);
-		vertical-align: middle;
-	}
-
-	.domain-table tbody tr {
-		transition: background var(--transition-fast);
-	}
-
-	.domain-table tbody tr:hover {
-		background: var(--color-surface);
-	}
-
-	.right {
-		text-align: right;
+		margin-top: var(--space-2);
 	}
 
 	.check-col {
@@ -265,10 +220,6 @@
 		width: 1rem;
 		height: 1rem;
 		vertical-align: middle;
-	}
-
-	.domain-table tbody tr.deselected {
-		color: var(--color-text-muted);
 	}
 
 	.domain-table tbody tr.deselected .domain-name,
@@ -296,19 +247,15 @@
 		color: var(--color-text-muted);
 	}
 
-	.btn-sm {
-		padding: var(--space-1) var(--space-3);
-		font-size: var(--text-xs);
-	}
-
 	.rating-note {
 		font-size: var(--text-xs);
 		margin-top: var(--space-4);
 		max-width: 60ch;
+		line-height: var(--leading-normal);
 	}
 
 	.data-row {
-		margin-top: var(--space-16);
+		margin-top: var(--space-12);
 		padding-top: var(--space-4);
 		border-top: 1px solid var(--color-border-light);
 		font-size: var(--text-xs);

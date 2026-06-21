@@ -1,7 +1,8 @@
-# SCOPE
+# Whetstone
 
-**Self-Cognitive Observation and Performance Evaluation** — a personal
-instrument for keeping your brain working while the LLMs do the typing.
+*A whetstone doesn't do the cutting — it just keeps the blade sharp through
+friction.* A personal instrument for keeping your brain working while the LLMs do
+the typing.
 
 Short, mixed sessions of exercises across six domains — mathematics, logic,
 code, Japanese (beginner), LaTeX, and general/trick knowledge — with an
@@ -15,9 +16,9 @@ npm run dev
 ```
 
 Static build (`npm run build`) outputs a fully static site via
-`adapter-static` — no server, no API keys, all state in `localStorage`. It can
-be dropped into a SvelteKit personal site as-is (the routes are `/`,
-`/session`, `/library`).
+`adapter-static` — no server, no API keys, all state in `localStorage`. The same
+app is also published as the `/whetstone` route on
+[marcodsn.me](https://marcodsn.me) (the routes are `/`, `/session`, `/library`).
 
 ## How it works
 
@@ -35,11 +36,24 @@ be dropped into a SvelteKit personal site as-is (the routes are `/`,
 - **Scores**: each domain has an Elo rating starting at 1000. An exercise of
   difficulty *d* "plays" at `1000 + (d−3)·150`, K=24 — beating hard exercises
   pays more than farming easy ones. Ratings are replayed from the raw attempt
-  log (`localStorage`, exportable as JSON from the dashboard), so the scoring
-  function can evolve without losing history. The dashboard can also **import**
-  a previously exported log — handy if browser data gets wiped or you move
-  machines. Imports merge and de-dupe (on exercise + timestamp), so re-importing
-  the same file is a no-op.
+  log (`localStorage` key `whetstone.attempts.v1`, exportable as JSON from the
+  dashboard), so the scoring function can evolve without losing history. The
+  dashboard can also **import** a previously exported log — handy if browser
+  data gets wiped or you move machines. Imports merge and de-dupe (on exercise +
+  timestamp), so re-importing the same file is a no-op.
+
+## Publishing data to the site
+
+The `/whetstone` route on marcodsn.me fetches a single `exercises.json` (the
+reviewed exercises, flattened) and falls back to the bundled core packs. Produce
+that file with:
+
+```sh
+npm run export-data   # writes static/exercises.json (reviewed exercises only)
+```
+
+Commit/push it to the published repo; the site picks it up. Generation and
+review stay here — the site only ever consumes the exported data.
 
 ## Generating new exercises (local LLM)
 
@@ -52,7 +66,7 @@ vLLM, or a paid API if you ever feel like it:
 npm run generate -- --domain math --count 5 --difficulty 2-4
 
 # explicit
-SCOPE_BASE_URL=http://localhost:8080/v1 SCOPE_MODEL=my-31b \
+WHETSTONE_BASE_URL=http://localhost:8080/v1 WHETSTONE_MODEL=my-31b \
   node scripts/generate.mjs --domain japanese --count 8 --difficulty 1-3
 
 # skew the difficulty mix: weighted buckets, picked per exercise
@@ -68,10 +82,10 @@ is drawn per exercise, so one run can fill a whole range.
 Re-running the same `--domain` on the same day **appends** to that day's pack
 (`gen-<domain>-<date>.json`); it never overwrites, and ids keep incrementing.
 
-Config (`SCOPE_BASE_URL`, `SCOPE_MODEL`, `SCOPE_API_KEY`) can also live in a
-`.env` file at the project root instead of the shell — copy `.env.example` to
-`.env` and edit. Shell env vars and `--flags` still override it. The `.env` is
-git-ignored; only the offline generator reads it.
+Config (`WHETSTONE_BASE_URL`, `WHETSTONE_MODEL`, `WHETSTONE_API_KEY`) can also
+live in a `.env` file at the project root instead of the shell — copy
+`.env.example` to `.env` and edit. Shell env vars and `--flags` still override
+it. The `.env` is git-ignored; only the offline generator reads it.
 
 Generated exercises are validated (schema, answer∈choices, dedupe against
 every existing prompt), tagged `generated` + `unreviewed`, and written to

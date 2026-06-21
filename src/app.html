@@ -13,7 +13,7 @@
 			// Apply theme before first paint to avoid flash
 			(function () {
 				try {
-					var t = localStorage.getItem('scope.theme.v1');
+					var t = localStorage.getItem('whetstone.theme.v1');
 					if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 					document.documentElement.dataset.theme = t;
 				} catch (e) {}

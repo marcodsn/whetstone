@@ -1,11 +1,12 @@
 {
-	"name": "scope",
+	"name": "whetstone",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"generate": "node scripts/generate.mjs",
+		"export-data": "node scripts/export.mjs",
 		"audit": "node scripts/audit.mjs",
 		"test": "vitest run",
 		"test:watch": "vitest",

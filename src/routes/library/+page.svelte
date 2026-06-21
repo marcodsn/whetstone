@@ -20,64 +20,60 @@
 	const typeLabel = { choice: 'multiple choice', input: 'free answer', self: 'self-graded' };
 </script>
 
-<section>
-	<p class="overline">Library</p>
-	<h1 class="heading title">Every item on the bench.</h1>
-	<p class="lede muted">
-		Prompts only — answers stay hidden so the library doesn't spoil the sessions. New packs land
-		in <code>src/lib/exercises/packs/</code>, one JSON file each.
-	</p>
+<div class="page">
+	<header class="post-header">
+		<h1>Library</h1>
+		<p class="post-subtitle">
+			Every item on the bench — prompts only, so the library never spoils a session.
+		</p>
+	</header>
 
-	<div class="filters">
-		<button class="chip" class:active={filter === 'all'} onclick={() => (filter = 'all')}>
-			All <span class="num">({exercises.length})</span>
-		</button>
-		{#each DOMAINS as d}
-			<button class="chip" class:active={filter === d} onclick={() => (filter = d)}>
-				{DOMAIN_LABELS[d]}
-				<span class="num">({exercises.filter((e) => e.domain === d).length})</span>
+	<div class="article-body">
+		<div class="filters">
+			<button class="chip" class:active={filter === 'all'} onclick={() => (filter = 'all')}>
+				All <span class="num">({exercises.length})</span>
 			</button>
-		{/each}
-	</div>
+			{#each DOMAINS as d}
+				<button class="chip" class:active={filter === d} onclick={() => (filter = d)}>
+					{DOMAIN_LABELS[d]}
+					<span class="num">({exercises.filter((e) => e.domain === d).length})</span>
+				</button>
+			{/each}
+		</div>
 
-	<ul class="items">
-		{#each shown as ex (ex.id)}
-			<li>
-				<span class="status" title={lastResult.has(ex.id) ? (lastResult.get(ex.id) ? 'last attempt correct' : 'last attempt wrong') : 'not attempted'}>
-					{#if lastResult.has(ex.id)}
-						<span class={lastResult.get(ex.id) ? 'ok' : 'ko'}>{lastResult.get(ex.id) ? '✓' : '✗'}</span>
-					{:else}
-						<span class="muted">·</span>
-					{/if}
-				</span>
-				<span class="item-prompt">{ex.prompt.replace(/\$\$?/g, '').slice(0, 90)}</span>
-				<span class="item-meta muted">{typeLabel[ex.type]}</span>
-				<Dots value={ex.difficulty} />
-			</li>
-		{/each}
-	</ul>
-</section>
+		<ul class="items">
+			{#each shown as ex (ex.id)}
+				<li>
+					<span
+						class="status"
+						title={lastResult.has(ex.id)
+							? lastResult.get(ex.id)
+								? 'last attempt correct'
+								: 'last attempt wrong'
+							: 'not attempted'}
+					>
+						{#if lastResult.has(ex.id)}
+							<span class={lastResult.get(ex.id) ? 'ok' : 'ko'}
+								>{lastResult.get(ex.id) ? '✓' : '✗'}</span
+							>
+						{:else}
+							<span class="muted">·</span>
+						{/if}
+					</span>
+					<span class="item-prompt">{ex.prompt.replace(/\$\$?/g, '').slice(0, 90)}</span>
+					<span class="item-meta muted">{typeLabel[ex.type]}</span>
+					<Dots value={ex.difficulty} />
+				</li>
+			{/each}
+		</ul>
+
+		<p class="lib-note muted">
+			New packs land in <code>src/lib/exercises/packs/</code>, one JSON file each.
+		</p>
+	</div>
+</div>
 
 <style>
-	.title {
-		font-size: var(--text-2xl);
-		margin: var(--space-3) 0 var(--space-3);
-	}
-
-	.lede {
-		font-family: var(--font-prose);
-		font-size: var(--text-base);
-		max-width: 56ch;
-		margin-bottom: var(--space-8);
-	}
-
-	.lede code {
-		font-size: 0.85em;
-		background: var(--color-surface);
-		padding: 0.1em 0.3em;
-		border-radius: var(--radius-sm);
-	}
-
 	.filters {
 		display: flex;
 		flex-wrap: wrap;
@@ -115,6 +111,8 @@
 		list-style: none;
 		display: flex;
 		flex-direction: column;
+		padding: 0;
+		font-family: var(--font-ui);
 	}
 
 	.items li {
@@ -153,5 +151,19 @@
 	.item-meta {
 		font-size: var(--text-xs);
 		white-space: nowrap;
+	}
+
+	.lib-note {
+		font-size: var(--text-xs);
+		margin-top: var(--space-8);
+	}
+
+	.lib-note code {
+		font-family: var(--font-mono);
+		font-size: 0.9em;
+		background: var(--color-surface);
+		padding: 0.1em 0.3em;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-border-light);
 	}
 </style>

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SCOPE audit helper — lists every exercise still tagged "unreviewed".
+ * Whetstone audit helper — lists every exercise still tagged "unreviewed".
  *
  * Generated packs (gen-*.json) land tagged "generated" + "unreviewed". A human
  * (or the monthly Claude audit, see prompts/claude-update.md) verifies each

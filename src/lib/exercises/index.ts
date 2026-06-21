@@ -10,15 +10,15 @@ function load(): Exercise[] {
 		const pack = modules[path].default;
 		for (const ex of pack.exercises) {
 			if (seen.has(ex.id)) {
-				console.warn(`[scope] duplicate exercise id "${ex.id}" in ${path} — skipped`);
+				console.warn(`[whetstone] duplicate exercise id "${ex.id}" in ${path} — skipped`);
 				continue;
 			}
 			if (!DOMAINS.includes(ex.domain)) {
-				console.warn(`[scope] unknown domain "${ex.domain}" for ${ex.id} — skipped`);
+				console.warn(`[whetstone] unknown domain "${ex.domain}" for ${ex.id} — skipped`);
 				continue;
 			}
 			if (ex.type === 'choice' && !(ex.choices ?? []).includes(ex.answer)) {
-				console.warn(`[scope] answer not among choices for ${ex.id} — skipped`);
+				console.warn(`[whetstone] answer not among choices for ${ex.id} — skipped`);
 				continue;
 			}
 			// Generated exercises stay tagged "unreviewed" until a human (or the

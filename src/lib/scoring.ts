@@ -4,7 +4,7 @@ import { DOMAINS } from '$lib/types';
 // In dev the build also surfaces "unreviewed" generated exercises (see
 // exercises/index.ts) so they can be eyeballed. Attempts on those must NOT land
 // in the real log, so dev writes to a separate key. Production is always v1.
-const STORAGE_KEY = import.meta.env.DEV ? 'scope.attempts.dev' : 'scope.attempts.v1';
+const STORAGE_KEY = import.meta.env.DEV ? 'whetstone.attempts.dev' : 'whetstone.attempts.v1';
 
 export const BASE_RATING = 1000;
 const K = 24;
@@ -72,7 +72,7 @@ function isAttempt(x: unknown): x is Attempt {
  * Merge an exported attempt log (the JSON array from `exportAttempts`) into the
  * store. De-dupes on exerciseId+ts so re-importing the same file is a no-op and
  * importing into a non-empty store is safe. Returns how many new attempts were
- * added. Throws if the input isn't a recognizable SCOPE export.
+ * added. Throws if the input isn't a recognizable Whetstone export.
  *
  * Accepts both shapes: a legacy bare array of attempts, and the newer envelope
  * `{ attempts: [...], selectedDomains: [...] }` from `exportData`. (Domain
@@ -90,9 +90,9 @@ export function importAttempts(json: string): { added: number; total: number } {
 		: parsed && typeof parsed === 'object' && Array.isArray((parsed as { attempts?: unknown }).attempts)
 			? (parsed as { attempts: unknown[] }).attempts
 			: null;
-	if (!list) throw new Error('Expected a SCOPE export (a JSON array of attempts).');
+	if (!list) throw new Error('Expected a Whetstone export (a JSON array of attempts).');
 	const incoming = list.filter(isAttempt);
-	if (incoming.length === 0) throw new Error('No valid attempts found — is this a SCOPE export?');
+	if (incoming.length === 0) throw new Error('No valid attempts found — is this a Whetstone export?');
 
 	const merged = loadAttempts();
 	const seen = new Set(merged.map((a) => `${a.exerciseId}|${a.ts}`));

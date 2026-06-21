@@ -1,0 +1,1481 @@
+[
+	{
+		"id": "code-001",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(type(3 / 2))"
+		},
+		"choices": [
+			"<class 'int'>",
+			"<class 'float'>",
+			"<class 'fraction'>",
+			"1.5"
+		],
+		"answer": "<class 'float'>",
+		"explanation": "In Python 3, `/` is true division and always yields a float. Floor division is `//`.",
+		"tags": [
+			"python",
+			"predict-output"
+		]
+	},
+	{
+		"id": "code-002",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(typeof null);"
+		},
+		"answer": "object",
+		"accepted": [
+			"object",
+			"\"object\"",
+			"'object'"
+		],
+		"explanation": "A famous historical bug, kept for compatibility: `typeof null` is `\"object\"`.",
+		"tags": [
+			"javascript",
+			"predict-output"
+		]
+	},
+	{
+		"id": "code-003",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print([i * 2 for i in range(4)])"
+		},
+		"answer": "[0, 2, 4, 6]",
+		"accepted": [
+			"[0, 2, 4, 6]",
+			"[0,2,4,6]",
+			"0 2 4 6",
+			"0,2,4,6"
+		],
+		"explanation": "`range(4)` is 0–3; each element is doubled.",
+		"tags": [
+			"python",
+			"predict-output"
+		]
+	},
+	{
+		"id": "code-004",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript evaluate to?",
+		"code": {
+			"lang": "javascript",
+			"src": "[1, 2, 3].map(parseInt)"
+		},
+		"choices": [
+			"[1, 2, 3]",
+			"[1, NaN, NaN]",
+			"[NaN, NaN, NaN]",
+			"[1, 1, 1]"
+		],
+		"answer": "[1, NaN, NaN]",
+		"explanation": "`map` passes the index as the second argument, which `parseInt` treats as the radix: `parseInt('2', 1)` and `parseInt('3', 2)` are NaN.",
+		"tags": [
+			"javascript",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-005",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(\"desserts\"[::-1])"
+		},
+		"answer": "stressed",
+		"explanation": "`[::-1]` reverses the string.",
+		"tags": [
+			"python",
+			"predict-output"
+		]
+	},
+	{
+		"id": "code-006",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is the value of `5 ^ 3` in Python?",
+		"answer": "6",
+		"explanation": "`^` is bitwise XOR, not exponentiation: $101_2 \\oplus 011_2 = 110_2 = 6$. Exponentiation is `**`.",
+		"tags": [
+			"python",
+			"bitwise",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-007",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "def f(x, acc=[]):\n    acc.append(x)\n    return acc\n\nf(1)\nprint(f(2))"
+		},
+		"choices": [
+			"[2]",
+			"[1, 2]",
+			"[[1], [2]]",
+			"[2, 1]"
+		],
+		"answer": "[1, 2]",
+		"explanation": "Default arguments are evaluated once at definition time — the same list is shared across calls.",
+		"tags": [
+			"python",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-008",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(0.1 + 0.2 === 0.3);"
+		},
+		"answer": "false",
+		"explanation": "IEEE 754 floating point: $0.1 + 0.2 = 0.30000000000000004$.",
+		"tags": [
+			"javascript",
+			"floats"
+		]
+	},
+	{
+		"id": "code-009",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "funcs = [lambda: i for i in range(3)]\nprint(funcs[0]())"
+		},
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"It raises NameError"
+		],
+		"answer": "2",
+		"explanation": "The lambdas close over the variable `i`, not its value at creation; after the loop, `i` is 2.",
+		"tags": [
+			"python",
+			"closures",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-010",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(bool(\"False\"))"
+		},
+		"answer": "True",
+		"accepted": [
+			"True",
+			"true"
+		],
+		"explanation": "Any non-empty string is truthy — including the string \"False\".",
+		"tags": [
+			"python",
+			"gotcha"
+		]
+	},
+	{
+		"id": "code-011",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}"
+		},
+		"choices": [
+			"0 1 2",
+			"3 3 3",
+			"0 0 0",
+			"2 2 2"
+		],
+		"answer": "3 3 3",
+		"explanation": "`var` is function-scoped: all three callbacks share one `i`, which is 3 by the time they run. With `let` it would print 0 1 2.",
+		"tags": [
+			"javascript",
+			"scoping",
+			"async"
+		]
+	},
+	{
+		"id": "code-012",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(sum(range(1, 5), 10))"
+		},
+		"answer": "20",
+		"explanation": "`sum(iterable, start)`: $10 + 1 + 2 + 3 + 4 = 20$.",
+		"tags": [
+			"python",
+			"stdlib"
+		]
+	},
+	{
+		"id": "code-013",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What is the worst-case time complexity of binary search on a sorted array of $n$ elements?",
+		"choices": [
+			"$O(1)$",
+			"$O(\\log n)$",
+			"$O(n)$",
+			"$O(n \\log n)$"
+		],
+		"answer": "$O(\\log n)$",
+		"explanation": "Each comparison halves the search interval.",
+		"tags": [
+			"complexity",
+			"algorithms"
+		]
+	},
+	{
+		"id": "code-014",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "What happens when this Python runs?",
+		"code": {
+			"lang": "python",
+			"src": "a = (1, [2, 3])\na[1] += [4]\nprint(a)"
+		},
+		"choices": [
+			"Prints (1, [2, 3, 4]) with no error",
+			"Raises TypeError and a is unchanged",
+			"Raises TypeError, but a becomes (1, [2, 3, 4])",
+			"Raises SyntaxError"
+		],
+		"answer": "Raises TypeError, but a becomes (1, [2, 3, 4])",
+		"explanation": "`+=` mutates the list in place (so the change sticks), then tries to assign back into the tuple, which raises TypeError. Both things happen.",
+		"tags": [
+			"python",
+			"gotcha",
+			"mutability"
+		]
+	},
+	{
+		"id": "gen-001",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "How many animals of each kind did Moses take on the Ark?",
+		"choices": [
+			"Two",
+			"Seven",
+			"None",
+			"One pair of each clean animal"
+		],
+		"answer": "None",
+		"explanation": "It was Noah's Ark, not Moses'.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-002",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which is heavier: a kilogram of steel or a kilogram of feathers?",
+		"choices": [
+			"The steel",
+			"The feathers",
+			"They weigh the same",
+			"Depends on altitude"
+		],
+		"answer": "They weigh the same",
+		"explanation": "A kilogram is a kilogram. (The feathers do take up more room.)",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-003",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What five-letter word becomes shorter when you add two letters to it?",
+		"answer": "short",
+		"accepted": [
+			"short",
+			"\"short\""
+		],
+		"explanation": "short + er = shorter.",
+		"tags": [
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-004",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the capital of Australia?",
+		"choices": [
+			"Sydney",
+			"Melbourne",
+			"Canberra",
+			"Perth"
+		],
+		"answer": "Canberra",
+		"explanation": "Canberra was purpose-built as a compromise between rivals Sydney and Melbourne.",
+		"tags": [
+			"geography"
+		]
+	},
+	{
+		"id": "gen-005",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the largest organ of the human body?",
+		"choices": [
+			"The liver",
+			"The skin",
+			"The brain",
+			"The lungs"
+		],
+		"answer": "The skin",
+		"explanation": "Roughly 15% of body mass.",
+		"tags": [
+			"biology"
+		]
+	},
+	{
+		"id": "gen-006",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "How long did the Hundred Years' War last?",
+		"choices": [
+			"100 years",
+			"99 years",
+			"116 years",
+			"127 years"
+		],
+		"answer": "116 years",
+		"explanation": "1337–1453, with truces in between. The name came later.",
+		"tags": [
+			"history",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-007",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Averaged over time, which planet is closest to Earth?",
+		"choices": [
+			"Venus",
+			"Mars",
+			"Mercury",
+			"The Moon counts as a planet"
+		],
+		"answer": "Mercury",
+		"explanation": "Venus comes closest at approach, but spends much of its orbit far away. Mercury, hugging the Sun, is on average the nearest planet to every other planet.",
+		"tags": [
+			"astronomy",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-008",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "You are running a race and you overtake the person in second place. What place are you in now?",
+		"answer": "second",
+		"accepted": [
+			"second",
+			"2nd",
+			"2",
+			"second place"
+		],
+		"explanation": "You take their place — second, not first.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-009",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Where do Panama hats originally come from?",
+		"choices": [
+			"Panama",
+			"Ecuador",
+			"Cuba",
+			"Colombia"
+		],
+		"answer": "Ecuador",
+		"explanation": "They were woven in Ecuador and shipped through Panama, where buyers picked up the name.",
+		"tags": [
+			"trick",
+			"history"
+		]
+	},
+	{
+		"id": "gen-010",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which is larger: a googol, or the estimated number of atoms in the observable universe?",
+		"choices": [
+			"A googol",
+			"The number of atoms",
+			"They are roughly equal",
+			"It is not known"
+		],
+		"answer": "A googol",
+		"explanation": "A googol is $10^{100}$; the observable universe holds roughly $10^{80}$ atoms — twenty orders of magnitude fewer.",
+		"tags": [
+			"estimation",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-011",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "A doctor gives you three pills and tells you to take one every 30 minutes. How many minutes until you have taken all of them?",
+		"answer": "60",
+		"accepted": [
+			"60",
+			"60 minutes",
+			"1 hour",
+			"one hour",
+			"an hour"
+		],
+		"explanation": "Pill now, pill at 30, pill at 60 — one hour, not ninety minutes.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "gen-012",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which city is farther west: Reno, Nevada or Los Angeles, California?",
+		"choices": [
+			"Los Angeles",
+			"Reno",
+			"Same longitude",
+			"Depends on the map projection"
+		],
+		"answer": "Reno",
+		"explanation": "The California coastline bends sharply east below San Francisco — Reno (~119.8°W) sits west of Los Angeles (~118.2°W).",
+		"tags": [
+			"geography",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-013",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Monty Hall: you pick door 1 of 3; the host, who knows where the car is, opens door 3 to reveal a goat and offers a switch to door 2. What should you do?",
+		"choices": [
+			"Switch — door 2 now has probability 2/3",
+			"Stay — it makes no difference",
+			"Stay — door 1 now has probability 2/3",
+			"Flip a coin — both doors are 1/2"
+		],
+		"answer": "Switch — door 2 now has probability 2/3",
+		"explanation": "Your initial pick wins 1/3 of the time; the host's reveal funnels the remaining 2/3 onto the other closed door.",
+		"tags": [
+			"probability",
+			"classic"
+		]
+	},
+	{
+		"id": "gen-014",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "In a random group of people, how many are needed for the probability that two share a birthday to exceed 50%?",
+		"answer": "23",
+		"accepted": [
+			"23",
+			"twenty-three",
+			"twenty three"
+		],
+		"explanation": "The birthday paradox: with 23 people there are 253 pairs, and the no-collision probability drops below 0.5.",
+		"tags": [
+			"probability",
+			"classic"
+		]
+	},
+	{
+		"id": "jp-001",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which romaji corresponds to the hiragana あ?",
+		"choices": [
+			"a",
+			"o",
+			"me",
+			"nu"
+		],
+		"answer": "a",
+		"explanation": "あ is \"a\", the first kana of the gojūon.",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-002",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which romaji corresponds to the hiragana ひ?",
+		"choices": [
+			"hi",
+			"ke",
+			"mo",
+			"sa"
+		],
+		"answer": "hi",
+		"explanation": "ひ is \"hi\", as in ひと (hito, person).",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-003",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which of these is the hiragana for \"ko\"?",
+		"choices": [
+			"こ",
+			"た",
+			"け",
+			"に"
+		],
+		"answer": "こ",
+		"explanation": "こ is \"ko\", as in こども (kodomo, child).",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-004",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which romaji corresponds to the hiragana ね? (Careful — it has look-alikes.)",
+		"choices": [
+			"ne",
+			"re",
+			"wa",
+			"nu"
+		],
+		"answer": "ne",
+		"explanation": "ね (ne), れ (re), わ (wa) and ぬ (nu) are classic look-alikes. ね has the loop at the bottom of a vertical stroke.",
+		"tags": [
+			"hiragana",
+			"lookalikes"
+		]
+	},
+	{
+		"id": "jp-005",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Write the romaji for ねこ (it means \"cat\").",
+		"answer": "neko",
+		"explanation": "ね (ne) + こ (ko) = neko.",
+		"tags": [
+			"hiragana",
+			"vocabulary"
+		]
+	},
+	{
+		"id": "jp-006",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Write the romaji for すし.",
+		"answer": "sushi",
+		"explanation": "す (su) + し (shi). Note し is \"shi\", not \"si\".",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-007",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does こんにちは (konnichiwa) mean?",
+		"choices": [
+			"Hello / good afternoon",
+			"Good night",
+			"Thank you",
+			"Excuse me"
+		],
+		"answer": "Hello / good afternoon",
+		"explanation": "The standard daytime greeting. The final は is pronounced \"wa\" here.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-008",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does ありがとう (arigatou) mean?",
+		"choices": [
+			"Thank you",
+			"Please",
+			"Sorry",
+			"Welcome"
+		],
+		"answer": "Thank you",
+		"explanation": "ありがとう is the casual \"thanks\"; ありがとうございます is more polite.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-009",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "アメリカ (\"America\") is written in which script?",
+		"choices": [
+			"Katakana",
+			"Hiragana",
+			"Kanji",
+			"Romaji"
+		],
+		"answer": "Katakana",
+		"explanation": "Foreign loanwords and names are typically written in katakana — the angular script.",
+		"tags": [
+			"scripts"
+		]
+	},
+	{
+		"id": "jp-010",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What number is 三?",
+		"choices": [
+			"3",
+			"2",
+			"1",
+			"8"
+		],
+		"answer": "3",
+		"explanation": "一 (1), 二 (2), 三 (3) — the strokes count themselves.",
+		"tags": [
+			"kanji",
+			"numbers"
+		]
+	},
+	{
+		"id": "jp-011",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Write the romaji for みず (it means \"water\").",
+		"answer": "mizu",
+		"explanation": "み (mi) + ず (zu — す with dakuten).",
+		"tags": [
+			"hiragana",
+			"vocabulary",
+			"dakuten"
+		]
+	},
+	{
+		"id": "jp-012",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which particle marks the topic of a sentence, as in わたし◯がくせいです (\"I am a student\")?",
+		"choices": [
+			"は",
+			"を",
+			"に",
+			"か"
+		],
+		"answer": "は",
+		"explanation": "は marks the topic (and is pronounced \"wa\" as a particle). を marks the direct object; に marks direction/time; か makes a question.",
+		"tags": [
+			"grammar",
+			"particles"
+		]
+	},
+	{
+		"id": "jp-013",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does さようなら (sayounara) mean?",
+		"choices": [
+			"Goodbye",
+			"Good morning",
+			"See you tomorrow",
+			"Long time no see"
+		],
+		"answer": "Goodbye",
+		"explanation": "A somewhat formal/final goodbye — friends more often say じゃあね or またね.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-014",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Adding dakuten (゛) to か gives が. How does the sound change?",
+		"choices": [
+			"ka → ga",
+			"ka → kya",
+			"ka → pa",
+			"ka → ha"
+		],
+		"answer": "ka → ga",
+		"explanation": "Dakuten voices the consonant: k→g, s→z, t→d, h→b. (Handakuten ゜ turns h→p.)",
+		"tags": [
+			"dakuten",
+			"scripts"
+		]
+	},
+	{
+		"id": "jp-015",
+		"domain": "japanese",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write (on paper) the five vowel hiragana in order: a, i, u, e, o. Then reveal and compare stroke by stroke.",
+		"answer": "あ い う え お",
+		"explanation": "These five anchor the entire gojūon table — every column follows the a-i-u-e-o pattern.",
+		"tags": [
+			"hiragana",
+			"writing"
+		]
+	},
+	{
+		"id": "latex-001",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which command typesets the fraction $\\frac{a}{b}$?",
+		"choices": [
+			"\\frac{a}{b}",
+			"\\fraction{a}{b}",
+			"\\div{a}{b}",
+			"a \\over b{}"
+		],
+		"answer": "\\frac{a}{b}",
+		"explanation": "`\\frac{numerator}{denominator}`. (`\\over` exists but is plain TeX and discouraged.)",
+		"tags": [
+			"commands"
+		]
+	},
+	{
+		"id": "latex-002",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the Greek letter $\\alpha$?",
+		"answer": "\\alpha",
+		"accepted": [
+			"\\alpha",
+			"alpha"
+		],
+		"explanation": "Lowercase Greek letters are their names: `\\alpha`, `\\beta`, `\\gamma`…",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-003",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which source produces $\\sum_{i=1}^{n} i$?",
+		"choices": [
+			"\\sum_{i=1}^{n} i",
+			"\\sigma_{i=1}^{n} i",
+			"\\sum^{i=1}_{n} i",
+			"\\Sum{i=1}{n} i"
+		],
+		"answer": "\\sum_{i=1}^{n} i",
+		"explanation": "`_` sets the lower limit, `^` the upper. `\\Sigma` is just the letter, without limit behaviour.",
+		"tags": [
+			"commands"
+		]
+	},
+	{
+		"id": "latex-004",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command typesets the square root $\\sqrt{x}$?",
+		"answer": "\\sqrt{x}",
+		"accepted": [
+			"\\sqrt{x}",
+			"\\sqrt",
+			"sqrt",
+			"sqrt{x}"
+		],
+		"explanation": "`\\sqrt{x}`; n-th roots take an optional argument: `\\sqrt[3]{x}`.",
+		"tags": [
+			"commands"
+		]
+	},
+	{
+		"id": "latex-005",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "How do you write $x_i$ (x with subscript i)?",
+		"answer": "x_i",
+		"accepted": [
+			"x_i",
+			"x_{i}"
+		],
+		"explanation": "`_` introduces a subscript; braces are needed only for multi-character subscripts, e.g. `x_{ij}`.",
+		"tags": [
+			"basics"
+		]
+	},
+	{
+		"id": "latex-006",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the command for the infinity symbol $\\infty$?",
+		"answer": "\\infty",
+		"accepted": [
+			"\\infty",
+			"infty"
+		],
+		"explanation": "`\\infty` — not `\\infinity`.",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-007",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the difference between \\( … \\) and \\[ … \\] in LaTeX?",
+		"choices": [
+			"Inline math vs. display math",
+			"Display math vs. inline math",
+			"Text mode vs. math mode",
+			"They are identical"
+		],
+		"answer": "Inline math vs. display math",
+		"explanation": "\\( … \\) flows inside a paragraph; \\[ … \\] is set on its own centred line.",
+		"tags": [
+			"modes"
+		]
+	},
+	{
+		"id": "latex-008",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the command for $\\leq$ (less than or equal)?",
+		"answer": "\\leq",
+		"accepted": [
+			"\\leq",
+			"\\le",
+			"leq",
+			"le"
+		],
+		"explanation": "`\\leq` (or the shorthand `\\le`); similarly `\\geq`/`\\ge`.",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-009",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write, by hand or in your head, the LaTeX source for the quadratic formula: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ Then reveal and compare.",
+		"answer": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+		"explanation": "Key pieces: `\\frac{}{}`, `\\pm`, `\\sqrt{}`, and `b^2` for the superscript.",
+		"tags": [
+			"writing"
+		]
+	},
+	{
+		"id": "latex-010",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which environment produces a numbered display equation in LaTeX?",
+		"choices": [
+			"equation",
+			"align*",
+			"math",
+			"displaymath"
+		],
+		"answer": "equation",
+		"explanation": "`equation` numbers its content. Starred variants (`equation*`, `align*`) suppress numbering; `align` numbers each line.",
+		"tags": [
+			"environments"
+		]
+	},
+	{
+		"id": "latex-011",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for a $2 \\times 2$ matrix in parentheses: $$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$$ Then reveal and compare.",
+		"answer": "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
+		"explanation": "`pmatrix` (from amsmath) adds the parentheses; `&` separates columns, `\\\\` separates rows. Cousins: `bmatrix` […], `vmatrix` |…|.",
+		"tags": [
+			"environments",
+			"writing"
+		]
+	},
+	{
+		"id": "latex-012",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What is the command for the partial derivative symbol $\\partial$?",
+		"answer": "\\partial",
+		"accepted": [
+			"\\partial",
+			"partial"
+		],
+		"explanation": "`\\partial`, as in `\\frac{\\partial f}{\\partial x}`.",
+		"tags": [
+			"symbols"
+		]
+	},
+	{
+		"id": "latex-013",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 5,
+		"prompt": "Write the LaTeX source for the Gaussian integral: $$\\int_0^\\infty e^{-x^2}\\, dx = \\frac{\\sqrt{\\pi}}{2}$$ Then reveal and compare (including the thin space before $dx$).",
+		"answer": "\\int_0^\\infty e^{-x^2}\\, dx = \\frac{\\sqrt{\\pi}}{2}",
+		"explanation": "`\\int_0^\\infty` for the limits, `e^{-x^2}` needs braces around the full exponent, and `\\,` is the thin space conventionally placed before the differential.",
+		"tags": [
+			"writing",
+			"integrals"
+		]
+	},
+	{
+		"id": "logic-001",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "All blorps are fizzy. Some fizzy things are green. Which conclusion necessarily follows?",
+		"choices": [
+			"Some blorps are green",
+			"All fizzy things are blorps",
+			"Some green things are blorps",
+			"None of these necessarily follows"
+		],
+		"answer": "None of these necessarily follows",
+		"explanation": "The green fizzy things might all be non-blorps. 'Some A are B' plus 'all C are A' tells you nothing about C∩B.",
+		"tags": [
+			"syllogism"
+		]
+	},
+	{
+		"id": "logic-002",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the next letter? $O,\\ T,\\ T,\\ F,\\ F,\\ S,\\ S,\\ E,\\ ?$",
+		"choices": [
+			"N",
+			"T",
+			"E",
+			"O"
+		],
+		"answer": "N",
+		"explanation": "Initials of One, Two, Three, Four… the next is Nine.",
+		"tags": [
+			"lateral",
+			"sequences"
+		]
+	},
+	{
+		"id": "logic-003",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "How many months of the year have 28 days?",
+		"answer": "12",
+		"accepted": [
+			"12",
+			"twelve",
+			"all",
+			"all of them"
+		],
+		"explanation": "Every month has at least 28 days.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "logic-004",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "\"If it rains, the street gets wet. The street is wet. Therefore it rained.\" Is this argument logically valid?",
+		"choices": [
+			"Yes — it follows directly",
+			"No — the street could be wet for another reason",
+			"Yes, but only if it actually rained",
+			"It is valid but unsound"
+		],
+		"answer": "No — the street could be wet for another reason",
+		"explanation": "This is the fallacy of affirming the consequent: $P \\to Q$ and $Q$ do not imply $P$.",
+		"tags": [
+			"fallacies",
+			"propositional"
+		]
+	},
+	{
+		"id": "logic-005",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Mary's father has five daughters: Nana, Nene, Nini, Nono, and…?",
+		"answer": "Mary",
+		"accepted": [
+			"mary"
+		],
+		"explanation": "The fifth daughter is Mary herself — not Nunu.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "logic-006",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "On an island, knights always tell the truth and knaves always lie. A says: \"We are both knaves.\" What are A and B?",
+		"choices": [
+			"A is a knave, B is a knight",
+			"A is a knight, B is a knave",
+			"Both are knaves",
+			"Both are knights"
+		],
+		"answer": "A is a knave, B is a knight",
+		"explanation": "A knight can't say \"we are both knaves\" (it would be a lie). So A is a knave and the statement is false — meaning they are not both knaves, so B is a knight.",
+		"tags": [
+			"knights-knaves"
+		]
+	},
+	{
+		"id": "logic-007",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A farmer has 17 sheep. All but 9 die. How many sheep remain?",
+		"answer": "9",
+		"accepted": [
+			"9",
+			"nine"
+		],
+		"explanation": "\"All but 9\" means 9 survive.",
+		"tags": [
+			"trick",
+			"reading"
+		]
+	},
+	{
+		"id": "logic-008",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Four cards show $A$, $K$, $2$, $7$. Each has a letter on one side and a number on the other. Rule to test: \"If a card has a vowel, then it has an even number on the back.\" Which cards must you flip?",
+		"choices": [
+			"$A$ and $2$",
+			"$A$ and $7$",
+			"Only $A$",
+			"$A$, $2$ and $7$"
+		],
+		"answer": "$A$ and $7$",
+		"explanation": "Flip $A$ (vowel must have even back) and $7$ (an odd number must not hide a vowel). The $2$ tells you nothing — the rule doesn't say even numbers need vowels.",
+		"tags": [
+			"wason",
+			"propositional"
+		]
+	},
+	{
+		"id": "logic-009",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Three light switches downstairs control one bulb upstairs. You may flip switches as much as you like, but you can go upstairs only once. How do you determine which switch controls the bulb? Work it out, then reveal.",
+		"answer": "Turn switch 1 on for a few minutes, then turn it off and turn switch 2 on. Go upstairs: if the bulb is lit, it's switch 2; if it's off but warm, switch 1; if off and cold, switch 3.",
+		"explanation": "The trick is realising a bulb carries information in two channels: light and heat.",
+		"tags": [
+			"lateral",
+			"classic"
+		]
+	},
+	{
+		"id": "logic-010",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In a room of 100 people, 99% are programmers. How many programmers must leave so that programmers make up 98% of the room?",
+		"choices": [
+			"1",
+			"2",
+			"50",
+			"98"
+		],
+		"answer": "50",
+		"explanation": "There is 1 non-programmer. For them to be 2% of the room, the room must have 50 people — so 50 programmers must leave.",
+		"tags": [
+			"trick",
+			"percentages"
+		]
+	},
+	{
+		"id": "logic-011",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "Gear A meshes with gear B, and gear B meshes with gear C. If gear A turns clockwise, which way does gear C turn?",
+		"answer": "clockwise",
+		"accepted": [
+			"clockwise",
+			"cw",
+			"same as a",
+			"same direction as a"
+		],
+		"explanation": "Each mesh reverses direction: A cw → B ccw → C cw.",
+		"tags": [
+			"spatial"
+		]
+	},
+	{
+		"id": "logic-012",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Before Mount Everest was discovered, what was the highest mountain on Earth?",
+		"choices": [
+			"K2",
+			"Mount Everest",
+			"Kangchenjunga",
+			"Mont Blanc"
+		],
+		"answer": "Mount Everest",
+		"explanation": "It was still the highest — it just hadn't been measured yet.",
+		"tags": [
+			"trick"
+		]
+	},
+	{
+		"id": "logic-013",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 5,
+		"prompt": "Five rational pirates (A–E, A most senior) must divide 100 gold coins. The most senior proposes a split; all pirates (including the proposer) vote. If at least half accept, it passes; otherwise the proposer is thrown overboard and the next most senior proposes. Each pirate maximises coins, prefers survival, and prefers throwing others overboard when indifferent. What does A propose? Reason it out from the end, then reveal.",
+		"answer": "A proposes: A gets 98, B gets 0, C gets 1, D gets 0, E gets 1. (With two pirates, D takes all 100. With three, C offers E one coin. With four, B offers C and... working backwards, A needs two extra votes and buys C and E for one coin each.)",
+		"explanation": "Backward induction: solve the 2-pirate case first and walk up. Each proposer buys the cheapest votes — the pirates who would get nothing in the next round.",
+		"tags": [
+			"game-theory",
+			"classic"
+		]
+	},
+	{
+		"id": "math-001",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Compute mentally: $17 \\times 6$",
+		"choices": [
+			"96",
+			"102",
+			"106",
+			"112"
+		],
+		"answer": "102",
+		"explanation": "$17 \\times 6 = (17 \\times 5) + 17 = 85 + 17 = 102$.",
+		"tags": [
+			"arithmetic",
+			"mental-math"
+		]
+	},
+	{
+		"id": "math-002",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Compute: $48 + 27 \\times 2$",
+		"answer": "102",
+		"explanation": "Multiplication first: $27 \\times 2 = 54$, then $48 + 54 = 102$.",
+		"tags": [
+			"arithmetic",
+			"order-of-operations"
+		]
+	},
+	{
+		"id": "math-003",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A shirt costs €80 after a 20% discount. What was the original price in euros?",
+		"answer": "100",
+		"accepted": [
+			"100",
+			"€100",
+			"100 euros",
+			"100€"
+		],
+		"explanation": "If $0.8x = 80$, then $x = 100$. (Adding 20% back to 80 gives 96 — the classic mistake.)",
+		"tags": [
+			"percentages",
+			"trick"
+		]
+	},
+	{
+		"id": "math-004",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the next number in the sequence? $2,\\ 6,\\ 12,\\ 20,\\ 30,\\ ?$",
+		"choices": [
+			"36",
+			"40",
+			"42",
+			"44"
+		],
+		"answer": "42",
+		"explanation": "Differences are $4, 6, 8, 10$ — so the next gap is $12$, giving $42$. (The terms are $n^2+n$.)",
+		"tags": [
+			"sequences"
+		]
+	},
+	{
+		"id": "math-005",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is $\\operatorname{lcm}(12, 18)$?",
+		"answer": "36",
+		"explanation": "$12 = 2^2 \\cdot 3$, $18 = 2 \\cdot 3^2$, so $\\operatorname{lcm} = 2^2 \\cdot 3^2 = 36$.",
+		"tags": [
+			"number-theory"
+		]
+	},
+	{
+		"id": "math-006",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is 15% of 240?",
+		"answer": "36",
+		"explanation": "10% is 24, 5% is 12; $24 + 12 = 36$.",
+		"tags": [
+			"percentages",
+			"mental-math"
+		]
+	},
+	{
+		"id": "math-007",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the sum of all integers from 1 to 100?",
+		"answer": "5050",
+		"explanation": "Gauss pairing: $\\frac{100 \\cdot 101}{2} = 5050$.",
+		"tags": [
+			"arithmetic",
+			"series"
+		]
+	},
+	{
+		"id": "math-008",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Two fair dice are rolled. What is the probability that the sum is 8?",
+		"choices": [
+			"$1/6$",
+			"$5/36$",
+			"$1/9$",
+			"$7/36$"
+		],
+		"answer": "$5/36$",
+		"explanation": "Favourable outcomes: $(2,6),(3,5),(4,4),(5,3),(6,2)$ — five out of 36.",
+		"tags": [
+			"probability"
+		]
+	},
+	{
+		"id": "math-009",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Solve for $x$: $\\ 3x - 7 = 2x + 5$",
+		"answer": "12",
+		"accepted": [
+			"12",
+			"x=12",
+			"x = 12"
+		],
+		"explanation": "Subtract $2x$ from both sides: $x - 7 = 5$, so $x = 12$.",
+		"tags": [
+			"algebra"
+		]
+	},
+	{
+		"id": "math-010",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A bat and a ball cost €1.10 together. The bat costs €1.00 more than the ball. How much does the ball cost?",
+		"choices": [
+			"€0.10",
+			"€0.05",
+			"€0.15",
+			"€1.00"
+		],
+		"answer": "€0.05",
+		"explanation": "If the ball costs $x$, then $x + (x + 1) = 1.10$, so $x = 0.05$. The intuitive answer (€0.10) makes the difference only €0.90.",
+		"tags": [
+			"trick",
+			"algebra"
+		]
+	},
+	{
+		"id": "math-011",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Given that $2^{10} = 1024$, what is $2^{16}$?",
+		"choices": [
+			"32768",
+			"65536",
+			"131072",
+			"16384"
+		],
+		"answer": "65536",
+		"explanation": "$2^{16} = 2^{10} \\cdot 2^6 = 1024 \\cdot 64 = 65536$.",
+		"tags": [
+			"powers",
+			"mental-math"
+		]
+	},
+	{
+		"id": "math-012",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What is the value of the derivative of $f(x) = x^3 \\ln x$ at $x = 1$?",
+		"answer": "1",
+		"accepted": [
+			"1",
+			"1.0"
+		],
+		"explanation": "$f'(x) = 3x^2 \\ln x + x^2$. At $x=1$: $0 + 1 = 1$.",
+		"tags": [
+			"calculus"
+		]
+	},
+	{
+		"id": "math-013",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "How many trailing zeros does $25!$ have?",
+		"answer": "6",
+		"explanation": "Count factors of 5: $\\lfloor 25/5 \\rfloor + \\lfloor 25/25 \\rfloor = 5 + 1 = 6$.",
+		"tags": [
+			"number-theory"
+		]
+	},
+	{
+		"id": "math-014",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Evaluate: $\\displaystyle\\int_0^1 x e^x \\, dx$",
+		"answer": "1",
+		"accepted": [
+			"1",
+			"1.0"
+		],
+		"explanation": "Integration by parts: $[xe^x - e^x]_0^1 = (e - e) - (0 - 1) = 1$.",
+		"tags": [
+			"calculus",
+			"integration"
+		]
+	},
+	{
+		"id": "math-015",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "How many non-empty subsets does a set with 6 elements have?",
+		"choices": [
+			"63",
+			"64",
+			"120",
+			"31"
+		],
+		"answer": "63",
+		"explanation": "$2^6 = 64$ subsets in total, minus the empty set: $63$.",
+		"tags": [
+			"combinatorics"
+		]
+	}
+]

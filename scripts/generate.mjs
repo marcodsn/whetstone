@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SCOPE exercise generator.
+ * Whetstone exercise generator.
  *
  * Talks to any OpenAI-compatible chat completions endpoint (ollama, llama.cpp,
  * LM Studio, vLLM, or the real thing) and writes a new exercise pack JSON that
@@ -10,9 +10,9 @@
  *   node scripts/generate.mjs --domain math --count 5 --difficulty 2-4
  *
  * Environment (all optional):
- *   SCOPE_BASE_URL  default http://localhost:11434/v1   (ollama)
- *   SCOPE_API_KEY   default "local"
- *   SCOPE_MODEL     default "qwen2.5:32b"
+ *   WHETSTONE_BASE_URL  default http://localhost:11434/v1   (ollama)
+ *   WHETSTONE_API_KEY   default "local"
+ *   WHETSTONE_MODEL     default "qwen2.5:32b"
  *
  * Generated exercises are tagged "generated" and "unreviewed". Review them —
  * small models confidently write wrong answers. See prompts/claude-update.md
@@ -82,7 +82,7 @@ function parseArgs(argv) {
 const args = parseArgs(process.argv);
 
 if (args.help || !args.domain || !DOMAINS.includes(args.domain)) {
-	console.log(`SCOPE exercise generator
+	console.log(`Whetstone exercise generator
 
 Usage: node scripts/generate.mjs --domain <${DOMAINS.join('|')}> [options]
 
@@ -93,19 +93,19 @@ Options:
   --weights <list>     relative weight per --difficulty bucket, aligned by
                        index, e.g. --difficulty 1-2,3,4-5 --weights 10,20,10.
                        Omit for an equal (uniform) distribution.
-  --model <name>       override SCOPE_MODEL
-  --base-url <url>     override SCOPE_BASE_URL
+  --model <name>       override WHETSTONE_MODEL
+  --base-url <url>     override WHETSTONE_BASE_URL
 
 Environment:
-  SCOPE_BASE_URL   ${process.env.SCOPE_BASE_URL ?? 'http://localhost:11434/v1 (default)'}
-  SCOPE_MODEL      ${process.env.SCOPE_MODEL ?? 'qwen2.5:32b (default)'}
-  SCOPE_API_KEY    ${process.env.SCOPE_API_KEY ? '(set)' : 'local (default)'}`);
+  WHETSTONE_BASE_URL   ${process.env.WHETSTONE_BASE_URL ?? 'http://localhost:11434/v1 (default)'}
+  WHETSTONE_MODEL      ${process.env.WHETSTONE_MODEL ?? 'qwen2.5:32b (default)'}
+  WHETSTONE_API_KEY    ${process.env.WHETSTONE_API_KEY ? '(set)' : 'local (default)'}`);
 	process.exit(args.help ? 0 : 1);
 }
 
-const BASE_URL = args.baseUrl ?? process.env.SCOPE_BASE_URL ?? 'http://localhost:11434/v1';
-const API_KEY = process.env.SCOPE_API_KEY ?? 'local';
-const MODEL = args.model ?? process.env.SCOPE_MODEL ?? 'qwen2.5:32b';
+const BASE_URL = args.baseUrl ?? process.env.WHETSTONE_BASE_URL ?? 'http://localhost:11434/v1';
+const API_KEY = process.env.WHETSTONE_API_KEY ?? 'local';
+const MODEL = args.model ?? process.env.WHETSTONE_MODEL ?? 'qwen2.5:32b';
 
 // ── difficulty buckets + weights ──────────────────────────────────
 // --difficulty 1-2,3,4-5  --weights 10,20,10
@@ -260,7 +260,7 @@ const outPack = existsSync(outFile)
 	? JSON.parse(readFileSync(outFile, 'utf8'))
 	: { pack: `gen-${args.domain}-${today}`, exercises: [] };
 
-console.log(`SCOPE generator — ${MODEL} @ ${BASE_URL}`);
+console.log(`Whetstone generator — ${MODEL} @ ${BASE_URL}`);
 const distLabel = buckets
 	.map(([lo, hi], i) => `${lo === hi ? lo : `${lo}-${hi}`}×${weights[i]}`)
 	.join(', ');

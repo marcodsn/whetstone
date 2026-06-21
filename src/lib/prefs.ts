@@ -2,9 +2,9 @@ import type { Domain } from '$lib/types';
 import { DOMAINS } from '$lib/types';
 
 // Which domains the user wants to be tested on in daily / mixed sessions.
-// Kept separate from the attempt log (scope.attempts.v1) so the log format stays
-// stable; this is a small preferences blob the user can change at any time.
-const PREFS_KEY = 'scope.prefs.v1';
+// Kept separate from the attempt log (whetstone.attempts.v1); this is a small
+// preferences blob the user can change at any time.
+const PREFS_KEY = 'whetstone.prefs.v1';
 
 interface Prefs {
 	selectedDomains: Domain[];
@@ -40,7 +40,7 @@ export function saveSelectedDomains(domains: Domain[]): void {
 }
 
 /**
- * Pull a selected-domains list out of a parsed SCOPE export, if it carries one.
+ * Pull a selected-domains list out of a parsed Whetstone export, if it carries one.
  * Legacy exports (a bare attempt array) have no preferences — returns null so
  * the caller leaves the local selection untouched.
  */
