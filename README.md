@@ -1,12 +1,8 @@
 # Whetstone
 
-*A whetstone doesn't do the cutting — it just keeps the blade sharp through
-friction.* A personal instrument for keeping your brain working while the LLMs do
-the typing.
+Large Language Models are doing all the thinking. They write our code, draft our emails, and translate our text. While productivity may be skyrocketing, our brains are getting too comfortable. This is why I created Whetstone, to make our brains struggle again — while also learning new stuff!
 
-Short, mixed sessions of exercises across six domains — mathematics, logic,
-code, Japanese (beginner), LaTeX, and general/trick knowledge — with an
-Elo-style rating per domain so you can watch yourself improve (or rust).
+Hundreds of exercises across dozens of domains, with an Elo-style rating per domain so you can keep challenging yourself.
 
 ## Run it
 
@@ -16,8 +12,8 @@ npm run dev
 ```
 
 Static build (`npm run build`) outputs a fully static site via
-`adapter-static` — no server, no API keys, all state in `localStorage`. The same
-app is also published as the `/whetstone` route on
+`adapter-static`. The same
+app is also published as the [`/whetstone`](https://marcodsn.me/whetstone) route on
 [marcodsn.me](https://marcodsn.me) (the routes are `/`, `/session`, `/library`).
 
 ## How it works
@@ -52,9 +48,6 @@ that file with:
 npm run export-data   # writes static/exercises.json (reviewed exercises only)
 ```
 
-Commit/push it to the published repo; the site picks it up. Generation and
-review stay here — the site only ever consumes the exported data.
-
 ## Generating new exercises (local LLM)
 
 The app never calls an LLM. Generation is a separate offline CLI that speaks
@@ -62,7 +55,7 @@ to any OpenAI-compatible endpoint — ollama, llama.cpp server, LM Studio,
 vLLM, or a paid API if you ever feel like it:
 
 ```sh
-# defaults: http://localhost:11434/v1 (ollama), model qwen2.5:32b
+# defaults: http://localhost:11434/v1 (ollama), model qwen3.6:27b
 npm run generate -- --domain math --count 5 --difficulty 2-4
 
 # explicit
@@ -87,7 +80,7 @@ live in a `.env` file at the project root instead of the shell — copy
 `.env.example` to `.env` and edit. Shell env vars and `--flags` still override
 it. The `.env` is git-ignored; only the offline generator reads it.
 
-Generated exercises are validated (schema, answer∈choices, dedupe against
+Generated exercises are validated (schema, answer&choices, dedupe against
 every existing prompt), tagged `generated` + `unreviewed`, and written to
 `src/lib/exercises/packs/gen-<domain>-<date>.json`.
 
@@ -109,8 +102,7 @@ Run `npm run audit` for a compact list of everything still awaiting review
 session about once a month. It audits unreviewed generated exercises (run
 `npm run audit` to list them; fixing or deleting wrong ones, dropping the
 `unreviewed` tag from survivors), rebalances thin domains, freshens the stalest
-domain with new hand-written material, and reports back. Your attempt log and
-scoring stay untouched so history remains comparable.
+domain with new hand-written material, and reports back.
 
 ## Extending
 
