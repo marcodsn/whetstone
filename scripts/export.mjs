@@ -12,13 +12,21 @@
  * tagged "unreviewed" are dropped — so unverified generated items never ship.
  *
  * Usage:
- *   node scripts/export.mjs            # writes static/exercises.json
+ *   node scripts/export.mjs                          # writes static/exercises.json
+ *   node scripts/export.mjs --skip-domain japanese   # omit one domain
+ *   node scripts/export.mjs --skip-domain japanese --skip-domain code
  *   npm run export-data
  */
 
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+const args = process.argv.slice(2);
+const skipDomains = new Set();
+for (let i = 0; i < args.length; i++) {
+	if (args[i] === '--skip-domain' && args[i + 1]) skipDomains.add(args[++i]);
+}
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PACKS_DIR = join(ROOT, 'src', 'lib', 'exercises', 'packs');
@@ -50,6 +58,10 @@ for (const file of readdirSync(PACKS_DIR).filter((f) => f.endsWith('.json')).sor
 			skipped++;
 			continue;
 		}
+		if (skipDomains.has(ex.domain)) {
+			skipped++;
+			continue;
+		}
 		if (ex.type === 'choice' && !(ex.choices ?? []).includes(ex.answer)) {
 			console.warn(`[export] answer not among choices for ${ex.id} — skipped`);
 			skipped++;
@@ -67,7 +79,8 @@ for (const file of readdirSync(PACKS_DIR).filter((f) => f.endsWith('.json')).sor
 if (!existsSync(dirname(OUT_FILE))) mkdirSync(dirname(OUT_FILE), { recursive: true });
 writeFileSync(OUT_FILE, JSON.stringify(exercises, null, '\t') + '\n');
 
+const skipNote = skipDomains.size ? `, domains skipped: ${[...skipDomains].join(', ')}` : '';
 console.log(
 	`Wrote ${exercises.length} reviewed exercise(s) → ${OUT_FILE}` +
-		(skipped ? ` (${skipped} skipped: unreviewed/invalid/duplicate)` : '')
+		(skipped ? ` (${skipped} skipped: unreviewed/invalid/duplicate${skipNote})` : '')
 );
