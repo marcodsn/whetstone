@@ -10,9 +10,10 @@
  *   node scripts/generate.mjs --domain math --count 5 --difficulty 2-4
  *
  * Environment (all optional):
- *   WHETSTONE_BASE_URL  default http://localhost:11434/v1   (ollama)
- *   WHETSTONE_API_KEY   default "local"
- *   WHETSTONE_MODEL     default "qwen2.5:32b"
+ *   WHETSTONE_BASE_URL    default http://localhost:11434/v1   (ollama)
+ *   WHETSTONE_API_KEY     default "local"
+ *   WHETSTONE_MODEL       default "qwen2.5:32b"
+ *   WHETSTONE_AVOID_LIMIT default 60   (max existing prompts shown to the model)
  *
  * Generated exercises are tagged "generated" and "unreviewed". Review them —
  * small models confidently write wrong answers. See prompts/claude-update.md
@@ -97,15 +98,20 @@ Options:
   --base-url <url>     override WHETSTONE_BASE_URL
 
 Environment:
-  WHETSTONE_BASE_URL   ${process.env.WHETSTONE_BASE_URL ?? 'http://localhost:11434/v1 (default)'}
-  WHETSTONE_MODEL      ${process.env.WHETSTONE_MODEL ?? 'qwen2.5:32b (default)'}
-  WHETSTONE_API_KEY    ${process.env.WHETSTONE_API_KEY ? '(set)' : 'local (default)'}`);
+  WHETSTONE_BASE_URL    ${process.env.WHETSTONE_BASE_URL ?? 'http://localhost:11434/v1 (default)'}
+  WHETSTONE_MODEL       ${process.env.WHETSTONE_MODEL ?? 'qwen2.5:32b (default)'}
+  WHETSTONE_API_KEY     ${process.env.WHETSTONE_API_KEY ? '(set)' : 'local (default)'}
+  WHETSTONE_AVOID_LIMIT ${process.env.WHETSTONE_AVOID_LIMIT ?? '60 (default)'}`);
 	process.exit(args.help ? 0 : 1);
 }
 
 const BASE_URL = args.baseUrl ?? process.env.WHETSTONE_BASE_URL ?? 'http://localhost:11434/v1';
 const API_KEY = process.env.WHETSTONE_API_KEY ?? 'local';
 const MODEL = args.model ?? process.env.WHETSTONE_MODEL ?? 'qwen2.5:32b';
+// How many existing prompts to show the model as "do not repeat". The dedup
+// check still rejects against the whole domain; this only bounds how much we
+// put in the prompt so a large domain can't blow past the model's context.
+const AVOID_LIMIT = Number(process.env.WHETSTONE_AVOID_LIMIT) || 60;
 
 // ── difficulty buckets + weights ──────────────────────────────────
 // --difficulty 1-2,3,4-5  --weights 10,20,10
@@ -150,11 +156,28 @@ function loadPacks() {
 const packs = loadPacks();
 const existing = packs.flatMap((p) => p.data.exercises);
 const existingIds = new Set(existing.map((e) => e.id));
-const existingPrompts = new Set(existing.map((e) => normalizePrompt(e.prompt)));
+const existingPrompts = new Set(existing.map(dedupKey));
 const domainExisting = existing.filter((e) => e.domain === args.domain);
 
 function normalizePrompt(p) {
 	return p.toLowerCase().replace(/[^a-z0-9ぁ-んァ-ン一-龯]+/g, ' ').trim();
+}
+
+// Dedup key. Many exercises (notably `code`) share a generic prompt stem like
+// "What does this Python print?" and carry the real content in `code.src`, so
+// keying on the prompt alone collapses every snippet into one "duplicate".
+// Fold the code source into the key when present.
+function dedupKey(ex) {
+	const code = ex.code?.src ? ` ## ${normalizePrompt(ex.code.src)}` : '';
+	return normalizePrompt(ex.prompt) + code;
+}
+
+// What the model is shown for each existing exercise it must not repeat. The
+// prompt stem alone is useless when it's a shared stem like "What does this
+// Python print?", so append the code snippet — that's the part it must vary.
+function avoidHint(ex) {
+	const prompt = ex.prompt.slice(0, 100);
+	return ex.code?.src ? `${prompt} ⟶ ${ex.code.src.slice(0, 160)}` : prompt;
 }
 
 function nextId() {
@@ -186,7 +209,7 @@ function validate(ex) {
 	}
 	if (ex.code && (typeof ex.code.lang !== 'string' || typeof ex.code.src !== 'string'))
 		errs.push('code must be { lang, src }');
-	if (existingPrompts.has(normalizePrompt(ex.prompt))) errs.push('duplicate of existing prompt');
+	if (existingPrompts.has(dedupKey(ex))) errs.push('duplicate of existing prompt');
 	return errs;
 }
 
@@ -266,7 +289,7 @@ const distLabel = buckets
 	.join(', ');
 console.log(`Domain: ${args.domain}, count: ${args.count}, difficulty: ${distLabel}\n`);
 
-const recentPrompts = domainExisting.slice(-20).map((e) => e.prompt.slice(0, 100));
+const recentPrompts = domainExisting.slice(-AVOID_LIMIT).map(avoidHint);
 let accepted = 0;
 
 for (let i = 0; i < args.count; i++) {
@@ -284,8 +307,8 @@ for (let i = 0; i < args.count; i++) {
 			ex.id = nextId();
 			ex.tags = [...new Set([...(ex.tags ?? []), 'generated', 'unreviewed'])];
 			outPack.exercises.push(ex);
-			existingPrompts.add(normalizePrompt(ex.prompt));
-			recentPrompts.push(ex.prompt.slice(0, 100));
+			existingPrompts.add(dedupKey(ex));
+			recentPrompts.push(avoidHint(ex));
 			writeFileSync(outFile, JSON.stringify(outPack, null, '\t') + '\n');
 			console.log(`accepted → ${ex.id}`);
 			accepted++;
