@@ -474,6 +474,716 @@
 		]
 	},
 	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(len({1, 2, 2, 3}))"
+		},
+		"answer": "3",
+		"accepted": [
+			"3"
+		],
+		"explanation": "Sets in Python automatically remove duplicate elements, so `{1, 2, 2, 3}` becomes `{1, 2, 3}`, which has a length of 3.",
+		"tags": [
+			"python",
+			"predict-output",
+			"sets",
+			"generated"
+		],
+		"id": "gen-code-001"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "What does this JavaScript evaluate to?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log([] == ![]);"
+		},
+		"choices": [
+			"true",
+			"false",
+			"undefined",
+			"TypeError"
+		],
+		"answer": "true",
+		"explanation": "This is a chain of coercion: `![]` is `false`; `[] == false` converts `false` to `0`; then `[]` is converted to a string `\"\"`, which is then converted to the number `0`; finally, `0 == 0` is `true`.",
+		"tags": [
+			"javascript",
+			"coercion",
+			"gotcha",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-002"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "x = [i for i in range(300)]\nprint(id(x[256]) == id(256), id(x[257]) == id(257))"
+		},
+		"answer": "True False",
+		"accepted": [
+			"True False",
+			"(True, False)"
+		],
+		"explanation": "Python caches (interns) small integers from -5 to 256, so `x[256]` and the literal `256` are the same object and share an `id`. `x[257]` is created dynamically by the list comprehension, so it is a distinct object from the `257` literal in the print statement and their ids differ.",
+		"tags": [
+			"python",
+			"interning",
+			"identity",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-003"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log([1, 10, 2].sort());"
+		},
+		"choices": [
+			"[1, 2, 10]",
+			"[1, 10, 2]",
+			"[10, 2, 1]",
+			"[2, 1, 10]"
+		],
+		"answer": "[1, 10, 2]",
+		"explanation": "By default, JavaScript's `.sort()` method converts elements to strings and sorts them lexicographically, so \"10\" comes before \"2\".",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"arrays",
+			"generated"
+		],
+		"id": "gen-code-004"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(1 + 2 + \"3\");"
+		},
+		"answer": "33",
+		"accepted": [
+			"33",
+			"\"33\"",
+			"'33'"
+		],
+		"explanation": "Evaluation happens left-to-right: `1 + 2` equals `3`, and then `3 + \"3\"` triggers string concatenation, resulting in \"33\".",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"type-coercion",
+			"generated"
+		],
+		"id": "gen-code-005"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print([divmod(-7, 3), divmod(7, -3)])"
+		},
+		"answer": "[(-3, 2), (-3, -2)]",
+		"accepted": [
+			"[(-3, 2), (-3, -2)]",
+			"[(-3,2), (-3,-2)]"
+		],
+		"explanation": "Python's `divmod` performs floor division. `-7 // 3` is `-3` with a remainder of `2`, and `7 // -3` is `-3` with a remainder of `-2`.",
+		"tags": [
+			"python",
+			"predict-output",
+			"math",
+			"generated"
+		],
+		"id": "gen-code-006"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(True + True)"
+		},
+		"answer": "2",
+		"accepted": [
+			"2"
+		],
+		"explanation": "In Python, `bool` is a subclass of `int`, where `True` is treated as `1` and `False` as `0` in arithmetic contexts.",
+		"tags": [
+			"python",
+			"predict-output",
+			"booleans",
+			"generated"
+		],
+		"id": "gen-code-007"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(all([]))"
+		},
+		"choices": [
+			"True",
+			"False",
+			"None",
+			"TypeError"
+		],
+		"answer": "True",
+		"explanation": "`all()` returns `True` if all elements of the iterable are true; if the iterable is empty, it returns `True` (a concept known as vacuous truth).",
+		"tags": [
+			"python",
+			"predict-output",
+			"builtins",
+			"generated"
+		],
+		"id": "gen-code-008"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "def g():\n    try:\n        v = yield 1\n        yield v + 1\n    except ValueError:\n        yield 0\n\ngen = g()\nprint(next(gen), gen.send(2), gen.throw(ValueError))"
+		},
+		"answer": "1 3 0",
+		"accepted": [
+			"1 3 0"
+		],
+		"explanation": "`next` starts the generator and yields 1; `send(2)` assigns 2 to `v` and yields 3; `throw` raises a ValueError at the point of suspension (`yield v + 1`), which is caught by the `except` block to yield 0.",
+		"tags": [
+			"python",
+			"generators",
+			"exception-handling",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-009"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "async function test() {\n  console.log(1);\n  await Promise.resolve().then(() => console.log(2));\n  console.log(3);\n}\n\ntest();\nconsole.log(4);"
+		},
+		"choices": [
+			"1\n2\n3\n4",
+			"1\n4\n2\n3",
+			"1\n2\n4\n3",
+			"1\n4\n3\n2"
+		],
+		"answer": "1\n4\n2\n3",
+		"explanation": "The `await` keyword suspends the `test` function, allowing the synchronous `console.log(4)` to run first. Then, the microtask queue processes the `.then` callback (printing 2), followed by the resumption of the `test` function (printing 3).",
+		"tags": [
+			"javascript",
+			"async",
+			"event-loop",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-010"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "x = [3, 1, 2]\nprint(x.sort())"
+		},
+		"answer": "None",
+		"accepted": [
+			"None",
+			"\"None\"",
+			"'None'"
+		],
+		"explanation": "The `.sort()` method sorts a list in-place and returns `None`. To get a new sorted list, one would use the `sorted()` function.",
+		"tags": [
+			"python",
+			"predict-output",
+			"lists",
+			"generated"
+		],
+		"id": "gen-code-011"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "x = [[0]] * 3\nx[0][0] = 1\nprint(x)"
+		},
+		"answer": "[[1], [1], [1]]",
+		"accepted": [
+			"[[1], [1], [1]]"
+		],
+		"explanation": "The `*` operator creates shallow copies of the elements. Because the inner list is mutable, all three elements of the outer list refer to the same object in memory.",
+		"tags": [
+			"python",
+			"predict-output",
+			"mutable-objects",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-012"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(10 // 3)"
+		},
+		"answer": "3",
+		"accepted": [
+			"3"
+		],
+		"explanation": "`//` is the floor division operator in Python, which returns the quotient as an integer, rounding down.",
+		"tags": [
+			"python",
+			"predict-output",
+			"operators",
+			"generated"
+		],
+		"id": "gen-code-013"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "function sum(...args) {\n  return args.reduce((a, b) => a + b, 0);\n}\nconsole.log(sum(1, 2, [3, 4]));"
+		},
+		"answer": "33,4",
+		"accepted": [
+			"33,4",
+			"'33,4'",
+			"\"33,4\""
+		],
+		"explanation": "The `reduce` function sums the numbers until it reaches the array `[3, 4]`. In JavaScript, adding a number to an array coerces the array to a string (`\"3,4\"`), triggering string concatenation: `3 + \"3,4\"` becomes `\"33,4\"`.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"type-coercion",
+			"generated"
+		],
+		"id": "gen-code-014"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "function f() {\n  return this.val;\n}\nconst obj1 = { val: 1 };\nconst obj2 = { val: 2 };\nconst bound = f.bind(obj1).bind(obj2);\nconsole.log(bound());"
+		},
+		"choices": [
+			"1",
+			"2",
+			"undefined",
+			"ReferenceError"
+		],
+		"answer": "1",
+		"explanation": "A function that is already bound cannot be re-bound to a different context; the first `.bind()` call permanently sets the `this` value.",
+		"tags": [
+			"javascript",
+			"this",
+			"bind",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-015"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "a = [1, 2]\nb = a\na += [3]\na = a + [4]\nprint(b)"
+		},
+		"answer": "[1, 2, 3]",
+		"accepted": [
+			"[1, 2, 3]",
+			"[1,2,3]"
+		],
+		"explanation": "`a += [3]` modifies the list in-place, so `b` (which references the same list) also changes. However, `a = a + [4]` creates a new list object and assigns it to `a`, leaving `b` pointing to the original list.",
+		"tags": [
+			"python",
+			"predict-output",
+			"lists",
+			"references",
+			"generated"
+		],
+		"id": "gen-code-016"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(list(filter(None, [0, 1, False, 2, \"\"])))"
+		},
+		"answer": "[1, 2]",
+		"accepted": [
+			"[1, 2]",
+			"[1,2]"
+		],
+		"explanation": "When the first argument to `filter` is `None`, it removes all elements that are falsy in a boolean context, such as `0`, `False`, and empty strings.",
+		"tags": [
+			"python",
+			"predict-output",
+			"stdlib",
+			"functional",
+			"generated"
+		],
+		"id": "gen-code-017"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(list(zip([1, 2], [3, 4, 5])))"
+		},
+		"answer": "[(1, 3), (2, 4)]",
+		"accepted": [
+			"[(1, 3), (2, 4)]",
+			"[(1,3),(2,4)]"
+		],
+		"explanation": "`zip` stops as soon as the shortest input iterable is exhausted, ignoring any remaining elements in the longer iterables.",
+		"tags": [
+			"python",
+			"predict-output",
+			"stdlib",
+			"generated"
+		],
+		"id": "gen-code-018"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(\"python\"[1:3])"
+		},
+		"answer": "yt",
+		"accepted": [
+			"yt",
+			"\"yt\"",
+			"'yt'"
+		],
+		"explanation": "Slicing `[start:stop]` includes the character at the start index and goes up to, but does not include, the character at the stop index.",
+		"tags": [
+			"python",
+			"predict-output",
+			"strings",
+			"generated"
+		],
+		"id": "gen-code-019"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "function f() {\n  this.val = 1;\n  return arguments;\n}\nconst obj = new f();\nconsole.log(obj.val);"
+		},
+		"answer": "undefined",
+		"accepted": [
+			"undefined"
+		],
+		"explanation": "When a constructor returns a non-primitive (like the `arguments` object), that value is returned instead of the newly created `this` instance.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"constructor",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-020"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "const obj = {\n  a: 1,\n  get b() {\n    return () => this.a;\n  }\n};\nconst b = obj.b;\nobj.a = 2;\nconsole.log(b());"
+		},
+		"answer": "2",
+		"accepted": [
+			"2"
+		],
+		"explanation": "The getter `b` returns an arrow function that captures `this` (the `obj` object) lexically. When `b()` is eventually called, it accesses the current value of `obj.a`, which has been updated to 2.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"this",
+			"getters",
+			"closures",
+			"generated"
+		],
+		"id": "gen-code-021"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(list(\"abc\"))"
+		},
+		"answer": "['a', 'b', 'c']",
+		"accepted": [
+			"['a', 'b', 'c']",
+			"['a','b','c']"
+		],
+		"explanation": "The `list()` constructor takes an iterable (like a string) and returns a list containing each element of that iterable.",
+		"tags": [
+			"python",
+			"predict-output",
+			"types",
+			"generated"
+		],
+		"id": "gen-code-022"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(len({1: 'a', 1.0: 'b'}))"
+		},
+		"answer": "1",
+		"accepted": [
+			"1"
+		],
+		"explanation": "In Python, `1` and `1.0` are equal and have the same hash value, so they are treated as the same key in a dictionary.",
+		"tags": [
+			"python",
+			"dictionaries",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-023"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(3 < 2 < 1);"
+		},
+		"choices": [
+			"true",
+			"false",
+			"undefined",
+			"NaN"
+		],
+		"answer": "true",
+		"explanation": "JavaScript evaluates from left to right: `3 < 2` is `false`, then it evaluates `false < 1`. Because `false` is coerced to `0`, the expression becomes `0 < 1`, which is `true`.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"coercion",
+			"generated"
+		],
+		"id": "gen-code-024"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "def f():\n    try:\n        return 1\n    finally:\n        return 2\n\nprint(f())"
+		},
+		"answer": "2",
+		"accepted": [
+			"2"
+		],
+		"explanation": "The `finally` block is guaranteed to execute; if it contains a `return` statement, that value overrides any return value previously set in the `try` or `except` blocks.",
+		"tags": [
+			"python",
+			"predict-output",
+			"exception-handling",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-025"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "x = [1, 2, 2, 3]\nfor i in x:\n    if i % 2 == 0:\n        x.remove(i)\nprint(x)"
+		},
+		"answer": "[1, 2, 3]",
+		"accepted": [
+			"[1, 2, 3]",
+			"[1,2,3]"
+		],
+		"explanation": "Removing elements from a list while iterating over it shifts remaining elements to the left, causing the iterator to skip the element immediately following the removed one.",
+		"tags": [
+			"python",
+			"predict-output",
+			"gotcha",
+			"lists",
+			"generated"
+		],
+		"id": "gen-code-026"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "funcs = [lambda: i for i in range(3)]\nprint([f() for f in funcs])"
+		},
+		"answer": "[2, 2, 2]",
+		"accepted": [
+			"[2, 2, 2]",
+			"[2,2,2]"
+		],
+		"explanation": "The lambdas capture the variable `i` by reference, not by value. By the time the functions are executed, the loop has completed and `i` holds its final value of 2.",
+		"tags": [
+			"python",
+			"predict-output",
+			"closures",
+			"scope",
+			"generated"
+		],
+		"id": "gen-code-027"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "print(round(2.5))"
+		},
+		"answer": "2",
+		"accepted": [
+			"2"
+		],
+		"explanation": "Python 3 uses 'round half to even' (banker's rounding), so 2.5 rounds to the nearest even integer, which is 2.",
+		"tags": [
+			"python",
+			"predict-output",
+			"math",
+			"generated"
+		],
+		"id": "gen-code-028"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(typeof []);"
+		},
+		"answer": "object",
+		"accepted": [
+			"object",
+			"\"object\""
+		],
+		"explanation": "In JavaScript, arrays are a specialized type of object, so the `typeof` operator returns \"object\".",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"types",
+			"generated"
+		],
+		"id": "gen-code-029"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(NaN === NaN)"
+		},
+		"answer": "false",
+		"accepted": [
+			"false",
+			"False"
+		],
+		"explanation": "In JavaScript, `NaN` is the only value that is not equal to itself, both with `==` and `===`.",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"gotcha",
+			"generated"
+		],
+		"id": "gen-code-030"
+	},
+	{
 		"domain": "logic",
 		"type": "choice",
 		"difficulty": 3,
@@ -719,26 +1429,6 @@
 	{
 		"domain": "logic",
 		"type": "choice",
-		"difficulty": 5,
-		"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie).\n\nA says: 'C is the Knave.'\nB says: 'A is the Knight.'\nC says: 'I am the Spy.'\n\nWho is the Spy?",
-		"choices": [
-			"A",
-			"B",
-			"C",
-			"Cannot be determined"
-		],
-		"answer": "B",
-		"explanation": "If C were the Knight, his statement would be a lie. If B were the Knight, A would also be a Knight, which is impossible. Thus, A must be the Knight, C is the Knave, and B is the Spy.",
-		"tags": [
-			"knights-and-knaves",
-			"deduction",
-			"generated"
-		],
-		"id": "gen-logic-013"
-	},
-	{
-		"domain": "logic",
-		"type": "choice",
 		"difficulty": 3,
 		"prompt": "Three suspects—Amy, Bob, and Cal—are being questioned about a theft. It is known that exactly one of them is guilty. \n\nAmy: \"Bob is guilty.\"\nBob: \"Cal is guilty.\"\nCal: \"I am not guilty.\"\n\nIf exactly two of these statements are true, who is guilty?",
 		"choices": [
@@ -796,26 +1486,6 @@
 			"generated"
 		],
 		"id": "gen-logic-016"
-	},
-	{
-		"domain": "logic",
-		"type": "choice",
-		"difficulty": 2,
-		"prompt": "Three boxes are labeled Red, Blue, and Green. Each contains exactly one ball (Red, Blue, or Green), and no box contains a ball of its own color. If the Green box contains the Red ball, which box contains the Blue ball?",
-		"choices": [
-			"Red box",
-			"Blue box",
-			"Green box",
-			"Cannot be determined"
-		],
-		"answer": "Red box",
-		"explanation": "With the Red ball in the Green box, the remaining balls are Blue and Green. Since the Blue box cannot contain the Blue ball, it must contain the Green ball, leaving the Blue ball for the Red box.",
-		"tags": [
-			"deduction",
-			"puzzle",
-			"generated"
-		],
-		"id": "gen-logic-017"
 	},
 	{
 		"domain": "math",
@@ -1096,7 +1766,7 @@
 		"domain": "math",
 		"type": "input",
 		"difficulty": 5,
-		"prompt": "How many pairs of positive integers $(x, y)$ satisfy the equation $xy + x + y = 71$?",
+		"prompt": "How many ordered pairs of positive integers $(x, y)$ satisfy the equation $xy + x + y = 71$?",
 		"answer": "10",
 		"accepted": [
 			"10"
@@ -1389,26 +2059,6 @@
 	{
 		"domain": "math",
 		"type": "choice",
-		"difficulty": 3,
-		"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are red?",
-		"choices": [
-			"2/15",
-			"4/25",
-			"8/15",
-			"1/6"
-		],
-		"answer": "2/15",
-		"explanation": "The probability of the first marble being red is $4/10$. Since there is no replacement, the probability of the second being red is $3/9$, resulting in $\\frac{4}{10} \\times \\frac{3}{9} = \\frac{12}{90} = \\frac{2}{15}$.",
-		"tags": [
-			"probability",
-			"combinatorics",
-			"generated"
-		],
-		"id": "gen-math-031"
-	},
-	{
-		"domain": "math",
-		"type": "choice",
 		"difficulty": 1,
 		"prompt": "Compute: $3^3$",
 		"choices": [
@@ -1539,26 +2189,6 @@
 			"generated"
 		],
 		"id": "gen-math-038"
-	},
-	{
-		"domain": "math",
-		"type": "choice",
-		"difficulty": 3,
-		"prompt": "A bag contains 4 red marbles and 6 blue marbles. If two marbles are drawn at random without replacement, what is the probability that both marbles are blue?",
-		"choices": [
-			"1/3",
-			"9/25",
-			"1/2",
-			"3/10"
-		],
-		"answer": "1/3",
-		"explanation": "The probability of drawing the first blue marble is $\\frac{6}{10}$. Since the marble is not replaced, there are now 5 blue marbles left out of 9 total marbles. The probability is $\\frac{6}{10} \\times \\frac{5}{9} = \\frac{30}{90} = \\frac{1}{3}$.",
-		"tags": [
-			"probability",
-			"combinatorics",
-			"generated"
-		],
-		"id": "gen-math-039"
 	},
 	{
 		"domain": "math",
@@ -1701,26 +2331,6 @@
 			"generated"
 		],
 		"id": "gen-math-046"
-	},
-	{
-		"domain": "math",
-		"type": "choice",
-		"difficulty": 1,
-		"prompt": "What is $25\\%$ of $48$?",
-		"choices": [
-			"8",
-			"12",
-			"16",
-			"24"
-		],
-		"answer": "12",
-		"explanation": "$25\\%$ is equivalent to $\\frac{1}{4}$, and $48 \\div 4 = 12$.",
-		"tags": [
-			"arithmetic",
-			"percentages",
-			"generated"
-		],
-		"id": "gen-math-047"
 	},
 	{
 		"domain": "math",
@@ -2187,6 +2797,260 @@
 		"tags": [
 			"probability",
 			"classic"
+		]
+	},
+	{
+		"id": "jp-001",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which romaji corresponds to the hiragana あ?",
+		"choices": [
+			"a",
+			"o",
+			"me",
+			"nu"
+		],
+		"answer": "a",
+		"explanation": "あ is \"a\", the first kana of the gojūon.",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-002",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which romaji corresponds to the hiragana ひ?",
+		"choices": [
+			"hi",
+			"ke",
+			"mo",
+			"sa"
+		],
+		"answer": "hi",
+		"explanation": "ひ is \"hi\", as in ひと (hito, person).",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-003",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which of these is the hiragana for \"ko\"?",
+		"choices": [
+			"こ",
+			"た",
+			"け",
+			"に"
+		],
+		"answer": "こ",
+		"explanation": "こ is \"ko\", as in こども (kodomo, child).",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-004",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which romaji corresponds to the hiragana ね? (Careful — it has look-alikes.)",
+		"choices": [
+			"ne",
+			"re",
+			"wa",
+			"nu"
+		],
+		"answer": "ne",
+		"explanation": "ね (ne), れ (re), わ (wa) and ぬ (nu) are classic look-alikes. ね has the loop at the bottom of a vertical stroke.",
+		"tags": [
+			"hiragana",
+			"lookalikes"
+		]
+	},
+	{
+		"id": "jp-005",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Write the romaji for ねこ (it means \"cat\").",
+		"answer": "neko",
+		"explanation": "ね (ne) + こ (ko) = neko.",
+		"tags": [
+			"hiragana",
+			"vocabulary"
+		]
+	},
+	{
+		"id": "jp-006",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Write the romaji for すし.",
+		"answer": "sushi",
+		"explanation": "す (su) + し (shi). Note し is \"shi\", not \"si\".",
+		"tags": [
+			"hiragana"
+		]
+	},
+	{
+		"id": "jp-007",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does こんにちは (konnichiwa) mean?",
+		"choices": [
+			"Hello / good afternoon",
+			"Good night",
+			"Thank you",
+			"Excuse me"
+		],
+		"answer": "Hello / good afternoon",
+		"explanation": "The standard daytime greeting. The final は is pronounced \"wa\" here.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-008",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does ありがとう (arigatou) mean?",
+		"choices": [
+			"Thank you",
+			"Please",
+			"Sorry",
+			"Welcome"
+		],
+		"answer": "Thank you",
+		"explanation": "ありがとう is the casual \"thanks\"; ありがとうございます is more polite.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-009",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "アメリカ (\"America\") is written in which script?",
+		"choices": [
+			"Katakana",
+			"Hiragana",
+			"Kanji",
+			"Romaji"
+		],
+		"answer": "Katakana",
+		"explanation": "Foreign loanwords and names are typically written in katakana — the angular script.",
+		"tags": [
+			"scripts"
+		]
+	},
+	{
+		"id": "jp-010",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What number is 三?",
+		"choices": [
+			"3",
+			"2",
+			"1",
+			"8"
+		],
+		"answer": "3",
+		"explanation": "一 (1), 二 (2), 三 (3) — the strokes count themselves.",
+		"tags": [
+			"kanji",
+			"numbers"
+		]
+	},
+	{
+		"id": "jp-011",
+		"domain": "japanese",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Write the romaji for みず (it means \"water\").",
+		"answer": "mizu",
+		"explanation": "み (mi) + ず (zu — す with dakuten).",
+		"tags": [
+			"hiragana",
+			"vocabulary",
+			"dakuten"
+		]
+	},
+	{
+		"id": "jp-012",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which particle marks the topic of a sentence, as in わたし◯がくせいです (\"I am a student\")?",
+		"choices": [
+			"は",
+			"を",
+			"に",
+			"か"
+		],
+		"answer": "は",
+		"explanation": "は marks the topic (and is pronounced \"wa\" as a particle). を marks the direct object; に marks direction/time; か makes a question.",
+		"tags": [
+			"grammar",
+			"particles"
+		]
+	},
+	{
+		"id": "jp-013",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does さようなら (sayounara) mean?",
+		"choices": [
+			"Goodbye",
+			"Good morning",
+			"See you tomorrow",
+			"Long time no see"
+		],
+		"answer": "Goodbye",
+		"explanation": "A somewhat formal/final goodbye — friends more often say じゃあね or またね.",
+		"tags": [
+			"greetings"
+		]
+	},
+	{
+		"id": "jp-014",
+		"domain": "japanese",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Adding dakuten (゛) to か gives が. How does the sound change?",
+		"choices": [
+			"ka → ga",
+			"ka → kya",
+			"ka → pa",
+			"ka → ha"
+		],
+		"answer": "ka → ga",
+		"explanation": "Dakuten voices the consonant: k→g, s→z, t→d, h→b. (Handakuten ゜ turns h→p.)",
+		"tags": [
+			"dakuten",
+			"scripts"
+		]
+	},
+	{
+		"id": "jp-015",
+		"domain": "japanese",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write (on paper) the five vowel hiragana in order: a, i, u, e, o. Then reveal and compare stroke by stroke.",
+		"answer": "あ い う え お",
+		"explanation": "These five anchor the entire gojūon table — every column follows the a-i-u-e-o pattern.",
+		"tags": [
+			"hiragana",
+			"writing"
 		]
 	},
 	{

@@ -247,26 +247,6 @@
 		{
 			"domain": "logic",
 			"type": "choice",
-			"difficulty": 5,
-			"prompt": "Three people—A, B, and C—are each one of three different types: a Knight (always tells the truth), a Knave (always lies), or a Spy (can tell the truth or lie).\n\nA says: 'C is the Knave.'\nB says: 'A is the Knight.'\nC says: 'I am the Spy.'\n\nWho is the Spy?",
-			"choices": [
-				"A",
-				"B",
-				"C",
-				"Cannot be determined"
-			],
-			"answer": "B",
-			"explanation": "If C were the Knight, his statement would be a lie. If B were the Knight, A would also be a Knight, which is impossible. Thus, A must be the Knight, C is the Knave, and B is the Spy.",
-			"tags": [
-				"knights-and-knaves",
-				"deduction",
-				"generated"
-			],
-			"id": "gen-logic-013"
-		},
-		{
-			"domain": "logic",
-			"type": "choice",
 			"difficulty": 3,
 			"prompt": "Three suspects—Amy, Bob, and Cal—are being questioned about a theft. It is known that exactly one of them is guilty. \n\nAmy: \"Bob is guilty.\"\nBob: \"Cal is guilty.\"\nCal: \"I am not guilty.\"\n\nIf exactly two of these statements are true, who is guilty?",
 			"choices": [
@@ -324,26 +304,6 @@
 				"generated"
 			],
 			"id": "gen-logic-016"
-		},
-		{
-			"domain": "logic",
-			"type": "choice",
-			"difficulty": 2,
-			"prompt": "Three boxes are labeled Red, Blue, and Green. Each contains exactly one ball (Red, Blue, or Green), and no box contains a ball of its own color. If the Green box contains the Red ball, which box contains the Blue ball?",
-			"choices": [
-				"Red box",
-				"Blue box",
-				"Green box",
-				"Cannot be determined"
-			],
-			"answer": "Red box",
-			"explanation": "With the Red ball in the Green box, the remaining balls are Blue and Green. Since the Blue box cannot contain the Blue ball, it must contain the Green ball, leaving the Blue ball for the Red box.",
-			"tags": [
-				"deduction",
-				"puzzle",
-				"generated"
-			],
-			"id": "gen-logic-017"
 		}
 	]
 }

@@ -19,8 +19,7 @@
 				"python",
 				"predict-output",
 				"sets",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-001"
 		},
@@ -46,8 +45,7 @@
 				"coercion",
 				"gotcha",
 				"predict-output",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-002"
 		},
@@ -58,21 +56,20 @@
 			"prompt": "What does this Python print?",
 			"code": {
 				"lang": "python",
-				"src": "x = [i for i in range(300)]\nprint(x[256] is 256, x[257] is 257)"
+				"src": "x = [i for i in range(300)]\nprint(id(x[256]) == id(256), id(x[257]) == id(257))"
 			},
 			"answer": "True False",
 			"accepted": [
 				"True False",
 				"(True, False)"
 			],
-			"explanation": "Python interns integers from -5 to 256. `x[256]` and the literal `256` both reference the same interned object, but `x[257]` is a dynamically created object distinct from the constant literal `257` in the source code.",
+			"explanation": "Python caches (interns) small integers from -5 to 256, so `x[256]` and the literal `256` are the same object and share an `id`. `x[257]` is created dynamically by the list comprehension, so it is a distinct object from the `257` literal in the print statement and their ids differ.",
 			"tags": [
 				"python",
 				"interning",
 				"identity",
 				"predict-output",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-003"
 		},
@@ -97,8 +94,7 @@
 				"javascript",
 				"predict-output",
 				"arrays",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-004"
 		},
@@ -122,8 +118,7 @@
 				"javascript",
 				"predict-output",
 				"type-coercion",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-005"
 		},
@@ -146,8 +141,7 @@
 				"python",
 				"predict-output",
 				"math",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-006"
 		},
@@ -169,8 +163,7 @@
 				"python",
 				"predict-output",
 				"booleans",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-007"
 		},
@@ -195,8 +188,7 @@
 				"python",
 				"predict-output",
 				"builtins",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-008"
 		},
@@ -219,8 +211,7 @@
 				"generators",
 				"exception-handling",
 				"predict-output",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-009"
 		},
@@ -246,8 +237,7 @@
 				"async",
 				"event-loop",
 				"predict-output",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-010"
 		},
@@ -271,8 +261,7 @@
 				"python",
 				"predict-output",
 				"lists",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-011"
 		},
@@ -295,8 +284,7 @@
 				"predict-output",
 				"mutable-objects",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-012"
 		},
@@ -318,8 +306,7 @@
 				"python",
 				"predict-output",
 				"operators",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-013"
 		},
@@ -343,8 +330,7 @@
 				"javascript",
 				"predict-output",
 				"type-coercion",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-014"
 		},
@@ -370,8 +356,7 @@
 				"this",
 				"bind",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-015"
 		},
@@ -395,8 +380,7 @@
 				"predict-output",
 				"lists",
 				"references",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-016"
 		},
@@ -420,8 +404,7 @@
 				"predict-output",
 				"stdlib",
 				"functional",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-017"
 		},
@@ -444,8 +427,7 @@
 				"python",
 				"predict-output",
 				"stdlib",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-018"
 		},
@@ -469,8 +451,7 @@
 				"python",
 				"predict-output",
 				"strings",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-019"
 		},
@@ -493,8 +474,7 @@
 				"predict-output",
 				"constructor",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-020"
 		},
@@ -518,8 +498,7 @@
 				"this",
 				"getters",
 				"closures",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-021"
 		},
@@ -542,8 +521,7 @@
 				"python",
 				"predict-output",
 				"types",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-022"
 		},
@@ -565,8 +543,7 @@
 				"python",
 				"dictionaries",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-023"
 		},
@@ -591,8 +568,7 @@
 				"javascript",
 				"predict-output",
 				"coercion",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-024"
 		},
@@ -615,8 +591,7 @@
 				"predict-output",
 				"exception-handling",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-025"
 		},
@@ -640,8 +615,7 @@
 				"predict-output",
 				"gotcha",
 				"lists",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-026"
 		},
@@ -665,8 +639,7 @@
 				"predict-output",
 				"closures",
 				"scope",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-027"
 		},
@@ -688,8 +661,7 @@
 				"python",
 				"predict-output",
 				"math",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-028"
 		},
@@ -712,8 +684,7 @@
 				"javascript",
 				"predict-output",
 				"types",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-029"
 		},
@@ -736,8 +707,7 @@
 				"javascript",
 				"predict-output",
 				"gotcha",
-				"generated",
-				"unreviewed"
+				"generated"
 			],
 			"id": "gen-code-030"
 		}
