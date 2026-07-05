@@ -1,0 +1,189 @@
+{
+	"pack": "gen-general-20260705",
+	"exercises": [
+		{
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A man lives on the 18th floor of an apartment building. Every morning he takes the elevator all the way down to the ground floor and leaves for work. Every evening, he takes the elevator back up — but only to the 10th floor, then walks the rest of the way up the stairs. On rainy days, though, he rides the elevator straight to the 18th floor. Why? Work out an explanation, then reveal and compare.",
+			"answer": "He is too short to reach the button for the 18th floor — he can only reach up to the 10th-floor button. On rainy days he has an umbrella (or cane), which he uses to press the higher button.",
+			"explanation": "This classic lateral-thinking riddle hinges on his height, not the building or the weather itself — the umbrella is a tool that extends his reach, not decoration for the rain.",
+			"tags": [
+				"lateral",
+				"riddle",
+				"classic",
+				"generated"
+			],
+			"id": "gen-general-001"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A family has exactly two children. Each child is independently equally likely to be a boy or a girl. You are told, truthfully, 'At least one of them is a girl' (and that is the only information you're given). What is the probability that both children are girls?",
+			"choices": [
+				"1/2",
+				"1/3",
+				"1/4",
+				"2/3"
+			],
+			"answer": "1/3",
+			"explanation": "Before any information, the four equally likely cases are BB, BG, GB, GG. 'At least one girl' rules out BB, leaving three equally likely cases (BG, GB, GG), only one of which is two girls — so the probability is 1/3, not 1/2.",
+			"tags": [
+				"probability",
+				"paradox",
+				"generated"
+			],
+			"id": "gen-general-002"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A sheet of paper is about 0.1 mm thick. If you could fold it in half 42 times (ignore that this is physically impossible), the resulting thickness would be closest to which of these?",
+			"choices": [
+				"The height of Mount Everest",
+				"The distance to the Moon",
+				"The distance to the Sun",
+				"The circumference of the Earth"
+			],
+			"answer": "The distance to the Moon",
+			"explanation": "Each fold doubles the thickness, so after 42 folds it's $0.1\\text{mm} \\times 2^{42} \\approx 4.4 \\times 10^8$ meters — about 440,000 km, remarkably close to the Earth-Moon distance of ~384,000 km.",
+			"tags": [
+				"estimation",
+				"exponential-growth",
+				"generated"
+			],
+			"id": "gen-general-003"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "I am an odd number. Take away one letter from my name and I become even. What number am I?",
+			"answer": "seven",
+			"accepted": [
+				"seven",
+				"7"
+			],
+			"explanation": "Remove the 's' from 'seven' and you get 'even'.",
+			"tags": [
+				"wordplay",
+				"riddle",
+				"generated"
+			],
+			"id": "gen-general-004"
+		},
+		{
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A woman shoots her husband. Then she holds him underwater for five minutes. Finally, she hangs him. Five minutes later, they enjoy a lovely dinner together. How is this possible? Work out an explanation, then reveal and compare.",
+			"answer": "She's a photographer: she shoots a photo of him, develops it in a water bath, and hangs it up to dry.",
+			"explanation": "Each violent-sounding verb has an innocent, literal meaning in photography — the riddle relies on you defaulting to the murder reading.",
+			"tags": [
+				"lateral",
+				"riddle",
+				"classic",
+				"generated"
+			],
+			"id": "gen-general-005"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A farmer must cross a river with a fox, a chicken, and a sack of grain. His boat only holds him plus one item at a time. Left alone together, the fox eats the chicken, and the chicken eats the grain. Counting each one-way crossing of the boat as one trip, what is the minimum number of trips needed to get everyone across safely?",
+			"answer": "7",
+			"accepted": [
+				"7",
+				"seven"
+			],
+			"explanation": "Take the chicken over, go back alone, take the fox over, bring the chicken back, take the grain over, go back alone, take the chicken over — 7 one-way crossings in total. The 'middle' item (chicken) needs an extra round trip.",
+			"tags": [
+				"lateral",
+				"puzzle",
+				"river-crossing",
+				"generated"
+			],
+			"id": "gen-general-006"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which way does water spiral when you flush a toilet in the Northern Hemisphere?",
+			"choices": [
+				"Always clockwise, due to the Coriolis effect",
+				"Always counterclockwise, due to the Coriolis effect",
+				"It depends on the toilet bowl's shape and jets, not the hemisphere",
+				"It depends on the plumber's hemisphere of training"
+			],
+			"answer": "It depends on the toilet bowl's shape and jets, not the hemisphere",
+			"explanation": "The Coriolis effect is real but far too weak to influence something as small and fast-draining as a toilet bowl; the direction is set by the shape of the bowl and the angle of the water jets.",
+			"tags": [
+				"myth-busting",
+				"science",
+				"generated"
+			],
+			"id": "gen-general-007"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "At the Strait of Gibraltar, only about 14 km of water separates Europe from Africa at the narrowest point. Which African country sits on that shore?",
+			"choices": [
+				"Morocco",
+				"Tunisia",
+				"Algeria",
+				"Egypt"
+			],
+			"answer": "Morocco",
+			"explanation": "Morocco's northern coast faces Spain across the Strait of Gibraltar — closer to Europe than most people guess.",
+			"tags": [
+				"geography",
+				"generated"
+			],
+			"id": "gen-general-008"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "How many hearts does an octopus have?",
+			"answer": "3",
+			"accepted": [
+				"3",
+				"three"
+			],
+			"explanation": "Two 'branchial' hearts pump blood through the gills, and one systemic heart pumps it to the rest of the body.",
+			"tags": [
+				"biology",
+				"trivia",
+				"generated"
+			],
+			"id": "gen-general-009"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Which event was Cleopatra (69-30 BC) closer to in time: the Moon landing (1969 AD) or the completion of the Great Pyramid of Giza (~2560 BC)?",
+			"choices": [
+				"The Moon landing",
+				"The completion of the Great Pyramid",
+				"Exactly equidistant from both",
+				"Neither — she predates both"
+			],
+			"answer": "The Moon landing",
+			"explanation": "From Cleopatra's reign to the Moon landing is roughly 2,000 years, while the Great Pyramid was already about 2,500 years old by the time she was born — she is closer in time to Neil Armstrong than to the pyramid builders.",
+			"tags": [
+				"history",
+				"trick",
+				"generated"
+			],
+			"id": "gen-general-010"
+		}
+	]
+}

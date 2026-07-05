@@ -1,0 +1,131 @@
+{
+	"pack": "gen-code-20260705",
+	"exercises": [
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this Python code print?",
+			"code": {
+				"lang": "python",
+				"src": "def check(nums):\n    for n in nums:\n        if n < 0:\n            break\n    else:\n        return \"all non-negative\"\n    return f\"found negative: {n}\"\n\nprint(check([1, 2, -3, 4]))"
+			},
+			"choices": [
+				"found negative: -3",
+				"all non-negative",
+				"found negative: 4",
+				"found negative: -3\\nall non-negative"
+			],
+			"answer": "found negative: -3",
+			"explanation": "A `for...else` runs the `else` block only if the loop finishes without hitting `break`. Here the loop breaks when `n` is -3, so the `else` is skipped and the function falls through to `return f\"found negative: {n}\"` — with `n` still holding -3 from the moment of the break.",
+			"tags": [
+				"python",
+				"for-else",
+				"control-flow",
+				"predict-output",
+				"generated"
+			],
+			"id": "gen-code-031"
+		},
+		{
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this JavaScript code print?",
+			"code": {
+				"lang": "javascript",
+				"src": "const arr = [10, 1, 2, 20];\nconsole.log(arr.sort().join(','));"
+			},
+			"answer": "1,10,2,20",
+			"accepted": [
+				"1,10,2,20"
+			],
+			"explanation": "Array.prototype.sort() with no comparator converts elements to strings and sorts them lexicographically (UTF-16 code order), not numerically — so '10' sorts before '2'.",
+			"tags": [
+				"javascript",
+				"sort",
+				"coercion",
+				"predict-output",
+				"generated"
+			],
+			"id": "gen-code-032"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to return a fresh basket on every call where `basket` isn't supplied. Why does the second `print` show `['apple', 'banana']` instead of the expected `['banana']`?",
+			"code": {
+				"lang": "python",
+				"src": "def add_item(item, basket=[]):\n    basket.append(item)\n    return basket\n\nprint(add_item('apple'))\nprint(add_item('banana'))"
+			},
+			"choices": [
+				"Default argument values are evaluated once, at function-definition time, so the same list object is reused and mutated across calls",
+				"Python passes lists by value, so `basket` should have been reset automatically",
+				"`list.append` returns a new list each time it's called",
+				"`basket` is treated as a global variable shared across all functions"
+			],
+			"answer": "Default argument values are evaluated once, at function-definition time, so the same list object is reused and mutated across calls",
+			"explanation": "`basket=[]` creates one list object when the function is defined, not one per call. Every call that doesn't pass `basket` explicitly shares and mutates that same list — the classic 'mutable default argument' trap.",
+			"tags": [
+				"python",
+				"mutable-default-argument",
+				"gotcha",
+				"spot-the-bug",
+				"generated"
+			],
+			"id": "gen-code-033"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This loop is supposed to print all 5 elements of `arr`. What is the bug?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nint main(void) {\n    int arr[5] = {1, 2, 3, 4, 5};\n    for (int i = 0; i <= 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}"
+			},
+			"choices": [
+				"Off-by-one: `i <= 5` reads `arr[5]`, one past the last valid index (0-4)",
+				"`arr` should have been declared as `int arr[6]`",
+				"The format specifier should be `%s` instead of `%d`",
+				"The loop should use `i != 5` instead of `i <= 5`"
+			],
+			"answer": "Off-by-one: `i <= 5` reads `arr[5]`, one past the last valid index (0-4)",
+			"explanation": "A 5-element array is indexed 0 through 4. `i <= 5` lets the loop run one iteration too many, reading `arr[5]` — out-of-bounds memory, undefined behavior in C.",
+			"tags": [
+				"c",
+				"off-by-one",
+				"arrays",
+				"spot-the-bug",
+				"generated"
+			],
+			"id": "gen-code-034"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `mystery` as a function of `n`?",
+			"code": {
+				"lang": "python",
+				"src": "def mystery(n):\n    total = 0\n    i = 1\n    while i < n:\n        total += i\n        i *= 2\n    return total"
+			},
+			"choices": [
+				"$O(n)$",
+				"$O(\\log n)$",
+				"$O(n \\log n)$",
+				"$O(1)$"
+			],
+			"answer": "$O(\\log n)$",
+			"explanation": "`i` doubles every iteration (1, 2, 4, 8, ...), so the loop runs about $\\log_2 n$ times before `i` reaches `n`.",
+			"tags": [
+				"python",
+				"complexity",
+				"algorithms",
+				"generated"
+			],
+			"id": "gen-code-035"
+		}
+	]
+}
