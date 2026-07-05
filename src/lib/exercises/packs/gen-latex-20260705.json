@@ -1,0 +1,62 @@
+{
+	"pack": "gen-latex-20260705",
+	"exercises": [
+		{
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Without any braces, what does the LaTeX source `x^10` actually render as?",
+			"choices": [
+				"$x^{10}$",
+				"$x^1$0",
+				"$x_{10}$",
+				"$10^x$"
+			],
+			"answer": "$x^1$0",
+			"explanation": "`^` and `_` only grab the single next token. `x^10` is parsed as `x^{1}0` — only the '1' is raised, and the '0' sits back on the baseline as ordinary text. You need `x^{10}` with braces to raise both digits.",
+			"tags": [
+				"symbols",
+				"superscript",
+				"gotcha",
+				"generated"
+			],
+			"id": "gen-latex-001"
+		},
+		{
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A student's LaTeX source `\\sqrt{x + 1` fails to compile. What's wrong with it?",
+			"choices": [
+				"Missing a closing brace `}`",
+				"Should be written as `\\sqrt(x+1)`",
+				"Missing a `$` around the expression",
+				"`\\sqrt` cannot take an expression containing `+`"
+			],
+			"answer": "Missing a closing brace `}`",
+			"explanation": "Every `{` opened for `\\sqrt`'s argument needs a matching `}`. Without it, LaTeX keeps looking for the end of the argument and errors out (a 'runaway argument').",
+			"tags": [
+				"errors",
+				"syntax",
+				"spot-the-bug",
+				"generated"
+			],
+			"id": "gen-latex-002"
+		},
+		{
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for this piecewise function:\n\n$$f(x) = \\begin{cases} x^2 & x \\ge 0 \\\\ -x & x < 0 \\end{cases}$$\n\nThen reveal and compare.",
+			"answer": "f(x) = \\begin{cases} x^2 & x \\ge 0 \\\\ -x & x < 0 \\end{cases}",
+			"explanation": "The `cases` environment (inside math mode) aligns each piece with `&` before the condition and separates pieces with `\\\\`.",
+			"tags": [
+				"environments",
+				"cases",
+				"writing",
+				"generated"
+			],
+			"id": "gen-latex-003"
+		}
+	]
+}
