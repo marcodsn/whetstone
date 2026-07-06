@@ -1310,6 +1310,130 @@
 		"id": "gen-code-035"
 	},
 	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What does this C program print?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint main(void) {\n    unsigned int a = 3;\n    int b = -5;\n    if (a > b)\n        printf(\"bigger\\n\");\n    else\n        printf(\"smaller\\n\");\n    return 0;\n}"
+		},
+		"choices": [
+			"bigger",
+			"smaller",
+			"undefined behavior",
+			"a compile error"
+		],
+		"answer": "smaller",
+		"explanation": "Comparing a signed and unsigned int converts the signed one to unsigned. -5 becomes a huge unsigned value (UINT_MAX - 4), so `a > b` is false and it prints \"smaller\" — a classic signed/unsigned comparison trap.",
+		"tags": [
+			"c",
+			"signed-unsigned",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-036"
+	},
+	{
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "grid = [[]] * 3\ngrid[0].append(1)\nprint(grid)"
+		},
+		"answer": "[[1], [1], [1]]",
+		"accepted": [
+			"[[1], [1], [1]]",
+			"[[1],[1],[1]]"
+		],
+		"explanation": "`[[]] * 3` repeats the *same* inner list object three times, not three independent lists — appending to `grid[0]` mutates the one list all three slots point to.",
+		"tags": [
+			"python",
+			"lists",
+			"aliasing",
+			"predict-output",
+			"generated"
+		],
+		"id": "gen-code-037"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This loop is meant to count to exactly 10 (stopping once `x` reaches 1.0). What's wrong with it?",
+		"code": {
+			"lang": "python",
+			"src": "x = 0.0\ncount = 0\nwhile x != 1.0:\n    x += 0.1\n    count += 1\nprint(count)"
+		},
+		"choices": [
+			"Nothing — it correctly prints 10",
+			"`count` should start at 1, so it prints 11",
+			"Floating-point rounding means `x` may never exactly equal 1.0, so the loop can run far more than 10 times (in practice, forever)",
+			"It's an infinite loop because `while` doesn't support `!=` comparisons"
+		],
+		"answer": "Floating-point rounding means `x` may never exactly equal 1.0, so the loop can run far more than 10 times (in practice, forever)",
+		"explanation": "0.1 has no exact binary floating-point representation, so the running sum drifts past 1.0 without ever hitting it exactly — comparing floats with `!=` for loop termination is a classic bug. Use a tolerance or an integer counter instead.",
+		"tags": [
+			"python",
+			"floats",
+			"spot-the-bug",
+			"generated"
+		],
+		"id": "gen-code-038"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `fib(n)` below, as a function of `n`?",
+		"code": {
+			"lang": "python",
+			"src": "def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)",
+			"O(2^n)"
+		],
+		"answer": "O(2^n)",
+		"explanation": "Without memoization, each call spawns two more, recomputing the same subproblems repeatedly — the call tree roughly doubles in size with every increment of `n`, giving exponential time.",
+		"tags": [
+			"python",
+			"complexity",
+			"recursion",
+			"generated"
+		],
+		"id": "gen-code-039"
+	},
+	{
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`fetchUser` returns a Promise that resolves to a user object. This function is supposed to log the user's name, but it doesn't work as intended. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "async function logUserName(id) {\n  const user = fetchUser(id); // returns a Promise\n  console.log(user.name);\n}"
+		},
+		"choices": [
+			"Missing `await` before `fetchUser(id)` — `user` is a pending Promise, not the resolved object, so `user.name` is `undefined`",
+			"`console.log` cannot be called inside an `async` function",
+			"`fetchUser` should be called without the `id` argument",
+			"The function is missing a `return` statement"
+		],
+		"answer": "Missing `await` before `fetchUser(id)` — `user` is a pending Promise, not the resolved object, so `user.name` is `undefined`",
+		"explanation": "Without `await`, `user` holds the Promise object itself, which has no `name` property — you need `const user = await fetchUser(id);` to get the resolved value.",
+		"tags": [
+			"javascript",
+			"async",
+			"spot-the-bug",
+			"generated"
+		],
+		"id": "gen-code-040"
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -1494,6 +1618,195 @@
 		"id": "gen-general-010"
 	},
 	{
+		"domain": "general",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "A man is found dead, alone, in a locked room. Scattered on the floor beside him are 53 playing cards — all from the same 'Bicycle' brand deck. How did he die, and why does the number 53 matter? Work out an explanation, then reveal and compare.",
+		"answer": "He was a card cheat who got caught: a standard deck has 52 cards, so 53 means there was one extra card hidden in the deck — proof he'd been palming an extra card to cheat. Another player discovered the 53rd card and killed him for it.",
+		"explanation": "The riddle hinges on knowing a deck has exactly 52 cards — the mismatch is the clue, not the number itself.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"classic",
+			"generated"
+		],
+		"id": "gen-general-011"
+	},
+	{
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In 17th-century France, the gambler Chevalier de Méré believed these two bets were equally good odds. Which is actually more likely: rolling at least one 6 in four rolls of a single die, or rolling at least one double-six in twenty-four rolls of a pair of dice?",
+		"choices": [
+			"They are exactly equally likely",
+			"At least one 6 in four rolls of a single die",
+			"At least one double-six in 24 rolls of two dice",
+			"Neither can be computed without more information"
+		],
+		"answer": "At least one 6 in four rolls of a single die",
+		"explanation": "The single-die bet succeeds about 51.8% of the time ($1-(5/6)^4$), while the double-six bet succeeds only about 49.1% of the time ($1-(35/36)^{24}$) — a gap Pascal helped explain for de Méré, one of the early sparks for probability theory.",
+		"tags": [
+			"probability",
+			"history",
+			"generated"
+		],
+		"id": "gen-general-012"
+	},
+	{
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What common English word contains three consecutive pairs of double letters (like 'oo', 'kk', 'ee' back to back)?",
+		"answer": "bookkeeper",
+		"accepted": [
+			"bookkeeper",
+			"bookkeeping"
+		],
+		"explanation": "b-oo-kk-ee-per: the double o, double k, and double e sit back-to-back, which is unusual even among long English words.",
+		"tags": [
+			"wordplay",
+			"trivia",
+			"generated"
+		],
+		"id": "gen-general-013"
+	},
+	{
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Point Nemo, the spot in the ocean farthest from any land (over 2,600 km from the nearest shore), is often nearer to which humans than to anyone on land?",
+		"choices": [
+			"Passengers on a nearby cruise ship",
+			"Astronauts aboard the International Space Station",
+			"Fishermen on remote research vessels",
+			"No humans are ever closer than the mainland"
+		],
+		"answer": "Astronauts aboard the International Space Station",
+		"explanation": "The ISS orbits roughly 400 km up — closer to Point Nemo than the more-than-2,600-km-away nearest land, so when it passes overhead its crew are literally the nearest people.",
+		"tags": [
+			"trivia",
+			"geography",
+			"astronomy",
+			"generated"
+		],
+		"id": "gen-general-014"
+	},
+	{
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "A man walks into a bar and asks the bartender for a glass of water. Without a word, the bartender pulls out a gun and points it at him. The man smiles, says 'thank you,' and calmly walks out. Why? Work out an explanation, then reveal and compare.",
+		"answer": "The man had the hiccups and wanted a scare to cure them. The bartender realized this and pointed the gun to startle him — it worked, curing his hiccups, so he no longer needed the water and left, thankful.",
+		"explanation": "The riddle hinges on treating 'water' as a symptom (hiccups) rather than thirst — the bartender solves the real problem a different way.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"classic",
+			"generated"
+		],
+		"id": "gen-general-015"
+	},
+	{
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The total length of all the blood vessels in an adult human body, laid end to end, is roughly enough to:",
+		"choices": [
+			"Drive coast-to-coast across the United States once",
+			"Circle the Earth about two and a half times",
+			"Reach the Moon",
+			"Circle the Earth about ten times"
+		],
+		"answer": "Circle the Earth about two and a half times",
+		"explanation": "The oft-cited estimate is about 100,000 km (60,000 miles) of vessels — Earth's circumference is about 40,000 km, so that's roughly two and a half laps; nowhere near the Moon's 384,000 km or ten full laps around Earth.",
+		"tags": [
+			"estimation",
+			"biology",
+			"scale",
+			"generated"
+		],
+		"id": "gen-general-016"
+	},
+	{
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Is it possible for Player A to have a lower batting average than Player B in each of two separate baseball seasons individually, yet a higher combined average than Player B across both seasons combined?",
+		"choices": [
+			"Yes — this can happen if the players had very different numbers of at-bats in each season",
+			"No — that would be a logical contradiction",
+			"Only if one player's average was negative, which is impossible",
+			"Only if they played for different teams"
+		],
+		"answer": "Yes — this can happen if the players had very different numbers of at-bats in each season",
+		"explanation": "This is Simpson's Paradox — it has happened in real career stats (e.g., Derek Jeter vs. David Justice, 1995-1996) because averaging averages ignores how many at-bats back each one; a season with far more at-bats pulls the combined average toward itself.",
+		"tags": [
+			"probability",
+			"paradox",
+			"statistics",
+			"generated"
+		],
+		"id": "gen-general-017"
+	},
+	{
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the only even prime number?",
+		"answer": "2",
+		"accepted": [
+			"2",
+			"two"
+		],
+		"explanation": "Every other even number is divisible by 2 and by itself, giving it a third factor — 2 is the sole exception.",
+		"tags": [
+			"trivia",
+			"math",
+			"trick",
+			"generated"
+		],
+		"id": "gen-general-018"
+	},
+	{
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which line actually appears in the 1942 film Casablanca?",
+		"choices": [
+			"\"Play it again, Sam.\"",
+			"\"Play it, Sam.\"",
+			"\"Play it once more, Sam.\"",
+			"\"Sam, play it for old times' sake.\""
+		],
+		"answer": "\"Play it, Sam.\"",
+		"explanation": "The famous phrase \"Play it again, Sam\" never actually occurs in the film — Ilsa's real line is the shorter \"Play it, Sam. Play 'As Time Goes By.'\"",
+		"tags": [
+			"trivia",
+			"misattribution",
+			"film",
+			"generated"
+		],
+		"id": "gen-general-019"
+	},
+	{
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A drawer holds 10 pairs of socks — 20 individual socks in total, all 10 colors different. In the dark, what is the minimum number of socks you must pull out to be guaranteed a matching pair?",
+		"answer": "11",
+		"accepted": [
+			"11",
+			"eleven"
+		],
+		"explanation": "In the worst case you could pull one sock of each of the 10 colors (10 socks, no match yet) — the very next one, the 11th, must match one you already have.",
+		"tags": [
+			"logic",
+			"pigeonhole",
+			"generated"
+		],
+		"id": "gen-general-020"
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -1549,6 +1862,58 @@
 			"generated"
 		],
 		"id": "gen-latex-003"
+	},
+	{
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command lets you typeset ordinary upright text inside a math-mode formula, e.g. $\\text{if } x > 0$?",
+		"answer": "\\text",
+		"accepted": [
+			"\\text",
+			"text"
+		],
+		"explanation": "`\\text{...}` (from the amsmath package, also supported by KaTeX) switches to regular text typesetting without leaving math mode — handy for words like 'if' or units inside a formula.",
+		"tags": [
+			"commands",
+			"text-mode",
+			"generated"
+		],
+		"id": "gen-latex-004"
+	},
+	{
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which command produces the 'maps to' arrow $\\mapsto$, as used when defining a function like $x \\mapsto x^2$?",
+		"choices": [
+			"\\mapsto",
+			"\\to",
+			"\\Rightarrow",
+			"\\rightarrow"
+		],
+		"answer": "\\mapsto",
+		"explanation": "`\\mapsto` draws the barred arrow used to show what an input maps to; `\\to`/`\\rightarrow` are the plain function-arrow (same arrow, two names) and `\\Rightarrow` is the logical-implication double arrow — all valid commands, just not this symbol.",
+		"tags": [
+			"symbols",
+			"arrows",
+			"generated"
+		],
+		"id": "gen-latex-005"
+	},
+	{
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for this two-line aligned system of equations:\n\n$$\\begin{align} x + y &= 5 \\\\ x - y &= 1 \\end{align}$$\n\nThen reveal and compare.",
+		"answer": "\\begin{align} x + y &= 5 \\\\ x - y &= 1 \\end{align}",
+		"explanation": "The `align` environment (from amsmath) lines up multiple equations at the `&` marker — here aligning both `=` signs — with `\\\\` separating rows.",
+		"tags": [
+			"environments",
+			"writing",
+			"generated"
+		],
+		"id": "gen-latex-006"
 	},
 	{
 		"domain": "logic",
@@ -1968,6 +2333,120 @@
 			"generated"
 		],
 		"id": "gen-logic-022"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Six people — Ana, Ben, Cleo, Dan, Eve, and Finn — sit evenly spaced around a round table (so each person has an exact opposite). You're told:\n- Ana sits directly opposite Finn.\n- Ben sits immediately clockwise of Ana.\n- Cleo sits immediately clockwise of Ben.\n- Eve does not sit next to Ana.\nWho sits directly opposite Ben?",
+		"choices": [
+			"Dan",
+			"Cleo",
+			"Finn",
+			"Eve"
+		],
+		"answer": "Eve",
+		"explanation": "Fix Ana's seat; her opposite (3 seats away) is Finn. Ben is 1 seat clockwise of Ana, Cleo 1 more. That leaves the last two seats for Dan and Eve — since Eve can't sit next to Ana, she takes the seat 3 away from Ben's, directly opposite him, leaving Dan the remaining seat.",
+		"tags": [
+			"spatial",
+			"deduction",
+			"generated"
+		],
+		"id": "gen-logic-023"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Consider this argument: \"If an animal is a dog, then it is a mammal. Rex is not a dog. Therefore, Rex is not a mammal.\" Is this argument logically valid?",
+		"choices": [
+			"Yes — this is modus ponens",
+			"Yes — this is modus tollens",
+			"No — this commits the fallacy of denying the antecedent",
+			"No — this commits the fallacy of affirming the consequent"
+		],
+		"answer": "No — this commits the fallacy of denying the antecedent",
+		"explanation": "Ruling out the antecedent (being a dog) doesn't rule out the consequent (being a mammal) — Rex could be a cat, a whale, or any other mammal.",
+		"tags": [
+			"propositional",
+			"fallacy",
+			"generated"
+		],
+		"id": "gen-logic-024"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Three friends — Sam, Priya, and Tom — each own exactly one pet (cat, dog, or fish), and each has one favorite color (red, blue, or green); no two friends share a pet or a color.\n1. The person with the cat likes red.\n2. Tom doesn't like blue.\n3. Priya owns the fish.\n4. Sam doesn't own the cat.\n5. Priya doesn't like green.\nWho owns the dog, and what color do they like?",
+		"choices": [
+			"Sam — dog, green",
+			"Tom — dog, blue",
+			"Sam — dog, blue",
+			"Priya — dog, green"
+		],
+		"answer": "Sam — dog, green",
+		"explanation": "Priya has the fish (clue 3), and Sam doesn't have the cat (clue 4), so Sam has the dog and Tom has the cat. The cat owner likes red (clue 1), so Tom is red. Priya isn't green (clue 5), so Priya is blue, leaving green for Sam.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"generated"
+		],
+		"id": "gen-logic-025"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Every square is a rectangle, but not every rectangle is a square. So being a square is a ___ condition for being a rectangle.",
+		"choices": [
+			"necessary but not sufficient",
+			"sufficient but not necessary",
+			"both necessary and sufficient",
+			"neither necessary nor sufficient"
+		],
+		"answer": "sufficient but not necessary",
+		"explanation": "Being a square guarantees being a rectangle (sufficient), but a shape can be a rectangle without being a square (so it's not necessary).",
+		"tags": [
+			"propositional",
+			"conditionals",
+			"generated"
+		],
+		"id": "gen-logic-026"
+	},
+	{
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Four people need to cross a rickety bridge at night with only one flashlight. At most two people can be on the bridge at once, and anyone crossing — alone or in a pair — must carry the flashlight, which must then be walked back (it can't be thrown). The four cross at 1, 2, 5, and 10 minutes respectively; a pair crossing together moves at the slower one's pace. What is the minimum total time for all four to get across? Work it out, then reveal and compare.",
+		"answer": "17 minutes: send the two fastest (1, 2) across together (2 min); send the 1-minute person back with the flashlight (1 min, total 3); send the two slowest (5, 10) across together (10 min, total 13); send the 2-minute person back (2 min, total 15); finally send (1, 2) across again (2 min, total 17).",
+		"explanation": "The key idea is to use the fastest person as a 'ferry' for the flashlight, so the two slow people only ever cross once, together, instead of each making the trip separately.",
+		"tags": [
+			"optimization",
+			"classic",
+			"generated"
+		],
+		"id": "gen-logic-027"
+	},
+	{
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Consider the sentence: \"This statement is false.\" Which best describes its truth status?",
+		"choices": [
+			"It is true",
+			"It is false",
+			"It is a paradox — assuming it's true makes it false, and assuming it's false makes it true",
+			"It is meaningless and doesn't count as a sentence"
+		],
+		"answer": "It is a paradox — assuming it's true makes it false, and assuming it's false makes it true",
+		"explanation": "If the statement is true, then what it says is correct, so it must be false — and if it's false, then what it says is wrong, so it must be true. Neither assignment is consistent, which is exactly what makes it the classic Liar's Paradox.",
+		"tags": [
+			"self-reference",
+			"paradox",
+			"generated"
+		],
+		"id": "gen-logic-028"
 	},
 	{
 		"domain": "math",
@@ -3004,6 +3483,137 @@
 			"generated"
 		],
 		"id": "gen-math-057"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "There's a shortcut for squaring two-digit numbers ending in 5: for $\\overline{n5}^2$, compute $n \\times (n+1)$, then append 25. Using this shortcut, what is $85^2$?",
+		"answer": "7225",
+		"accepted": [
+			"7225"
+		],
+		"explanation": "$8 \\times 9 = 72$, so $85^2 = 7225$ — this works because $(10n+5)^2 = 100n(n+1) + 25$.",
+		"tags": [
+			"mental-math",
+			"arithmetic",
+			"generated"
+		],
+		"id": "gen-math-058"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "If today is a Wednesday, what day of the week will it be in 100 days?",
+		"answer": "Friday",
+		"accepted": [
+			"Friday",
+			"friday"
+		],
+		"explanation": "100 mod 7 = 2, so the day of the week advances by 2 from Wednesday: Thursday, then Friday.",
+		"tags": [
+			"modular-arithmetic",
+			"calendar",
+			"generated"
+		],
+		"id": "gen-math-059"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A shirt's price is increased by 50%, and then the new price is decreased by 50%. Compared to the original price, the final price is:",
+		"choices": [
+			"The same as the original price",
+			"25% less than the original price",
+			"25% more than the original price",
+			"10% less than the original price"
+		],
+		"answer": "25% less than the original price",
+		"explanation": "$100 \\times 1.5 \\times 0.5 = 75$ — percentage increases and decreases don't cancel, because the second percentage applies to a different (larger) base.",
+		"tags": [
+			"percentages",
+			"trick",
+			"generated"
+		],
+		"id": "gen-math-060"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is $111{,}111{,}111^2$ (nine 1's, squared)?",
+		"answer": "12345678987654321",
+		"accepted": [
+			"12345678987654321",
+			"12,345,678,987,654,321"
+		],
+		"explanation": "Repunits made of up to nine 1's square into a palindrome that counts up then down — 1 through 9 and back to 1 — with no carries to disturb the pattern.",
+		"tags": [
+			"mental-math",
+			"patterns",
+			"generated"
+		],
+		"id": "gen-math-061"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A standard 8x8 chessboard has its two opposite corner squares removed (both removed squares are the same color). Can the remaining 62 squares be exactly covered by 31 dominoes, each covering two adjacent squares?",
+		"choices": [
+			"Yes, easily",
+			"No, it's impossible",
+			"Only if the dominoes are placed diagonally",
+			"Yes, but only with an even number of dominoes placed vertically"
+		],
+		"answer": "No, it's impossible",
+		"explanation": "Opposite corners are the same color, so removing them leaves 32 squares of one color and 30 of the other. Every domino must cover exactly one square of each color, so 31 dominoes would need equal counts of each — impossible.",
+		"tags": [
+			"parity",
+			"proof",
+			"classic",
+			"generated"
+		],
+		"id": "gen-math-062"
+	},
+	{
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Two trains are 300 km apart on the same track, heading toward each other — one at 60 km/h, the other at 90 km/h. The instant they start, a bird takes off from the front of one train, flying at 120 km/h straight toward the other, and the moment it reaches it, turns around and flies back — bouncing between the two trains until they collide. How many total kilometers does the bird fly?",
+		"answer": "240",
+		"accepted": [
+			"240",
+			"240 km"
+		],
+		"explanation": "The trains close the 300 km gap at a combined 150 km/h, meeting after 2 hours — so the bird, which never stops flying at 120 km/h, covers $120 \\times 2 = 240$ km, regardless of how many times it turns around.",
+		"tags": [
+			"rate-problems",
+			"classic",
+			"generated"
+		],
+		"id": "gen-math-063"
+	},
+	{
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A square is inscribed in a circle of radius 5 cm (all four corners touch the circle). What is the area of the square?",
+		"choices": [
+			"25 cm²",
+			"50 cm²",
+			"78.5 cm²",
+			"100 cm²"
+		],
+		"answer": "50 cm²",
+		"explanation": "The square's diagonal equals the circle's diameter, 10 cm. For a square, area = diagonal²/2, so the area is $100/2 = 50$ cm².",
+		"tags": [
+			"geometry",
+			"generated"
+		],
+		"id": "gen-math-064"
 	},
 	{
 		"id": "gen-015",

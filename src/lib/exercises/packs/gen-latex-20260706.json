@@ -1,0 +1,57 @@
+{
+	"pack": "gen-latex-20260706",
+	"exercises": [
+		{
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What command lets you typeset ordinary upright text inside a math-mode formula, e.g. $\\text{if } x > 0$?",
+			"answer": "\\text",
+			"accepted": [
+				"\\text",
+				"text"
+			],
+			"explanation": "`\\text{...}` (from the amsmath package, also supported by KaTeX) switches to regular text typesetting without leaving math mode — handy for words like 'if' or units inside a formula.",
+			"tags": [
+				"commands",
+				"text-mode",
+				"generated"
+			],
+			"id": "gen-latex-004"
+		},
+		{
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which command produces the 'maps to' arrow $\\mapsto$, as used when defining a function like $x \\mapsto x^2$?",
+			"choices": [
+				"\\mapsto",
+				"\\to",
+				"\\Rightarrow",
+				"\\rightarrow"
+			],
+			"answer": "\\mapsto",
+			"explanation": "`\\mapsto` draws the barred arrow used to show what an input maps to; `\\to`/`\\rightarrow` are the plain function-arrow (same arrow, two names) and `\\Rightarrow` is the logical-implication double arrow — all valid commands, just not this symbol.",
+			"tags": [
+				"symbols",
+				"arrows",
+				"generated"
+			],
+			"id": "gen-latex-005"
+		},
+		{
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for this two-line aligned system of equations:\n\n$$\\begin{align} x + y &= 5 \\\\ x - y &= 1 \\end{align}$$\n\nThen reveal and compare.",
+			"answer": "\\begin{align} x + y &= 5 \\\\ x - y &= 1 \\end{align}",
+			"explanation": "The `align` environment (from amsmath) lines up multiple equations at the `&` marker — here aligning both `=` signs — with `\\\\` separating rows.",
+			"tags": [
+				"environments",
+				"writing",
+				"generated"
+			],
+			"id": "gen-latex-006"
+		}
+	]
+}

@@ -1,0 +1,119 @@
+{
+	"pack": "gen-logic-20260706",
+	"exercises": [
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Six people — Ana, Ben, Cleo, Dan, Eve, and Finn — sit evenly spaced around a round table (so each person has an exact opposite). You're told:\n- Ana sits directly opposite Finn.\n- Ben sits immediately clockwise of Ana.\n- Cleo sits immediately clockwise of Ben.\n- Eve does not sit next to Ana.\nWho sits directly opposite Ben?",
+			"choices": [
+				"Dan",
+				"Cleo",
+				"Finn",
+				"Eve"
+			],
+			"answer": "Eve",
+			"explanation": "Fix Ana's seat; her opposite (3 seats away) is Finn. Ben is 1 seat clockwise of Ana, Cleo 1 more. That leaves the last two seats for Dan and Eve — since Eve can't sit next to Ana, she takes the seat 3 away from Ben's, directly opposite him, leaving Dan the remaining seat.",
+			"tags": [
+				"spatial",
+				"deduction",
+				"generated"
+			],
+			"id": "gen-logic-023"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Consider this argument: \"If an animal is a dog, then it is a mammal. Rex is not a dog. Therefore, Rex is not a mammal.\" Is this argument logically valid?",
+			"choices": [
+				"Yes — this is modus ponens",
+				"Yes — this is modus tollens",
+				"No — this commits the fallacy of denying the antecedent",
+				"No — this commits the fallacy of affirming the consequent"
+			],
+			"answer": "No — this commits the fallacy of denying the antecedent",
+			"explanation": "Ruling out the antecedent (being a dog) doesn't rule out the consequent (being a mammal) — Rex could be a cat, a whale, or any other mammal.",
+			"tags": [
+				"propositional",
+				"fallacy",
+				"generated"
+			],
+			"id": "gen-logic-024"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Three friends — Sam, Priya, and Tom — each own exactly one pet (cat, dog, or fish), and each has one favorite color (red, blue, or green); no two friends share a pet or a color.\n1. The person with the cat likes red.\n2. Tom doesn't like blue.\n3. Priya owns the fish.\n4. Sam doesn't own the cat.\n5. Priya doesn't like green.\nWho owns the dog, and what color do they like?",
+			"choices": [
+				"Sam — dog, green",
+				"Tom — dog, blue",
+				"Sam — dog, blue",
+				"Priya — dog, green"
+			],
+			"answer": "Sam — dog, green",
+			"explanation": "Priya has the fish (clue 3), and Sam doesn't have the cat (clue 4), so Sam has the dog and Tom has the cat. The cat owner likes red (clue 1), so Tom is red. Priya isn't green (clue 5), so Priya is blue, leaving green for Sam.",
+			"tags": [
+				"deduction",
+				"constraint-puzzle",
+				"generated"
+			],
+			"id": "gen-logic-025"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Every square is a rectangle, but not every rectangle is a square. So being a square is a ___ condition for being a rectangle.",
+			"choices": [
+				"necessary but not sufficient",
+				"sufficient but not necessary",
+				"both necessary and sufficient",
+				"neither necessary nor sufficient"
+			],
+			"answer": "sufficient but not necessary",
+			"explanation": "Being a square guarantees being a rectangle (sufficient), but a shape can be a rectangle without being a square (so it's not necessary).",
+			"tags": [
+				"propositional",
+				"conditionals",
+				"generated"
+			],
+			"id": "gen-logic-026"
+		},
+		{
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Four people need to cross a rickety bridge at night with only one flashlight. At most two people can be on the bridge at once, and anyone crossing — alone or in a pair — must carry the flashlight, which must then be walked back (it can't be thrown). The four cross at 1, 2, 5, and 10 minutes respectively; a pair crossing together moves at the slower one's pace. What is the minimum total time for all four to get across? Work it out, then reveal and compare.",
+			"answer": "17 minutes: send the two fastest (1, 2) across together (2 min); send the 1-minute person back with the flashlight (1 min, total 3); send the two slowest (5, 10) across together (10 min, total 13); send the 2-minute person back (2 min, total 15); finally send (1, 2) across again (2 min, total 17).",
+			"explanation": "The key idea is to use the fastest person as a 'ferry' for the flashlight, so the two slow people only ever cross once, together, instead of each making the trip separately.",
+			"tags": [
+				"optimization",
+				"classic",
+				"generated"
+			],
+			"id": "gen-logic-027"
+		},
+		{
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Consider the sentence: \"This statement is false.\" Which best describes its truth status?",
+			"choices": [
+				"It is true",
+				"It is false",
+				"It is a paradox — assuming it's true makes it false, and assuming it's false makes it true",
+				"It is meaningless and doesn't count as a sentence"
+			],
+			"answer": "It is a paradox — assuming it's true makes it false, and assuming it's false makes it true",
+			"explanation": "If the statement is true, then what it says is correct, so it must be false — and if it's false, then what it says is wrong, so it must be true. Neither assignment is consistent, which is exactly what makes it the classic Liar's Paradox.",
+			"tags": [
+				"self-reference",
+				"paradox",
+				"generated"
+			],
+			"id": "gen-logic-028"
+		}
+	]
+}

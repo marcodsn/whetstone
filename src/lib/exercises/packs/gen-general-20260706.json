@@ -1,0 +1,194 @@
+{
+	"pack": "gen-general-20260706",
+	"exercises": [
+		{
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "A man is found dead, alone, in a locked room. Scattered on the floor beside him are 53 playing cards — all from the same 'Bicycle' brand deck. How did he die, and why does the number 53 matter? Work out an explanation, then reveal and compare.",
+			"answer": "He was a card cheat who got caught: a standard deck has 52 cards, so 53 means there was one extra card hidden in the deck — proof he'd been palming an extra card to cheat. Another player discovered the 53rd card and killed him for it.",
+			"explanation": "The riddle hinges on knowing a deck has exactly 52 cards — the mismatch is the clue, not the number itself.",
+			"tags": [
+				"lateral",
+				"riddle",
+				"classic",
+				"generated"
+			],
+			"id": "gen-general-011"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In 17th-century France, the gambler Chevalier de Méré believed these two bets were equally good odds. Which is actually more likely: rolling at least one 6 in four rolls of a single die, or rolling at least one double-six in twenty-four rolls of a pair of dice?",
+			"choices": [
+				"They are exactly equally likely",
+				"At least one 6 in four rolls of a single die",
+				"At least one double-six in 24 rolls of two dice",
+				"Neither can be computed without more information"
+			],
+			"answer": "At least one 6 in four rolls of a single die",
+			"explanation": "The single-die bet succeeds about 51.8% of the time ($1-(5/6)^4$), while the double-six bet succeeds only about 49.1% of the time ($1-(35/36)^{24}$) — a gap Pascal helped explain for de Méré, one of the early sparks for probability theory.",
+			"tags": [
+				"probability",
+				"history",
+				"generated"
+			],
+			"id": "gen-general-012"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What common English word contains three consecutive pairs of double letters (like 'oo', 'kk', 'ee' back to back)?",
+			"answer": "bookkeeper",
+			"accepted": [
+				"bookkeeper",
+				"bookkeeping"
+			],
+			"explanation": "b-oo-kk-ee-per: the double o, double k, and double e sit back-to-back, which is unusual even among long English words.",
+			"tags": [
+				"wordplay",
+				"trivia",
+				"generated"
+			],
+			"id": "gen-general-013"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Point Nemo, the spot in the ocean farthest from any land (over 2,600 km from the nearest shore), is often nearer to which humans than to anyone on land?",
+			"choices": [
+				"Passengers on a nearby cruise ship",
+				"Astronauts aboard the International Space Station",
+				"Fishermen on remote research vessels",
+				"No humans are ever closer than the mainland"
+			],
+			"answer": "Astronauts aboard the International Space Station",
+			"explanation": "The ISS orbits roughly 400 km up — closer to Point Nemo than the more-than-2,600-km-away nearest land, so when it passes overhead its crew are literally the nearest people.",
+			"tags": [
+				"trivia",
+				"geography",
+				"astronomy",
+				"generated"
+			],
+			"id": "gen-general-014"
+		},
+		{
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A man walks into a bar and asks the bartender for a glass of water. Without a word, the bartender pulls out a gun and points it at him. The man smiles, says 'thank you,' and calmly walks out. Why? Work out an explanation, then reveal and compare.",
+			"answer": "The man had the hiccups and wanted a scare to cure them. The bartender realized this and pointed the gun to startle him — it worked, curing his hiccups, so he no longer needed the water and left, thankful.",
+			"explanation": "The riddle hinges on treating 'water' as a symptom (hiccups) rather than thirst — the bartender solves the real problem a different way.",
+			"tags": [
+				"lateral",
+				"riddle",
+				"classic",
+				"generated"
+			],
+			"id": "gen-general-015"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The total length of all the blood vessels in an adult human body, laid end to end, is roughly enough to:",
+			"choices": [
+				"Drive coast-to-coast across the United States once",
+				"Circle the Earth about two and a half times",
+				"Reach the Moon",
+				"Circle the Earth about ten times"
+			],
+			"answer": "Circle the Earth about two and a half times",
+			"explanation": "The oft-cited estimate is about 100,000 km (60,000 miles) of vessels — Earth's circumference is about 40,000 km, so that's roughly two and a half laps; nowhere near the Moon's 384,000 km or ten full laps around Earth.",
+			"tags": [
+				"estimation",
+				"biology",
+				"scale",
+				"generated"
+			],
+			"id": "gen-general-016"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Is it possible for Player A to have a lower batting average than Player B in each of two separate baseball seasons individually, yet a higher combined average than Player B across both seasons combined?",
+			"choices": [
+				"Yes — this can happen if the players had very different numbers of at-bats in each season",
+				"No — that would be a logical contradiction",
+				"Only if one player's average was negative, which is impossible",
+				"Only if they played for different teams"
+			],
+			"answer": "Yes — this can happen if the players had very different numbers of at-bats in each season",
+			"explanation": "This is Simpson's Paradox — it has happened in real career stats (e.g., Derek Jeter vs. David Justice, 1995-1996) because averaging averages ignores how many at-bats back each one; a season with far more at-bats pulls the combined average toward itself.",
+			"tags": [
+				"probability",
+				"paradox",
+				"statistics",
+				"generated"
+			],
+			"id": "gen-general-017"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the only even prime number?",
+			"answer": "2",
+			"accepted": [
+				"2",
+				"two"
+			],
+			"explanation": "Every other even number is divisible by 2 and by itself, giving it a third factor — 2 is the sole exception.",
+			"tags": [
+				"trivia",
+				"math",
+				"trick",
+				"generated"
+			],
+			"id": "gen-general-018"
+		},
+		{
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which line actually appears in the 1942 film Casablanca?",
+			"choices": [
+				"\"Play it again, Sam.\"",
+				"\"Play it, Sam.\"",
+				"\"Play it once more, Sam.\"",
+				"\"Sam, play it for old times' sake.\""
+			],
+			"answer": "\"Play it, Sam.\"",
+			"explanation": "The famous phrase \"Play it again, Sam\" never actually occurs in the film — Ilsa's real line is the shorter \"Play it, Sam. Play 'As Time Goes By.'\"",
+			"tags": [
+				"trivia",
+				"misattribution",
+				"film",
+				"generated"
+			],
+			"id": "gen-general-019"
+		},
+		{
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A drawer holds 10 pairs of socks — 20 individual socks in total, all 10 colors different. In the dark, what is the minimum number of socks you must pull out to be guaranteed a matching pair?",
+			"answer": "11",
+			"accepted": [
+				"11",
+				"eleven"
+			],
+			"explanation": "In the worst case you could pull one sock of each of the 10 colors (10 socks, no match yet) — the very next one, the 11th, must match one you already have.",
+			"tags": [
+				"logic",
+				"pigeonhole",
+				"generated"
+			],
+			"id": "gen-general-020"
+		}
+	]
+}

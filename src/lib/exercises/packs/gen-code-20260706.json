@@ -1,0 +1,129 @@
+{
+	"pack": "gen-code-20260706",
+	"exercises": [
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "What does this C program print?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nint main(void) {\n    unsigned int a = 3;\n    int b = -5;\n    if (a > b)\n        printf(\"bigger\\n\");\n    else\n        printf(\"smaller\\n\");\n    return 0;\n}"
+			},
+			"choices": [
+				"bigger",
+				"smaller",
+				"undefined behavior",
+				"a compile error"
+			],
+			"answer": "smaller",
+			"explanation": "Comparing a signed and unsigned int converts the signed one to unsigned. -5 becomes a huge unsigned value (UINT_MAX - 4), so `a > b` is false and it prints \"smaller\" — a classic signed/unsigned comparison trap.",
+			"tags": [
+				"c",
+				"signed-unsigned",
+				"predict-output",
+				"generated"
+			],
+			"id": "gen-code-036"
+		},
+		{
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "grid = [[]] * 3\ngrid[0].append(1)\nprint(grid)"
+			},
+			"answer": "[[1], [1], [1]]",
+			"accepted": [
+				"[[1], [1], [1]]",
+				"[[1],[1],[1]]"
+			],
+			"explanation": "`[[]] * 3` repeats the *same* inner list object three times, not three independent lists — appending to `grid[0]` mutates the one list all three slots point to.",
+			"tags": [
+				"python",
+				"lists",
+				"aliasing",
+				"predict-output",
+				"generated"
+			],
+			"id": "gen-code-037"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This loop is meant to count to exactly 10 (stopping once `x` reaches 1.0). What's wrong with it?",
+			"code": {
+				"lang": "python",
+				"src": "x = 0.0\ncount = 0\nwhile x != 1.0:\n    x += 0.1\n    count += 1\nprint(count)"
+			},
+			"choices": [
+				"Nothing — it correctly prints 10",
+				"`count` should start at 1, so it prints 11",
+				"Floating-point rounding means `x` may never exactly equal 1.0, so the loop can run far more than 10 times (in practice, forever)",
+				"It's an infinite loop because `while` doesn't support `!=` comparisons"
+			],
+			"answer": "Floating-point rounding means `x` may never exactly equal 1.0, so the loop can run far more than 10 times (in practice, forever)",
+			"explanation": "0.1 has no exact binary floating-point representation, so the running sum drifts past 1.0 without ever hitting it exactly — comparing floats with `!=` for loop termination is a classic bug. Use a tolerance or an integer counter instead.",
+			"tags": [
+				"python",
+				"floats",
+				"spot-the-bug",
+				"generated"
+			],
+			"id": "gen-code-038"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `fib(n)` below, as a function of `n`?",
+			"code": {
+				"lang": "python",
+				"src": "def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)"
+			},
+			"choices": [
+				"O(n)",
+				"O(n log n)",
+				"O(n^2)",
+				"O(2^n)"
+			],
+			"answer": "O(2^n)",
+			"explanation": "Without memoization, each call spawns two more, recomputing the same subproblems repeatedly — the call tree roughly doubles in size with every increment of `n`, giving exponential time.",
+			"tags": [
+				"python",
+				"complexity",
+				"recursion",
+				"generated"
+			],
+			"id": "gen-code-039"
+		},
+		{
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "`fetchUser` returns a Promise that resolves to a user object. This function is supposed to log the user's name, but it doesn't work as intended. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "async function logUserName(id) {\n  const user = fetchUser(id); // returns a Promise\n  console.log(user.name);\n}"
+			},
+			"choices": [
+				"Missing `await` before `fetchUser(id)` — `user` is a pending Promise, not the resolved object, so `user.name` is `undefined`",
+				"`console.log` cannot be called inside an `async` function",
+				"`fetchUser` should be called without the `id` argument",
+				"The function is missing a `return` statement"
+			],
+			"answer": "Missing `await` before `fetchUser(id)` — `user` is a pending Promise, not the resolved object, so `user.name` is `undefined`",
+			"explanation": "Without `await`, `user` holds the Promise object itself, which has no `name` property — you need `const user = await fetchUser(id);` to get the resolved value.",
+			"tags": [
+				"javascript",
+				"async",
+				"spot-the-bug",
+				"generated"
+			],
+			"id": "gen-code-040"
+		}
+	]
+}

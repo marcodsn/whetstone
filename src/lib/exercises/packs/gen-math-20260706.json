@@ -1,0 +1,136 @@
+{
+	"pack": "gen-math-20260706",
+	"exercises": [
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "There's a shortcut for squaring two-digit numbers ending in 5: for $\\overline{n5}^2$, compute $n \\times (n+1)$, then append 25. Using this shortcut, what is $85^2$?",
+			"answer": "7225",
+			"accepted": [
+				"7225"
+			],
+			"explanation": "$8 \\times 9 = 72$, so $85^2 = 7225$ — this works because $(10n+5)^2 = 100n(n+1) + 25$.",
+			"tags": [
+				"mental-math",
+				"arithmetic",
+				"generated"
+			],
+			"id": "gen-math-058"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "If today is a Wednesday, what day of the week will it be in 100 days?",
+			"answer": "Friday",
+			"accepted": [
+				"Friday",
+				"friday"
+			],
+			"explanation": "100 mod 7 = 2, so the day of the week advances by 2 from Wednesday: Thursday, then Friday.",
+			"tags": [
+				"modular-arithmetic",
+				"calendar",
+				"generated"
+			],
+			"id": "gen-math-059"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A shirt's price is increased by 50%, and then the new price is decreased by 50%. Compared to the original price, the final price is:",
+			"choices": [
+				"The same as the original price",
+				"25% less than the original price",
+				"25% more than the original price",
+				"10% less than the original price"
+			],
+			"answer": "25% less than the original price",
+			"explanation": "$100 \\times 1.5 \\times 0.5 = 75$ — percentage increases and decreases don't cancel, because the second percentage applies to a different (larger) base.",
+			"tags": [
+				"percentages",
+				"trick",
+				"generated"
+			],
+			"id": "gen-math-060"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is $111{,}111{,}111^2$ (nine 1's, squared)?",
+			"answer": "12345678987654321",
+			"accepted": [
+				"12345678987654321",
+				"12,345,678,987,654,321"
+			],
+			"explanation": "Repunits made of up to nine 1's square into a palindrome that counts up then down — 1 through 9 and back to 1 — with no carries to disturb the pattern.",
+			"tags": [
+				"mental-math",
+				"patterns",
+				"generated"
+			],
+			"id": "gen-math-061"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A standard 8x8 chessboard has its two opposite corner squares removed (both removed squares are the same color). Can the remaining 62 squares be exactly covered by 31 dominoes, each covering two adjacent squares?",
+			"choices": [
+				"Yes, easily",
+				"No, it's impossible",
+				"Only if the dominoes are placed diagonally",
+				"Yes, but only with an even number of dominoes placed vertically"
+			],
+			"answer": "No, it's impossible",
+			"explanation": "Opposite corners are the same color, so removing them leaves 32 squares of one color and 30 of the other. Every domino must cover exactly one square of each color, so 31 dominoes would need equal counts of each — impossible.",
+			"tags": [
+				"parity",
+				"proof",
+				"classic",
+				"generated"
+			],
+			"id": "gen-math-062"
+		},
+		{
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Two trains are 300 km apart on the same track, heading toward each other — one at 60 km/h, the other at 90 km/h. The instant they start, a bird takes off from the front of one train, flying at 120 km/h straight toward the other, and the moment it reaches it, turns around and flies back — bouncing between the two trains until they collide. How many total kilometers does the bird fly?",
+			"answer": "240",
+			"accepted": [
+				"240",
+				"240 km"
+			],
+			"explanation": "The trains close the 300 km gap at a combined 150 km/h, meeting after 2 hours — so the bird, which never stops flying at 120 km/h, covers $120 \\times 2 = 240$ km, regardless of how many times it turns around.",
+			"tags": [
+				"rate-problems",
+				"classic",
+				"generated"
+			],
+			"id": "gen-math-063"
+		},
+		{
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A square is inscribed in a circle of radius 5 cm (all four corners touch the circle). What is the area of the square?",
+			"choices": [
+				"25 cm²",
+				"50 cm²",
+				"78.5 cm²",
+				"100 cm²"
+			],
+			"answer": "50 cm²",
+			"explanation": "The square's diagonal equals the circle's diameter, 10 cm. For a square, area = diagonal²/2, so the area is $100/2 = 50$ cm².",
+			"tags": [
+				"geometry",
+				"generated"
+			],
+			"id": "gen-math-064"
+		}
+	]
+}
