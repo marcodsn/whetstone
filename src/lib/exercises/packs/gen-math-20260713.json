@@ -1,0 +1,86 @@
+{
+	"pack": "gen-math-20260713",
+	"exercises": [
+		{
+			"id": "gen-math-065",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the sum of the interior angles of any triangle, in degrees?",
+			"answer": "180",
+			"accepted": ["180", "180 degrees", "180°"],
+			"explanation": "This holds for every triangle in Euclidean geometry, regardless of shape — a basic fact worth having on instant recall.",
+			"tags": ["geometry", "recall", "generated"]
+		},
+		{
+			"id": "gen-math-066",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Quick divisibility trick: a whole number is divisible by 9 exactly when its digit sum is divisible by 9. What is the digit sum of 4,725?",
+			"answer": "18",
+			"accepted": ["18"],
+			"explanation": "4+7+2+5 = 18, and 18 is divisible by 9, so 4,725 is too (4,725 / 9 = 525) — no long division needed.",
+			"tags": ["divisibility", "mental-math", "number-theory", "generated"]
+		},
+		{
+			"id": "gen-math-067",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Mental math shortcut: to multiply two numbers close to 100, use $(100-a)(100-b) = 100(100-a-b) + ab$. Use it to compute $97 \\times 96$.",
+			"answer": "9312",
+			"accepted": ["9312", "9,312"],
+			"explanation": "Here $a=3, b=4$: $100(100-3-4) + 3\\times4 = 100 \\times 93 + 12 = 9312$ — far faster than long multiplication.",
+			"tags": ["mental-math", "arithmetic-trick", "generated"]
+		},
+		{
+			"id": "gen-math-068",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A snail sits at the bottom of a 10-meter well. Each day it climbs 3 meters, but each night it slides back 2 meters. How many days does it take to reach the top?",
+			"answer": "8",
+			"accepted": ["8", "8 days"],
+			"explanation": "The snail nets 1 meter per full day, reaching 7 meters after 7 days. On day 8 it climbs the remaining 3 meters and reaches the top before it can slide back — so the answer isn't 10, the naive net-rate guess.",
+			"tags": ["puzzle", "word-problem", "classic", "generated"]
+		},
+		{
+			"id": "gen-math-069",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "You have an unmarked 4-liter jug and an unmarked 9-liter jug, plus unlimited water. Using only fills, empties, and pours between the two jugs, how do you end up with exactly 6 liters in one of them? Work out a sequence of steps, then reveal and compare.",
+			"answer": "Fill the 9L jug (0,9). Pour into the 4L until full (4,5). Empty the 4L (0,5). Pour the 9L into the 4L (4,1). Empty the 4L (0,1). Pour the 1L from the 9L into the 4L (1,0). Fill the 9L again (1,9). Pour from the 9L into the 4L until the 4L is full, which takes 3L (4,6). The 9L jug now holds exactly 6 liters.",
+			"explanation": "Since $\\gcd(4,9)=1$, every integer amount from 0 to 9 is reachable by pouring between the two jugs — this is the same idea behind the water-jug puzzle from Die Hard 3.",
+			"tags": ["puzzle", "water-jug", "classic", "generated"]
+		},
+		{
+			"id": "gen-math-070",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Take the number 731. Reverse its digits to get 137, and subtract the smaller from the larger: $731 - 137$. Then add that result to its own reverse. What number do you get?",
+			"answer": "1089",
+			"accepted": ["1089", "1,089"],
+			"explanation": "$731-137=594$, and $594+495=1089$. This works for any 3-digit number whose first and last digits differ: the subtraction always produces a multiple of 99 with a middle digit of 9, and adding its reverse always collapses to 1089.",
+			"tags": ["number-trick", "recreational", "mental-math", "generated"]
+		},
+		{
+			"id": "gen-math-071",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The 18th-century city of Königsberg had seven bridges connecting two riverbanks and two islands. Is it possible to walk a route that crosses each of the seven bridges exactly once?",
+			"choices": [
+				"Yes, if you start on one of the islands",
+				"Yes, if you start on the north bank",
+				"No — it's impossible no matter where you start",
+				"Yes, but only if you're allowed to cross exactly one bridge twice"
+			],
+			"answer": "No — it's impossible no matter where you start",
+			"explanation": "Euler proved a walk crossing every bridge exactly once (an Eulerian path) exists only if 0 or 2 landmasses have an odd number of bridges. In Königsberg all four landmasses have an odd bridge count, so no such route exists — the founding result of graph theory.",
+			"tags": ["graph-theory", "classic", "history", "generated"]
+		}
+	]
+}

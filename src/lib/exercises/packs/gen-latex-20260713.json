@@ -1,0 +1,42 @@
+{
+	"pack": "gen-latex-20260713",
+	"exercises": [
+		{
+			"id": "gen-latex-007",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the 'for all' quantifier symbol $\\forall$?",
+			"answer": "\\forall",
+			"accepted": ["\\forall", "forall"],
+			"explanation": "`\\forall` renders the universal quantifier; its counterpart `\\exists` renders the existential quantifier $\\exists$.",
+			"tags": ["symbols", "quantifiers", "generated"]
+		},
+		{
+			"id": "gen-latex-008",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "You want parentheses that automatically grow to fit tall content, like around $\\left(\\frac{a}{b}\\right)$. Which source produces that auto-sizing behavior?",
+			"choices": [
+				"( \\frac{a}{b} )",
+				"\\left( \\frac{a}{b} \\right)",
+				"\\left(\\frac{a}{b})",
+				"\\big(\\frac{a}{b}\\big)"
+			],
+			"answer": "\\left( \\frac{a}{b} \\right)",
+			"explanation": "`\\left` and `\\right` must be paired and scale their delimiters to match the tallest content between them. Plain `( )` don't resize at all, `\\big( \\big)` gives a fixed larger size (not content-aware), and an unmatched `\\left(` without a `\\right` is a LaTeX error.",
+			"tags": ["delimiters", "sizing", "generated"]
+		},
+		{
+			"id": "gen-latex-009",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for the binomial theorem, matching this target exactly:  $$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k}b^k$$  Then reveal and compare.",
+			"answer": "(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k}b^k",
+			"explanation": "Combines `\\sum` with limits, `\\binom{n}{k}` for the coefficient, and stacked superscripts/subscripts — good practice for writing multi-part formulas by hand.",
+			"tags": ["writing", "binomial-theorem", "sum", "generated"]
+		}
+	]
+}

@@ -1,0 +1,89 @@
+{
+	"pack": "gen-logic-20260713",
+	"exercises": [
+		{
+			"id": "gen-logic-029",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "\"Every time the rooster crows, the sun rises shortly after. Therefore, the rooster's crowing causes the sun to rise.\" What's wrong with this reasoning?",
+			"choices": [
+				"Nothing — the argument is valid",
+				"It commits the post hoc ergo propter hoc fallacy: sequence (B follows A) is mistaken for causation, when both are actually driven by something else (Earth's rotation)",
+				"It commits the fallacy of affirming the consequent",
+				"It's a false dilemma between two unrelated events"
+			],
+			"answer": "It commits the post hoc ergo propter hoc fallacy: sequence (B follows A) is mistaken for causation, when both are actually driven by something else (Earth's rotation)",
+			"explanation": "\"After this, therefore because of this\" is a classic informal fallacy — correlation or sequence in time doesn't establish causation, and here both events share a common cause instead.",
+			"tags": ["fallacy", "informal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-030",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "You have 9 coins, identical in appearance. Exactly one is counterfeit and slightly lighter than the rest. You have a balance scale (no weights, just compares two sides). What is the minimum number of weighings needed to guarantee finding the counterfeit, and what's the strategy? Work it out, then reveal and compare.",
+			"answer": "2 weighings. Split the 9 coins into three groups of 3. Weigh group 1 against group 2: if they balance, the counterfeit is in group 3; otherwise it's in the lighter group. Take that group of 3, weigh one coin against another (leaving the third aside): if they balance, the third coin is counterfeit; otherwise the lighter one on the scale is.",
+			"explanation": "Each weighing has 3 possible outcomes (left-heavy, right-heavy, balanced), so 2 weighings distinguish up to $3^2=9$ possibilities — exactly enough to pin down 1 counterfeit among 9 coins, with no slack.",
+			"tags": ["puzzle", "weighing-puzzle", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-031",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A man is looking at a photograph. A friend asks whose picture it is. He replies: \"Brothers and sisters I have none, but this man's father is my father's son.\" Whose photograph is he looking at?",
+			"choices": [
+				"His own",
+				"His father's",
+				"His son's",
+				"His nephew's"
+			],
+			"answer": "His son's",
+			"explanation": "\"My father's son\" is the speaker himself, since he has no siblings. So \"this man's father is me\" — meaning the man in the photo is the speaker's son.",
+			"tags": ["riddle", "deduction", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-032",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Consider these four statements, all about each other:\n1. Exactly one of these four statements is false.\n2. Exactly two of these four statements are false.\n3. Exactly three of these four statements are false.\n4. Exactly four of these four statements are false.\nWhich statement is true?",
+			"choices": [
+				"Statement 1",
+				"Statement 2",
+				"Statement 3",
+				"None of them can be true"
+			],
+			"answer": "Statement 3",
+			"explanation": "Since the statements name different exact counts, at most one can be true at a time. If statement 4 were true, all four would be false — a contradiction, so 0 true is impossible. If exactly one statement is true, then 3 are false, which is exactly what statement 3 claims — the only self-consistent case.",
+			"tags": ["self-reference", "paradox", "generated"]
+		},
+		{
+			"id": "gen-logic-033",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Four coworkers — Ana, Ben, Cleo, and Dan — each work in a different department (Sales, IT, HR, Finance) and each has a different favorite drink (coffee, tea, juice, water).\n1. The Finance person drinks coffee.\n2. The Sales person drinks juice.\n3. Cleo works in IT.\n4. Ana drinks water.\n5. Dan does not work in Finance.\nWho works in Finance, and what do they drink?",
+			"choices": [
+				"Ben — coffee",
+				"Dan — juice",
+				"Ana — water",
+				"Cleo — tea"
+			],
+			"answer": "Ben — coffee",
+			"explanation": "Cleo is IT (clue 3). Ana drinks water, so she can't be Finance (coffee) or Sales (juice) — she must be HR. That leaves Sales and Finance for Ben and Dan; since Dan isn't Finance (clue 5), Dan is Sales (and drinks juice) and Ben is Finance (and drinks coffee). Cleo gets the last drink, tea.",
+			"tags": ["deduction", "constraint-puzzle", "generated"]
+		},
+		{
+			"id": "gen-logic-034",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 5,
+			"prompt": "On an island of 100 perfectly logical people, everyone has either blue or brown eyes. Each person can see everyone else's eye color but not their own, and there is a strict taboo against anyone discussing eye color at all. If a person ever deduces their own eyes are blue, the rule requires them to leave the island at the next dawn. Everyone knows all of this, and knows that everyone else is perfectly logical. One day a visitor publicly and truthfully announces: \"At least one of you has blue eyes\" — a fact everyone could already see was true of someone else. There are exactly 100 blue-eyed people on the island. What happens, and on which day? Work it out, then reveal and compare.",
+			"answer": "Nothing happens for 99 days. On the 100th dawn after the announcement, all 100 blue-eyed people leave simultaneously.",
+			"explanation": "Prove by induction on the number of blue-eyed people $n$. If $n=1$, that person sees no other blue eyes, so the announcement tells them it's them — they leave on day 1. If $n=k+1$, each blue-eyed person sees $k$ other blue-eyed people and reasons: 'if I'm not blue-eyed, those $k$ people should deduce it and leave on day $k$.' When day $k$ passes and nobody leaves, every blue-eyed person realizes there must be $k+1$ blue-eyed people, including themselves, and all leave on day $k+1$. The announcement matters because it creates common knowledge — everyone now knows that everyone knows (to all levels) that at least one person is blue-eyed, which the mutual visibility alone never provided.",
+			"tags": ["common-knowledge", "induction", "classic", "generated"]
+		}
+	]
+}

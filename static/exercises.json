@@ -1434,6 +1434,130 @@
 		"id": "gen-code-040"
 	},
 	{
+		"id": "gen-code-041",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this C++ program print?",
+		"code": {
+			"lang": "cpp",
+			"src": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 2;\n    double result = a / b;\n    std::cout << result << std::endl;\n    return 0;\n}"
+		},
+		"answer": "2",
+		"accepted": [
+			"2",
+			"2.0"
+		],
+		"explanation": "`a / b` is integer division between two `int`s, computed *before* the result is converted to `double` — so it truncates to 2 first, and `2.0` still prints as \"2\" since std::cout drops the trailing zero by default.",
+		"tags": [
+			"cpp",
+			"integer-division",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-042",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to remove all even numbers from `items`, leaving only the odd ones. It doesn't work correctly. What's the bug?",
+		"code": {
+			"lang": "python",
+			"src": "items = [1, 2, 2, 3, 4, 4, 4]\nfor x in items:\n    if x % 2 == 0:\n        items.remove(x)\nprint(items)"
+		},
+		"choices": [
+			"`items.remove(x)` only removes the last matching value, not the first",
+			"Removing elements from a list while iterating over it shifts later elements into earlier positions, so the iterator skips over some of them",
+			"The `%` operator behaves unpredictably on lists of mixed parity",
+			"`for x in items` copies the list, so removals never affect what gets printed"
+		],
+		"answer": "Removing elements from a list while iterating over it shifts later elements into earlier positions, so the iterator skips over some of them",
+		"explanation": "The list iterator tracks a numeric index; each removal shifts subsequent elements left by one, so the very next element effectively gets skipped. The actual output is `[1, 2, 3, 4]` — some evens survive. The fix is to iterate over a copy, e.g. `for x in items[:]`, or build a new list instead.",
+		"tags": [
+			"python",
+			"mutation",
+			"iteration",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-043",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `total_rank` below, as a function of `n = len(nums)`?",
+		"code": {
+			"lang": "python",
+			"src": "def total_rank(nums):\n    total = 0\n    for x in nums:\n        lo, hi = 0, len(nums)\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if nums[mid] < x:\n                lo = mid + 1\n            else:\n                hi = mid\n        total += lo\n    return total"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)",
+			"O(log n)"
+		],
+		"answer": "O(n log n)",
+		"explanation": "The outer loop runs `n` times, and for each element the inner `while` loop halves its search range every step, taking O(log n) — giving O(n log n) overall, the same shape as running a binary search once per element.",
+		"tags": [
+			"python",
+			"complexity",
+			"binary-search",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-044",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This function is supposed to return double its input, but always returns `undefined` instead. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "const double = x => { x * 2 };\nconsole.log(double(5));"
+		},
+		"choices": [
+			"Arrow functions can't take a bare parameter without parentheses around it",
+			"The arrow function body uses `{ }`, which requires an explicit `return` statement — without one, it implicitly returns `undefined`",
+			"`x * 2` should be written as `x *= 2` to modify `x` in place",
+			"`console.log` cannot print the result of an arrow function call directly"
+		],
+		"answer": "The arrow function body uses `{ }`, which requires an explicit `return` statement — without one, it implicitly returns `undefined`",
+		"explanation": "A braced arrow function body is a full function body, not an implicit expression — only the concise form `x => x * 2` (no braces) returns its expression automatically.",
+		"tags": [
+			"javascript",
+			"arrow-function",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-045",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print? (Give the three values in order, separated by spaces.)",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(typeof null, typeof undefined, typeof NaN);"
+		},
+		"answer": "object undefined number",
+		"accepted": [
+			"object undefined number",
+			"object, undefined, number"
+		],
+		"explanation": "`typeof null` famously returns `\"object\"` — a decades-old JavaScript bug kept for backward compatibility. `typeof undefined` is `\"undefined\"`, and `NaN` is still numerically typed, so `typeof NaN` is `\"number\"`.",
+		"tags": [
+			"javascript",
+			"typeof",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -1807,6 +1931,207 @@
 		"id": "gen-general-020"
 	},
 	{
+		"id": "gen-general-021",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "A man pushes his car and stops at a hotel. He immediately tells the owner he's bankrupt. What is going on? Work out an explanation, then reveal and compare.",
+		"answer": "He's playing the board game Monopoly. His \"car\" is his game token, and he's landed on a property with a hotel he can't afford the rent for — hence bankrupt.",
+		"explanation": "The riddle hinges on reinterpreting everyday words (car, hotel, bankrupt) as pieces from a board game rather than real life.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-022",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Linda is 31, single, outspoken, and very bright. She majored in philosophy. As a student she was deeply concerned with discrimination and social justice, and took part in anti-nuclear demonstrations. Which is more probable?",
+		"choices": [
+			"Linda is a bank teller",
+			"Linda is a bank teller and is active in the feminist movement",
+			"Both are exactly equally probable",
+			"Neither can be estimated from this description"
+		],
+		"answer": "Linda is a bank teller",
+		"explanation": "This is Tversky and Kahneman's famous 'Linda problem.' A single condition (bank teller) can never be less probable than that same condition combined with an extra one (bank teller AND feminist) — the conjunction of two events is never more likely than either alone. Most people intuitively but incorrectly pick the conjunction because it fits the character sketch better.",
+		"tags": [
+			"probability",
+			"cognitive-bias",
+			"conjunction-fallacy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-023",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What word in the English language is always spelled incorrectly, no matter what?",
+		"answer": "incorrectly",
+		"accepted": [
+			"incorrectly",
+			"the word \"incorrectly\""
+		],
+		"explanation": "The word \"incorrectly\" is, quite literally, spelled I-N-C-O-R-R-E-C-T-L-Y — so the sentence \"incorrectly is spelled incorrectly\" is always true, whatever the intended trick.",
+		"tags": [
+			"wordplay",
+			"riddle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-024",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: the Great Wall of China is visible to the naked eye from low Earth orbit.",
+		"choices": [
+			"True — it's the only human-made structure visible from space",
+			"False — it's a persistent myth; astronauts have confirmed the wall is too narrow to pick out by eye from orbit",
+			"True, but only from the Moon",
+			"False — the wall no longer exists in any visible form"
+		],
+		"answer": "False — it's a persistent myth; astronauts have confirmed the wall is too narrow to pick out by eye from orbit",
+		"explanation": "Despite its length, the wall is only about 5-10 meters wide — far too narrow to resolve from hundreds of kilometers up. Multiple astronauts, including those who've specifically looked for it, have debunked the claim.",
+		"tags": [
+			"myth-busting",
+			"trivia",
+			"geography",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-025",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how does the number of neurons in a human brain compare to the number of stars in the Milky Way galaxy?",
+		"choices": [
+			"Roughly the same order of magnitude — both are on the order of tens of billions to a couple hundred billion",
+			"The human brain has about 1,000 times more",
+			"The Milky Way has about 1,000 times more stars",
+			"They differ by a factor of a million or more"
+		],
+		"answer": "Roughly the same order of magnitude — both are on the order of tens of billions to a couple hundred billion",
+		"explanation": "The human brain has an estimated ~86 billion neurons, and the Milky Way is estimated to hold ~100-400 billion stars — both squarely in the tens-to-hundreds-of-billions range, a coincidence often cited in pop science.",
+		"tags": [
+			"estimation",
+			"biology",
+			"astronomy",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-026",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A mother has two sons born on the same day, in the same hour, of the same year — yet they are not twins. How is this possible?",
+		"answer": "triplets",
+		"accepted": [
+			"triplets",
+			"they are triplets",
+			"one of a set of triplets",
+			"higher-order multiples"
+		],
+		"explanation": "\"Not twins\" just rules out being one of exactly two — they could be two of a set of triplets (or more), all born on the same day but technically not twins.",
+		"tags": [
+			"riddle",
+			"lateral",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-027",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: Napoleon Bonaparte was unusually short compared to his contemporaries, which is where the term \"Napoleon complex\" comes from.",
+		"choices": [
+			"True — he was noticeably shorter than the average Frenchman of his era",
+			"False — he was roughly average height for a Frenchman of his era; the myth comes from confusing French inches with English inches when converting his recorded height",
+			"True, but only compared to his own generals",
+			"False — the term refers to his political ambitions, not his physical height"
+		],
+		"answer": "False — he was roughly average height for a Frenchman of his era; the myth comes from confusing French inches with English inches when converting his recorded height",
+		"explanation": "Napoleon's height was recorded as 5'2\" in French units (pouces), which are longer than English inches — that converts to roughly 5'6\"-5'7\" (168-170cm), close to average for the period. The \"tiny Napoleon\" image is largely a mistranslation plus British propaganda cartoons.",
+		"tags": [
+			"history",
+			"myth-busting",
+			"misattribution",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-028",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In the St. Petersburg paradox, a fair coin is flipped until it lands tails; if the first tails happens on flip $n$, you win $2^n$ dollars. The expected winnings are mathematically infinite, yet almost nobody would pay more than a modest amount (say $20) to play. What's the standard resolution?",
+		"choices": [
+			"People are simply bad at probability and the paradox reveals nothing deeper",
+			"The expected monetary value is infinite, but expected utility is finite — the subjective value of money grows much more slowly than the money itself, so huge payouts matter less than the math suggests",
+			"The game can't actually be played since coins can't be flipped infinitely many times, so the paradox is meaningless",
+			"The math is simply wrong; the true expected value is small and finite"
+		],
+		"answer": "The expected monetary value is infinite, but expected utility is finite — the subjective value of money grows much more slowly than the money itself, so huge payouts matter less than the math suggests",
+		"explanation": "This is Daniel Bernoulli's original resolution: people maximize expected *utility*, not expected dollars, and a diminishing-marginal-utility function (like a logarithm) turns the infinite expected value into a small, finite expected utility.",
+		"tags": [
+			"probability",
+			"paradox",
+			"expected-value",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-029",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What has keys but can't open a single lock?",
+		"answer": "a piano",
+		"accepted": [
+			"piano",
+			"a piano",
+			"keyboard",
+			"a keyboard"
+		],
+		"explanation": "\"Keys\" here means piano keys, not door keys — the riddle turns on that double meaning.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-030",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "The \"coastline paradox\" points out something strange about measuring the length of Britain's coastline. What is it?",
+		"choices": [
+			"The coastline has a fixed length, but different countries define Britain's borders differently, giving different totals",
+			"The measured length grows without bound as you use a finer measuring scale, because coastlines have fractal-like detail at every level of zoom",
+			"Tides change the coastline's length by up to 30% twice a day, so no single measurement means anything",
+			"It isn't really a paradox — early cartographers just made an arithmetic error that stuck"
+		],
+		"answer": "The measured length grows without bound as you use a finer measuring scale, because coastlines have fractal-like detail at every level of zoom",
+		"explanation": "Lewis Fry Richardson first noticed this, and Mandelbrot used it to help launch fractal geometry: a jagged coastline reveals more inlets and bends the closer you look, so there's no single well-defined 'true' length — only a length relative to your measuring stick.",
+		"tags": [
+			"geography",
+			"fractals",
+			"estimation",
+			"paradox",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -1914,6 +2239,59 @@
 			"generated"
 		],
 		"id": "gen-latex-006"
+	},
+	{
+		"id": "gen-latex-007",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the 'for all' quantifier symbol $\\forall$?",
+		"answer": "\\forall",
+		"accepted": [
+			"\\forall",
+			"forall"
+		],
+		"explanation": "`\\forall` renders the universal quantifier; its counterpart `\\exists` renders the existential quantifier $\\exists$.",
+		"tags": [
+			"symbols",
+			"quantifiers",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-008",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You want parentheses that automatically grow to fit tall content, like around $\\left(\\frac{a}{b}\\right)$. Which source produces that auto-sizing behavior?",
+		"choices": [
+			"( \\frac{a}{b} )",
+			"\\left( \\frac{a}{b} \\right)",
+			"\\left(\\frac{a}{b})",
+			"\\big(\\frac{a}{b}\\big)"
+		],
+		"answer": "\\left( \\frac{a}{b} \\right)",
+		"explanation": "`\\left` and `\\right` must be paired and scale their delimiters to match the tallest content between them. Plain `( )` don't resize at all, `\\big( \\big)` gives a fixed larger size (not content-aware), and an unmatched `\\left(` without a `\\right` is a LaTeX error.",
+		"tags": [
+			"delimiters",
+			"sizing",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-009",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for the binomial theorem, matching this target exactly:  $$(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k}b^k$$  Then reveal and compare.",
+		"answer": "(a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k}b^k",
+		"explanation": "Combines `\\sum` with limits, `\\binom{n}{k}` for the coefficient, and stacked superscripts/subscripts — good practice for writing multi-part formulas by hand.",
+		"tags": [
+			"writing",
+			"binomial-theorem",
+			"sum",
+			"generated"
+		]
 	},
 	{
 		"domain": "logic",
@@ -2447,6 +2825,117 @@
 			"generated"
 		],
 		"id": "gen-logic-028"
+	},
+	{
+		"id": "gen-logic-029",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "\"Every time the rooster crows, the sun rises shortly after. Therefore, the rooster's crowing causes the sun to rise.\" What's wrong with this reasoning?",
+		"choices": [
+			"Nothing — the argument is valid",
+			"It commits the post hoc ergo propter hoc fallacy: sequence (B follows A) is mistaken for causation, when both are actually driven by something else (Earth's rotation)",
+			"It commits the fallacy of affirming the consequent",
+			"It's a false dilemma between two unrelated events"
+		],
+		"answer": "It commits the post hoc ergo propter hoc fallacy: sequence (B follows A) is mistaken for causation, when both are actually driven by something else (Earth's rotation)",
+		"explanation": "\"After this, therefore because of this\" is a classic informal fallacy — correlation or sequence in time doesn't establish causation, and here both events share a common cause instead.",
+		"tags": [
+			"fallacy",
+			"informal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-030",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "You have 9 coins, identical in appearance. Exactly one is counterfeit and slightly lighter than the rest. You have a balance scale (no weights, just compares two sides). What is the minimum number of weighings needed to guarantee finding the counterfeit, and what's the strategy? Work it out, then reveal and compare.",
+		"answer": "2 weighings. Split the 9 coins into three groups of 3. Weigh group 1 against group 2: if they balance, the counterfeit is in group 3; otherwise it's in the lighter group. Take that group of 3, weigh one coin against another (leaving the third aside): if they balance, the third coin is counterfeit; otherwise the lighter one on the scale is.",
+		"explanation": "Each weighing has 3 possible outcomes (left-heavy, right-heavy, balanced), so 2 weighings distinguish up to $3^2=9$ possibilities — exactly enough to pin down 1 counterfeit among 9 coins, with no slack.",
+		"tags": [
+			"puzzle",
+			"weighing-puzzle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-031",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A man is looking at a photograph. A friend asks whose picture it is. He replies: \"Brothers and sisters I have none, but this man's father is my father's son.\" Whose photograph is he looking at?",
+		"choices": [
+			"His own",
+			"His father's",
+			"His son's",
+			"His nephew's"
+		],
+		"answer": "His son's",
+		"explanation": "\"My father's son\" is the speaker himself, since he has no siblings. So \"this man's father is me\" — meaning the man in the photo is the speaker's son.",
+		"tags": [
+			"riddle",
+			"deduction",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-032",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Consider these four statements, all about each other:\n1. Exactly one of these four statements is false.\n2. Exactly two of these four statements are false.\n3. Exactly three of these four statements are false.\n4. Exactly four of these four statements are false.\nWhich statement is true?",
+		"choices": [
+			"Statement 1",
+			"Statement 2",
+			"Statement 3",
+			"None of them can be true"
+		],
+		"answer": "Statement 3",
+		"explanation": "Since the statements name different exact counts, at most one can be true at a time. If statement 4 were true, all four would be false — a contradiction, so 0 true is impossible. If exactly one statement is true, then 3 are false, which is exactly what statement 3 claims — the only self-consistent case.",
+		"tags": [
+			"self-reference",
+			"paradox",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-033",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Four coworkers — Ana, Ben, Cleo, and Dan — each work in a different department (Sales, IT, HR, Finance) and each has a different favorite drink (coffee, tea, juice, water).\n1. The Finance person drinks coffee.\n2. The Sales person drinks juice.\n3. Cleo works in IT.\n4. Ana drinks water.\n5. Dan does not work in Finance.\nWho works in Finance, and what do they drink?",
+		"choices": [
+			"Ben — coffee",
+			"Dan — juice",
+			"Ana — water",
+			"Cleo — tea"
+		],
+		"answer": "Ben — coffee",
+		"explanation": "Cleo is IT (clue 3). Ana drinks water, so she can't be Finance (coffee) or Sales (juice) — she must be HR. That leaves Sales and Finance for Ben and Dan; since Dan isn't Finance (clue 5), Dan is Sales (and drinks juice) and Ben is Finance (and drinks coffee). Cleo gets the last drink, tea.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-034",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 5,
+		"prompt": "On an island of 100 perfectly logical people, everyone has either blue or brown eyes. Each person can see everyone else's eye color but not their own, and there is a strict taboo against anyone discussing eye color at all. If a person ever deduces their own eyes are blue, the rule requires them to leave the island at the next dawn. Everyone knows all of this, and knows that everyone else is perfectly logical. One day a visitor publicly and truthfully announces: \"At least one of you has blue eyes\" — a fact everyone could already see was true of someone else. There are exactly 100 blue-eyed people on the island. What happens, and on which day? Work it out, then reveal and compare.",
+		"answer": "Nothing happens for 99 days. On the 100th dawn after the announcement, all 100 blue-eyed people leave simultaneously.",
+		"explanation": "Prove by induction on the number of blue-eyed people $n$. If $n=1$, that person sees no other blue eyes, so the announcement tells them it's them — they leave on day 1. If $n=k+1$, each blue-eyed person sees $k$ other blue-eyed people and reasons: 'if I'm not blue-eyed, those $k$ people should deduce it and leave on day $k$.' When day $k$ passes and nobody leaves, every blue-eyed person realizes there must be $k+1$ blue-eyed people, including themselves, and all leave on day $k+1$. The announcement matters because it creates common knowledge — everyone now knows that everyone knows (to all levels) that at least one person is blue-eyed, which the mutual visibility alone never provided.",
+		"tags": [
+			"common-knowledge",
+			"induction",
+			"classic",
+			"generated"
+		]
 	},
 	{
 		"domain": "math",
@@ -3614,6 +4103,135 @@
 			"generated"
 		],
 		"id": "gen-math-064"
+	},
+	{
+		"id": "gen-math-065",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the sum of the interior angles of any triangle, in degrees?",
+		"answer": "180",
+		"accepted": [
+			"180",
+			"180 degrees",
+			"180°"
+		],
+		"explanation": "This holds for every triangle in Euclidean geometry, regardless of shape — a basic fact worth having on instant recall.",
+		"tags": [
+			"geometry",
+			"recall",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-066",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Quick divisibility trick: a whole number is divisible by 9 exactly when its digit sum is divisible by 9. What is the digit sum of 4,725?",
+		"answer": "18",
+		"accepted": [
+			"18"
+		],
+		"explanation": "4+7+2+5 = 18, and 18 is divisible by 9, so 4,725 is too (4,725 / 9 = 525) — no long division needed.",
+		"tags": [
+			"divisibility",
+			"mental-math",
+			"number-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-067",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Mental math shortcut: to multiply two numbers close to 100, use $(100-a)(100-b) = 100(100-a-b) + ab$. Use it to compute $97 \\times 96$.",
+		"answer": "9312",
+		"accepted": [
+			"9312",
+			"9,312"
+		],
+		"explanation": "Here $a=3, b=4$: $100(100-3-4) + 3\\times4 = 100 \\times 93 + 12 = 9312$ — far faster than long multiplication.",
+		"tags": [
+			"mental-math",
+			"arithmetic-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-068",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A snail sits at the bottom of a 10-meter well. Each day it climbs 3 meters, but each night it slides back 2 meters. How many days does it take to reach the top?",
+		"answer": "8",
+		"accepted": [
+			"8",
+			"8 days"
+		],
+		"explanation": "The snail nets 1 meter per full day, reaching 7 meters after 7 days. On day 8 it climbs the remaining 3 meters and reaches the top before it can slide back — so the answer isn't 10, the naive net-rate guess.",
+		"tags": [
+			"puzzle",
+			"word-problem",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-069",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "You have an unmarked 4-liter jug and an unmarked 9-liter jug, plus unlimited water. Using only fills, empties, and pours between the two jugs, how do you end up with exactly 6 liters in one of them? Work out a sequence of steps, then reveal and compare.",
+		"answer": "Fill the 9L jug (0,9). Pour into the 4L until full (4,5). Empty the 4L (0,5). Pour the 9L into the 4L (4,1). Empty the 4L (0,1). Pour the 1L from the 9L into the 4L (1,0). Fill the 9L again (1,9). Pour from the 9L into the 4L until the 4L is full, which takes 3L (4,6). The 9L jug now holds exactly 6 liters.",
+		"explanation": "Since $\\gcd(4,9)=1$, every integer amount from 0 to 9 is reachable by pouring between the two jugs — this is the same idea behind the water-jug puzzle from Die Hard 3.",
+		"tags": [
+			"puzzle",
+			"water-jug",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-070",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Take the number 731. Reverse its digits to get 137, and subtract the smaller from the larger: $731 - 137$. Then add that result to its own reverse. What number do you get?",
+		"answer": "1089",
+		"accepted": [
+			"1089",
+			"1,089"
+		],
+		"explanation": "$731-137=594$, and $594+495=1089$. This works for any 3-digit number whose first and last digits differ: the subtraction always produces a multiple of 99 with a middle digit of 9, and adding its reverse always collapses to 1089.",
+		"tags": [
+			"number-trick",
+			"recreational",
+			"mental-math",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-071",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The 18th-century city of Königsberg had seven bridges connecting two riverbanks and two islands. Is it possible to walk a route that crosses each of the seven bridges exactly once?",
+		"choices": [
+			"Yes, if you start on one of the islands",
+			"Yes, if you start on the north bank",
+			"No — it's impossible no matter where you start",
+			"Yes, but only if you're allowed to cross exactly one bridge twice"
+		],
+		"answer": "No — it's impossible no matter where you start",
+		"explanation": "Euler proved a walk crossing every bridge exactly once (an Eulerian path) exists only if 0 or 2 landmasses have an odd number of bridges. In Königsberg all four landmasses have an odd bridge count, so no such route exists — the founding result of graph theory.",
+		"tags": [
+			"graph-theory",
+			"classic",
+			"history",
+			"generated"
+		]
 	},
 	{
 		"id": "gen-015",

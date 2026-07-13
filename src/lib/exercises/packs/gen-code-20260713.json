@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260713",
+	"exercises": [
+		{
+			"id": "gen-code-041",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this C++ program print?",
+			"code": {
+				"lang": "cpp",
+				"src": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 2;\n    double result = a / b;\n    std::cout << result << std::endl;\n    return 0;\n}"
+			},
+			"answer": "2",
+			"accepted": ["2", "2.0"],
+			"explanation": "`a / b` is integer division between two `int`s, computed *before* the result is converted to `double` — so it truncates to 2 first, and `2.0` still prints as \"2\" since std::cout drops the trailing zero by default.",
+			"tags": ["cpp", "integer-division", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-042",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to remove all even numbers from `items`, leaving only the odd ones. It doesn't work correctly. What's the bug?",
+			"code": {
+				"lang": "python",
+				"src": "items = [1, 2, 2, 3, 4, 4, 4]\nfor x in items:\n    if x % 2 == 0:\n        items.remove(x)\nprint(items)"
+			},
+			"choices": [
+				"`items.remove(x)` only removes the last matching value, not the first",
+				"Removing elements from a list while iterating over it shifts later elements into earlier positions, so the iterator skips over some of them",
+				"The `%` operator behaves unpredictably on lists of mixed parity",
+				"`for x in items` copies the list, so removals never affect what gets printed"
+			],
+			"answer": "Removing elements from a list while iterating over it shifts later elements into earlier positions, so the iterator skips over some of them",
+			"explanation": "The list iterator tracks a numeric index; each removal shifts subsequent elements left by one, so the very next element effectively gets skipped. The actual output is `[1, 2, 3, 4]` — some evens survive. The fix is to iterate over a copy, e.g. `for x in items[:]`, or build a new list instead.",
+			"tags": ["python", "mutation", "iteration", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-043",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `total_rank` below, as a function of `n = len(nums)`?",
+			"code": {
+				"lang": "python",
+				"src": "def total_rank(nums):\n    total = 0\n    for x in nums:\n        lo, hi = 0, len(nums)\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if nums[mid] < x:\n                lo = mid + 1\n            else:\n                hi = mid\n        total += lo\n    return total"
+			},
+			"choices": ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
+			"answer": "O(n log n)",
+			"explanation": "The outer loop runs `n` times, and for each element the inner `while` loop halves its search range every step, taking O(log n) — giving O(n log n) overall, the same shape as running a binary search once per element.",
+			"tags": ["python", "complexity", "binary-search", "generated"]
+		},
+		{
+			"id": "gen-code-044",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "This function is supposed to return double its input, but always returns `undefined` instead. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "const double = x => { x * 2 };\nconsole.log(double(5));"
+			},
+			"choices": [
+				"Arrow functions can't take a bare parameter without parentheses around it",
+				"The arrow function body uses `{ }`, which requires an explicit `return` statement — without one, it implicitly returns `undefined`",
+				"`x * 2` should be written as `x *= 2` to modify `x` in place",
+				"`console.log` cannot print the result of an arrow function call directly"
+			],
+			"answer": "The arrow function body uses `{ }`, which requires an explicit `return` statement — without one, it implicitly returns `undefined`",
+			"explanation": "A braced arrow function body is a full function body, not an implicit expression — only the concise form `x => x * 2` (no braces) returns its expression automatically.",
+			"tags": ["javascript", "arrow-function", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-045",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this JavaScript print? (Give the three values in order, separated by spaces.)",
+			"code": {
+				"lang": "javascript",
+				"src": "console.log(typeof null, typeof undefined, typeof NaN);"
+			},
+			"answer": "object undefined number",
+			"accepted": ["object undefined number", "object, undefined, number"],
+			"explanation": "`typeof null` famously returns `\"object\"` — a decades-old JavaScript bug kept for backward compatibility. `typeof undefined` is `\"undefined\"`, and `NaN` is still numerically typed, so `typeof NaN` is `\"number\"`.",
+			"tags": ["javascript", "typeof", "gotcha", "predict-output", "generated"]
+		}
+	]
+}
