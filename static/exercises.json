@@ -1558,6 +1558,131 @@
 		]
 	},
 	{
+		"id": "gen-code-046",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print? (Give the two values in order, separated by a space.)",
+		"code": {
+			"lang": "javascript",
+			"src": "function* gen() {\n  yield 1;\n  yield 2;\n}\nconst it = gen();\nconsole.log([...it].length, [...it].length);"
+		},
+		"answer": "2 0",
+		"accepted": [
+			"2 0",
+			"2, 0"
+		],
+		"explanation": "Generators are iterators, and iterators are single-use: spreading `it` once fully drains it. The second spread starts from an already-finished generator, so it produces an empty array.",
+		"tags": [
+			"javascript",
+			"generators",
+			"iterators",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-047",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print? (Give the three values in order, separated by spaces.)",
+		"code": {
+			"lang": "python",
+			"src": "print(5 > 3 > 1)\nprint(5 > 3 < 2)\nprint(3 == 3 == 1)"
+		},
+		"answer": "True False False",
+		"accepted": [
+			"True False False",
+			"True, False, False"
+		],
+		"explanation": "Python chains comparisons as implicit `and`s between adjacent pairs, not a left-to-right single evaluation: `3 == 3 == 1` means `(3==3) and (3==1)` → `True and False` → `False`, not `(3==3)==1` which would (coincidentally) give `True==1` → `True`.",
+		"tags": [
+			"python",
+			"chained-comparison",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-048",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to make an independent copy of a 2D board so mutating the copy never affects the original. It doesn't work correctly. What's the bug?",
+		"code": {
+			"lang": "python",
+			"src": "def clone_board(board):\n    return board.copy()\n\nboard = [[0, 0], [0, 0]]\nnew_board = clone_board(board)\nnew_board[0][0] = 1\nprint(board[0][0])"
+		},
+		"choices": [
+			"`.copy()` doesn't exist on Python lists",
+			"`.copy()` only makes a shallow copy — the outer list is new, but the nested lists inside it are still shared with the original, so mutating a nested element mutates both",
+			"`new_board[0][0] = 1` should be written as `new_board[0] = 1`",
+			"There is no bug — `board[0][0]` correctly stays `0`"
+		],
+		"answer": "`.copy()` only makes a shallow copy — the outer list is new, but the nested lists inside it are still shared with the original, so mutating a nested element mutates both",
+		"explanation": "`list.copy()` (like `board[:]`) creates a new outer list but doesn't recursively copy nested objects — `new_board[0]` and `board[0]` still point to the same inner list, so `board[0][0]` also becomes `1`. A true independent copy needs `copy.deepcopy` or rebuilding the nested lists by hand.",
+		"tags": [
+			"python",
+			"mutability",
+			"shallow-copy",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-049",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "This C program is meant to print `42`. It compiles with only a warning, and its actual behavior is unreliable — it might print `42`, print garbage, or crash outright depending on the compiler and optimization settings. What's the bug?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint* make_value(int x) {\n    int result = x * 2;\n    return &result;\n}\n\nint main() {\n    int* p = make_value(21);\n    printf(\"%d\\n\", *p);\n    return 0;\n}"
+		},
+		"choices": [
+			"`x * 2` has an operator precedence bug and should be written `(x) * 2`",
+			"`make_value` returns the address of a local (stack) variable that ceases to exist once the function returns — dereferencing `p` afterward is undefined behavior, so its output can't be relied on at all",
+			"`printf` needs `%p` instead of `%d` to print a dereferenced value",
+			"`int* p` should be declared as plain `int p`, since `make_value` doesn't actually need a pointer"
+		],
+		"answer": "`make_value` returns the address of a local (stack) variable that ceases to exist once the function returns — dereferencing `p` afterward is undefined behavior, so its output can't be relied on at all",
+		"explanation": "`result` is a stack-allocated local variable; once `make_value` returns, that stack frame is invalid, and `p` becomes a dangling pointer. Reading through it is undefined behavior — it might coincidentally print `42` on one system, garbage on another, or crash, since nothing guarantees the memory is untouched. The fix is to return the value itself (`int`, not `int*`) or heap-allocate `result` with `malloc`.",
+		"tags": [
+			"c",
+			"dangling-pointer",
+			"undefined-behavior",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-050",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `has_pair_with_sum` below, as a function of `n = len(nums)`?",
+		"code": {
+			"lang": "python",
+			"src": "def has_pair_with_sum(nums, target):\n    seen = set()\n    for x in nums:\n        if target - x in seen:\n            return True\n        seen.add(x)\n    return False"
+		},
+		"choices": [
+			"O(1)",
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)"
+		],
+		"answer": "O(n)",
+		"explanation": "Each of the `n` elements is visited once, and both the set membership check (`target - x in seen`) and the insertion are O(1) on average for a hash set — giving O(n) overall, versus the O(n²) a naive nested-loop check of every pair would take.",
+		"tags": [
+			"python",
+			"complexity",
+			"hashing",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -2132,6 +2257,190 @@
 		]
 	},
 	{
+		"id": "gen-general-031",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "Two fathers and two sons went fishing together. Each of them caught exactly one fish, yet they brought home only three fish in total. Nobody lost a fish and nobody threw one back. How is this possible? Work out an explanation, then reveal and compare.",
+		"answer": "There were only three people, not four: a grandfather, his son, and his son's son (grandson). The grandfather and the middle man are both \"fathers,\" and the middle man and the boy are both \"sons\" — so \"two fathers and two sons\" is satisfied by three people, each catching one fish.",
+		"explanation": "The riddle exploits the fact that one person can hold two family roles at once — the middle generation is simultaneously a father and a son.",
+		"tags": [
+			"riddle",
+			"lateral",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-032",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What has branches, but no fruit, trunk, or leaves?",
+		"answer": "a bank",
+		"accepted": [
+			"a bank",
+			"bank"
+		],
+		"explanation": "\"Branches\" here means bank branches (locations), not tree branches — the riddle turns on that double meaning.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-033",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: humans only use about 10% of their brain, with the other 90% sitting idle.",
+		"choices": [
+			"True — brain scans confirm 90% of neurons are inactive at any given time",
+			"False — brain imaging shows essentially all regions of the brain are active over the course of a day, just not all simultaneously for any single task",
+			"True, but only while asleep",
+			"False — humans actually use more than 100% of their brain through neural compensation"
+		],
+		"answer": "False — brain imaging shows essentially all regions of the brain are active over the course of a day, just not all simultaneously for any single task",
+		"explanation": "The '10% myth' has no basis in neuroscience — fMRI and PET studies show virtually every part of the brain has an identified function and gets used, just not all at once for every task.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-034",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "About how many Earths, by volume, could you fit inside the Sun?",
+		"choices": [
+			"About 13,000",
+			"About 130,000",
+			"About 1.3 million",
+			"About 13 million"
+		],
+		"answer": "About 1.3 million",
+		"explanation": "The Sun's radius (~696,000 km) is about 109 times Earth's (~6,371 km), and volume scales with the cube of radius: $109^3 \\approx 1.3$ million.",
+		"tags": [
+			"estimation",
+			"astronomy",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-035",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The Mercator map projection, still common in classrooms, makes Greenland look roughly the same size as Africa. In reality, about how many times larger is Africa's land area than Greenland's?",
+		"choices": [
+			"About 2 times larger",
+			"About 5 times larger",
+			"About 14 times larger",
+			"About 50 times larger"
+		],
+		"answer": "About 14 times larger",
+		"explanation": "Africa covers about 30.4 million km² versus Greenland's roughly 2.2 million km² — a ratio of about 14. Mercator projections badly distort area near the poles, hugely inflating landmasses like Greenland relative to those near the equator.",
+		"tags": [
+			"geography",
+			"myth-busting",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-036",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "A famous (apocryphal) physics exam question asks a student to show how to determine the height of a tall building using a barometer. The expected answer measures air pressure at the top and bottom and computes the height from the difference. Think of at least two genuinely different methods for finding the building's height using nothing but a barometer — methods that don't rely on the pressure-measurement formula at all. Then reveal and compare.",
+		"answer": "A few classic alternatives: (1) Drop the barometer off the roof and time its fall with a stopwatch, then use $h = \\frac{1}{2}gt^2$. (2) Tie a long string to the barometer, lower it from the roof until it just touches the ground, then measure the string. (3) On a sunny day, measure the barometer's height and the length of its shadow, and the building's shadow, then use similar triangles to scale up. (4) Simply offer the barometer to the building's superintendent in exchange for telling you the building's exact height.",
+		"explanation": "This is the (apocryphal) 'Niels Bohr barometer problem' — a classic illustration that the technically expected answer isn't the only valid one, and creatively reframing a tool's use is itself a form of correct reasoning.",
+		"tags": [
+			"lateral",
+			"creativity",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-037",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "I am tall when I am young, and I grow shorter as I age. What am I?",
+		"answer": "a candle",
+		"accepted": [
+			"a candle",
+			"candle"
+		],
+		"explanation": "A candle starts tall and burns down shorter over time — the riddle personifies it as aging.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-038",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "You're handed two identical envelopes and told one contains twice as much money as the other. You open yours and find $50. The reasoning goes: 'the other envelope contains either $25 or $100 with equal probability, so its expected value is $0.5\\times 25 + 0.5\\times 100 = \\$62.50$ — more than my $50, so I should switch.' By symmetry, the same argument would apply again after switching, suggesting you should switch forever. What's the actual flaw?",
+		"choices": [
+			"There is no flaw — you really should keep switching forever, and the paradox is just unintuitive but correct",
+			"Treating '$50 is the smaller amount' and '$50 is the larger amount' as always 50/50, regardless of the amount observed, silently assumes a probability distribution over the envelope amounts that isn't actually justified — without it, the expected-value calculation doesn't hold",
+			"The arithmetic itself is wrong: $0.5\\times 25 + 0.5\\times 100$ should equal exactly $50",
+			"The flaw is that expected value can only be computed for physical objects, not money"
+		],
+		"answer": "Treating '$50 is the smaller amount' and '$50 is the larger amount' as always 50/50, regardless of the amount observed, silently assumes a probability distribution over the envelope amounts that isn't actually justified — without it, the expected-value calculation doesn't hold",
+		"explanation": "This is the classic two-envelope paradox. Without a well-defined prior over the possible envelope amounts, assuming a blanket 50/50 split for any observed value is the hidden error — for most realistic priors, there's no consistent rule that says switching is always the better move.",
+		"tags": [
+			"probability",
+			"paradox",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-039",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A newborn baby has more individual bones than an adult. Roughly how many bones does a newborn have, compared to the 206 an adult ends up with (many fuse together during growth)?",
+		"choices": [
+			"About 150",
+			"About 206 — the same as an adult",
+			"About 270-300",
+			"About 450"
+		],
+		"answer": "About 270-300",
+		"explanation": "Babies are born with roughly 270-300 separate bones and cartilage pieces; many fuse together as they grow (skull plates, vertebrae, and more), ending at the adult count of 206.",
+		"tags": [
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-040",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "A man leaves his house, turns left three times, and walks back home — where he finds two people wearing masks waiting for him. Who are they, and what's going on? Work out an explanation, then reveal and compare.",
+		"answer": "He's a baseball batter running the bases. Turning left at first, second, and third base brings him back to home plate, where the catcher and the home-plate umpire — both wearing protective masks — are waiting.",
+		"explanation": "The riddle reframes an ordinary baseball play as a suspicious scenario: 'turns left three times' traces the diamond, and 'masks' cues the catcher's and umpire's protective gear.",
+		"tags": [
+			"riddle",
+			"lateral",
+			"classic",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -2290,6 +2599,59 @@
 			"writing",
 			"binomial-theorem",
 			"sum",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-010",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the 'approximately equal to' symbol $\\approx$?",
+		"answer": "\\approx",
+		"accepted": [
+			"\\approx",
+			"approx"
+		],
+		"explanation": "`\\approx` renders the wavy double-tilde used for approximate equality, distinct from `\\sim` (same order of magnitude / similarity) or `\\cong` (congruence).",
+		"tags": [
+			"symbols",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-011",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A student writes `The solution is x = 5.` directly in a LaTeX document, without wrapping the math in `$...$`. What happens when it compiles?",
+		"choices": [
+			"LaTeX throws a compile error, since math symbols must always be in math mode",
+			"It compiles fine, but 'x' and '5' are typeset in the regular upright text font with normal spacing — plain text, not styled as math",
+			"LaTeX automatically detects the equation and wraps it in math mode for you",
+			"Only the '5' is misformatted; letters like 'x' are unaffected by mode"
+		],
+		"answer": "It compiles fine, but 'x' and '5' are typeset in the regular upright text font with normal spacing — plain text, not styled as math",
+		"explanation": "LaTeX doesn't require math mode to compile — plain text compiles just fine — but variables written outside `$...$` are simply ordinary text (upright, not italic), losing the typographic conventions readers expect for math, like italicized variables and operator spacing.",
+		"tags": [
+			"text-mode",
+			"modes",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-012",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for Bayes' theorem, matching this target exactly:  $$P(A \\mid B) = \\frac{P(B \\mid A)\\,P(A)}{P(B)}$$  Then reveal and compare.",
+		"answer": "P(A \\mid B) = \\frac{P(B \\mid A)\\,P(A)}{P(B)}",
+		"explanation": "`\\mid` produces the conditional 'given' bar, and `\\,` inserts a thin space — useful for separating adjacent factors like $P(B\\mid A)$ and $P(A)$ in a product so they don't visually run together.",
+		"tags": [
+			"writing",
+			"probability",
+			"commands",
 			"generated"
 		]
 	},
@@ -2933,6 +3295,117 @@
 		"tags": [
 			"common-knowledge",
 			"induction",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-035",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "A teacher announces: 'There will be exactly one surprise test next week, on one of the five school days (Monday-Friday). By \"surprise\" I mean: on the morning of the test, you will not be able to know for certain in advance that today is the day.' A student reasons: 'It can't be Friday — if no test happened by Thursday evening, I'd know for certain it must be Friday, so it wouldn't be a surprise. That rules out Friday. But then Thursday becomes the last possible day, so by the same logic, if no test happened by Wednesday evening, I'd know it must be Thursday — ruling that out too.' Continuing backward, the student concludes no day at all can work, so there can be no surprise test. Then, on Wednesday, the test happens — and it genuinely surprises the student. What went wrong with the reasoning? Work it out, then reveal and compare.",
+		"answer": "This is philosophy's open 'Unexpected Hanging' (surprise-exam) paradox — there's no single resolution every logician agrees on. The most common diagnosis: the backward-induction chain treats each future 'I would know for certain' as something already settled in advance, but that certainty can only really be tested by living through the days. By the time the student has 'proven' no day works, that very proof is something the student would need to keep actively believing all the way through Wednesday morning for the test not to surprise them — and in practice, a proof this convoluted doesn't survive contact with genuine uncertainty about one's own future state of mind.",
+		"explanation": "The paradox remains genuinely disputed; its value here is noticing that a seemingly airtight backward-induction proof can undermine its own premises once its conclusion is folded back into the very scenario it's reasoning about.",
+		"tags": [
+			"paradox",
+			"backward-induction",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-036",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Consider this argument: 'All doctors are professionals. Some professionals are wealthy. Therefore, some doctors are wealthy.' Is this argument logically valid?",
+		"choices": [
+			"Yes — it follows directly from the two premises",
+			"No — this commits the fallacy of the undistributed middle: the 'professionals' who are wealthy aren't guaranteed to be the same ones who are doctors",
+			"Yes, but only because doctors are usually wealthy in reality",
+			"No — the argument illicitly reverses the first premise"
+		],
+		"answer": "No — this commits the fallacy of the undistributed middle: the 'professionals' who are wealthy aren't guaranteed to be the same ones who are doctors",
+		"explanation": "'All doctors are professionals' places doctors inside the professionals category, but 'some professionals are wealthy' only guarantees wealthy professionals exist somewhere in that broader category — they could all be, say, wealthy lawyers, with no overlap with doctors at all. The premises never pin the wealthy subset down to doctors specifically.",
+		"tags": [
+			"syllogism",
+			"fallacy",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-037",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Five runners — Kai, Noor, Rio, Sam, and Val — finish a race in five distinct places, 1st through 5th (no ties). Clues:\n1. Noor finished immediately before Kai.\n2. Rio finished immediately after Val.\n3. Sam finished neither 1st nor 5th.\n4. Kai finished 2nd.\nWhat is the finishing order, from 1st to 5th? (List the five names in order, separated by commas.)",
+		"answer": "Noor, Kai, Sam, Val, Rio",
+		"accepted": [
+			"Noor, Kai, Sam, Val, Rio",
+			"Noor,Kai,Sam,Val,Rio"
+		],
+		"explanation": "Kai is 2nd (clue 4), so Noor must be 1st (clue 1). That leaves 3rd-5th for Rio, Sam, and Val. Clue 2 needs Rio directly after Val — the only consecutive pair available there is Val=4th, Rio=5th, since Val=3rd/Rio=4th would force Sam into 5th, violating clue 3. Sam takes the remaining 3rd place.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-038",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A crime scene DNA sample matches a suspect. If the suspect were innocent, there's only a 1-in-a-million chance their DNA would coincidentally match (the 'random match probability'). A prosecutor argues: 'Since a random match is a 1-in-a-million long shot, there's only a 1-in-a-million chance the suspect is innocent.' What's wrong with this reasoning?",
+		"choices": [
+			"Nothing — the prosecutor's conclusion follows directly from the match probability",
+			"It confuses the probability of a match given innocence with the probability of innocence given a match — without knowing how large the pool of possible suspects is, you can't convert a rarity of evidence into a probability of guilt",
+			"The 1-in-a-million figure itself must be wrong, since DNA matches are essentially always correct",
+			"The fallacy is that DNA evidence can never be used to help establish guilt under any circumstances"
+		],
+		"answer": "It confuses the probability of a match given innocence with the probability of innocence given a match — without knowing how large the pool of possible suspects is, you can't convert a rarity of evidence into a probability of guilt",
+		"explanation": "This is the classic 'prosecutor's fallacy.' If a city of 8 million people could plausibly have committed the crime, roughly 8 people would be expected to match by chance alone — so the match, on its own, still leaves real ambiguity, quite unlike a claimed '1-in-a-million chance of innocence.' The two conditional probabilities point in different directions and aren't generally equal.",
+		"tags": [
+			"fallacy",
+			"conditional-probability",
+			"bayesian",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-039",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A cube is painted red on all six faces, then cut into 27 identical smaller cubes (a 3×3×3 arrangement). How many of the small cubes have paint on exactly 2 faces?",
+		"answer": "12",
+		"accepted": [
+			"12",
+			"twelve"
+		],
+		"explanation": "Cubes with exactly 2 painted faces sit on an edge of the big cube but not at a corner. A cube has 12 edges, and in a 3×3×3 split, each edge contains exactly one non-corner small cube (each edge has 3 small cubes total: 2 corners + 1 middle) — giving 12 such cubes.",
+		"tags": [
+			"spatial",
+			"counting",
+			"geometry",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-040",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "A trader has 3,000 bananas and a camel. The market is 1,000 km away. The camel can carry at most 1,000 bananas at a time and eats exactly 1 banana per km it walks, whether carrying bananas or returning empty. The trader may drop bananas at intermediate points and go back for more. What is the maximum number of bananas that can reach the market? (Give the answer as a whole number, rounding down.)",
+		"answer": "533",
+		"accepted": [
+			"533"
+		],
+		"explanation": "With 3,000 bananas, moving the whole pile forward by 1 km costs 5 banana-trips (3 forward, 2 back) until the pile drops to 2,000 — this happens after 200 km, having burned 1,000 bananas. From 2,000 bananas, each km now costs 3 banana-trips (2 forward, 1 back) until the pile drops to 1,000 — an additional 333.33 km, burning another 1,000 bananas, at the 533.33 km mark. The remaining 466.67 km needs only a single trip, costing 1 banana/km, so $1{,}000 - 466.67 \\approx 533$ bananas reach the market. This is the classic 'Jeep problem' / camel-and-bananas puzzle.",
+		"tags": [
+			"optimization",
 			"classic",
 			"generated"
 		]
@@ -4230,6 +4703,138 @@
 			"graph-theory",
 			"classic",
 			"history",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-072",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Imagine a rope tied tightly around the Earth's equator (circumference $\\approx 40{,}075$ km). Now add just 1 extra meter of rope, and imagine the loop is raised uniformly off the ground all the way around into a slightly larger circle. About how high off the ground would the rope now be?",
+		"choices": [
+			"Effectively no change — a few millimeters at most",
+			"About 16 centimeters, all the way around",
+			"About 1.6 meters",
+			"It's impossible to say without knowing Earth's exact radius"
+		],
+		"answer": "About 16 centimeters, all the way around",
+		"explanation": "Since $C = 2\\pi r$, adding $\\Delta C = 1$ m increases the radius by $\\Delta r = \\Delta C / (2\\pi) \\approx 0.159$ m $\\approx 16$ cm — and this holds no matter how big the sphere is. The same 1 extra meter of rope would lift a loop around a basketball by the very same 16 cm.",
+		"tags": [
+			"geometry",
+			"recreational",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-073",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Take the number 3524. Rearrange its digits to form the largest possible 4-digit number and the smallest possible 4-digit number, then subtract the smaller from the larger. What do you get?",
+		"answer": "3087",
+		"accepted": [
+			"3087",
+			"3,087"
+		],
+		"explanation": "Largest arrangement: 5432. Smallest: 2345. $5432 - 2345 = 3087$. (Repeating this rearrange-and-subtract process on any 4-digit number with not-all-identical digits always converges to 6174, known as Kaprekar's constant.)",
+		"tags": [
+			"number-trick",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-074",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "Three people check into a hotel room priced at $30, splitting the cost evenly at $10 each. Later, the manager realizes the room actually only costs $25, and sends a bellhop back with $5 to refund. Unable to split $5 three ways evenly, the bellhop gives each guest $1 back and pockets the remaining $2. Now each guest has effectively paid $9, totaling $27, and the bellhop has $2 — that's $27 + $2 = $29. Where did the missing dollar go? Work out the flaw, then reveal and compare.",
+		"answer": "There is no missing dollar — the $27 total the guests paid already includes the bellhop's $2 (the hotel got $25 and the bellhop kept $2, and $25 + $2 = $27). Adding the bellhop's $2 to the $27 again double-counts it. The consistent way to check the books is: $25 (hotel) + $2 (bellhop) + $3 (returned to guests) = $30, which balances correctly.",
+		"explanation": "The puzzle sets up an arithmetic shell game by adding two numbers that were never meant to be added together — a classic lesson in checking what a running total actually represents before trusting it.",
+		"tags": [
+			"recreational",
+			"fallacy",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-075",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Multiplying a two-digit number by 101 just writes that number twice in a row (e.g., $42 \\times 101 = 4242$). Use this shortcut to compute $67 \\times 101$ mentally.",
+		"answer": "6767",
+		"accepted": [
+			"6767",
+			"6,767"
+		],
+		"explanation": "$101 = 100 + 1$, so $n \\times 101 = 100n + n$, which for a two-digit $n$ just glues $n$ next to itself: $67 \\times 101 = 6767$.",
+		"tags": [
+			"mental-math",
+			"number-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-076",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Without calculating exact values, which is larger: $3^4$ or $4^3$?",
+		"choices": [
+			"$3^4$ is larger",
+			"$4^3$ is larger",
+			"They are exactly equal",
+			"It depends on rounding"
+		],
+		"answer": "$3^4$ is larger",
+		"explanation": "$3^4 = 81$ and $4^3 = 64$, so $3^4$ wins. There's no general shortcut for which of $a^b$ and $b^a$ is bigger — compare with $2^4 = 4^2 = 16$, where they tie exactly.",
+		"tags": [
+			"powers",
+			"exponents",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-077",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "For how many single nonzero digits $d$ (1 through 9) does $d \\times d$ end in the digit $d$ itself?",
+		"answer": "3",
+		"accepted": [
+			"3",
+			"three"
+		],
+		"explanation": "Checking each digit: $1^2=1$, $5^2=25$, and $6^2=36$ all end in the digit you squared — no others do (e.g. $4^2=16$ ends in 6, not 4). So the digits 1, 5, and 6 have this property, giving 3 total.",
+		"tags": [
+			"number-theory",
+			"recreational",
+			"pattern",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-078",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A man spends half his money plus $10 at the first shop, then half of what remains plus $10 at the second shop, then half of what remains plus $10 at the third shop — and walks out with nothing left. How much money did he start with?",
+		"answer": "140",
+		"accepted": [
+			"140",
+			"$140",
+			"140 dollars"
+		],
+		"explanation": "Work backward from $0. Before shop 3: $x$ with $x/2 - 10 = 0 \\Rightarrow x = 20$. Before shop 2: $x/2 - 10 = 20 \\Rightarrow x = 60$. Before shop 1: $x/2 - 10 = 60 \\Rightarrow x = 140$. Check forward: $140 \\to$ spend $80 \\to 60 \\to$ spend $40 \\to 20 \\to$ spend $20 \\to 0$.",
+		"tags": [
+			"word-problem",
+			"algebra",
+			"recreational",
 			"generated"
 		]
 	},

@@ -1,0 +1,42 @@
+{
+	"pack": "gen-latex-20260720",
+	"exercises": [
+		{
+			"id": "gen-latex-010",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the 'approximately equal to' symbol $\\approx$?",
+			"answer": "\\approx",
+			"accepted": ["\\approx", "approx"],
+			"explanation": "`\\approx` renders the wavy double-tilde used for approximate equality, distinct from `\\sim` (same order of magnitude / similarity) or `\\cong` (congruence).",
+			"tags": ["symbols", "generated"]
+		},
+		{
+			"id": "gen-latex-011",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A student writes `The solution is x = 5.` directly in a LaTeX document, without wrapping the math in `$...$`. What happens when it compiles?",
+			"choices": [
+				"LaTeX throws a compile error, since math symbols must always be in math mode",
+				"It compiles fine, but 'x' and '5' are typeset in the regular upright text font with normal spacing — plain text, not styled as math",
+				"LaTeX automatically detects the equation and wraps it in math mode for you",
+				"Only the '5' is misformatted; letters like 'x' are unaffected by mode"
+			],
+			"answer": "It compiles fine, but 'x' and '5' are typeset in the regular upright text font with normal spacing — plain text, not styled as math",
+			"explanation": "LaTeX doesn't require math mode to compile — plain text compiles just fine — but variables written outside `$...$` are simply ordinary text (upright, not italic), losing the typographic conventions readers expect for math, like italicized variables and operator spacing.",
+			"tags": ["text-mode", "modes", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-012",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for Bayes' theorem, matching this target exactly:  $$P(A \\mid B) = \\frac{P(B \\mid A)\\,P(A)}{P(B)}$$  Then reveal and compare.",
+			"answer": "P(A \\mid B) = \\frac{P(B \\mid A)\\,P(A)}{P(B)}",
+			"explanation": "`\\mid` produces the conditional 'given' bar, and `\\,` inserts a thin space — useful for separating adjacent factors like $P(B\\mid A)$ and $P(A)$ in a product so they don't visually run together.",
+			"tags": ["writing", "probability", "commands", "generated"]
+		}
+	]
+}

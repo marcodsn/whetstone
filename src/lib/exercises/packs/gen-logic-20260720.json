@@ -1,0 +1,80 @@
+{
+	"pack": "gen-logic-20260720",
+	"exercises": [
+		{
+			"id": "gen-logic-035",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "A teacher announces: 'There will be exactly one surprise test next week, on one of the five school days (Monday-Friday). By \"surprise\" I mean: on the morning of the test, you will not be able to know for certain in advance that today is the day.' A student reasons: 'It can't be Friday — if no test happened by Thursday evening, I'd know for certain it must be Friday, so it wouldn't be a surprise. That rules out Friday. But then Thursday becomes the last possible day, so by the same logic, if no test happened by Wednesday evening, I'd know it must be Thursday — ruling that out too.' Continuing backward, the student concludes no day at all can work, so there can be no surprise test. Then, on Wednesday, the test happens — and it genuinely surprises the student. What went wrong with the reasoning? Work it out, then reveal and compare.",
+			"answer": "This is philosophy's open 'Unexpected Hanging' (surprise-exam) paradox — there's no single resolution every logician agrees on. The most common diagnosis: the backward-induction chain treats each future 'I would know for certain' as something already settled in advance, but that certainty can only really be tested by living through the days. By the time the student has 'proven' no day works, that very proof is something the student would need to keep actively believing all the way through Wednesday morning for the test not to surprise them — and in practice, a proof this convoluted doesn't survive contact with genuine uncertainty about one's own future state of mind.",
+			"explanation": "The paradox remains genuinely disputed; its value here is noticing that a seemingly airtight backward-induction proof can undermine its own premises once its conclusion is folded back into the very scenario it's reasoning about.",
+			"tags": ["paradox", "backward-induction", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-036",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Consider this argument: 'All doctors are professionals. Some professionals are wealthy. Therefore, some doctors are wealthy.' Is this argument logically valid?",
+			"choices": [
+				"Yes — it follows directly from the two premises",
+				"No — this commits the fallacy of the undistributed middle: the 'professionals' who are wealthy aren't guaranteed to be the same ones who are doctors",
+				"Yes, but only because doctors are usually wealthy in reality",
+				"No — the argument illicitly reverses the first premise"
+			],
+			"answer": "No — this commits the fallacy of the undistributed middle: the 'professionals' who are wealthy aren't guaranteed to be the same ones who are doctors",
+			"explanation": "'All doctors are professionals' places doctors inside the professionals category, but 'some professionals are wealthy' only guarantees wealthy professionals exist somewhere in that broader category — they could all be, say, wealthy lawyers, with no overlap with doctors at all. The premises never pin the wealthy subset down to doctors specifically.",
+			"tags": ["syllogism", "fallacy", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-037",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Five runners — Kai, Noor, Rio, Sam, and Val — finish a race in five distinct places, 1st through 5th (no ties). Clues:\n1. Noor finished immediately before Kai.\n2. Rio finished immediately after Val.\n3. Sam finished neither 1st nor 5th.\n4. Kai finished 2nd.\nWhat is the finishing order, from 1st to 5th? (List the five names in order, separated by commas.)",
+			"answer": "Noor, Kai, Sam, Val, Rio",
+			"accepted": ["Noor, Kai, Sam, Val, Rio", "Noor,Kai,Sam,Val,Rio"],
+			"explanation": "Kai is 2nd (clue 4), so Noor must be 1st (clue 1). That leaves 3rd-5th for Rio, Sam, and Val. Clue 2 needs Rio directly after Val — the only consecutive pair available there is Val=4th, Rio=5th, since Val=3rd/Rio=4th would force Sam into 5th, violating clue 3. Sam takes the remaining 3rd place.",
+			"tags": ["deduction", "constraint-puzzle", "generated"]
+		},
+		{
+			"id": "gen-logic-038",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A crime scene DNA sample matches a suspect. If the suspect were innocent, there's only a 1-in-a-million chance their DNA would coincidentally match (the 'random match probability'). A prosecutor argues: 'Since a random match is a 1-in-a-million long shot, there's only a 1-in-a-million chance the suspect is innocent.' What's wrong with this reasoning?",
+			"choices": [
+				"Nothing — the prosecutor's conclusion follows directly from the match probability",
+				"It confuses the probability of a match given innocence with the probability of innocence given a match — without knowing how large the pool of possible suspects is, you can't convert a rarity of evidence into a probability of guilt",
+				"The 1-in-a-million figure itself must be wrong, since DNA matches are essentially always correct",
+				"The fallacy is that DNA evidence can never be used to help establish guilt under any circumstances"
+			],
+			"answer": "It confuses the probability of a match given innocence with the probability of innocence given a match — without knowing how large the pool of possible suspects is, you can't convert a rarity of evidence into a probability of guilt",
+			"explanation": "This is the classic 'prosecutor's fallacy.' If a city of 8 million people could plausibly have committed the crime, roughly 8 people would be expected to match by chance alone — so the match, on its own, still leaves real ambiguity, quite unlike a claimed '1-in-a-million chance of innocence.' The two conditional probabilities point in different directions and aren't generally equal.",
+			"tags": ["fallacy", "conditional-probability", "bayesian", "generated"]
+		},
+		{
+			"id": "gen-logic-039",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A cube is painted red on all six faces, then cut into 27 identical smaller cubes (a 3×3×3 arrangement). How many of the small cubes have paint on exactly 2 faces?",
+			"answer": "12",
+			"accepted": ["12", "twelve"],
+			"explanation": "Cubes with exactly 2 painted faces sit on an edge of the big cube but not at a corner. A cube has 12 edges, and in a 3×3×3 split, each edge contains exactly one non-corner small cube (each edge has 3 small cubes total: 2 corners + 1 middle) — giving 12 such cubes.",
+			"tags": ["spatial", "counting", "geometry", "generated"]
+		},
+		{
+			"id": "gen-logic-040",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "A trader has 3,000 bananas and a camel. The market is 1,000 km away. The camel can carry at most 1,000 bananas at a time and eats exactly 1 banana per km it walks, whether carrying bananas or returning empty. The trader may drop bananas at intermediate points and go back for more. What is the maximum number of bananas that can reach the market? (Give the answer as a whole number, rounding down.)",
+			"answer": "533",
+			"accepted": ["533"],
+			"explanation": "With 3,000 bananas, moving the whole pile forward by 1 km costs 5 banana-trips (3 forward, 2 back) until the pile drops to 2,000 — this happens after 200 km, having burned 1,000 bananas. From 2,000 bananas, each km now costs 3 banana-trips (2 forward, 1 back) until the pile drops to 1,000 — an additional 333.33 km, burning another 1,000 bananas, at the 533.33 km mark. The remaining 466.67 km needs only a single trip, costing 1 banana/km, so $1{,}000 - 466.67 \\approx 533$ bananas reach the market. This is the classic 'Jeep problem' / camel-and-bananas puzzle.",
+			"tags": ["optimization", "classic", "generated"]
+		}
+	]
+}

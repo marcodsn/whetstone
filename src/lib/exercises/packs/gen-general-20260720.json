@@ -1,0 +1,122 @@
+{
+	"pack": "gen-general-20260720",
+	"exercises": [
+		{
+			"id": "gen-general-031",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "Two fathers and two sons went fishing together. Each of them caught exactly one fish, yet they brought home only three fish in total. Nobody lost a fish and nobody threw one back. How is this possible? Work out an explanation, then reveal and compare.",
+			"answer": "There were only three people, not four: a grandfather, his son, and his son's son (grandson). The grandfather and the middle man are both \"fathers,\" and the middle man and the boy are both \"sons\" — so \"two fathers and two sons\" is satisfied by three people, each catching one fish.",
+			"explanation": "The riddle exploits the fact that one person can hold two family roles at once — the middle generation is simultaneously a father and a son.",
+			"tags": ["riddle", "lateral", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-032",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What has branches, but no fruit, trunk, or leaves?",
+			"answer": "a bank",
+			"accepted": ["a bank", "bank"],
+			"explanation": "\"Branches\" here means bank branches (locations), not tree branches — the riddle turns on that double meaning.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-033",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: humans only use about 10% of their brain, with the other 90% sitting idle.",
+			"choices": [
+				"True — brain scans confirm 90% of neurons are inactive at any given time",
+				"False — brain imaging shows essentially all regions of the brain are active over the course of a day, just not all simultaneously for any single task",
+				"True, but only while asleep",
+				"False — humans actually use more than 100% of their brain through neural compensation"
+			],
+			"answer": "False — brain imaging shows essentially all regions of the brain are active over the course of a day, just not all simultaneously for any single task",
+			"explanation": "The '10% myth' has no basis in neuroscience — fMRI and PET studies show virtually every part of the brain has an identified function and gets used, just not all at once for every task.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-034",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "About how many Earths, by volume, could you fit inside the Sun?",
+			"choices": ["About 13,000", "About 130,000", "About 1.3 million", "About 13 million"],
+			"answer": "About 1.3 million",
+			"explanation": "The Sun's radius (~696,000 km) is about 109 times Earth's (~6,371 km), and volume scales with the cube of radius: $109^3 \\approx 1.3$ million.",
+			"tags": ["estimation", "astronomy", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-035",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The Mercator map projection, still common in classrooms, makes Greenland look roughly the same size as Africa. In reality, about how many times larger is Africa's land area than Greenland's?",
+			"choices": ["About 2 times larger", "About 5 times larger", "About 14 times larger", "About 50 times larger"],
+			"answer": "About 14 times larger",
+			"explanation": "Africa covers about 30.4 million km² versus Greenland's roughly 2.2 million km² — a ratio of about 14. Mercator projections badly distort area near the poles, hugely inflating landmasses like Greenland relative to those near the equator.",
+			"tags": ["geography", "myth-busting", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-036",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A famous (apocryphal) physics exam question asks a student to show how to determine the height of a tall building using a barometer. The expected answer measures air pressure at the top and bottom and computes the height from the difference. Think of at least two genuinely different methods for finding the building's height using nothing but a barometer — methods that don't rely on the pressure-measurement formula at all. Then reveal and compare.",
+			"answer": "A few classic alternatives: (1) Drop the barometer off the roof and time its fall with a stopwatch, then use $h = \\frac{1}{2}gt^2$. (2) Tie a long string to the barometer, lower it from the roof until it just touches the ground, then measure the string. (3) On a sunny day, measure the barometer's height and the length of its shadow, and the building's shadow, then use similar triangles to scale up. (4) Simply offer the barometer to the building's superintendent in exchange for telling you the building's exact height.",
+			"explanation": "This is the (apocryphal) 'Niels Bohr barometer problem' — a classic illustration that the technically expected answer isn't the only valid one, and creatively reframing a tool's use is itself a form of correct reasoning.",
+			"tags": ["lateral", "creativity", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-037",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "I am tall when I am young, and I grow shorter as I age. What am I?",
+			"answer": "a candle",
+			"accepted": ["a candle", "candle"],
+			"explanation": "A candle starts tall and burns down shorter over time — the riddle personifies it as aging.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-038",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "You're handed two identical envelopes and told one contains twice as much money as the other. You open yours and find $50. The reasoning goes: 'the other envelope contains either $25 or $100 with equal probability, so its expected value is $0.5\\times 25 + 0.5\\times 100 = \\$62.50$ — more than my $50, so I should switch.' By symmetry, the same argument would apply again after switching, suggesting you should switch forever. What's the actual flaw?",
+			"choices": [
+				"There is no flaw — you really should keep switching forever, and the paradox is just unintuitive but correct",
+				"Treating '$50 is the smaller amount' and '$50 is the larger amount' as always 50/50, regardless of the amount observed, silently assumes a probability distribution over the envelope amounts that isn't actually justified — without it, the expected-value calculation doesn't hold",
+				"The arithmetic itself is wrong: $0.5\\times 25 + 0.5\\times 100$ should equal exactly $50",
+				"The flaw is that expected value can only be computed for physical objects, not money"
+			],
+			"answer": "Treating '$50 is the smaller amount' and '$50 is the larger amount' as always 50/50, regardless of the amount observed, silently assumes a probability distribution over the envelope amounts that isn't actually justified — without it, the expected-value calculation doesn't hold",
+			"explanation": "This is the classic two-envelope paradox. Without a well-defined prior over the possible envelope amounts, assuming a blanket 50/50 split for any observed value is the hidden error — for most realistic priors, there's no consistent rule that says switching is always the better move.",
+			"tags": ["probability", "paradox", "generated"]
+		},
+		{
+			"id": "gen-general-039",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A newborn baby has more individual bones than an adult. Roughly how many bones does a newborn have, compared to the 206 an adult ends up with (many fuse together during growth)?",
+			"choices": ["About 150", "About 206 — the same as an adult", "About 270-300", "About 450"],
+			"answer": "About 270-300",
+			"explanation": "Babies are born with roughly 270-300 separate bones and cartilage pieces; many fuse together as they grow (skull plates, vertebrae, and more), ending at the adult count of 206.",
+			"tags": ["biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-040",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "A man leaves his house, turns left three times, and walks back home — where he finds two people wearing masks waiting for him. Who are they, and what's going on? Work out an explanation, then reveal and compare.",
+			"answer": "He's a baseball batter running the bases. Turning left at first, second, and third base brings him back to home plate, where the catcher and the home-plate umpire — both wearing protective masks — are waiting.",
+			"explanation": "The riddle reframes an ordinary baseball play as a suspicious scenario: 'turns left three times' traces the diamond, and 'masks' cues the catcher's and umpire's protective gear.",
+			"tags": ["riddle", "lateral", "classic", "generated"]
+		}
+	]
+}

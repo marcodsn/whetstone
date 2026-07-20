@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260720",
+	"exercises": [
+		{
+			"id": "gen-code-046",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print? (Give the two values in order, separated by a space.)",
+			"code": {
+				"lang": "javascript",
+				"src": "function* gen() {\n  yield 1;\n  yield 2;\n}\nconst it = gen();\nconsole.log([...it].length, [...it].length);"
+			},
+			"answer": "2 0",
+			"accepted": ["2 0", "2, 0"],
+			"explanation": "Generators are iterators, and iterators are single-use: spreading `it` once fully drains it. The second spread starts from an already-finished generator, so it produces an empty array.",
+			"tags": ["javascript", "generators", "iterators", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-047",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this Python print? (Give the three values in order, separated by spaces.)",
+			"code": {
+				"lang": "python",
+				"src": "print(5 > 3 > 1)\nprint(5 > 3 < 2)\nprint(3 == 3 == 1)"
+			},
+			"answer": "True False False",
+			"accepted": ["True False False", "True, False, False"],
+			"explanation": "Python chains comparisons as implicit `and`s between adjacent pairs, not a left-to-right single evaluation: `3 == 3 == 1` means `(3==3) and (3==1)` → `True and False` → `False`, not `(3==3)==1` which would (coincidentally) give `True==1` → `True`.",
+			"tags": ["python", "chained-comparison", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-048",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to make an independent copy of a 2D board so mutating the copy never affects the original. It doesn't work correctly. What's the bug?",
+			"code": {
+				"lang": "python",
+				"src": "def clone_board(board):\n    return board.copy()\n\nboard = [[0, 0], [0, 0]]\nnew_board = clone_board(board)\nnew_board[0][0] = 1\nprint(board[0][0])"
+			},
+			"choices": [
+				"`.copy()` doesn't exist on Python lists",
+				"`.copy()` only makes a shallow copy — the outer list is new, but the nested lists inside it are still shared with the original, so mutating a nested element mutates both",
+				"`new_board[0][0] = 1` should be written as `new_board[0] = 1`",
+				"There is no bug — `board[0][0]` correctly stays `0`"
+			],
+			"answer": "`.copy()` only makes a shallow copy — the outer list is new, but the nested lists inside it are still shared with the original, so mutating a nested element mutates both",
+			"explanation": "`list.copy()` (like `board[:]`) creates a new outer list but doesn't recursively copy nested objects — `new_board[0]` and `board[0]` still point to the same inner list, so `board[0][0]` also becomes `1`. A true independent copy needs `copy.deepcopy` or rebuilding the nested lists by hand.",
+			"tags": ["python", "mutability", "shallow-copy", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-049",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This C program is meant to print `42`. It compiles with only a warning, and its actual behavior is unreliable — it might print `42`, print garbage, or crash outright depending on the compiler and optimization settings. What's the bug?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nint* make_value(int x) {\n    int result = x * 2;\n    return &result;\n}\n\nint main() {\n    int* p = make_value(21);\n    printf(\"%d\\n\", *p);\n    return 0;\n}"
+			},
+			"choices": [
+				"`x * 2` has an operator precedence bug and should be written `(x) * 2`",
+				"`make_value` returns the address of a local (stack) variable that ceases to exist once the function returns — dereferencing `p` afterward is undefined behavior, so its output can't be relied on at all",
+				"`printf` needs `%p` instead of `%d` to print a dereferenced value",
+				"`int* p` should be declared as plain `int p`, since `make_value` doesn't actually need a pointer"
+			],
+			"answer": "`make_value` returns the address of a local (stack) variable that ceases to exist once the function returns — dereferencing `p` afterward is undefined behavior, so its output can't be relied on at all",
+			"explanation": "`result` is a stack-allocated local variable; once `make_value` returns, that stack frame is invalid, and `p` becomes a dangling pointer. Reading through it is undefined behavior — it might coincidentally print `42` on one system, garbage on another, or crash, since nothing guarantees the memory is untouched. The fix is to return the value itself (`int`, not `int*`) or heap-allocate `result` with `malloc`.",
+			"tags": ["c", "dangling-pointer", "undefined-behavior", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-050",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `has_pair_with_sum` below, as a function of `n = len(nums)`?",
+			"code": {
+				"lang": "python",
+				"src": "def has_pair_with_sum(nums, target):\n    seen = set()\n    for x in nums:\n        if target - x in seen:\n            return True\n        seen.add(x)\n    return False"
+			},
+			"choices": ["O(1)", "O(n)", "O(n log n)", "O(n^2)"],
+			"answer": "O(n)",
+			"explanation": "Each of the `n` elements is visited once, and both the set membership check (`target - x in seen`) and the insertion are O(1) on average for a hash set — giving O(n) overall, versus the O(n²) a naive nested-loop check of every pair would take.",
+			"tags": ["python", "complexity", "hashing", "generated"]
+		}
+	]
+}
