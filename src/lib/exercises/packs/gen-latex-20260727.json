@@ -1,0 +1,42 @@
+{
+	"pack": "gen-latex-20260727",
+	"exercises": [
+		{
+			"id": "gen-latex-013",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A student writes the LaTeX source `x_i_j` trying to typeset $x$ with nested subscripts $i$ and $j$. What happens when this compiles?",
+			"choices": [
+				"It fails to compile: consecutive subscripts without grouping braces cause a \"Double subscript\" error",
+				"It compiles fine and renders as $x_{ij}$",
+				"It compiles, but only the second subscript ($j$) is shown",
+				"It compiles and silently ignores the first subscript"
+			],
+			"answer": "It fails to compile: consecutive subscripts without grouping braces cause a \"Double subscript\" error",
+			"explanation": "A bare `_` or `^` can only attach to a single following token or braced group; stacking two of them without grouping is a syntax error. Write `x_{i_j}$ for $x_{i_j}$ or `x_{ij}` for $x_{ij}$ instead.",
+			"tags": ["gotcha", "errors", "subscript", "generated"]
+		},
+		{
+			"id": "gen-latex-014",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the 'not equal to' symbol $\\neq$?",
+			"answer": "\\neq",
+			"accepted": ["\\neq", "neq", "\\ne", "ne"],
+			"explanation": "`\\neq` (or its shorter alias `\\ne`) renders as $\\neq$.",
+			"tags": ["symbols", "commands", "generated"]
+		},
+		{
+			"id": "gen-latex-015",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for the definition of the derivative, matching this target exactly: $$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$ Then reveal and compare.",
+			"answer": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}",
+			"explanation": "Combines a limit with a subscript (`\\lim_{h \\to 0}`) and a fraction (`\\frac{...}{...}`) inside standard display math.",
+			"tags": ["writing", "commands", "calculus", "generated"]
+		}
+	]
+}

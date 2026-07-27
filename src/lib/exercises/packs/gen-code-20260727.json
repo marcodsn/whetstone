@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260727",
+	"exercises": [
+		{
+			"id": "gen-code-051",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "x = 10\nresult = [x for x in range(3)]\nprint(x)"
+			},
+			"answer": "10",
+			"accepted": ["10"],
+			"explanation": "In Python 3, list comprehensions have their own scope — the comprehension's `x` doesn't leak into the enclosing scope, so the outer `x` is untouched.",
+			"tags": ["python", "scoping", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-052",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print?",
+			"code": {
+				"lang": "javascript",
+				"src": "console.log(1 + '1' - 1);"
+			},
+			"answer": "10",
+			"accepted": ["10"],
+			"explanation": "`+` with a string operand concatenates: `1 + '1'` becomes `'11'`. Then `-` always forces numeric coercion: `'11' - 1` is `10`.",
+			"tags": ["javascript", "coercion", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-053",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to check whether `s` is a palindrome, but `is_palindrome(\"abba\")` incorrectly returns `False`. What's the bug?",
+			"code": {
+				"lang": "python",
+				"src": "def is_palindrome(s):\n    for i in range(len(s) // 2):\n        if s[i] != s[-i]:\n            return False\n    return True"
+			},
+			"choices": [
+				"`s[-i]` should be `s[-i - 1]`, since `s[-0]` is the same element as `s[0]`",
+				"`range(len(s) // 2)` should be `range(len(s))`",
+				"The comparison should use `==` instead of `!=`",
+				"Strings can't be indexed with negative numbers in Python"
+			],
+			"answer": "`s[-i]` should be `s[-i - 1]`, since `s[-0]` is the same element as `s[0]`",
+			"explanation": "`-i` and `i` refer to the *same* character when `i` is 0 (both mean index 0), so the intended \"from the end\" index needs `-i - 1`, e.g. `s[-1]` for the last character.",
+			"tags": ["python", "strings", "off-by-one", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-054",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This function is meant to process every item and only log `'done'` after all of them finish. It doesn't work as intended. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "async function run(items) {\n    items.forEach(async (item) => {\n        await process(item);\n    });\n    console.log('done');\n}"
+			},
+			"choices": [
+				"`Array.prototype.forEach` doesn't wait for the async callbacks — `'done'` logs before any `process(item)` call resolves",
+				"`async` callbacks aren't allowed as arguments to `forEach`, so this throws an error",
+				"`await` can't be used inside an arrow function",
+				"`items` needs to be awaited before calling `forEach` on it"
+			],
+			"answer": "`Array.prototype.forEach` doesn't wait for the async callbacks — `'done'` logs before any `process(item)` call resolves",
+			"explanation": "`forEach` ignores the promises returned by its callback and never awaits them; use a `for...of` loop with `await`, or `Promise.all` with `map`, to actually wait for every item.",
+			"tags": ["javascript", "async", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-055",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What is the time complexity of `has_unique_chars` as a function of `n = len(s)`, in the worst case?",
+			"code": {
+				"lang": "python",
+				"src": "def has_unique_chars(s):\n    for i in range(len(s)):\n        for j in range(i + 1, len(s)):\n            if s[i] == s[j]:\n                return False\n    return True"
+			},
+			"choices": ["O(n)", "O(n log n)", "O(n^2)", "O(2^n)"],
+			"answer": "O(n^2)",
+			"explanation": "The nested loop compares every pair of characters, giving roughly $n^2/2$ comparisons in the worst case (no matches found) — O(n^2).",
+			"tags": ["python", "complexity", "algorithms", "generated"]
+		}
+	]
+}

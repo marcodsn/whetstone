@@ -1,0 +1,80 @@
+{
+	"pack": "gen-math-20260727",
+	"exercises": [
+		{
+			"id": "gen-math-079",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is $2^{-3}$?",
+			"answer": "1/8",
+			"accepted": ["1/8", "0.125"],
+			"explanation": "A negative exponent means reciprocal: $2^{-3} = 1/2^3 = 1/8$.",
+			"tags": ["exponents", "mental-math", "generated"]
+		},
+		{
+			"id": "gen-math-080",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A recipe needs $3/4$ cup of sugar to make 12 cookies. How many cups of sugar are needed to make 30 cookies, at the same ratio?",
+			"answer": "15/8",
+			"accepted": ["15/8", "1.875", "1 7/8"],
+			"explanation": "Scale by $30/12 = 2.5$: $3/4 \\times 2.5 = 15/8 = 1.875$ cups.",
+			"tags": ["ratios", "word-problem", "generated"]
+		},
+		{
+			"id": "gen-math-081",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "$A$ and $B$ are distinct nonzero digits. The two-digit number $\\overline{AB}$ plus the two-digit number $\\overline{BA}$ equals $121$. What is $A + B$?",
+			"answer": "11",
+			"accepted": ["11"],
+			"explanation": "$\\overline{AB} + \\overline{BA} = (10A+B) + (10B+A) = 11(A+B) = 121$, so $A + B = 11$.",
+			"tags": ["cryptarithm", "number-theory", "generated"]
+		},
+		{
+			"id": "gen-math-082",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A clock loses 15 minutes every real hour (it only advances 45 minutes for every 60 real minutes). It is set to the correct time at 12:00 noon. What time does it show when the real time is 6:00 PM?",
+			"choices": ["4:30 PM", "5:15 PM", "4:00 PM", "3:00 PM"],
+			"answer": "4:30 PM",
+			"explanation": "6 real hours = 360 minutes; the clock advances at $45/60 = 0.75$ of real time, so it moves forward $360 \\times 0.75 = 270$ minutes = 4.5 hours, showing 4:30 PM.",
+			"tags": ["rates", "word-problem", "generated"]
+		},
+		{
+			"id": "gen-math-083",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the smallest positive integer whose digits multiply to exactly 12?",
+			"answer": "26",
+			"accepted": ["26"],
+			"explanation": "The tens digit must be as small as possible: no single digit equals 12, and no two-digit number with tens digit 1 works (the units digit would need to be 12). Tens digit 2 works with units digit 6, giving 26 — smaller than any other combination like 34, 43, or 62.",
+			"tags": ["number-theory", "digit-puzzle", "generated"]
+		},
+		{
+			"id": "gen-math-084",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A $3\\times3$ magic square uses the numbers 1–9 exactly once so every row, column, and diagonal sums to the same value. Given this partially filled grid (rows top to bottom, left to right): $$\\begin{pmatrix} 2 & 7 & 6 \\\\ 9 & 5 & ? \\\\ 4 & 3 & 8 \\end{pmatrix}$$ what number goes in the missing cell? Work it out, then reveal and compare.",
+			"answer": "1",
+			"explanation": "This is a rotation of the classic Lo Shu magic square, with magic constant 15. The middle row must satisfy $9 + 5 + ? = 15$, so $? = 1$ — and every row, column, and diagonal in the completed grid does indeed sum to 15.",
+			"tags": ["magic-square", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-085",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "You need to cut a square cake into 8 equal pieces using only 3 straight cuts with a knife. How do you do it? Work out a method, then reveal and compare.",
+			"answer": "Make two cuts through the center at right angles (like a plus sign) to divide the cake into 4 equal quarters. Then stack those four quarter-pieces on top of each other and make one more straight cut through the whole stack, halving each piece — 4 pieces × 2 = 8 equal pieces from only 3 cuts.",
+			"explanation": "The trick is that a \"cut\" doesn't have to be made on a single flat layer — stacking pieces before the final cut lets one straight slice divide multiple pieces at once.",
+			"tags": ["lateral", "recreational", "spatial", "generated"]
+		}
+	]
+}

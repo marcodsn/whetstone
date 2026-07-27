@@ -1,0 +1,85 @@
+{
+	"pack": "gen-logic-20260727",
+	"exercises": [
+		{
+			"id": "gen-logic-041",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A rope ladder hangs over the side of a boat floating in a harbor, with rungs spaced 30 cm apart. At low tide, 8 rungs are visible above the waterline. The tide then rises steadily at 15 cm per hour for 4 hours. How many rungs are above the water after those 4 hours?",
+			"choices": [
+				"8 rungs — the same as before",
+				"4 rungs",
+				"Still 8, but 2 meters higher",
+				"0 rungs — the ladder is fully submerged"
+			],
+			"answer": "8 rungs — the same as before",
+			"explanation": "The boat, and the ladder attached to it, rises with the tide, so the number of rungs above water never changes — only the sea level relative to the dock does.",
+			"tags": ["lateral", "trick", "generated"]
+		},
+		{
+			"id": "gen-logic-042",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "If 5 machines take 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets, assuming every machine works at the same constant rate?",
+			"answer": "5 minutes",
+			"accepted": ["5 minutes", "5", "five minutes"],
+			"explanation": "Each machine makes 1 widget every 5 minutes; running 100 machines in parallel still takes just 5 minutes to produce 100 widgets, not 100 minutes.",
+			"tags": ["trick", "rates", "generated"]
+		},
+		{
+			"id": "gen-logic-043",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the logical converse of the conditional statement 'If $P$, then $Q$'?",
+			"choices": [
+				"If $Q$, then $P$",
+				"If not $Q$, then not $P$",
+				"If not $P$, then not $Q$",
+				"$P$ and not $Q$"
+			],
+			"answer": "If $Q$, then $P$",
+			"explanation": "The converse swaps the hypothesis and conclusion. It is not logically equivalent to the original statement — that would instead be the contrapositive, 'if not Q, then not P'.",
+			"tags": ["propositional", "formal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-044",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "After being served slow, unfriendly service by two different waiters on a single trip to a city, a tourist declares: 'Everyone in this city is rude.' What is the name of this logical fallacy?",
+			"answer": "hasty generalization",
+			"accepted": ["hasty generalization", "hasty generalisation", "overgeneralization"],
+			"explanation": "Hasty generalization draws a broad conclusion about an entire population from a sample far too small, or unrepresentative, to support it.",
+			"tags": ["fallacy", "reasoning", "generated"]
+		},
+		{
+			"id": "gen-logic-045",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "In a proof by mathematical induction, you show a statement is true for $n=1$ (the base case), and that whenever it's true for $n=k$ it's also true for $n=k+1$ (the inductive step). What can you conclude?",
+			"choices": [
+				"The statement is true for every positive integer $n$",
+				"The statement is true only for $n=1$ and $n=2$",
+				"The statement is true for infinitely many $n$, but not necessarily all of them",
+				"Nothing, without separately checking each $n$"
+			],
+			"answer": "The statement is true for every positive integer $n$",
+			"explanation": "The base case plus inductive step form a domino chain: truth propagates from $n=1$ to every larger integer, proving the statement for all of them at once.",
+			"tags": ["induction", "formal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-046",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "A single grain of sand is not a 'heap.' If a collection isn't a heap, adding one more grain doesn't turn it into one either — one grain can't make that much difference. But applying that rule over and over from zero grains, you could never reach a heap — yet a million grains piled up clearly IS a heap. What does this reveal about the word 'heap'? Think it through, then reveal and compare.",
+			"answer": "The word 'heap', like most everyday predicates, has no sharp, precise boundary — it's vague. Each individual step in the argument seems locally valid, but repeating it exploits that vagueness to reach an absurd conclusion; this is the classical Sorites (heap) paradox about the logic of vague terms.",
+			"explanation": "Sorites paradoxes show that many natural-language predicates are inherently fuzzy, and formal logic — built on sharp true/false predicates — struggles to model them without extra machinery like fuzzy logic or supervaluationism.",
+			"tags": ["paradox", "vagueness", "generated"]
+		}
+	]
+}

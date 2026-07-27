@@ -1683,6 +1683,128 @@
 		]
 	},
 	{
+		"id": "gen-code-051",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "x = 10\nresult = [x for x in range(3)]\nprint(x)"
+		},
+		"answer": "10",
+		"accepted": [
+			"10"
+		],
+		"explanation": "In Python 3, list comprehensions have their own scope — the comprehension's `x` doesn't leak into the enclosing scope, so the outer `x` is untouched.",
+		"tags": [
+			"python",
+			"scoping",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-052",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(1 + '1' - 1);"
+		},
+		"answer": "10",
+		"accepted": [
+			"10"
+		],
+		"explanation": "`+` with a string operand concatenates: `1 + '1'` becomes `'11'`. Then `-` always forces numeric coercion: `'11' - 1` is `10`.",
+		"tags": [
+			"javascript",
+			"coercion",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-053",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to check whether `s` is a palindrome, but `is_palindrome(\"abba\")` incorrectly returns `False`. What's the bug?",
+		"code": {
+			"lang": "python",
+			"src": "def is_palindrome(s):\n    for i in range(len(s) // 2):\n        if s[i] != s[-i]:\n            return False\n    return True"
+		},
+		"choices": [
+			"`s[-i]` should be `s[-i - 1]`, since `s[-0]` is the same element as `s[0]`",
+			"`range(len(s) // 2)` should be `range(len(s))`",
+			"The comparison should use `==` instead of `!=`",
+			"Strings can't be indexed with negative numbers in Python"
+		],
+		"answer": "`s[-i]` should be `s[-i - 1]`, since `s[-0]` is the same element as `s[0]`",
+		"explanation": "`-i` and `i` refer to the *same* character when `i` is 0 (both mean index 0), so the intended \"from the end\" index needs `-i - 1`, e.g. `s[-1]` for the last character.",
+		"tags": [
+			"python",
+			"strings",
+			"off-by-one",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-054",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "This function is meant to process every item and only log `'done'` after all of them finish. It doesn't work as intended. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "async function run(items) {\n    items.forEach(async (item) => {\n        await process(item);\n    });\n    console.log('done');\n}"
+		},
+		"choices": [
+			"`Array.prototype.forEach` doesn't wait for the async callbacks — `'done'` logs before any `process(item)` call resolves",
+			"`async` callbacks aren't allowed as arguments to `forEach`, so this throws an error",
+			"`await` can't be used inside an arrow function",
+			"`items` needs to be awaited before calling `forEach` on it"
+		],
+		"answer": "`Array.prototype.forEach` doesn't wait for the async callbacks — `'done'` logs before any `process(item)` call resolves",
+		"explanation": "`forEach` ignores the promises returned by its callback and never awaits them; use a `for...of` loop with `await`, or `Promise.all` with `map`, to actually wait for every item.",
+		"tags": [
+			"javascript",
+			"async",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-055",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the time complexity of `has_unique_chars` as a function of `n = len(s)`, in the worst case?",
+		"code": {
+			"lang": "python",
+			"src": "def has_unique_chars(s):\n    for i in range(len(s)):\n        for j in range(i + 1, len(s)):\n            if s[i] == s[j]:\n                return False\n    return True"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)",
+			"O(2^n)"
+		],
+		"answer": "O(n^2)",
+		"explanation": "The nested loop compares every pair of characters, giving roughly $n^2/2$ comparisons in the worst case (no matches found) — O(n^2).",
+		"tags": [
+			"python",
+			"complexity",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -2441,6 +2563,198 @@
 		]
 	},
 	{
+		"id": "gen-general-041",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "The more you take, the more you leave behind. What am I?",
+		"answer": "footsteps",
+		"accepted": [
+			"footsteps",
+			"footprints"
+		],
+		"explanation": "Each step you take creates another footprint left in the ground behind you.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-042",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What has a heart that doesn't beat?",
+		"answer": "an artichoke",
+		"accepted": [
+			"artichoke",
+			"an artichoke"
+		],
+		"explanation": "An artichoke has an edible \"heart\" at its center, but it's a vegetable, not an organ.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-043",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A father and his son are in a car crash. The father dies at the scene. The son is rushed to the hospital, where the surgeon looks at him and says, \"I can't operate on this boy — he's my son.\" How is this possible, given the father already died?",
+		"answer": "the surgeon is his mother",
+		"accepted": [
+			"the surgeon is his mother",
+			"the surgeon is the boy's mother",
+			"she is his mother",
+			"his mother is the surgeon"
+		],
+		"explanation": "The riddle exploits the unconscious assumption that a surgeon is male; the surgeon is simply the boy's mother.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"cognitive-bias",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-044",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: goldfish have a memory span of only a few seconds.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Studies show goldfish can remember things for months, including learned routines and shapes.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-045",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: bulls charge at a matador's cape because the color red enrages them.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Cattle are red-green colorblind; bulls react to the cape's movement, not its color.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-046",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Nine dots are arranged in a 3×3 grid. Without lifting your pen, connect all nine dots using only four straight lines. Sketch your solution (on paper or in your head), then reveal and compare.",
+		"answer": "Four straight lines that extend beyond the boundary of the 3x3 grid — e.g. start at a corner dot and overshoot past the edge dots on each pass, zig-zagging outside the square to sweep up all nine dots in four connected strokes.",
+		"explanation": "The puzzle only feels impossible if you assume the lines must stay within the grid's boundary — nothing in the rules actually says that, which is the whole point of \"thinking outside the box.\"",
+		"tags": [
+			"lateral",
+			"spatial",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-047",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how many piano tuners work in a large city like Chicago (metro population ~9 million)? Use rough estimation, not a lookup.",
+		"choices": [
+			"About 10",
+			"About 100",
+			"About 10,000",
+			"About 1,000,000"
+		],
+		"answer": "About 100",
+		"explanation": "Fermi estimate: roughly 3 million households, a small percentage own a piano needing annual tuning, and one tuner can service on the order of 1,000 pianos a year — that lands around a hundred tuners, not thousands or millions.",
+		"tags": [
+			"estimation",
+			"fermi-estimate",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-048",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "In a city, 85% of taxis are green and 15% are blue. A witness sees a hit-and-run at night and says the taxi was blue. Tested under similar conditions, the witness correctly identifies each color 80% of the time. What is the probability (to the nearest whole percent) that the taxi involved was actually blue?",
+		"answer": "41%",
+		"accepted": [
+			"41%",
+			"41",
+			"~41%",
+			"0.41",
+			"41 percent"
+		],
+		"explanation": "By Bayes' theorem: P(blue | says blue) = (0.15 × 0.8) / (0.15 × 0.8 + 0.85 × 0.2) = 0.12 / 0.29 ≈ 41% — far lower than the witness's 80% accuracy might suggest, because blue taxis are so rare to begin with.",
+		"tags": [
+			"probability",
+			"bayesian",
+			"base-rate",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-049",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "An ant starts crawling from one end of a 1 km rubber band toward the other end at a constant 1 cm/s (relative to the band). At the end of each second, the entire band is instantly and uniformly stretched by an extra 1 km. Does the ant ever reach the far end?",
+		"choices": [
+			"Yes, eventually it reaches the end",
+			"No, the band stretches faster than the ant can crawl",
+			"It reaches the end only if it starts within the first meter",
+			"It's impossible to determine"
+		],
+		"answer": "Yes, eventually it reaches the end",
+		"explanation": "The fraction of the band the ant covers each second is proportional to 1/n, and the harmonic series 1 + 1/2 + 1/3 + ... diverges — so the ant's cumulative progress eventually exceeds 100%, even though it takes an astronomically long time.",
+		"tags": [
+			"paradox",
+			"aha",
+			"infinite-series",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-050",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "You draw a \"random\" chord on a circle and ask: what's the probability the chord is longer than the side of an inscribed equilateral triangle? Three seemingly reasonable methods of picking a \"random\" chord give three different answers: 1/2, 1/3, and 1/4. What does this reveal?",
+		"choices": [
+			"The probability is genuinely ill-defined until you specify the method for choosing a random chord",
+			"One of the three methods is simply wrong and the other two agree",
+			"The paradox is resolved because all three methods actually give 1/3",
+			"Probability theory breaks down for continuous, infinite sample spaces"
+		],
+		"answer": "The probability is genuinely ill-defined until you specify the method for choosing a random chord",
+		"explanation": "This is Bertrand's paradox: \"choose a random chord\" doesn't specify a unique probability distribution, so different, equally natural sampling procedures yield different, all-valid answers.",
+		"tags": [
+			"paradox",
+			"probability",
+			"classic",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -2652,6 +2966,62 @@
 			"writing",
 			"probability",
 			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-013",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A student writes the LaTeX source `x_i_j` trying to typeset $x$ with nested subscripts $i$ and $j$. What happens when this compiles?",
+		"choices": [
+			"It fails to compile: consecutive subscripts without grouping braces cause a \"Double subscript\" error",
+			"It compiles fine and renders as $x_{ij}$",
+			"It compiles, but only the second subscript ($j$) is shown",
+			"It compiles and silently ignores the first subscript"
+		],
+		"answer": "It fails to compile: consecutive subscripts without grouping braces cause a \"Double subscript\" error",
+		"explanation": "A bare `_` or `^` can only attach to a single following token or braced group; stacking two of them without grouping is a syntax error. Write `x_{i_j}$ for $x_{i_j}$ or `x_{ij}` for $x_{ij}$ instead.",
+		"tags": [
+			"gotcha",
+			"errors",
+			"subscript",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-014",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the 'not equal to' symbol $\\neq$?",
+		"answer": "\\neq",
+		"accepted": [
+			"\\neq",
+			"neq",
+			"\\ne",
+			"ne"
+		],
+		"explanation": "`\\neq` (or its shorter alias `\\ne`) renders as $\\neq$.",
+		"tags": [
+			"symbols",
+			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-015",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the definition of the derivative, matching this target exactly: $$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$ Then reveal and compare.",
+		"answer": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}",
+		"explanation": "Combines a limit with a subscript (`\\lim_{h \\to 0}`) and a fraction (`\\frac{...}{...}`) inside standard display math.",
+		"tags": [
+			"writing",
+			"commands",
+			"calculus",
 			"generated"
 		]
 	},
@@ -3407,6 +3777,118 @@
 		"tags": [
 			"optimization",
 			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-041",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A rope ladder hangs over the side of a boat floating in a harbor, with rungs spaced 30 cm apart. At low tide, 8 rungs are visible above the waterline. The tide then rises steadily at 15 cm per hour for 4 hours. How many rungs are above the water after those 4 hours?",
+		"choices": [
+			"8 rungs — the same as before",
+			"4 rungs",
+			"Still 8, but 2 meters higher",
+			"0 rungs — the ladder is fully submerged"
+		],
+		"answer": "8 rungs — the same as before",
+		"explanation": "The boat, and the ladder attached to it, rises with the tide, so the number of rungs above water never changes — only the sea level relative to the dock does.",
+		"tags": [
+			"lateral",
+			"trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-042",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "If 5 machines take 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets, assuming every machine works at the same constant rate?",
+		"answer": "5 minutes",
+		"accepted": [
+			"5 minutes",
+			"5",
+			"five minutes"
+		],
+		"explanation": "Each machine makes 1 widget every 5 minutes; running 100 machines in parallel still takes just 5 minutes to produce 100 widgets, not 100 minutes.",
+		"tags": [
+			"trick",
+			"rates",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-043",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the logical converse of the conditional statement 'If $P$, then $Q$'?",
+		"choices": [
+			"If $Q$, then $P$",
+			"If not $Q$, then not $P$",
+			"If not $P$, then not $Q$",
+			"$P$ and not $Q$"
+		],
+		"answer": "If $Q$, then $P$",
+		"explanation": "The converse swaps the hypothesis and conclusion. It is not logically equivalent to the original statement — that would instead be the contrapositive, 'if not Q, then not P'.",
+		"tags": [
+			"propositional",
+			"formal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-044",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "After being served slow, unfriendly service by two different waiters on a single trip to a city, a tourist declares: 'Everyone in this city is rude.' What is the name of this logical fallacy?",
+		"answer": "hasty generalization",
+		"accepted": [
+			"hasty generalization",
+			"hasty generalisation",
+			"overgeneralization"
+		],
+		"explanation": "Hasty generalization draws a broad conclusion about an entire population from a sample far too small, or unrepresentative, to support it.",
+		"tags": [
+			"fallacy",
+			"reasoning",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-045",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "In a proof by mathematical induction, you show a statement is true for $n=1$ (the base case), and that whenever it's true for $n=k$ it's also true for $n=k+1$ (the inductive step). What can you conclude?",
+		"choices": [
+			"The statement is true for every positive integer $n$",
+			"The statement is true only for $n=1$ and $n=2$",
+			"The statement is true for infinitely many $n$, but not necessarily all of them",
+			"Nothing, without separately checking each $n$"
+		],
+		"answer": "The statement is true for every positive integer $n$",
+		"explanation": "The base case plus inductive step form a domino chain: truth propagates from $n=1$ to every larger integer, proving the statement for all of them at once.",
+		"tags": [
+			"induction",
+			"formal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-046",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "A single grain of sand is not a 'heap.' If a collection isn't a heap, adding one more grain doesn't turn it into one either — one grain can't make that much difference. But applying that rule over and over from zero grains, you could never reach a heap — yet a million grains piled up clearly IS a heap. What does this reveal about the word 'heap'? Think it through, then reveal and compare.",
+		"answer": "The word 'heap', like most everyday predicates, has no sharp, precise boundary — it's vague. Each individual step in the argument seems locally valid, but repeating it exploits that vagueness to reach an absurd conclusion; this is the classical Sorites (heap) paradox about the logic of vague terms.",
+		"explanation": "Sorites paradoxes show that many natural-language predicates are inherently fuzzy, and formal logic — built on sharp true/false predicates — struggles to model them without extra machinery like fuzzy logic or supervaluationism.",
+		"tags": [
+			"paradox",
+			"vagueness",
 			"generated"
 		]
 	},
@@ -4835,6 +5317,126 @@
 			"word-problem",
 			"algebra",
 			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-079",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is $2^{-3}$?",
+		"answer": "1/8",
+		"accepted": [
+			"1/8",
+			"0.125"
+		],
+		"explanation": "A negative exponent means reciprocal: $2^{-3} = 1/2^3 = 1/8$.",
+		"tags": [
+			"exponents",
+			"mental-math",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-080",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A recipe needs $3/4$ cup of sugar to make 12 cookies. How many cups of sugar are needed to make 30 cookies, at the same ratio?",
+		"answer": "15/8",
+		"accepted": [
+			"15/8",
+			"1.875",
+			"1 7/8"
+		],
+		"explanation": "Scale by $30/12 = 2.5$: $3/4 \\times 2.5 = 15/8 = 1.875$ cups.",
+		"tags": [
+			"ratios",
+			"word-problem",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-081",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "$A$ and $B$ are distinct nonzero digits. The two-digit number $\\overline{AB}$ plus the two-digit number $\\overline{BA}$ equals $121$. What is $A + B$?",
+		"answer": "11",
+		"accepted": [
+			"11"
+		],
+		"explanation": "$\\overline{AB} + \\overline{BA} = (10A+B) + (10B+A) = 11(A+B) = 121$, so $A + B = 11$.",
+		"tags": [
+			"cryptarithm",
+			"number-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-082",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A clock loses 15 minutes every real hour (it only advances 45 minutes for every 60 real minutes). It is set to the correct time at 12:00 noon. What time does it show when the real time is 6:00 PM?",
+		"choices": [
+			"4:30 PM",
+			"5:15 PM",
+			"4:00 PM",
+			"3:00 PM"
+		],
+		"answer": "4:30 PM",
+		"explanation": "6 real hours = 360 minutes; the clock advances at $45/60 = 0.75$ of real time, so it moves forward $360 \\times 0.75 = 270$ minutes = 4.5 hours, showing 4:30 PM.",
+		"tags": [
+			"rates",
+			"word-problem",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-083",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the smallest positive integer whose digits multiply to exactly 12?",
+		"answer": "26",
+		"accepted": [
+			"26"
+		],
+		"explanation": "The tens digit must be as small as possible: no single digit equals 12, and no two-digit number with tens digit 1 works (the units digit would need to be 12). Tens digit 2 works with units digit 6, giving 26 — smaller than any other combination like 34, 43, or 62.",
+		"tags": [
+			"number-theory",
+			"digit-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-084",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "A $3\\times3$ magic square uses the numbers 1–9 exactly once so every row, column, and diagonal sums to the same value. Given this partially filled grid (rows top to bottom, left to right): $$\\begin{pmatrix} 2 & 7 & 6 \\\\ 9 & 5 & ? \\\\ 4 & 3 & 8 \\end{pmatrix}$$ what number goes in the missing cell? Work it out, then reveal and compare.",
+		"answer": "1",
+		"explanation": "This is a rotation of the classic Lo Shu magic square, with magic constant 15. The middle row must satisfy $9 + 5 + ? = 15$, so $? = 1$ — and every row, column, and diagonal in the completed grid does indeed sum to 15.",
+		"tags": [
+			"magic-square",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-085",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "You need to cut a square cake into 8 equal pieces using only 3 straight cuts with a knife. How do you do it? Work out a method, then reveal and compare.",
+		"answer": "Make two cuts through the center at right angles (like a plus sign) to divide the cake into 4 equal quarters. Then stack those four quarter-pieces on top of each other and make one more straight cut through the whole stack, halving each piece — 4 pieces × 2 = 8 equal pieces from only 3 cuts.",
+		"explanation": "The trick is that a \"cut\" doesn't have to be made on a single flat layer — stacking pieces before the final cut lets one straight slice divide multiple pieces at once.",
+		"tags": [
+			"lateral",
+			"recreational",
+			"spatial",
 			"generated"
 		]
 	},
