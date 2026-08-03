@@ -1,0 +1,42 @@
+{
+	"pack": "gen-latex-20260803",
+	"exercises": [
+		{
+			"id": "gen-latex-016",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the 'there exists' quantifier symbol $\\exists$?",
+			"answer": "\\exists",
+			"accepted": ["\\exists", "exists"],
+			"explanation": "`\\exists` renders the existential quantifier $\\exists$, the counterpart to `\\forall`.",
+			"tags": ["symbols", "quantifiers", "generated"]
+		},
+		{
+			"id": "gen-latex-017",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which source produces $\\nabla \\times \\vec{F}$, the curl of a vector field?",
+			"choices": [
+				"\\Delta \\times \\vec{F}",
+				"\\nabla \\times \\vec{F}",
+				"\\nabla \\cdot \\vec{F}",
+				"\\partial \\times \\vec{F}"
+			],
+			"answer": "\\nabla \\times \\vec{F}",
+			"explanation": "`\\nabla` gives the del/nabla symbol $\\nabla$; combined with `\\times` it denotes curl. `\\nabla \\cdot \\vec{F}` (with `\\cdot`) is the very similar-looking divergence — a common mix-up.",
+			"tags": ["symbols", "operators", "vector-calculus", "generated"]
+		},
+		{
+			"id": "gen-latex-018",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for this 2x2 determinant, matching this target exactly: $$\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc$$ Then reveal and compare.",
+			"answer": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc",
+			"explanation": "The `vmatrix` environment draws plain vertical bars around the grid instead of parentheses or brackets, which is the standard notation for a determinant.",
+			"tags": ["environments", "writing", "matrices", "generated"]
+		}
+	]
+}

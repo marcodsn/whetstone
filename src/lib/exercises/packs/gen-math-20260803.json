@@ -1,0 +1,82 @@
+{
+	"pack": "gen-math-20260803",
+	"exercises": [
+		{
+			"id": "gen-math-086",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "A $700 prize pool is split between first, second, and third place in the ratio 4:2:1. How much does second place receive, in dollars?",
+			"answer": "200",
+			"accepted": ["200", "$200", "200 dollars"],
+			"explanation": "The ratio parts sum to 4+2+1=7, so each part is worth $700/7 = $100. Second place gets 2 parts: 2 x $100 = $200.",
+			"tags": ["ratios", "word-problem", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-087",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "Mental math shortcut: to multiply by 9, multiply by 10 and subtract the original number. Use it to compute $9 \\times 47$.",
+			"answer": "423",
+			"accepted": ["423"],
+			"explanation": "$47 \\times 10 = 470$, and $470 - 47 = 423$ — faster than multiplying by 9 directly.",
+			"tags": ["mental-math", "arithmetic-trick", "generated"]
+		},
+		{
+			"id": "gen-math-088",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A $100 jacket is discounted 20%, and then the discounted price is discounted another 25% at checkout. What is the final price?",
+			"choices": ["$50", "$55", "$60", "$65"],
+			"answer": "$60",
+			"explanation": "Successive discounts multiply: $100 \\times 0.80 \\times 0.75 = \\$60$. Adding the percentages (20% + 25% = 45% off, giving $55) is the classic trap — discounts compound, they don't add.",
+			"tags": ["percentages", "trick", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-089",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Three consecutive even integers sum to 90. What is the largest of the three?",
+			"answer": "32",
+			"accepted": ["32"],
+			"explanation": "Writing them as $n-2, n, n+2$, the sum is $3n = 90$, so $n = 30$ and the largest is $30 + 2 = 32$.",
+			"tags": ["algebra", "word-problem", "generated"]
+		},
+		{
+			"id": "gen-math-090",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A fair coin is flipped 3 times. What is the probability of getting at least one heads?",
+			"choices": ["1/2", "3/4", "7/8", "1/8"],
+			"answer": "7/8",
+			"explanation": "It's easier to compute the complement: the only way to get zero heads is TTT, with probability $(1/2)^3 = 1/8$. So at least one heads has probability $1 - 1/8 = 7/8$.",
+			"tags": ["probability", "mental-math", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-091",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Counting every digit written from 1 to 100, how many times does the digit 7 appear in total?",
+			"answer": "20",
+			"accepted": ["20"],
+			"explanation": "The digit 7 appears in the units place 10 times (7, 17, 27, ..., 97) and in the tens place 10 times (70-79), for 20 total — note 77 contributes two of those.",
+			"tags": ["number-theory", "counting", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-092",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the sum of the first 50 positive odd integers ($1 + 3 + 5 + \\dots + 99$)?",
+			"answer": "2500",
+			"accepted": ["2500"],
+			"explanation": "The sum of the first $n$ odd numbers is always $n^2$ — a classic identity visible by arranging dots into a growing square. Here $n = 50$, so the sum is $50^2 = 2500$.",
+			"tags": ["sequences", "recreational", "aha", "generated"]
+		}
+	]
+}

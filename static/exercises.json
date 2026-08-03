@@ -1805,6 +1805,128 @@
 		]
 	},
 	{
+		"id": "gen-code-056",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the time complexity of this matrix-multiplication routine, as a function of $n$ (the dimension of the two $n \\times n$ matrices)?",
+		"code": {
+			"lang": "cpp",
+			"src": "for (int i = 0; i < n; i++)\n    for (int j = 0; j < n; j++)\n        for (int k = 0; k < n; k++)\n            result[i][j] += a[i][k] * b[k][j];"
+		},
+		"choices": [
+			"$O(n)$",
+			"$O(n^2)$",
+			"$O(n^3)$",
+			"$O(n \\log n)$"
+		],
+		"answer": "$O(n^3)$",
+		"explanation": "Three nested loops each running $n$ times give $n \\times n \\times n = n^3$ total iterations — the standard cost of naive matrix multiplication.",
+		"tags": [
+			"complexity",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-057",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `is_prime` below, as a function of $n$?",
+		"code": {
+			"lang": "python",
+			"src": "def is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True"
+		},
+		"choices": [
+			"$O(\\log n)$",
+			"$O(\\sqrt{n})$",
+			"$O(n)$",
+			"$O(n \\log n)$"
+		],
+		"answer": "$O(\\sqrt{n})$",
+		"explanation": "The loop only needs to check divisors up to $\\sqrt{n}$, since any factor larger than that would have a matching factor smaller than $\\sqrt{n}$ — so `i` runs from 2 to roughly $\\sqrt{n}$.",
+		"tags": [
+			"complexity",
+			"algorithms",
+			"number-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-058",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to report the full size, in bytes, of the 10-element array passed to it. Why doesn't it work as intended?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nvoid printSize(int arr[]) {\n    printf(\"%zu\\n\", sizeof(arr));\n}\n\nint main(void) {\n    int arr[10] = {0};\n    printSize(arr);\n    return 0;\n}"
+		},
+		"choices": [
+			"It prints 40, exactly as expected — there is no bug",
+			"When passed as a function parameter, `arr` decays to a pointer, so `sizeof(arr)` measures the pointer's size, not the array's",
+			"`%zu` is the wrong format specifier and the program fails to compile",
+			"`sizeof` cannot legally be used inside a function body in C"
+		],
+		"answer": "When passed as a function parameter, `arr` decays to a pointer, so `sizeof(arr)` measures the pointer's size, not the array's",
+		"explanation": "A function parameter declared as `int arr[]` is really `int *arr` — array parameters always decay to a pointer. Inside `printSize`, `sizeof(arr)` is the size of that pointer (commonly 8 bytes), not the 40 bytes of the caller's actual array.",
+		"tags": [
+			"c",
+			"sizeof",
+			"pointer-decay",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-059",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This function is meant to check whether two arrays hold the same items, but `hasSameItems([1, 2, 3], [1, 2, 3])` prints `false`. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "function hasSameItems(a, b) {\n  return a === b;\n}\n\nconsole.log(hasSameItems([1, 2, 3], [1, 2, 3]));"
+		},
+		"choices": [
+			"`===` compares array references, not contents — two distinct arrays are never `===`, even with identical elements",
+			"JavaScript can't compare numbers inside arrays",
+			"`console.log` silently converts the result to a string first",
+			"The function should compare `a.length` instead of `a` and `b`"
+		],
+		"answer": "`===` compares array references, not contents — two distinct arrays are never `===`, even with identical elements",
+		"explanation": "Arrays (and objects) are reference types: `===` checks whether both sides point to the exact same object in memory, not whether their contents match. Comparing contents requires something like element-by-element comparison or `JSON.stringify`.",
+		"tags": [
+			"javascript",
+			"reference-equality",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-060",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this Python print?",
+		"code": {
+			"lang": "python",
+			"src": "a = b = []\na.append(1)\nprint(b)"
+		},
+		"answer": "[1]",
+		"accepted": [
+			"[1]"
+		],
+		"explanation": "`a = b = []` binds both names to the same list object, not two separate empty lists. Mutating it through `a` is visible through `b` too.",
+		"tags": [
+			"python",
+			"predict-output",
+			"aliasing",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -2755,6 +2877,197 @@
 		]
 	},
 	{
+		"id": "gen-general-051",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "Two friends, Alex and Sam, each play five games of chess over a tournament weekend. Alex wins three of his five games, and Sam also wins three of his five games — yet neither Alex nor Sam ever loses a game to the other. How is this possible? Work out an explanation, then reveal and compare.",
+		"answer": "Alex and Sam never played each other at all — each played all five of their games against other opponents in the tournament, so their win counts have nothing to do with one another.",
+		"explanation": "The riddle only feels paradoxical if you assume 'each plays five games' means they played each other; nothing in the setup actually says that.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-052",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What common English word, written in capital letters, still spells the same word when the page is turned upside-down (rotated 180 degrees)?",
+		"answer": "SWIMS",
+		"accepted": [
+			"SWIMS",
+			"swims",
+			"NOON",
+			"noon"
+		],
+		"explanation": "Rotate each letter of SWIMS 180 degrees and read in the new order: S stays S, W becomes M, I stays I, M becomes W, S stays S — spelling SWIMS again. NOON works the same way.",
+		"tags": [
+			"wordplay",
+			"riddle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-053",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Buses on a route are scheduled to arrive every 10 minutes on average, but in practice they bunch up, so the actual gaps between buses vary — some only 2 minutes, others 18 minutes. If you show up at a uniformly random moment, is your expected wait for the next bus exactly 5 minutes, more than 5 minutes, or less than 5 minutes?",
+		"choices": [
+			"Exactly 5 minutes",
+			"More than 5 minutes",
+			"Less than 5 minutes",
+			"It depends only on the bus color"
+		],
+		"answer": "More than 5 minutes",
+		"explanation": "This is the 'inspection paradox': a random arrival is more likely to land inside a longer gap simply because longer gaps take up more of the timeline, so the average gap you actually experience is longer than the schedule's average gap.",
+		"tags": [
+			"probability",
+			"paradox",
+			"estimation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-054",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which of these fruits is botanically a true berry: the banana or the strawberry?",
+		"choices": [
+			"The banana",
+			"The strawberry",
+			"Both",
+			"Neither"
+		],
+		"answer": "The banana",
+		"explanation": "Botanically, a berry develops from a single flower ovary and has flesh surrounding its seeds — bananas qualify, but strawberries don't: a strawberry is an 'aggregate accessory fruit' whose seeds each come from separate ovaries on the outside of the flesh.",
+		"tags": [
+			"biology",
+			"myth-busting",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-055",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Clock A is broken and permanently stopped, frozen at one fixed time. Clock B works, but runs consistently 1 minute slow every hour. Over the course of a year, counting only the exact instants when a clock's displayed time matches the real time, which clock is correct more often? Work it out, then reveal and compare.",
+		"answer": "Clock A, the stopped one — by a wide margin. A 12-hour analog dial displays the same fixed time as the real time twice every 24 hours, about 730 times a year. Clock B loses 1 minute per hour, so it takes 720 hours (30 days) to drift through a full 12-hour cycle and land back on the correct time — only about 12 times a year.",
+		"explanation": "This formalizes the old saying that a stopped clock is right twice a day — a clock that's merely inaccurate can, perhaps surprisingly, be correct far less often than one that isn't running at all.",
+		"tags": [
+			"paradox",
+			"aha",
+			"estimation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-056",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which is farther east: the easternmost tip of Brazil, or New York City?",
+		"choices": [
+			"The easternmost tip of Brazil",
+			"New York City",
+			"They sit at about the same longitude",
+			"It depends on the time of year"
+		],
+		"answer": "The easternmost tip of Brazil",
+		"explanation": "New York City sits around 74 degrees west longitude, while Brazil's easternmost point, near Joao Pessoa, is only about 35 degrees west — South America bulges much farther east than most mental maps suggest, putting large parts of Brazil east of the whole U.S. East Coast.",
+		"tags": [
+			"geography",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-057",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A resting human heart beats roughly 70 times a minute. Over an average 80-year lifetime, roughly how many total times does it beat?",
+		"choices": [
+			"About 300 million",
+			"About 3 billion",
+			"About 30 billion",
+			"About 300 billion"
+		],
+		"answer": "About 3 billion",
+		"explanation": "70 beats/min x 60 x 24 x 365 x 80 comes out to roughly 2.9 billion beats — close to 3 billion.",
+		"tags": [
+			"estimation",
+			"biology",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-058",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "A man walks into a dark room holding just one match. Inside are a candle, an oil lamp, and a wood-burning stove, all unlit. Which does he light first?",
+		"answer": "the match",
+		"accepted": [
+			"the match",
+			"match",
+			"the match itself"
+		],
+		"explanation": "Nothing else can be lit until the match itself is burning — an obvious first step the question tricks you into overlooking.",
+		"tags": [
+			"riddle",
+			"lateral",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-059",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You flip a fair coin 4 times. Which specific outcome is more likely: the exact sequence HHHH, or the exact sequence HTHT?",
+		"choices": [
+			"HHHH is more likely",
+			"HTHT is more likely",
+			"They are exactly equally likely",
+			"It depends on how the coin is flipped"
+		],
+		"answer": "They are exactly equally likely",
+		"explanation": "Every specific sequence of 4 independent coin flips has the same probability, $(1/2)^4 = 1/16$. HTHT only feels more 'random' than HHHH because it looks less patterned — that intuition tracks how typical a sequence looks, not its actual probability.",
+		"tags": [
+			"probability",
+			"cognitive-bias",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-060",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What starts with T, ends with T, and is full of T?",
+		"answer": "a teapot",
+		"accepted": [
+			"a teapot",
+			"teapot"
+		],
+		"explanation": "\"Teapot\" starts and ends with T, and a teapot is typically full of tea.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -3022,6 +3335,60 @@
 			"writing",
 			"commands",
 			"calculus",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-016",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the 'there exists' quantifier symbol $\\exists$?",
+		"answer": "\\exists",
+		"accepted": [
+			"\\exists",
+			"exists"
+		],
+		"explanation": "`\\exists` renders the existential quantifier $\\exists$, the counterpart to `\\forall`.",
+		"tags": [
+			"symbols",
+			"quantifiers",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-017",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which source produces $\\nabla \\times \\vec{F}$, the curl of a vector field?",
+		"choices": [
+			"\\Delta \\times \\vec{F}",
+			"\\nabla \\times \\vec{F}",
+			"\\nabla \\cdot \\vec{F}",
+			"\\partial \\times \\vec{F}"
+		],
+		"answer": "\\nabla \\times \\vec{F}",
+		"explanation": "`\\nabla` gives the del/nabla symbol $\\nabla$; combined with `\\times` it denotes curl. `\\nabla \\cdot \\vec{F}` (with `\\cdot`) is the very similar-looking divergence — a common mix-up.",
+		"tags": [
+			"symbols",
+			"operators",
+			"vector-calculus",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-018",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for this 2x2 determinant, matching this target exactly: $$\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc$$ Then reveal and compare.",
+		"answer": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc",
+		"explanation": "The `vmatrix` environment draws plain vertical bars around the grid instead of parentheses or brackets, which is the standard notation for a determinant.",
+		"tags": [
+			"environments",
+			"writing",
+			"matrices",
 			"generated"
 		]
 	},
@@ -3889,6 +4256,121 @@
 		"tags": [
 			"paradox",
 			"vagueness",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-047",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Four kids — Mia, Kai, Zoe, and Theo — each have a different number of trading cards, a whole number from 1 to 4. Theo has the fewest cards. Mia has exactly twice as many cards as Kai. How many cards does Mia have?",
+		"answer": "4",
+		"accepted": [
+			"4"
+		],
+		"explanation": "Theo must have 1 (the fewest of 1-4). Among the remaining values {2,3,4}, only Kai=2 and Mia=4 satisfy 'Mia is double Kai' — leaving Zoe with 3.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-048",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "All craxons are wibbles. No wibble is a delp. Some delps are trantles. Which conclusion necessarily follows?",
+		"choices": [
+			"No craxon is a delp.",
+			"All craxons are trantles.",
+			"Some delps are wibbles.",
+			"All delps are trantles."
+		],
+		"answer": "No craxon is a delp.",
+		"explanation": "Craxons are a subset of wibbles, and wibbles and delps are entirely disjoint — so craxons, being wibbles, can't be delps either. The other options rely on connections the premises never establish.",
+		"tags": [
+			"syllogism",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-049",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "\"If we let students redo one quiz, soon they'll want to redo every quiz, then every test, and eventually earn degrees without doing any real work — so we can't allow even a single quiz redo.\" What is the name of this logical fallacy?",
+		"answer": "slippery slope",
+		"accepted": [
+			"slippery slope",
+			"slippery slope fallacy",
+			"slippery-slope"
+		],
+		"explanation": "A slippery slope argument claims a small first step must inevitably lead to an extreme outcome, without establishing that each link in the chain actually follows from the last.",
+		"tags": [
+			"fallacy",
+			"informal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-050",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In a village, the barber shaves every man who does not shave himself, and no one else. The barber is himself a man in the village. What can we conclude about whether the barber shaves himself?",
+		"choices": [
+			"The barber shaves himself",
+			"The barber does not shave himself",
+			"Both possibilities lead to a contradiction — no consistent answer exists",
+			"The barber has no beard, so the question doesn't apply"
+		],
+		"answer": "Both possibilities lead to a contradiction — no consistent answer exists",
+		"explanation": "If the barber shaves himself, he violates 'shaves every man who does not shave himself'; if he doesn't shave himself, the rule says he must. This is Russell's barber paradox — the premise describing the barber is simply self-contradictory, so no such barber can consistently exist.",
+		"tags": [
+			"paradox",
+			"self-reference",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-051",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "Two players alternate naming an integer from 1 to 10, adding it to a running total that starts at 0. Whoever's move makes the total reach exactly 100 wins. You move first. What number should you name first to guarantee a win with optimal play?",
+		"answer": "1",
+		"accepted": [
+			"1"
+		],
+		"explanation": "The winning trick is to always leave your opponent facing a multiple of 11 short of 100 — i.e., keep the total at 1, 12, 23, ..., 89, then 100. Since $100 = 9 \\times 11 + 1$, opening with 1 lets you always respond with $11 - x$ to your opponent's move $x$, forcing the total through every one of those checkpoints.",
+		"tags": [
+			"game-theory",
+			"strategy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-052",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Three prisoners, A, B, and C, are told one of them will be pardoned tomorrow, chosen uniformly at random, and the other two executed. Prisoner A privately asks the guard — who knows the outcome but won't say who is pardoned — to name one of B or C who will definitely be executed. The guard truthfully says, \"B will be executed.\" A reasons this raises A's own chance of being pardoned from 1/3 to 1/2, since only A and C remain in doubt. What is A's actual updated probability of being pardoned?",
+		"choices": [
+			"1/3",
+			"1/2",
+			"2/3",
+			"1/4"
+		],
+		"answer": "1/3",
+		"explanation": "The guard can always truthfully name a non-A prisoner slated for execution, whether A is pardoned or not — so the answer gives A no new information about A's own fate, and stays at 1/3. C's probability, however, jumps to 2/3, mirroring the Monty Hall problem.",
+		"tags": [
+			"paradox",
+			"bayesian",
+			"probability",
 			"generated"
 		]
 	},
@@ -5437,6 +5919,138 @@
 			"lateral",
 			"recreational",
 			"spatial",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-086",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "A $700 prize pool is split between first, second, and third place in the ratio 4:2:1. How much does second place receive, in dollars?",
+		"answer": "200",
+		"accepted": [
+			"200",
+			"$200",
+			"200 dollars"
+		],
+		"explanation": "The ratio parts sum to 4+2+1=7, so each part is worth $700/7 = $100. Second place gets 2 parts: 2 x $100 = $200.",
+		"tags": [
+			"ratios",
+			"word-problem",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-087",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Mental math shortcut: to multiply by 9, multiply by 10 and subtract the original number. Use it to compute $9 \\times 47$.",
+		"answer": "423",
+		"accepted": [
+			"423"
+		],
+		"explanation": "$47 \\times 10 = 470$, and $470 - 47 = 423$ — faster than multiplying by 9 directly.",
+		"tags": [
+			"mental-math",
+			"arithmetic-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-088",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A $100 jacket is discounted 20%, and then the discounted price is discounted another 25% at checkout. What is the final price?",
+		"choices": [
+			"$50",
+			"$55",
+			"$60",
+			"$65"
+		],
+		"answer": "$60",
+		"explanation": "Successive discounts multiply: $100 \\times 0.80 \\times 0.75 = \\$60$. Adding the percentages (20% + 25% = 45% off, giving $55) is the classic trap — discounts compound, they don't add.",
+		"tags": [
+			"percentages",
+			"trick",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-089",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Three consecutive even integers sum to 90. What is the largest of the three?",
+		"answer": "32",
+		"accepted": [
+			"32"
+		],
+		"explanation": "Writing them as $n-2, n, n+2$, the sum is $3n = 90$, so $n = 30$ and the largest is $30 + 2 = 32$.",
+		"tags": [
+			"algebra",
+			"word-problem",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-090",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A fair coin is flipped 3 times. What is the probability of getting at least one heads?",
+		"choices": [
+			"1/2",
+			"3/4",
+			"7/8",
+			"1/8"
+		],
+		"answer": "7/8",
+		"explanation": "It's easier to compute the complement: the only way to get zero heads is TTT, with probability $(1/2)^3 = 1/8$. So at least one heads has probability $1 - 1/8 = 7/8$.",
+		"tags": [
+			"probability",
+			"mental-math",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-091",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Counting every digit written from 1 to 100, how many times does the digit 7 appear in total?",
+		"answer": "20",
+		"accepted": [
+			"20"
+		],
+		"explanation": "The digit 7 appears in the units place 10 times (7, 17, 27, ..., 97) and in the tens place 10 times (70-79), for 20 total — note 77 contributes two of those.",
+		"tags": [
+			"number-theory",
+			"counting",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-092",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the sum of the first 50 positive odd integers ($1 + 3 + 5 + \\dots + 99$)?",
+		"answer": "2500",
+		"accepted": [
+			"2500"
+		],
+		"explanation": "The sum of the first $n$ odd numbers is always $n^2$ — a classic identity visible by arranging dots into a growing square. Here $n = 50$, so the sum is $50^2 = 2500$.",
+		"tags": [
+			"sequences",
+			"recreational",
+			"aha",
 			"generated"
 		]
 	},

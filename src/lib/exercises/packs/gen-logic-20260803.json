@@ -1,0 +1,81 @@
+{
+	"pack": "gen-logic-20260803",
+	"exercises": [
+		{
+			"id": "gen-logic-047",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Four kids — Mia, Kai, Zoe, and Theo — each have a different number of trading cards, a whole number from 1 to 4. Theo has the fewest cards. Mia has exactly twice as many cards as Kai. How many cards does Mia have?",
+			"answer": "4",
+			"accepted": ["4"],
+			"explanation": "Theo must have 1 (the fewest of 1-4). Among the remaining values {2,3,4}, only Kai=2 and Mia=4 satisfy 'Mia is double Kai' — leaving Zoe with 3.",
+			"tags": ["deduction", "constraint-puzzle", "generated"]
+		},
+		{
+			"id": "gen-logic-048",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "All craxons are wibbles. No wibble is a delp. Some delps are trantles. Which conclusion necessarily follows?",
+			"choices": [
+				"No craxon is a delp.",
+				"All craxons are trantles.",
+				"Some delps are wibbles.",
+				"All delps are trantles."
+			],
+			"answer": "No craxon is a delp.",
+			"explanation": "Craxons are a subset of wibbles, and wibbles and delps are entirely disjoint — so craxons, being wibbles, can't be delps either. The other options rely on connections the premises never establish.",
+			"tags": ["syllogism", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-049",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "\"If we let students redo one quiz, soon they'll want to redo every quiz, then every test, and eventually earn degrees without doing any real work — so we can't allow even a single quiz redo.\" What is the name of this logical fallacy?",
+			"answer": "slippery slope",
+			"accepted": ["slippery slope", "slippery slope fallacy", "slippery-slope"],
+			"explanation": "A slippery slope argument claims a small first step must inevitably lead to an extreme outcome, without establishing that each link in the chain actually follows from the last.",
+			"tags": ["fallacy", "informal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-050",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "In a village, the barber shaves every man who does not shave himself, and no one else. The barber is himself a man in the village. What can we conclude about whether the barber shaves himself?",
+			"choices": [
+				"The barber shaves himself",
+				"The barber does not shave himself",
+				"Both possibilities lead to a contradiction — no consistent answer exists",
+				"The barber has no beard, so the question doesn't apply"
+			],
+			"answer": "Both possibilities lead to a contradiction — no consistent answer exists",
+			"explanation": "If the barber shaves himself, he violates 'shaves every man who does not shave himself'; if he doesn't shave himself, the rule says he must. This is Russell's barber paradox — the premise describing the barber is simply self-contradictory, so no such barber can consistently exist.",
+			"tags": ["paradox", "self-reference", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-051",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "Two players alternate naming an integer from 1 to 10, adding it to a running total that starts at 0. Whoever's move makes the total reach exactly 100 wins. You move first. What number should you name first to guarantee a win with optimal play?",
+			"answer": "1",
+			"accepted": ["1"],
+			"explanation": "The winning trick is to always leave your opponent facing a multiple of 11 short of 100 — i.e., keep the total at 1, 12, 23, ..., 89, then 100. Since $100 = 9 \\times 11 + 1$, opening with 1 lets you always respond with $11 - x$ to your opponent's move $x$, forcing the total through every one of those checkpoints.",
+			"tags": ["game-theory", "strategy", "generated"]
+		},
+		{
+			"id": "gen-logic-052",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Three prisoners, A, B, and C, are told one of them will be pardoned tomorrow, chosen uniformly at random, and the other two executed. Prisoner A privately asks the guard — who knows the outcome but won't say who is pardoned — to name one of B or C who will definitely be executed. The guard truthfully says, \"B will be executed.\" A reasons this raises A's own chance of being pardoned from 1/3 to 1/2, since only A and C remain in doubt. What is A's actual updated probability of being pardoned?",
+			"choices": ["1/3", "1/2", "2/3", "1/4"],
+			"answer": "1/3",
+			"explanation": "The guard can always truthfully name a non-A prisoner slated for execution, whether A is pardoned or not — so the answer gives A no new information about A's own fate, and stays at 1/3. C's probability, however, jumps to 2/3, mirroring the Monty Hall problem.",
+			"tags": ["paradox", "bayesian", "probability", "generated"]
+		}
+	]
+}

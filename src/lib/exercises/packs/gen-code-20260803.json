@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260803",
+	"exercises": [
+		{
+			"id": "gen-code-056",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What is the time complexity of this matrix-multiplication routine, as a function of $n$ (the dimension of the two $n \\times n$ matrices)?",
+			"code": {
+				"lang": "cpp",
+				"src": "for (int i = 0; i < n; i++)\n    for (int j = 0; j < n; j++)\n        for (int k = 0; k < n; k++)\n            result[i][j] += a[i][k] * b[k][j];"
+			},
+			"choices": ["$O(n)$", "$O(n^2)$", "$O(n^3)$", "$O(n \\log n)$"],
+			"answer": "$O(n^3)$",
+			"explanation": "Three nested loops each running $n$ times give $n \\times n \\times n = n^3$ total iterations — the standard cost of naive matrix multiplication.",
+			"tags": ["complexity", "algorithms", "generated"]
+		},
+		{
+			"id": "gen-code-057",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `is_prime` below, as a function of $n$?",
+			"code": {
+				"lang": "python",
+				"src": "def is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True"
+			},
+			"choices": ["$O(\\log n)$", "$O(\\sqrt{n})$", "$O(n)$", "$O(n \\log n)$"],
+			"answer": "$O(\\sqrt{n})$",
+			"explanation": "The loop only needs to check divisors up to $\\sqrt{n}$, since any factor larger than that would have a matching factor smaller than $\\sqrt{n}$ — so `i` runs from 2 to roughly $\\sqrt{n}$.",
+			"tags": ["complexity", "algorithms", "number-theory", "generated"]
+		},
+		{
+			"id": "gen-code-058",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to report the full size, in bytes, of the 10-element array passed to it. Why doesn't it work as intended?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nvoid printSize(int arr[]) {\n    printf(\"%zu\\n\", sizeof(arr));\n}\n\nint main(void) {\n    int arr[10] = {0};\n    printSize(arr);\n    return 0;\n}"
+			},
+			"choices": [
+				"It prints 40, exactly as expected — there is no bug",
+				"When passed as a function parameter, `arr` decays to a pointer, so `sizeof(arr)` measures the pointer's size, not the array's",
+				"`%zu` is the wrong format specifier and the program fails to compile",
+				"`sizeof` cannot legally be used inside a function body in C"
+			],
+			"answer": "When passed as a function parameter, `arr` decays to a pointer, so `sizeof(arr)` measures the pointer's size, not the array's",
+			"explanation": "A function parameter declared as `int arr[]` is really `int *arr` — array parameters always decay to a pointer. Inside `printSize`, `sizeof(arr)` is the size of that pointer (commonly 8 bytes), not the 40 bytes of the caller's actual array.",
+			"tags": ["c", "sizeof", "pointer-decay", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-059",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "This function is meant to check whether two arrays hold the same items, but `hasSameItems([1, 2, 3], [1, 2, 3])` prints `false`. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "function hasSameItems(a, b) {\n  return a === b;\n}\n\nconsole.log(hasSameItems([1, 2, 3], [1, 2, 3]));"
+			},
+			"choices": [
+				"`===` compares array references, not contents — two distinct arrays are never `===`, even with identical elements",
+				"JavaScript can't compare numbers inside arrays",
+				"`console.log` silently converts the result to a string first",
+				"The function should compare `a.length` instead of `a` and `b`"
+			],
+			"answer": "`===` compares array references, not contents — two distinct arrays are never `===`, even with identical elements",
+			"explanation": "Arrays (and objects) are reference types: `===` checks whether both sides point to the exact same object in memory, not whether their contents match. Comparing contents requires something like element-by-element comparison or `JSON.stringify`.",
+			"tags": ["javascript", "reference-equality", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-060",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "a = b = []\na.append(1)\nprint(b)"
+			},
+			"answer": "[1]",
+			"accepted": ["[1]"],
+			"explanation": "`a = b = []` binds both names to the same list object, not two separate empty lists. Mutating it through `a` is visible through `b` too.",
+			"tags": ["python", "predict-output", "aliasing", "generated"]
+		}
+	]
+}

@@ -1,0 +1,128 @@
+{
+	"pack": "gen-general-20260803",
+	"exercises": [
+		{
+			"id": "gen-general-051",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "Two friends, Alex and Sam, each play five games of chess over a tournament weekend. Alex wins three of his five games, and Sam also wins three of his five games — yet neither Alex nor Sam ever loses a game to the other. How is this possible? Work out an explanation, then reveal and compare.",
+			"answer": "Alex and Sam never played each other at all — each played all five of their games against other opponents in the tournament, so their win counts have nothing to do with one another.",
+			"explanation": "The riddle only feels paradoxical if you assume 'each plays five games' means they played each other; nothing in the setup actually says that.",
+			"tags": ["lateral", "riddle", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-052",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What common English word, written in capital letters, still spells the same word when the page is turned upside-down (rotated 180 degrees)?",
+			"answer": "SWIMS",
+			"accepted": ["SWIMS", "swims", "NOON", "noon"],
+			"explanation": "Rotate each letter of SWIMS 180 degrees and read in the new order: S stays S, W becomes M, I stays I, M becomes W, S stays S — spelling SWIMS again. NOON works the same way.",
+			"tags": ["wordplay", "riddle", "generated"]
+		},
+		{
+			"id": "gen-general-053",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Buses on a route are scheduled to arrive every 10 minutes on average, but in practice they bunch up, so the actual gaps between buses vary — some only 2 minutes, others 18 minutes. If you show up at a uniformly random moment, is your expected wait for the next bus exactly 5 minutes, more than 5 minutes, or less than 5 minutes?",
+			"choices": [
+				"Exactly 5 minutes",
+				"More than 5 minutes",
+				"Less than 5 minutes",
+				"It depends only on the bus color"
+			],
+			"answer": "More than 5 minutes",
+			"explanation": "This is the 'inspection paradox': a random arrival is more likely to land inside a longer gap simply because longer gaps take up more of the timeline, so the average gap you actually experience is longer than the schedule's average gap.",
+			"tags": ["probability", "paradox", "estimation", "generated"]
+		},
+		{
+			"id": "gen-general-054",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which of these fruits is botanically a true berry: the banana or the strawberry?",
+			"choices": ["The banana", "The strawberry", "Both", "Neither"],
+			"answer": "The banana",
+			"explanation": "Botanically, a berry develops from a single flower ovary and has flesh surrounding its seeds — bananas qualify, but strawberries don't: a strawberry is an 'aggregate accessory fruit' whose seeds each come from separate ovaries on the outside of the flesh.",
+			"tags": ["biology", "myth-busting", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-055",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Clock A is broken and permanently stopped, frozen at one fixed time. Clock B works, but runs consistently 1 minute slow every hour. Over the course of a year, counting only the exact instants when a clock's displayed time matches the real time, which clock is correct more often? Work it out, then reveal and compare.",
+			"answer": "Clock A, the stopped one — by a wide margin. A 12-hour analog dial displays the same fixed time as the real time twice every 24 hours, about 730 times a year. Clock B loses 1 minute per hour, so it takes 720 hours (30 days) to drift through a full 12-hour cycle and land back on the correct time — only about 12 times a year.",
+			"explanation": "This formalizes the old saying that a stopped clock is right twice a day — a clock that's merely inaccurate can, perhaps surprisingly, be correct far less often than one that isn't running at all.",
+			"tags": ["paradox", "aha", "estimation", "generated"]
+		},
+		{
+			"id": "gen-general-056",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which is farther east: the easternmost tip of Brazil, or New York City?",
+			"choices": [
+				"The easternmost tip of Brazil",
+				"New York City",
+				"They sit at about the same longitude",
+				"It depends on the time of year"
+			],
+			"answer": "The easternmost tip of Brazil",
+			"explanation": "New York City sits around 74 degrees west longitude, while Brazil's easternmost point, near Joao Pessoa, is only about 35 degrees west — South America bulges much farther east than most mental maps suggest, putting large parts of Brazil east of the whole U.S. East Coast.",
+			"tags": ["geography", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-057",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A resting human heart beats roughly 70 times a minute. Over an average 80-year lifetime, roughly how many total times does it beat?",
+			"choices": ["About 300 million", "About 3 billion", "About 30 billion", "About 300 billion"],
+			"answer": "About 3 billion",
+			"explanation": "70 beats/min x 60 x 24 x 365 x 80 comes out to roughly 2.9 billion beats — close to 3 billion.",
+			"tags": ["estimation", "biology", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-058",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "A man walks into a dark room holding just one match. Inside are a candle, an oil lamp, and a wood-burning stove, all unlit. Which does he light first?",
+			"answer": "the match",
+			"accepted": ["the match", "match", "the match itself"],
+			"explanation": "Nothing else can be lit until the match itself is burning — an obvious first step the question tricks you into overlooking.",
+			"tags": ["riddle", "lateral", "generated"]
+		},
+		{
+			"id": "gen-general-059",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You flip a fair coin 4 times. Which specific outcome is more likely: the exact sequence HHHH, or the exact sequence HTHT?",
+			"choices": [
+				"HHHH is more likely",
+				"HTHT is more likely",
+				"They are exactly equally likely",
+				"It depends on how the coin is flipped"
+			],
+			"answer": "They are exactly equally likely",
+			"explanation": "Every specific sequence of 4 independent coin flips has the same probability, $(1/2)^4 = 1/16$. HTHT only feels more 'random' than HHHH because it looks less patterned — that intuition tracks how typical a sequence looks, not its actual probability.",
+			"tags": ["probability", "cognitive-bias", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-060",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What starts with T, ends with T, and is full of T?",
+			"answer": "a teapot",
+			"accepted": ["a teapot", "teapot"],
+			"explanation": "\"Teapot\" starts and ends with T, and a teapot is typically full of tea.",
+			"tags": ["riddle", "wordplay", "generated"]
+		}
+	]
+}
