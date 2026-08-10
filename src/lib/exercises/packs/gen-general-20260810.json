@@ -1,0 +1,119 @@
+{
+	"pack": "gen-general-20260810",
+	"exercises": [
+		{
+			"id": "gen-general-061",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What's the term for a number that reads the same forwards and backwards, like 121 or 1331?",
+			"answer": "palindrome",
+			"accepted": ["palindrome", "palindromic number", "a palindrome"],
+			"explanation": "Palindromes work the same way for numbers as for words like \"racecar\" — identical read in either direction.",
+			"tags": ["trivia", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-062",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Food science recognizes five basic tastes: sweet, sour, salty, bitter, and one more. What's the fifth?",
+			"answer": "umami",
+			"accepted": ["umami", "umami (savory)", "savory"],
+			"explanation": "Umami — a savory, broth-like taste triggered by glutamates — was identified by Japanese chemist Kikunae Ikeda in 1908 and confirmed as a distinct taste receptor pathway a century later.",
+			"tags": ["trivia", "biology", "generated"]
+		},
+		{
+			"id": "gen-general-063",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A roulette wheel has landed on red 9 times in a row. Ignoring the green zero, what's the probability the next spin is red?",
+			"answer": "50%",
+			"accepted": ["50%", "50", "1/2", "0.5", "50 percent"],
+			"explanation": "The wheel has no memory — each spin is independent of the last, so the odds stay 50/50 no matter the streak. Believing otherwise is the gambler's fallacy.",
+			"tags": ["probability", "gamblers-fallacy", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-064",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "If all roughly 8 billion people on Earth stood in a line spaced about 0.5 m apart, roughly how many times would that line wrap around Earth's equator (about 40,000 km)?",
+			"choices": ["About 10 times", "About 100 times", "About 1,000 times", "About 10,000 times"],
+			"answer": "About 100 times",
+			"explanation": "$8 \\times 10^9$ people $\\times$ 0.5 m $= 4 \\times 10^9$ m $= 4{,}000{,}000$ km. Divide by the equator's 40,000 km: about 100 laps.",
+			"tags": ["estimation", "scale", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-065",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What 7-letter word, when you remove its third letter, spells a 6-letter word meaning \"more lengthy\"?",
+			"answer": "lounger",
+			"accepted": ["lounger", "LOUNGER"],
+			"explanation": "LOUNGER minus its third letter (U) spells LONGER.",
+			"tags": ["wordplay", "riddle", "generated"]
+		},
+		{
+			"id": "gen-general-066",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Two doors stand before you: one leads to freedom, the other to doom. A guard stands at each door, but you don't know which guard stands where. One guard always tells the truth; the other always lies — but you don't know which is which. You may ask exactly ONE yes/no question, directed at exactly ONE guard of your choice, to find the door to freedom. What question do you ask? Work it out, then reveal and compare.",
+			"answer": "Ask either guard: \"If I asked the other guard which door leads to freedom, what would they say?\" Then take the OPPOSITE door from whatever they answer.",
+			"explanation": "Ask the truth-teller and they honestly report the liar's false answer (pointing to doom). Ask the liar and they lie about the truth-teller's correct answer (also pointing to doom). Either way, the named door is always the wrong one — so pick the other.",
+			"tags": ["lateral", "classic", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-067",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: Vikings wore horned helmets into battle.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "No archaeological find has ever turned up a Viking-age horned battle helmet. The image comes from 19th-century Romantic costume design, most famously Wagner's opera productions.",
+			"tags": ["myth-busting", "history", "generated"]
+		},
+		{
+			"id": "gen-general-068",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Look at the first digit of numbers drawn from real-world data — populations, street addresses, stock prices, river lengths. Which digit is most likely to show up as the FIRST digit?",
+			"choices": ["1", "5", "9", "They're all equally likely, about 11% each"],
+			"answer": "1",
+			"explanation": "This is Benford's Law: leading digit 1 appears about 30% of the time in many naturally occurring numerical data sets, with probability decreasing logarithmically toward 9 (about 4.6%) — a pattern accountants use to flag fabricated numbers.",
+			"tags": ["probability", "benfords-law", "aha", "statistics", "generated"]
+		},
+		{
+			"id": "gen-general-069",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "The Equator passes through parts of Brazil, Indonesia, and Kenya. Which of these four countries does the Equator NOT pass through?",
+			"choices": ["Brazil", "Indonesia", "Kenya", "Egypt"],
+			"answer": "Egypt",
+			"explanation": "Egypt sits well north of the Equator, roughly between 22 degrees and 31 degrees N latitude.",
+			"tags": ["geography", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-070",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "On average, do most people have fewer friends than their friends have (on average), the same number, or more?",
+			"choices": [
+				"Fewer — their friends have more friends on average",
+				"The same number",
+				"More — their friends have fewer friends on average",
+				"It depends entirely on the person, no general pattern exists"
+			],
+			"answer": "Fewer — their friends have more friends on average",
+			"explanation": "This is the \"friendship paradox\": popular, highly-connected people show up disproportionately often in other people's friend lists, dragging the average friend-count-of-friends above the average person's own friend count.",
+			"tags": ["paradox", "statistics", "aha", "generated"]
+		}
+	]
+}

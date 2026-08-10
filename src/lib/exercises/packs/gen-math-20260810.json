@@ -1,0 +1,87 @@
+{
+	"pack": "gen-math-20260810",
+	"exercises": [
+		{
+			"id": "gen-math-093",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is $7! / 5!$?",
+			"answer": "42",
+			"accepted": ["42"],
+			"explanation": "$7!/5! = 7 \\times 6 = 42$ — the lower factorial cancels out, leaving just the product of the two extra terms.",
+			"tags": ["factorials", "mental-math", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-094",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "If a hen and a half lay an egg and a half in a day and a half, how many eggs does one hen lay in one day? Give your answer as a fraction.",
+			"answer": "2/3",
+			"accepted": ["2/3", "0.667", "two-thirds", "0.67"],
+			"explanation": "The rate is eggs / (hens x days): $1.5 / (1.5 \\times 1.5) = 1.5/2.25 = 2/3$ egg per hen per day. The tempting quick answer of \"1\" is wrong — scaling hens and days by the same factor doesn't scale the per-hen-per-day rate the same way.",
+			"tags": ["rate-problems", "classic", "recreational", "trick", "generated"]
+		},
+		{
+			"id": "gen-math-095",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "In the Fibonacci sequence $1, 1, 2, 3, 5, 8, 13, \\dots$, what is the first term greater than 100?",
+			"answer": "144",
+			"accepted": ["144"],
+			"explanation": "Continuing the sequence: $21, 34, 55, 89, 144$ — 89 is still under 100, and 144 is the first term to clear it.",
+			"tags": ["sequences", "fibonacci", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-096",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You roll a fair six-sided die. If it lands on an odd number, you win that many dollars; if it lands on an even number, you win nothing. What is the expected value of your winnings?",
+			"choices": ["$1.50", "$2.00", "$1.00", "$3.00"],
+			"answer": "$1.50",
+			"explanation": "Only 1, 3, and 5 pay out, each with probability $1/6$: $(1+3+5)/6 = 9/6 = \\$1.50$.",
+			"tags": ["probability", "expected-value", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-097",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "You have a square sheet of cardboard, 10 cm on each side. You cut a 2 cm by 2 cm square out of each of the four corners, then fold up the four resulting flaps to form an open-top box. What is the volume of the box, in cubic centimeters?",
+			"answer": "72",
+			"accepted": ["72", "72 cm^3", "72 cubic cm"],
+			"explanation": "The base becomes $(10 - 2 \\times 2) \\times (10 - 2 \\times 2) = 6 \\times 6$, and the height equals the cut size, 2 cm. Volume $= 6 \\times 6 \\times 2 = 72$.",
+			"tags": ["geometry", "word-problem", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-098",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which is larger: the number of ways to arrange 4 distinct books on a shelf, or $4^2$?",
+			"choices": [
+				"The number of arrangements ($4! = 24$)",
+				"$4^2 = 16$",
+				"They are equal",
+				"Cannot be determined"
+			],
+			"answer": "The number of arrangements ($4! = 24$)",
+			"explanation": "Arranging 4 distinct items in order gives $4! = 24$ possibilities, while $4^2 = 16$ — factorial growth overtakes this kind of power growth even at small sizes.",
+			"tags": ["combinatorics", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-099",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "The \"four fours\" puzzle: using exactly four 4's and any combination of ordinary arithmetic operations ($+, -, \\times, \\div$) and parentheses, write an expression that equals 24. Work one out, then reveal and compare.",
+			"answer": "4 x 4 + 4 + 4",
+			"accepted": ["4 x 4 + 4 + 4", "(4+4)+(4x4)", "4*4+4+4", "(4+4)+4*4"],
+			"explanation": "$4 \\times 4 + 4 + 4 = 16 + 4 + 4 = 24$ is one valid solution; $(4+4) + (4 \\times 4) = 8 + 16 = 24$ is another. Many other combinations also work.",
+			"tags": ["recreational", "puzzle", "generated"]
+		}
+	]
+}

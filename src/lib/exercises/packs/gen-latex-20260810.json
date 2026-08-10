@@ -1,0 +1,42 @@
+{
+	"pack": "gen-latex-20260810",
+	"exercises": [
+		{
+			"id": "gen-latex-019",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is the command for the 'therefore' symbol $\\therefore$ (three dots, used right before a conclusion)?",
+			"answer": "\\therefore",
+			"accepted": ["\\therefore", "therefore"],
+			"explanation": "`\\therefore` renders $\\therefore$; the mirrored `\\because` renders $\\because$ for 'because'.",
+			"tags": ["symbols", "commands", "generated"]
+		},
+		{
+			"id": "gen-latex-020",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which LaTeX source correctly produces this indexed union: $$\\bigcup_{i=1}^{n} A_i$$",
+			"choices": [
+				"\\bigcup_{i=1}^{n} A_i",
+				"\\cup_{i=1}^{n} A_i",
+				"\\Union_{i=1}^{n} A_i",
+				"\\bigcup(i=1)^{n} A_i"
+			],
+			"answer": "\\bigcup_{i=1}^{n} A_i",
+			"explanation": "`\\bigcup` is the large display-style union operator that stacks its limits above and below in display mode; `\\cup` is the small inline binary union symbol, and `\\Union` isn't a real command.",
+			"tags": ["symbols", "set-theory", "operators", "generated"]
+		},
+		{
+			"id": "gen-latex-021",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for the sum of a finite geometric series, matching this target exactly: $$\\sum_{k=0}^{n-1} ar^k = a\\frac{1-r^n}{1-r}$$ Work it out, then reveal and compare.",
+			"answer": "\\sum_{k=0}^{n-1} ar^k = a\\frac{1-r^n}{1-r}",
+			"explanation": "`\\sum_{k=0}^{n-1}` sets the summation bounds, and `\\frac{1-r^n}{1-r}` builds the closed-form fraction on the right.",
+			"tags": ["writing", "series", "sum", "generated"]
+		}
+	]
+}

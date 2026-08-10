@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260810",
+	"exercises": [
+		{
+			"id": "gen-code-061",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What does this JavaScript print?",
+			"code": {
+				"lang": "javascript",
+				"src": "const a = 0 || 5;\nconst b = 0 ?? 5;\nconsole.log(a, b);"
+			},
+			"choices": ["5 0", "0 5", "5 5", "0 0"],
+			"answer": "5 0",
+			"explanation": "`||` falls back to its right side for any falsy value, and `0` is falsy, so `a` is `5`. `??` only falls back on `null`/`undefined`, and `0` is neither, so `b` stays `0`.",
+			"tags": ["javascript", "nullish-coalescing", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-062",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this C++ program print?",
+			"code": {
+				"lang": "cpp",
+				"src": "std::vector<int> v = {1, 2, 3};\nfor (auto x : v) {\n    x *= 2;\n}\nfor (auto x : v) std::cout << x << \" \";"
+			},
+			"choices": ["1 2 3 ", "2 4 6 ", "1 2 3 2 4 6 ", "Compile error"],
+			"answer": "1 2 3 ",
+			"explanation": "`for (auto x : v)` copies each element into `x`; multiplying the copy by 2 never touches `v`. Modifying the vector in place would need `auto&`.",
+			"tags": ["cpp", "references", "predict-output", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-code-063",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to return the average of `nums` as a float. What's wrong with it?",
+			"code": {
+				"lang": "python",
+				"src": "def average(nums):\n    total = sum(nums)\n    return total // len(nums)\n\nprint(average([1, 2, 4]))"
+			},
+			"choices": [
+				"It uses `//` (floor division) instead of `/`, so the result is silently truncated to an integer",
+				"It should use `len(nums) - 1` in the denominator",
+				"`sum()` doesn't work on lists in Python",
+				"There's no bug; it already returns a float"
+			],
+			"answer": "It uses `//` (floor division) instead of `/`, so the result is silently truncated to an integer",
+			"explanation": "$7 / 3 \\approx 2.33$ is the true average, but `7 // 3` floors to `2` — no error, just a quietly wrong number.",
+			"tags": ["python", "integer-division", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-064",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "`printPairs` is meant to do nothing when given an empty vector. What actually happens when it's called with `empty`, and why?",
+			"code": {
+				"lang": "cpp",
+				"src": "void printPairs(const std::vector<int>& v) {\n    for (int i = 0; i < v.size() - 1; i++) {\n        std::cout << v[i] << \"-\" << v[i + 1] << \" \";\n    }\n}\n\nstd::vector<int> empty;\nprintPairs(empty);"
+			},
+			"choices": [
+				"Undefined behavior, likely a crash — `v.size() - 1` underflows to a huge unsigned value since `size()` returns an unsigned type",
+				"It prints nothing, as intended, because the loop simply doesn't execute",
+				"It throws a Python-style IndexError",
+				"It compiles but the loop always runs exactly once"
+			],
+			"answer": "Undefined behavior, likely a crash — `v.size() - 1` underflows to a huge unsigned value since `size()` returns an unsigned type",
+			"explanation": "`v.size()` returns `size_t` (unsigned). For an empty vector, `0 - 1` wraps around to the largest possible `size_t`, so `i < v.size() - 1` stays true far past the vector's bounds — a classic unsigned-underflow trap.",
+			"tags": ["cpp", "unsigned-underflow", "size_t", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-065",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `build_string` as a function of $n = $ `len(items)`, assuming each item's string form has constant length?",
+			"code": {
+				"lang": "python",
+				"src": "def build_string(items):\n    s = \"\"\n    for x in items:\n        s += str(x)\n    return s"
+			},
+			"choices": ["O(n)", "O(n log n)", "O(n²)", "O(2^n)"],
+			"answer": "O(n²)",
+			"explanation": "Strings are immutable, so each `s += str(x)` builds an entirely new string, copying everything accumulated so far. The copy lengths grow $1 + 2 + \\dots + n$, which is $O(n^2)$ — this is exactly why `''.join(...)` is preferred for building strings in a loop.",
+			"tags": ["python", "complexity", "strings", "generated"]
+		}
+	]
+}

@@ -1,0 +1,85 @@
+{
+	"pack": "gen-logic-20260810",
+	"exercises": [
+		{
+			"id": "gen-logic-053",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "All flurbs are wobbles. No wobble is a zant. Which conclusion necessarily follows?",
+			"choices": [
+				"No flurb is a zant.",
+				"All zants are flurbs.",
+				"Some flurbs are zants.",
+				"All wobbles are flurbs."
+			],
+			"answer": "No flurb is a zant.",
+			"explanation": "Every flurb is a wobble, and no wobble is a zant, so no flurb can be a zant either — a chain of \"all\" into \"no\" transfers cleanly.",
+			"tags": ["syllogism", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-054",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A plane mirror flips your reflection left-to-right (raise your right hand, the reflection raises what looks like its left) but never flips it upside-down. Why does a mirror swap left and right but not up and down? Work out the explanation, then reveal and compare.",
+			"answer": "A mirror actually reverses front-to-back (depth), not left-right; the apparent left-right swap happens because we imagine rotating ourselves around a vertical axis to face the same way as our reflection, and that rotation is what swaps left and right.",
+			"explanation": "The mirror only inverts the axis perpendicular to its surface (front-to-back). There's no physical left-right flip at all — the illusion comes from mentally rotating yourself to compare orientations, and a vertical-axis rotation is what puts left and right on opposite sides.",
+			"tags": ["spatial", "physics", "aha", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-055",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A famous flawed \"proof by induction\" claims all horses are the same color. Base case: a group of just 1 horse is trivially all one color. Inductive step: assume any group of $n$ horses is all one color; given a group of $n+1$ horses, remove one horse to get an $n$-horse group (all one color by assumption), then swap which horse was removed to get a different $n$-horse group (also all one color) — the two groups overlap, so all $n+1$ horses share that color. Where exactly does this argument break down?",
+			"choices": [
+				"The inductive step fails specifically going from $n=1$ to $n=2$: two single-horse groups don't overlap, so there's no shared horse linking them.",
+				"The base case is false, since a single horse isn't guaranteed to be one color.",
+				"The claim is actually true; there is no flaw.",
+				"Induction cannot be used to reason about colors at all."
+			],
+			"answer": "The inductive step fails specifically going from $n=1$ to $n=2$: two single-horse groups don't overlap, so there's no shared horse linking them.",
+			"explanation": "For $n \\ge 2$, two overlapping $n$-subsets of an $(n+1)$-group always share at least one horse, linking their colors. That breaks precisely at $n=1$: two single-horse groups of a 2-horse set share no horse, so nothing forces them to match.",
+			"tags": ["induction", "fallacy", "classic", "paradox", "generated"]
+		},
+		{
+			"id": "gen-logic-056",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Two piles of stones sit on the table: one with 3 stones, one with 5. On each turn, a player removes any positive number of stones from exactly one pile (their choice which pile, and how many). Whoever takes the last stone wins. You move first — which move guarantees you a win?",
+			"choices": [
+				"Take 2 stones from the 5-stone pile, leaving 3 and 3.",
+				"Take all 3 stones from the smaller pile, leaving 0 and 5.",
+				"Take 1 stone from the 3-stone pile, leaving 2 and 5.",
+				"It doesn't matter — the second player always wins from 3 and 5."
+			],
+			"answer": "Take 2 stones from the 5-stone pile, leaving 3 and 3.",
+			"explanation": "This is Nim: a position is losing for the player about to move exactly when the pile sizes XOR to 0. $3 \\oplus 5 = 6 \\neq 0$, so the first player wins by moving to an XOR-0 position — equalizing the piles at $3, 3$ — after which mirroring the opponent's every move guarantees the last stone.",
+			"tags": ["game-theory", "nim", "strategy", "generated"]
+		},
+		{
+			"id": "gen-logic-057",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "A factory's widgets come from two machines. Machine A makes 70% of all widgets and 2% of its output is defective. Machine B makes the remaining 30% and 8% of its output is defective. A widget is picked at random and found defective. What is the probability (rounded to the nearest whole percent) that it came from Machine B?",
+			"answer": "63%",
+			"accepted": ["63", "63%", "~63%"],
+			"explanation": "$P(B \\cap \\text{def}) = 0.3 \\times 0.08 = 0.024$ and $P(A \\cap \\text{def}) = 0.7 \\times 0.02 = 0.014$, for a total defect probability of $0.038$. So $P(B \\mid \\text{def}) = 0.024/0.038 \\approx 0.632$, or 63%.",
+			"tags": ["bayesian", "conditional-probability", "generated"]
+		},
+		{
+			"id": "gen-logic-058",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Starting at point A, you walk 5 km east, then 3 km north, then 5 km west. How far are you from point A now, and in which direction?",
+			"answer": "3 km north",
+			"accepted": ["3km north", "3 kilometers north", "North, 3 km", "3 km due north"],
+			"explanation": "The 5 km east and 5 km west legs cancel exactly, leaving only the 3 km north displacement.",
+			"tags": ["spatial", "vectors", "generated"]
+		}
+	]
+}

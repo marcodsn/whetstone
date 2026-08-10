@@ -1927,6 +1927,133 @@
 		]
 	},
 	{
+		"id": "gen-code-061",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "const a = 0 || 5;\nconst b = 0 ?? 5;\nconsole.log(a, b);"
+		},
+		"choices": [
+			"5 0",
+			"0 5",
+			"5 5",
+			"0 0"
+		],
+		"answer": "5 0",
+		"explanation": "`||` falls back to its right side for any falsy value, and `0` is falsy, so `a` is `5`. `??` only falls back on `null`/`undefined`, and `0` is neither, so `b` stays `0`.",
+		"tags": [
+			"javascript",
+			"nullish-coalescing",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-062",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this C++ program print?",
+		"code": {
+			"lang": "cpp",
+			"src": "std::vector<int> v = {1, 2, 3};\nfor (auto x : v) {\n    x *= 2;\n}\nfor (auto x : v) std::cout << x << \" \";"
+		},
+		"choices": [
+			"1 2 3 ",
+			"2 4 6 ",
+			"1 2 3 2 4 6 ",
+			"Compile error"
+		],
+		"answer": "1 2 3 ",
+		"explanation": "`for (auto x : v)` copies each element into `x`; multiplying the copy by 2 never touches `v`. Modifying the vector in place would need `auto&`.",
+		"tags": [
+			"cpp",
+			"references",
+			"predict-output",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-063",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to return the average of `nums` as a float. What's wrong with it?",
+		"code": {
+			"lang": "python",
+			"src": "def average(nums):\n    total = sum(nums)\n    return total // len(nums)\n\nprint(average([1, 2, 4]))"
+		},
+		"choices": [
+			"It uses `//` (floor division) instead of `/`, so the result is silently truncated to an integer",
+			"It should use `len(nums) - 1` in the denominator",
+			"`sum()` doesn't work on lists in Python",
+			"There's no bug; it already returns a float"
+		],
+		"answer": "It uses `//` (floor division) instead of `/`, so the result is silently truncated to an integer",
+		"explanation": "$7 / 3 \\approx 2.33$ is the true average, but `7 // 3` floors to `2` — no error, just a quietly wrong number.",
+		"tags": [
+			"python",
+			"integer-division",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-064",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "`printPairs` is meant to do nothing when given an empty vector. What actually happens when it's called with `empty`, and why?",
+		"code": {
+			"lang": "cpp",
+			"src": "void printPairs(const std::vector<int>& v) {\n    for (int i = 0; i < v.size() - 1; i++) {\n        std::cout << v[i] << \"-\" << v[i + 1] << \" \";\n    }\n}\n\nstd::vector<int> empty;\nprintPairs(empty);"
+		},
+		"choices": [
+			"Undefined behavior, likely a crash — `v.size() - 1` underflows to a huge unsigned value since `size()` returns an unsigned type",
+			"It prints nothing, as intended, because the loop simply doesn't execute",
+			"It throws a Python-style IndexError",
+			"It compiles but the loop always runs exactly once"
+		],
+		"answer": "Undefined behavior, likely a crash — `v.size() - 1` underflows to a huge unsigned value since `size()` returns an unsigned type",
+		"explanation": "`v.size()` returns `size_t` (unsigned). For an empty vector, `0 - 1` wraps around to the largest possible `size_t`, so `i < v.size() - 1` stays true far past the vector's bounds — a classic unsigned-underflow trap.",
+		"tags": [
+			"cpp",
+			"unsigned-underflow",
+			"size_t",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-065",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `build_string` as a function of $n = $ `len(items)`, assuming each item's string form has constant length?",
+		"code": {
+			"lang": "python",
+			"src": "def build_string(items):\n    s = \"\"\n    for x in items:\n        s += str(x)\n    return s"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n²)",
+			"O(2^n)"
+		],
+		"answer": "O(n²)",
+		"explanation": "Strings are immutable, so each `s += str(x)` builds an entirely new string, copying everything accumulated so far. The copy lengths grow $1 + 2 + \\dots + n$, which is $O(n^2)$ — this is exactly why `''.join(...)` is preferred for building strings in a loop.",
+		"tags": [
+			"python",
+			"complexity",
+			"strings",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -3068,6 +3195,201 @@
 		]
 	},
 	{
+		"id": "gen-general-061",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What's the term for a number that reads the same forwards and backwards, like 121 or 1331?",
+		"answer": "palindrome",
+		"accepted": [
+			"palindrome",
+			"palindromic number",
+			"a palindrome"
+		],
+		"explanation": "Palindromes work the same way for numbers as for words like \"racecar\" — identical read in either direction.",
+		"tags": [
+			"trivia",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-062",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Food science recognizes five basic tastes: sweet, sour, salty, bitter, and one more. What's the fifth?",
+		"answer": "umami",
+		"accepted": [
+			"umami",
+			"umami (savory)",
+			"savory"
+		],
+		"explanation": "Umami — a savory, broth-like taste triggered by glutamates — was identified by Japanese chemist Kikunae Ikeda in 1908 and confirmed as a distinct taste receptor pathway a century later.",
+		"tags": [
+			"trivia",
+			"biology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-063",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A roulette wheel has landed on red 9 times in a row. Ignoring the green zero, what's the probability the next spin is red?",
+		"answer": "50%",
+		"accepted": [
+			"50%",
+			"50",
+			"1/2",
+			"0.5",
+			"50 percent"
+		],
+		"explanation": "The wheel has no memory — each spin is independent of the last, so the odds stay 50/50 no matter the streak. Believing otherwise is the gambler's fallacy.",
+		"tags": [
+			"probability",
+			"gamblers-fallacy",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-064",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If all roughly 8 billion people on Earth stood in a line spaced about 0.5 m apart, roughly how many times would that line wrap around Earth's equator (about 40,000 km)?",
+		"choices": [
+			"About 10 times",
+			"About 100 times",
+			"About 1,000 times",
+			"About 10,000 times"
+		],
+		"answer": "About 100 times",
+		"explanation": "$8 \\times 10^9$ people $\\times$ 0.5 m $= 4 \\times 10^9$ m $= 4{,}000{,}000$ km. Divide by the equator's 40,000 km: about 100 laps.",
+		"tags": [
+			"estimation",
+			"scale",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-065",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What 7-letter word, when you remove its third letter, spells a 6-letter word meaning \"more lengthy\"?",
+		"answer": "lounger",
+		"accepted": [
+			"lounger",
+			"LOUNGER"
+		],
+		"explanation": "LOUNGER minus its third letter (U) spells LONGER.",
+		"tags": [
+			"wordplay",
+			"riddle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-066",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Two doors stand before you: one leads to freedom, the other to doom. A guard stands at each door, but you don't know which guard stands where. One guard always tells the truth; the other always lies — but you don't know which is which. You may ask exactly ONE yes/no question, directed at exactly ONE guard of your choice, to find the door to freedom. What question do you ask? Work it out, then reveal and compare.",
+		"answer": "Ask either guard: \"If I asked the other guard which door leads to freedom, what would they say?\" Then take the OPPOSITE door from whatever they answer.",
+		"explanation": "Ask the truth-teller and they honestly report the liar's false answer (pointing to doom). Ask the liar and they lie about the truth-teller's correct answer (also pointing to doom). Either way, the named door is always the wrong one — so pick the other.",
+		"tags": [
+			"lateral",
+			"classic",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-067",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: Vikings wore horned helmets into battle.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "No archaeological find has ever turned up a Viking-age horned battle helmet. The image comes from 19th-century Romantic costume design, most famously Wagner's opera productions.",
+		"tags": [
+			"myth-busting",
+			"history",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-068",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Look at the first digit of numbers drawn from real-world data — populations, street addresses, stock prices, river lengths. Which digit is most likely to show up as the FIRST digit?",
+		"choices": [
+			"1",
+			"5",
+			"9",
+			"They're all equally likely, about 11% each"
+		],
+		"answer": "1",
+		"explanation": "This is Benford's Law: leading digit 1 appears about 30% of the time in many naturally occurring numerical data sets, with probability decreasing logarithmically toward 9 (about 4.6%) — a pattern accountants use to flag fabricated numbers.",
+		"tags": [
+			"probability",
+			"benfords-law",
+			"aha",
+			"statistics",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-069",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "The Equator passes through parts of Brazil, Indonesia, and Kenya. Which of these four countries does the Equator NOT pass through?",
+		"choices": [
+			"Brazil",
+			"Indonesia",
+			"Kenya",
+			"Egypt"
+		],
+		"answer": "Egypt",
+		"explanation": "Egypt sits well north of the Equator, roughly between 22 degrees and 31 degrees N latitude.",
+		"tags": [
+			"geography",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-070",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "On average, do most people have fewer friends than their friends have (on average), the same number, or more?",
+		"choices": [
+			"Fewer — their friends have more friends on average",
+			"The same number",
+			"More — their friends have fewer friends on average",
+			"It depends entirely on the person, no general pattern exists"
+		],
+		"answer": "Fewer — their friends have more friends on average",
+		"explanation": "This is the \"friendship paradox\": popular, highly-connected people show up disproportionately often in other people's friend lists, dragging the average friend-count-of-friends above the average person's own friend count.",
+		"tags": [
+			"paradox",
+			"statistics",
+			"aha",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -3389,6 +3711,60 @@
 			"environments",
 			"writing",
 			"matrices",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-019",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is the command for the 'therefore' symbol $\\therefore$ (three dots, used right before a conclusion)?",
+		"answer": "\\therefore",
+		"accepted": [
+			"\\therefore",
+			"therefore"
+		],
+		"explanation": "`\\therefore` renders $\\therefore$; the mirrored `\\because` renders $\\because$ for 'because'.",
+		"tags": [
+			"symbols",
+			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-020",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which LaTeX source correctly produces this indexed union: $$\\bigcup_{i=1}^{n} A_i$$",
+		"choices": [
+			"\\bigcup_{i=1}^{n} A_i",
+			"\\cup_{i=1}^{n} A_i",
+			"\\Union_{i=1}^{n} A_i",
+			"\\bigcup(i=1)^{n} A_i"
+		],
+		"answer": "\\bigcup_{i=1}^{n} A_i",
+		"explanation": "`\\bigcup` is the large display-style union operator that stacks its limits above and below in display mode; `\\cup` is the small inline binary union symbol, and `\\Union` isn't a real command.",
+		"tags": [
+			"symbols",
+			"set-theory",
+			"operators",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-021",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the sum of a finite geometric series, matching this target exactly: $$\\sum_{k=0}^{n-1} ar^k = a\\frac{1-r^n}{1-r}$$ Work it out, then reveal and compare.",
+		"answer": "\\sum_{k=0}^{n-1} ar^k = a\\frac{1-r^n}{1-r}",
+		"explanation": "`\\sum_{k=0}^{n-1}` sets the summation bounds, and `\\frac{1-r^n}{1-r}` builds the closed-form fraction on the right.",
+		"tags": [
+			"writing",
+			"series",
+			"sum",
 			"generated"
 		]
 	},
@@ -4371,6 +4747,124 @@
 			"paradox",
 			"bayesian",
 			"probability",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-053",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "All flurbs are wobbles. No wobble is a zant. Which conclusion necessarily follows?",
+		"choices": [
+			"No flurb is a zant.",
+			"All zants are flurbs.",
+			"Some flurbs are zants.",
+			"All wobbles are flurbs."
+		],
+		"answer": "No flurb is a zant.",
+		"explanation": "Every flurb is a wobble, and no wobble is a zant, so no flurb can be a zant either — a chain of \"all\" into \"no\" transfers cleanly.",
+		"tags": [
+			"syllogism",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-054",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "A plane mirror flips your reflection left-to-right (raise your right hand, the reflection raises what looks like its left) but never flips it upside-down. Why does a mirror swap left and right but not up and down? Work out the explanation, then reveal and compare.",
+		"answer": "A mirror actually reverses front-to-back (depth), not left-right; the apparent left-right swap happens because we imagine rotating ourselves around a vertical axis to face the same way as our reflection, and that rotation is what swaps left and right.",
+		"explanation": "The mirror only inverts the axis perpendicular to its surface (front-to-back). There's no physical left-right flip at all — the illusion comes from mentally rotating yourself to compare orientations, and a vertical-axis rotation is what puts left and right on opposite sides.",
+		"tags": [
+			"spatial",
+			"physics",
+			"aha",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-055",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A famous flawed \"proof by induction\" claims all horses are the same color. Base case: a group of just 1 horse is trivially all one color. Inductive step: assume any group of $n$ horses is all one color; given a group of $n+1$ horses, remove one horse to get an $n$-horse group (all one color by assumption), then swap which horse was removed to get a different $n$-horse group (also all one color) — the two groups overlap, so all $n+1$ horses share that color. Where exactly does this argument break down?",
+		"choices": [
+			"The inductive step fails specifically going from $n=1$ to $n=2$: two single-horse groups don't overlap, so there's no shared horse linking them.",
+			"The base case is false, since a single horse isn't guaranteed to be one color.",
+			"The claim is actually true; there is no flaw.",
+			"Induction cannot be used to reason about colors at all."
+		],
+		"answer": "The inductive step fails specifically going from $n=1$ to $n=2$: two single-horse groups don't overlap, so there's no shared horse linking them.",
+		"explanation": "For $n \\ge 2$, two overlapping $n$-subsets of an $(n+1)$-group always share at least one horse, linking their colors. That breaks precisely at $n=1$: two single-horse groups of a 2-horse set share no horse, so nothing forces them to match.",
+		"tags": [
+			"induction",
+			"fallacy",
+			"classic",
+			"paradox",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-056",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Two piles of stones sit on the table: one with 3 stones, one with 5. On each turn, a player removes any positive number of stones from exactly one pile (their choice which pile, and how many). Whoever takes the last stone wins. You move first — which move guarantees you a win?",
+		"choices": [
+			"Take 2 stones from the 5-stone pile, leaving 3 and 3.",
+			"Take all 3 stones from the smaller pile, leaving 0 and 5.",
+			"Take 1 stone from the 3-stone pile, leaving 2 and 5.",
+			"It doesn't matter — the second player always wins from 3 and 5."
+		],
+		"answer": "Take 2 stones from the 5-stone pile, leaving 3 and 3.",
+		"explanation": "This is Nim: a position is losing for the player about to move exactly when the pile sizes XOR to 0. $3 \\oplus 5 = 6 \\neq 0$, so the first player wins by moving to an XOR-0 position — equalizing the piles at $3, 3$ — after which mirroring the opponent's every move guarantees the last stone.",
+		"tags": [
+			"game-theory",
+			"nim",
+			"strategy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-057",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "A factory's widgets come from two machines. Machine A makes 70% of all widgets and 2% of its output is defective. Machine B makes the remaining 30% and 8% of its output is defective. A widget is picked at random and found defective. What is the probability (rounded to the nearest whole percent) that it came from Machine B?",
+		"answer": "63%",
+		"accepted": [
+			"63",
+			"63%",
+			"~63%"
+		],
+		"explanation": "$P(B \\cap \\text{def}) = 0.3 \\times 0.08 = 0.024$ and $P(A \\cap \\text{def}) = 0.7 \\times 0.02 = 0.014$, for a total defect probability of $0.038$. So $P(B \\mid \\text{def}) = 0.024/0.038 \\approx 0.632$, or 63%.",
+		"tags": [
+			"bayesian",
+			"conditional-probability",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-058",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Starting at point A, you walk 5 km east, then 3 km north, then 5 km west. How far are you from point A now, and in which direction?",
+		"answer": "3 km north",
+		"accepted": [
+			"3km north",
+			"3 kilometers north",
+			"North, 3 km",
+			"3 km due north"
+		],
+		"explanation": "The 5 km east and 5 km west legs cancel exactly, leaving only the 3 km north displacement.",
+		"tags": [
+			"spatial",
+			"vectors",
 			"generated"
 		]
 	},
@@ -6051,6 +6545,145 @@
 			"sequences",
 			"recreational",
 			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-093",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is $7! / 5!$?",
+		"answer": "42",
+		"accepted": [
+			"42"
+		],
+		"explanation": "$7!/5! = 7 \\times 6 = 42$ — the lower factorial cancels out, leaving just the product of the two extra terms.",
+		"tags": [
+			"factorials",
+			"mental-math",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-094",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "If a hen and a half lay an egg and a half in a day and a half, how many eggs does one hen lay in one day? Give your answer as a fraction.",
+		"answer": "2/3",
+		"accepted": [
+			"2/3",
+			"0.667",
+			"two-thirds",
+			"0.67"
+		],
+		"explanation": "The rate is eggs / (hens x days): $1.5 / (1.5 \\times 1.5) = 1.5/2.25 = 2/3$ egg per hen per day. The tempting quick answer of \"1\" is wrong — scaling hens and days by the same factor doesn't scale the per-hen-per-day rate the same way.",
+		"tags": [
+			"rate-problems",
+			"classic",
+			"recreational",
+			"trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-095",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "In the Fibonacci sequence $1, 1, 2, 3, 5, 8, 13, \\dots$, what is the first term greater than 100?",
+		"answer": "144",
+		"accepted": [
+			"144"
+		],
+		"explanation": "Continuing the sequence: $21, 34, 55, 89, 144$ — 89 is still under 100, and 144 is the first term to clear it.",
+		"tags": [
+			"sequences",
+			"fibonacci",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-096",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You roll a fair six-sided die. If it lands on an odd number, you win that many dollars; if it lands on an even number, you win nothing. What is the expected value of your winnings?",
+		"choices": [
+			"$1.50",
+			"$2.00",
+			"$1.00",
+			"$3.00"
+		],
+		"answer": "$1.50",
+		"explanation": "Only 1, 3, and 5 pay out, each with probability $1/6$: $(1+3+5)/6 = 9/6 = \\$1.50$.",
+		"tags": [
+			"probability",
+			"expected-value",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-097",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "You have a square sheet of cardboard, 10 cm on each side. You cut a 2 cm by 2 cm square out of each of the four corners, then fold up the four resulting flaps to form an open-top box. What is the volume of the box, in cubic centimeters?",
+		"answer": "72",
+		"accepted": [
+			"72",
+			"72 cm^3",
+			"72 cubic cm"
+		],
+		"explanation": "The base becomes $(10 - 2 \\times 2) \\times (10 - 2 \\times 2) = 6 \\times 6$, and the height equals the cut size, 2 cm. Volume $= 6 \\times 6 \\times 2 = 72$.",
+		"tags": [
+			"geometry",
+			"word-problem",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-098",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which is larger: the number of ways to arrange 4 distinct books on a shelf, or $4^2$?",
+		"choices": [
+			"The number of arrangements ($4! = 24$)",
+			"$4^2 = 16$",
+			"They are equal",
+			"Cannot be determined"
+		],
+		"answer": "The number of arrangements ($4! = 24$)",
+		"explanation": "Arranging 4 distinct items in order gives $4! = 24$ possibilities, while $4^2 = 16$ — factorial growth overtakes this kind of power growth even at small sizes.",
+		"tags": [
+			"combinatorics",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-099",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "The \"four fours\" puzzle: using exactly four 4's and any combination of ordinary arithmetic operations ($+, -, \\times, \\div$) and parentheses, write an expression that equals 24. Work one out, then reveal and compare.",
+		"answer": "4 x 4 + 4 + 4",
+		"accepted": [
+			"4 x 4 + 4 + 4",
+			"(4+4)+(4x4)",
+			"4*4+4+4",
+			"(4+4)+4*4"
+		],
+		"explanation": "$4 \\times 4 + 4 + 4 = 16 + 4 + 4 = 24$ is one valid solution; $(4+4) + (4 \\times 4) = 8 + 16 = 24$ is another. Many other combinations also work.",
+		"tags": [
+			"recreational",
+			"puzzle",
 			"generated"
 		]
 	},
