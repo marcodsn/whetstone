@@ -1,0 +1,87 @@
+{
+	"pack": "gen-math-20260817",
+	"exercises": [
+		{
+			"id": "gen-math-100",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Multiply any whole number by 9, then keep adding the digits of the result together until only one digit remains. For example, with 137: $9 \\times 137 = 1233 \\to 1+2+3+3 = 9$. What single digit does this process always land on, for any nonzero whole number you start with?",
+			"answer": "9",
+			"accepted": ["9", "nine"],
+			"explanation": "Multiplying by 9 always produces a number whose digital root is 9, because $9n \\equiv 0 \\pmod 9$ for any integer $n$, and a number's digital root equals its value mod 9 (with 9 standing in for 0).",
+			"tags": ["number-trick", "number-theory", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-101",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What comes next in this sequence: $2, 6, 12, 20, 30, \\dots$?",
+			"answer": "42",
+			"accepted": ["42"],
+			"explanation": "Each term is $n(n+1)$: $1\\times2, 2\\times3, 3\\times4, 4\\times5, 5\\times6$, so the next term is $6\\times7=42$. The differences between terms (4, 6, 8, 10, 12) confirm the same pattern.",
+			"tags": ["sequences", "patterns", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-102",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A 10 m ladder leans against a wall with its foot 6 m from the base of the wall. How high up the wall does the ladder reach, in meters?",
+			"answer": "8",
+			"accepted": ["8", "8 m", "8 meters"],
+			"explanation": "This is a 6-8-10 right triangle (twice the 3-4-5 triple): $\\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$.",
+			"tags": ["geometry", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-103",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the last digit of $7^{100}$?",
+			"choices": ["1", "7", "9", "3"],
+			"answer": "1",
+			"explanation": "The last digit of powers of 7 cycles every 4 steps: $7, 9, 3, 1, 7, 9, 3, 1, \\dots$. Since 100 is a multiple of 4, $7^{100}$ lands on the 4th value in the cycle, which is 1.",
+			"tags": ["number-theory", "powers", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-104",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A store applies two discounts in sequence: 10% off, then another 30% off the already-discounted price. A sign claims this is 'the same as 40% off.' Is that accurate, and if not, what's the true overall discount?",
+			"choices": [
+				"Accurate — it's 40% off total",
+				"Not accurate — the true discount is 37%",
+				"Not accurate — the true discount is 42%",
+				"Not accurate — the true discount is 33%"
+			],
+			"answer": "Not accurate — the true discount is 37%",
+			"explanation": "Applying the discounts multiplies the price by $0.9 \\times 0.7 = 0.63$, leaving 63% of the original price — a 37% discount, not 40%. Percentage discounts compound multiplicatively, not additively.",
+			"tags": ["percentages", "arithmetic-trick", "trick", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-105",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "How many diagonals does a regular hexagon (6 sides) have?",
+			"choices": ["6", "9", "12", "15"],
+			"answer": "9",
+			"explanation": "A polygon with $n$ sides has $\\frac{n(n-3)}{2}$ diagonals. For $n=6$: $\\frac{6 \\times 3}{2} = 9$.",
+			"tags": ["geometry", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-106",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "Three consecutive integers add up to 72. What is the largest of the three?",
+			"choices": ["23", "24", "25", "26"],
+			"answer": "25",
+			"explanation": "Let the integers be $x-1, x, x+1$. Their sum is $3x = 72$, so $x = 24$ and the largest is $25$.",
+			"tags": ["algebra", "word-problem", "recreational", "generated"]
+		}
+	]
+}

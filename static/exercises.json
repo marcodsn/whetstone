@@ -2054,6 +2054,125 @@
 		]
 	},
 	{
+		"id": "gen-code-066",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "What is the time complexity of `merge` below, in terms of $n = len(a)$ and $m = len(b)$?",
+		"code": {
+			"lang": "python",
+			"src": "def merge(a, b):\n    result = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            result.append(a[i]); i += 1\n        else:\n            result.append(b[j]); j += 1\n    result.extend(a[i:])\n    result.extend(b[j:])\n    return result"
+		},
+		"choices": [
+			"O(n + m)",
+			"O(n × m)",
+			"O((n+m) log(n+m))",
+			"O(n²)"
+		],
+		"answer": "O(n + m)",
+		"explanation": "Each loop iteration advances `i` or `j` by one, and each can advance at most n or m times respectively, so the loop runs at most n+m times. The trailing `extend` calls only add the few elements left over, adding no extra order of growth.",
+		"tags": [
+			"python",
+			"complexity",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-067",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to remove all falsy values (0, false, '', etc.) from an array. What's actually wrong with it?",
+		"code": {
+			"lang": "javascript",
+			"src": "function removeFalsy(arr) {\n  return arr.map(x => x && x);\n}\nconsole.log(removeFalsy([1, 0, 2, false, 3, '']));"
+		},
+		"choices": [
+			"It uses `.map()`, which always returns an array the same length as the input — falsy values are kept in place, never removed",
+			"`x && x` throws a TypeError whenever `x` is falsy",
+			"`.map()` mutates the original array in place, corrupting the input",
+			"There's no bug — this correctly filters out falsy values"
+		],
+		"answer": "It uses `.map()`, which always returns an array the same length as the input — falsy values are kept in place, never removed",
+		"explanation": "`x && x` always evaluates to just `x`, so this is a no-op transform — `.map()` can only replace elements, not drop them, so the array comes back unchanged: `[1, 0, 2, false, 3, '']`. The fix is `arr.filter(Boolean)`.",
+		"tags": [
+			"javascript",
+			"spot-the-bug",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-068",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Both functions below are meant to check whether a string of brackets is balanced (correctly nested), e.g. correctly rejecting `\"([)]\"` as unbalanced even though it has matching counts of each bracket type. Which one is actually correct?",
+		"code": {
+			"lang": "python",
+			"src": "def is_balanced_A(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for ch in s:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in ')]}':\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return not stack\n\ndef is_balanced_B(s):\n    return (s.count('(') == s.count(')') and\n            s.count('[') == s.count(']') and\n            s.count('{') == s.count('}'))"
+		},
+		"choices": [
+			"Only A",
+			"Only B",
+			"Both A and B",
+			"Neither A nor B"
+		],
+		"answer": "Only A",
+		"explanation": "A uses a stack to track nesting order, correctly rejecting `\"([)]\"`. B only compares counts of each bracket type — for `\"([)]\"` those counts are equal (one of each), so B wrongly reports it as balanced. Matching counts don't guarantee correct nesting.",
+		"tags": [
+			"python",
+			"algorithms",
+			"stack",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-069",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`arr` is sorted in ascending order. What does `mystery(arr, target)` compute?",
+		"code": {
+			"lang": "python",
+			"src": "def mystery(arr, target):\n    lo, hi = 0, len(arr) - 1\n    while lo < hi:\n        s = arr[lo] + arr[hi]\n        if s == target:\n            return True\n        elif s < target:\n            lo += 1\n        else:\n            hi -= 1\n    return False"
+		},
+		"choices": [
+			"Whether any two elements of `arr` sum to `target`",
+			"Whether `arr` contains the value `target`",
+			"The number of pairs in `arr` that sum to `target`",
+			"Whether `arr` is sorted in ascending order"
+		],
+		"answer": "Whether any two elements of `arr` sum to `target`",
+		"explanation": "This is the classic two-pointer technique for sorted arrays: starting from both ends, if the pair sum is too small the low pointer moves up, if too large the high pointer moves down, until a matching pair is found or the pointers cross.",
+		"tags": [
+			"python",
+			"algorithms",
+			"two-pointer",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-070",
+		"domain": "code",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "This function is meant to return `True` exactly when `nums` is sorted in non-decreasing order, and `False` otherwise. Find a short input list for which it returns the WRONG answer. Work it out, then reveal and compare.",
+		"code": {
+			"lang": "python",
+			"src": "def is_sorted(nums):\n    for i in range(len(nums) - 1):\n        if nums[i] < nums[i + 1]:\n            return True\n    return False"
+		},
+		"answer": "[1, 1] — the function returns False, but a list of equal elements IS non-decreasing, so the correct answer is True. [1, 3, 2] also breaks it: the function returns True as soon as it sees any single ascending pair, even though the list as a whole isn't sorted.",
+		"explanation": "The logic is backwards: it returns True the moment it finds ONE ascending pair, and returns False only if it finds none — instead of checking that EVERY adjacent pair is non-decreasing.",
+		"tags": [
+			"python",
+			"spot-the-bug",
+			"counterexample",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -3390,6 +3509,192 @@
 		]
 	},
 	{
+		"id": "gen-general-071",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "I have cities but no houses, forests but no trees, and rivers but no water. What am I?",
+		"answer": "a map",
+		"accepted": [
+			"a map",
+			"map",
+			"A map"
+		],
+		"explanation": "A map represents cities, forests, and rivers symbolically, without containing any of the real things themselves.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-072",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A disease affects 1% of a population. A screening test correctly identifies sick people 95% of the time (sensitivity) and correctly clears healthy people 95% of the time (specificity). A random person tests positive. What's the approximate probability they actually have the disease?",
+		"choices": [
+			"About 95%",
+			"About 50%",
+			"About 16%",
+			"About 5%"
+		],
+		"answer": "About 16%",
+		"explanation": "By Bayes' theorem: $P(\\text{disease} \\mid +) = \\frac{0.01 \\times 0.95}{0.01 \\times 0.95 + 0.99 \\times 0.05} \\approx \\frac{0.0095}{0.059} \\approx 16\\%$. Most positives come from the much larger healthy population's 5% false-positive rate — the base-rate fallacy.",
+		"tags": [
+			"probability",
+			"bayesian",
+			"base-rate",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-073",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "A man is found dead in the middle of an open field. Next to his body lies an unopened package. There are no other people, animals, or tracks anywhere nearby, and the field is otherwise empty. How did he die? Work it out, then reveal and compare.",
+		"answer": "He was a skydiver whose parachute — the unopened package — failed to open, and he fell to his death.",
+		"explanation": "The classic lateral-thinking twist: the 'package' is a parachute pack that never deployed. Reframing what's on the ground — a body plus an unopened package in an open field, with no tracks — points to a fall from the sky, not a ground-level scene.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-074",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: lightning never strikes the same place twice.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Tall, exposed structures get hit repeatedly — the Empire State Building is struck by lightning roughly 20-25 times a year.",
+		"tags": [
+			"myth-busting",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-075",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What is always in front of you but can never actually be seen?",
+		"answer": "the future",
+		"accepted": [
+			"the future",
+			"future"
+		],
+		"explanation": "You're always moving toward it in time, but by definition it hasn't happened yet, so it can never be observed.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-076",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Assume a dollar bill is about 0.1 mm thick. Mount Everest stands about 8,849 m tall. Roughly how many dollar bills, stacked flat, would it take to reach that height?",
+		"choices": [
+			"About 1 million",
+			"About 10 million",
+			"About 100 million",
+			"About 1 billion"
+		],
+		"answer": "About 100 million",
+		"explanation": "8,849 m = 8,849,000 mm; dividing by 0.1 mm per bill gives about 88.5 million bills — closest to the 100-million bucket.",
+		"tags": [
+			"estimation",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-077",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A car drives from A to B at 60 mph, then immediately drives back from B to A (the same distance) at 40 mph. What is its average speed for the whole round trip?",
+		"choices": [
+			"50 mph",
+			"48 mph",
+			"45 mph",
+			"52 mph"
+		],
+		"answer": "48 mph",
+		"explanation": "Average speed is total distance over total time, not the simple average of the two speeds. For distance $d$ each way, total time is $d/60 + d/40 = d/24$, so average speed $= 2d \\div (d/24) = 48$ mph — the harmonic mean, not the arithmetic mean.",
+		"tags": [
+			"aha",
+			"trick",
+			"rates",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-078",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Every national flag in the world is a rectangle or another quadrilateral — except one. Which country has the only national flag that isn't a quadrilateral?",
+		"answer": "Nepal",
+		"accepted": [
+			"Nepal"
+		],
+		"explanation": "Nepal's flag is a stack of two overlapping triangular pennants, the only non-quadrilateral national flag in use.",
+		"tags": [
+			"trivia",
+			"geography",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-079",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Glass A is full of wine; glass B holds an equal amount of water. You take a spoonful from A and stir it into B. Then you take a spoonful of the (now mixed) contents of B and stir it back into A. After this, is there more water in glass A, or more wine in glass B?",
+		"choices": [
+			"More water in A",
+			"More wine in B",
+			"They're exactly equal",
+			"Impossible to say without exact volumes"
+		],
+		"answer": "They're exactly equal",
+		"explanation": "Whatever volume of wine ends up missing from A (replaced by water) must exactly equal the volume of water missing from B (replaced by wine), since each glass returns to its original total volume. This holds regardless of spoon size or how thoroughly it's mixed.",
+		"tags": [
+			"aha",
+			"classic",
+			"puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-080",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "You have a round cake and want to cut it into exactly 8 equal pieces, using only 3 straight cuts (no rearranging pieces between cuts). How do you do it? Work it out, then reveal and compare.",
+		"answer": "Make 2 vertical cuts through the center at right angles to each other (like a plus sign seen from above), giving 4 equal wedges. Then make a 3rd cut horizontally through the side of the cake, slicing all 4 wedges in half through their height — giving 8 pieces total.",
+		"explanation": "The trick is using the third dimension: two cuts from above only ever give 4 pieces, but one horizontal cut through the cake's height doubles every existing piece at once.",
+		"tags": [
+			"lateral",
+			"spatial",
+			"classic",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -3765,6 +4070,61 @@
 			"writing",
 			"series",
 			"sum",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-022",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is the command for the empty set symbol $\\emptyset$?",
+		"answer": "\\emptyset",
+		"accepted": [
+			"\\emptyset",
+			"emptyset"
+		],
+		"explanation": "`\\emptyset` renders $\\emptyset$; a common alternative is `\\varnothing`, a slightly different glyph preferred by some style guides.",
+		"tags": [
+			"symbols",
+			"commands",
+			"set-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-023",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which command correctly typesets the complex conjugate $\\bar{z}$ (a straight bar over the variable)?",
+		"choices": [
+			"\\bar{z}",
+			"\\hat{z}",
+			"\\vec{z}",
+			"\\tilde{z}"
+		],
+		"answer": "\\bar{z}",
+		"explanation": "`\\bar` draws a flat overline (conjugates, means); `\\hat` draws a caret (estimators, unit vectors); `\\vec` draws an arrow (vectors); `\\tilde` draws a squiggle (approximation, equivalence) — each is a visually distinct accent command.",
+		"tags": [
+			"symbols",
+			"commands",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-024",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for this set-builder notation, matching this target exactly: $$\\{x \\in \\mathbb{R} : x > 0\\}$$ Work it out, then reveal and compare.",
+		"answer": "\\{x \\in \\mathbb{R} : x > 0\\}",
+		"explanation": "Curly braces are special grouping characters in LaTeX, so literal set braces need escaping as `\\{` and `\\}`; `\\in` gives the membership symbol and `\\mathbb{R}` gives the blackboard-bold reals.",
+		"tags": [
+			"writing",
+			"set-theory",
+			"gotcha",
 			"generated"
 		]
 	},
@@ -4865,6 +5225,120 @@
 		"tags": [
 			"spatial",
 			"vectors",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-059",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "\"If it's a public holiday, the bank is closed. The bank is not closed. Therefore, it is not a public holiday.\" Is this argument valid?",
+		"choices": [
+			"Valid — this is modus tollens",
+			"Invalid — this affirms the consequent",
+			"Invalid — this denies the antecedent",
+			"Invalid — the middle term is undistributed"
+		],
+		"answer": "Valid — this is modus tollens",
+		"explanation": "From \"P implies Q\" and \"not Q,\" we can validly conclude \"not P\" — this is modus tollens, a valid inference pattern, unlike its invalid cousins (affirming the consequent, denying the antecedent).",
+		"tags": [
+			"propositional",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-060",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What comes next in this sequence of letters: J, F, M, A, M, J, ?",
+		"answer": "J",
+		"accepted": [
+			"J",
+			"July"
+		],
+		"explanation": "These are the first letters of the months in order — January, February, March, April, May, June — so next is July.",
+		"tags": [
+			"sequences",
+			"pattern-recognition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-061",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Gear A has 30 teeth and meshes directly with Gear B, which has 10 teeth. If Gear A makes 4 complete rotations, how many complete rotations does Gear B make?",
+		"answer": "12",
+		"accepted": [
+			"12"
+		],
+		"explanation": "Meshed gears cover the same number of teeth passing the contact point, so $\\text{teeth}_A \\times \\text{rotations}_A = \\text{teeth}_B \\times \\text{rotations}_B$: $30 \\times 4 = 10 \\times \\text{rotations}_B$, giving 12. The smaller gear always spins faster.",
+		"tags": [
+			"spatial",
+			"gears",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-062",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A butcher in his shop is 5 feet 10 inches tall and wears size 10 shoes. What does he weigh?",
+		"answer": "meat",
+		"accepted": [
+			"meat",
+			"Meat"
+		],
+		"explanation": "A reading trap: \"what does he weigh\" is asking what he weighs out for customers (his job, as a butcher), not his own body weight.",
+		"tags": [
+			"trick",
+			"reading",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-063",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You start facing north. You turn 135° clockwise, then 90° counterclockwise. Which direction are you now facing?",
+		"choices": [
+			"Northeast",
+			"Southeast",
+			"Southwest",
+			"Northwest"
+		],
+		"answer": "Northeast",
+		"explanation": "Starting at 0° (north), turning 135° clockwise puts you at 135° (southeast). Turning 90° counterclockwise subtracts 90°, landing at 45° — northeast.",
+		"tags": [
+			"spatial",
+			"directions",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-064",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "To qualify for a marathon's elite corral, running a sub-4-hour time last year is necessary — but registering by the deadline is also required. Priya ran a 3:45 marathon last year but missed the registration deadline. Is she in the elite corral?",
+		"choices": [
+			"Yes — her time alone qualifies her",
+			"No — meeting the time requirement doesn't satisfy the separate registration requirement",
+			"Cannot be determined from the information given",
+			"Yes — necessary conditions are automatically sufficient"
+		],
+		"answer": "No — meeting the time requirement doesn't satisfy the separate registration requirement",
+		"explanation": "A necessary condition must be met but doesn't guarantee the outcome by itself — it isn't sufficient. Priya meets the time requirement (necessary) but fails the registration requirement, so she doesn't qualify.",
+		"tags": [
+			"propositional",
+			"reasoning",
 			"generated"
 		]
 	},
@@ -6684,6 +7158,146 @@
 		"tags": [
 			"recreational",
 			"puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-100",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Multiply any whole number by 9, then keep adding the digits of the result together until only one digit remains. For example, with 137: $9 \\times 137 = 1233 \\to 1+2+3+3 = 9$. What single digit does this process always land on, for any nonzero whole number you start with?",
+		"answer": "9",
+		"accepted": [
+			"9",
+			"nine"
+		],
+		"explanation": "Multiplying by 9 always produces a number whose digital root is 9, because $9n \\equiv 0 \\pmod 9$ for any integer $n$, and a number's digital root equals its value mod 9 (with 9 standing in for 0).",
+		"tags": [
+			"number-trick",
+			"number-theory",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-101",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What comes next in this sequence: $2, 6, 12, 20, 30, \\dots$?",
+		"answer": "42",
+		"accepted": [
+			"42"
+		],
+		"explanation": "Each term is $n(n+1)$: $1\\times2, 2\\times3, 3\\times4, 4\\times5, 5\\times6$, so the next term is $6\\times7=42$. The differences between terms (4, 6, 8, 10, 12) confirm the same pattern.",
+		"tags": [
+			"sequences",
+			"patterns",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-102",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A 10 m ladder leans against a wall with its foot 6 m from the base of the wall. How high up the wall does the ladder reach, in meters?",
+		"answer": "8",
+		"accepted": [
+			"8",
+			"8 m",
+			"8 meters"
+		],
+		"explanation": "This is a 6-8-10 right triangle (twice the 3-4-5 triple): $\\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$.",
+		"tags": [
+			"geometry",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-103",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the last digit of $7^{100}$?",
+		"choices": [
+			"1",
+			"7",
+			"9",
+			"3"
+		],
+		"answer": "1",
+		"explanation": "The last digit of powers of 7 cycles every 4 steps: $7, 9, 3, 1, 7, 9, 3, 1, \\dots$. Since 100 is a multiple of 4, $7^{100}$ lands on the 4th value in the cycle, which is 1.",
+		"tags": [
+			"number-theory",
+			"powers",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-104",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A store applies two discounts in sequence: 10% off, then another 30% off the already-discounted price. A sign claims this is 'the same as 40% off.' Is that accurate, and if not, what's the true overall discount?",
+		"choices": [
+			"Accurate — it's 40% off total",
+			"Not accurate — the true discount is 37%",
+			"Not accurate — the true discount is 42%",
+			"Not accurate — the true discount is 33%"
+		],
+		"answer": "Not accurate — the true discount is 37%",
+		"explanation": "Applying the discounts multiplies the price by $0.9 \\times 0.7 = 0.63$, leaving 63% of the original price — a 37% discount, not 40%. Percentage discounts compound multiplicatively, not additively.",
+		"tags": [
+			"percentages",
+			"arithmetic-trick",
+			"trick",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-105",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "How many diagonals does a regular hexagon (6 sides) have?",
+		"choices": [
+			"6",
+			"9",
+			"12",
+			"15"
+		],
+		"answer": "9",
+		"explanation": "A polygon with $n$ sides has $\\frac{n(n-3)}{2}$ diagonals. For $n=6$: $\\frac{6 \\times 3}{2} = 9$.",
+		"tags": [
+			"geometry",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-106",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Three consecutive integers add up to 72. What is the largest of the three?",
+		"choices": [
+			"23",
+			"24",
+			"25",
+			"26"
+		],
+		"answer": "25",
+		"explanation": "Let the integers be $x-1, x, x+1$. Their sum is $3x = 72$, so $x = 24$ and the largest is $25$.",
+		"tags": [
+			"algebra",
+			"word-problem",
+			"recreational",
 			"generated"
 		]
 	},

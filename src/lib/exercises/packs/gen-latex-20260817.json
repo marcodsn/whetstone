@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260817",
+	"exercises": [
+		{
+			"id": "gen-latex-022",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What is the command for the empty set symbol $\\emptyset$?",
+			"answer": "\\emptyset",
+			"accepted": ["\\emptyset", "emptyset"],
+			"explanation": "`\\emptyset` renders $\\emptyset$; a common alternative is `\\varnothing`, a slightly different glyph preferred by some style guides.",
+			"tags": ["symbols", "commands", "set-theory", "generated"]
+		},
+		{
+			"id": "gen-latex-023",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which command correctly typesets the complex conjugate $\\bar{z}$ (a straight bar over the variable)?",
+			"choices": ["\\bar{z}", "\\hat{z}", "\\vec{z}", "\\tilde{z}"],
+			"answer": "\\bar{z}",
+			"explanation": "`\\bar` draws a flat overline (conjugates, means); `\\hat` draws a caret (estimators, unit vectors); `\\vec` draws an arrow (vectors); `\\tilde` draws a squiggle (approximation, equivalence) — each is a visually distinct accent command.",
+			"tags": ["symbols", "commands", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-024",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for this set-builder notation, matching this target exactly: $$\\{x \\in \\mathbb{R} : x > 0\\}$$ Work it out, then reveal and compare.",
+			"answer": "\\{x \\in \\mathbb{R} : x > 0\\}",
+			"explanation": "Curly braces are special grouping characters in LaTeX, so literal set braces need escaping as `\\{` and `\\}`; `\\in` gives the membership symbol and `\\mathbb{R}` gives the blackboard-bold reals.",
+			"tags": ["writing", "set-theory", "gotcha", "generated"]
+		}
+	]
+}

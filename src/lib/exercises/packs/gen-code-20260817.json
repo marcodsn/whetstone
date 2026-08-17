@@ -1,0 +1,89 @@
+{
+	"pack": "gen-code-20260817",
+	"exercises": [
+		{
+			"id": "gen-code-066",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "What is the time complexity of `merge` below, in terms of $n = len(a)$ and $m = len(b)$?",
+			"code": {
+				"lang": "python",
+				"src": "def merge(a, b):\n    result = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            result.append(a[i]); i += 1\n        else:\n            result.append(b[j]); j += 1\n    result.extend(a[i:])\n    result.extend(b[j:])\n    return result"
+			},
+			"choices": ["O(n + m)", "O(n × m)", "O((n+m) log(n+m))", "O(n²)"],
+			"answer": "O(n + m)",
+			"explanation": "Each loop iteration advances `i` or `j` by one, and each can advance at most n or m times respectively, so the loop runs at most n+m times. The trailing `extend` calls only add the few elements left over, adding no extra order of growth.",
+			"tags": ["python", "complexity", "algorithms", "generated"]
+		},
+		{
+			"id": "gen-code-067",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to remove all falsy values (0, false, '', etc.) from an array. What's actually wrong with it?",
+			"code": {
+				"lang": "javascript",
+				"src": "function removeFalsy(arr) {\n  return arr.map(x => x && x);\n}\nconsole.log(removeFalsy([1, 0, 2, false, 3, '']));"
+			},
+			"choices": [
+				"It uses `.map()`, which always returns an array the same length as the input — falsy values are kept in place, never removed",
+				"`x && x` throws a TypeError whenever `x` is falsy",
+				"`.map()` mutates the original array in place, corrupting the input",
+				"There's no bug — this correctly filters out falsy values"
+			],
+			"answer": "It uses `.map()`, which always returns an array the same length as the input — falsy values are kept in place, never removed",
+			"explanation": "`x && x` always evaluates to just `x`, so this is a no-op transform — `.map()` can only replace elements, not drop them, so the array comes back unchanged: `[1, 0, 2, false, 3, '']`. The fix is `arr.filter(Boolean)`.",
+			"tags": ["javascript", "spot-the-bug", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-code-068",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Both functions below are meant to check whether a string of brackets is balanced (correctly nested), e.g. correctly rejecting `\"([)]\"` as unbalanced even though it has matching counts of each bracket type. Which one is actually correct?",
+			"code": {
+				"lang": "python",
+				"src": "def is_balanced_A(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for ch in s:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in ')]}':\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return not stack\n\ndef is_balanced_B(s):\n    return (s.count('(') == s.count(')') and\n            s.count('[') == s.count(']') and\n            s.count('{') == s.count('}'))"
+			},
+			"choices": ["Only A", "Only B", "Both A and B", "Neither A nor B"],
+			"answer": "Only A",
+			"explanation": "A uses a stack to track nesting order, correctly rejecting `\"([)]\"`. B only compares counts of each bracket type — for `\"([)]\"` those counts are equal (one of each), so B wrongly reports it as balanced. Matching counts don't guarantee correct nesting.",
+			"tags": ["python", "algorithms", "stack", "generated"]
+		},
+		{
+			"id": "gen-code-069",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "`arr` is sorted in ascending order. What does `mystery(arr, target)` compute?",
+			"code": {
+				"lang": "python",
+				"src": "def mystery(arr, target):\n    lo, hi = 0, len(arr) - 1\n    while lo < hi:\n        s = arr[lo] + arr[hi]\n        if s == target:\n            return True\n        elif s < target:\n            lo += 1\n        else:\n            hi -= 1\n    return False"
+			},
+			"choices": [
+				"Whether any two elements of `arr` sum to `target`",
+				"Whether `arr` contains the value `target`",
+				"The number of pairs in `arr` that sum to `target`",
+				"Whether `arr` is sorted in ascending order"
+			],
+			"answer": "Whether any two elements of `arr` sum to `target`",
+			"explanation": "This is the classic two-pointer technique for sorted arrays: starting from both ends, if the pair sum is too small the low pointer moves up, if too large the high pointer moves down, until a matching pair is found or the pointers cross.",
+			"tags": ["python", "algorithms", "two-pointer", "generated"]
+		},
+		{
+			"id": "gen-code-070",
+			"domain": "code",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "This function is meant to return `True` exactly when `nums` is sorted in non-decreasing order, and `False` otherwise. Find a short input list for which it returns the WRONG answer. Work it out, then reveal and compare.",
+			"code": {
+				"lang": "python",
+				"src": "def is_sorted(nums):\n    for i in range(len(nums) - 1):\n        if nums[i] < nums[i + 1]:\n            return True\n    return False"
+			},
+			"answer": "[1, 1] — the function returns False, but a list of equal elements IS non-decreasing, so the correct answer is True. [1, 3, 2] also breaks it: the function returns True as soon as it sees any single ascending pair, even though the list as a whole isn't sorted.",
+			"explanation": "The logic is backwards: it returns True the moment it finds ONE ascending pair, and returns False only if it finds none — instead of checking that EVERY adjacent pair is non-decreasing.",
+			"tags": ["python", "spot-the-bug", "counterexample", "generated"]
+		}
+	]
+}

@@ -1,0 +1,113 @@
+{
+	"pack": "gen-general-20260817",
+	"exercises": [
+		{
+			"id": "gen-general-071",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "I have cities but no houses, forests but no trees, and rivers but no water. What am I?",
+			"answer": "a map",
+			"accepted": ["a map", "map", "A map"],
+			"explanation": "A map represents cities, forests, and rivers symbolically, without containing any of the real things themselves.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-072",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A disease affects 1% of a population. A screening test correctly identifies sick people 95% of the time (sensitivity) and correctly clears healthy people 95% of the time (specificity). A random person tests positive. What's the approximate probability they actually have the disease?",
+			"choices": ["About 95%", "About 50%", "About 16%", "About 5%"],
+			"answer": "About 16%",
+			"explanation": "By Bayes' theorem: $P(\\text{disease} \\mid +) = \\frac{0.01 \\times 0.95}{0.01 \\times 0.95 + 0.99 \\times 0.05} \\approx \\frac{0.0095}{0.059} \\approx 16\\%$. Most positives come from the much larger healthy population's 5% false-positive rate — the base-rate fallacy.",
+			"tags": ["probability", "bayesian", "base-rate", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-073",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A man is found dead in the middle of an open field. Next to his body lies an unopened package. There are no other people, animals, or tracks anywhere nearby, and the field is otherwise empty. How did he die? Work it out, then reveal and compare.",
+			"answer": "He was a skydiver whose parachute — the unopened package — failed to open, and he fell to his death.",
+			"explanation": "The classic lateral-thinking twist: the 'package' is a parachute pack that never deployed. Reframing what's on the ground — a body plus an unopened package in an open field, with no tracks — points to a fall from the sky, not a ground-level scene.",
+			"tags": ["lateral", "riddle", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-074",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: lightning never strikes the same place twice.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Tall, exposed structures get hit repeatedly — the Empire State Building is struck by lightning roughly 20-25 times a year.",
+			"tags": ["myth-busting", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-075",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What is always in front of you but can never actually be seen?",
+			"answer": "the future",
+			"accepted": ["the future", "future"],
+			"explanation": "You're always moving toward it in time, but by definition it hasn't happened yet, so it can never be observed.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-076",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Assume a dollar bill is about 0.1 mm thick. Mount Everest stands about 8,849 m tall. Roughly how many dollar bills, stacked flat, would it take to reach that height?",
+			"choices": ["About 1 million", "About 10 million", "About 100 million", "About 1 billion"],
+			"answer": "About 100 million",
+			"explanation": "8,849 m = 8,849,000 mm; dividing by 0.1 mm per bill gives about 88.5 million bills — closest to the 100-million bucket.",
+			"tags": ["estimation", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-077",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A car drives from A to B at 60 mph, then immediately drives back from B to A (the same distance) at 40 mph. What is its average speed for the whole round trip?",
+			"choices": ["50 mph", "48 mph", "45 mph", "52 mph"],
+			"answer": "48 mph",
+			"explanation": "Average speed is total distance over total time, not the simple average of the two speeds. For distance $d$ each way, total time is $d/60 + d/40 = d/24$, so average speed $= 2d \\div (d/24) = 48$ mph — the harmonic mean, not the arithmetic mean.",
+			"tags": ["aha", "trick", "rates", "generated"]
+		},
+		{
+			"id": "gen-general-078",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Every national flag in the world is a rectangle or another quadrilateral — except one. Which country has the only national flag that isn't a quadrilateral?",
+			"answer": "Nepal",
+			"accepted": ["Nepal"],
+			"explanation": "Nepal's flag is a stack of two overlapping triangular pennants, the only non-quadrilateral national flag in use.",
+			"tags": ["trivia", "geography", "generated"]
+		},
+		{
+			"id": "gen-general-079",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Glass A is full of wine; glass B holds an equal amount of water. You take a spoonful from A and stir it into B. Then you take a spoonful of the (now mixed) contents of B and stir it back into A. After this, is there more water in glass A, or more wine in glass B?",
+			"choices": ["More water in A", "More wine in B", "They're exactly equal", "Impossible to say without exact volumes"],
+			"answer": "They're exactly equal",
+			"explanation": "Whatever volume of wine ends up missing from A (replaced by water) must exactly equal the volume of water missing from B (replaced by wine), since each glass returns to its original total volume. This holds regardless of spoon size or how thoroughly it's mixed.",
+			"tags": ["aha", "classic", "puzzle", "generated"]
+		},
+		{
+			"id": "gen-general-080",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "You have a round cake and want to cut it into exactly 8 equal pieces, using only 3 straight cuts (no rearranging pieces between cuts). How do you do it? Work it out, then reveal and compare.",
+			"answer": "Make 2 vertical cuts through the center at right angles to each other (like a plus sign seen from above), giving 4 equal wedges. Then make a 3rd cut horizontally through the side of the cake, slicing all 4 wedges in half through their height — giving 8 pieces total.",
+			"explanation": "The trick is using the third dimension: two cuts from above only ever give 4 pieces, but one horizontal cut through the cake's height doubles every existing piece at once.",
+			"tags": ["lateral", "spatial", "classic", "generated"]
+		}
+	]
+}

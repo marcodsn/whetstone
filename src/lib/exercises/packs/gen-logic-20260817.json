@@ -1,0 +1,81 @@
+{
+	"pack": "gen-logic-20260817",
+	"exercises": [
+		{
+			"id": "gen-logic-059",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "\"If it's a public holiday, the bank is closed. The bank is not closed. Therefore, it is not a public holiday.\" Is this argument valid?",
+			"choices": [
+				"Valid — this is modus tollens",
+				"Invalid — this affirms the consequent",
+				"Invalid — this denies the antecedent",
+				"Invalid — the middle term is undistributed"
+			],
+			"answer": "Valid — this is modus tollens",
+			"explanation": "From \"P implies Q\" and \"not Q,\" we can validly conclude \"not P\" — this is modus tollens, a valid inference pattern, unlike its invalid cousins (affirming the consequent, denying the antecedent).",
+			"tags": ["propositional", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-060",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What comes next in this sequence of letters: J, F, M, A, M, J, ?",
+			"answer": "J",
+			"accepted": ["J", "July"],
+			"explanation": "These are the first letters of the months in order — January, February, March, April, May, June — so next is July.",
+			"tags": ["sequences", "pattern-recognition", "generated"]
+		},
+		{
+			"id": "gen-logic-061",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Gear A has 30 teeth and meshes directly with Gear B, which has 10 teeth. If Gear A makes 4 complete rotations, how many complete rotations does Gear B make?",
+			"answer": "12",
+			"accepted": ["12"],
+			"explanation": "Meshed gears cover the same number of teeth passing the contact point, so $\\text{teeth}_A \\times \\text{rotations}_A = \\text{teeth}_B \\times \\text{rotations}_B$: $30 \\times 4 = 10 \\times \\text{rotations}_B$, giving 12. The smaller gear always spins faster.",
+			"tags": ["spatial", "gears", "generated"]
+		},
+		{
+			"id": "gen-logic-062",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A butcher in his shop is 5 feet 10 inches tall and wears size 10 shoes. What does he weigh?",
+			"answer": "meat",
+			"accepted": ["meat", "Meat"],
+			"explanation": "A reading trap: \"what does he weigh\" is asking what he weighs out for customers (his job, as a butcher), not his own body weight.",
+			"tags": ["trick", "reading", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-logic-063",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You start facing north. You turn 135° clockwise, then 90° counterclockwise. Which direction are you now facing?",
+			"choices": ["Northeast", "Southeast", "Southwest", "Northwest"],
+			"answer": "Northeast",
+			"explanation": "Starting at 0° (north), turning 135° clockwise puts you at 135° (southeast). Turning 90° counterclockwise subtracts 90°, landing at 45° — northeast.",
+			"tags": ["spatial", "directions", "generated"]
+		},
+		{
+			"id": "gen-logic-064",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "To qualify for a marathon's elite corral, running a sub-4-hour time last year is necessary — but registering by the deadline is also required. Priya ran a 3:45 marathon last year but missed the registration deadline. Is she in the elite corral?",
+			"choices": [
+				"Yes — her time alone qualifies her",
+				"No — meeting the time requirement doesn't satisfy the separate registration requirement",
+				"Cannot be determined from the information given",
+				"Yes — necessary conditions are automatically sufficient"
+			],
+			"answer": "No — meeting the time requirement doesn't satisfy the separate registration requirement",
+			"explanation": "A necessary condition must be met but doesn't guarantee the outcome by itself — it isn't sufficient. Priya meets the time requirement (necessary) but fails the registration requirement, so she doesn't qualify.",
+			"tags": ["propositional", "reasoning", "generated"]
+		}
+	]
+}
