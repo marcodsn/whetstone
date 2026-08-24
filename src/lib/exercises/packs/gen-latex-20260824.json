@@ -1,0 +1,47 @@
+{
+	"pack": "gen-latex-20260824",
+	"exercises": [
+		{
+			"id": "gen-latex-025",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Both `align` and `aligned` produce a multi-line, vertically-aligned block of equations in LaTeX (both from the `amsmath` package). What's the key practical difference between them?",
+			"choices": [
+				"`align` is a top-level environment that numbers each line by default; `aligned` is meant to be nested inside math delimiters (like `equation` or `$$...$$`) and produces no numbering of its own",
+				"They are exactly interchangeable in every context",
+				"`aligned` only works in text mode, never inside math delimiters",
+				"`align` requires loading `amsmath` while `aligned` does not, but they otherwise behave identically"
+			],
+			"answer": "`align` is a top-level environment that numbers each line by default; `aligned` is meant to be nested inside math delimiters (like `equation` or `$$...$$`) and produces no numbering of its own",
+			"explanation": "Use `align` directly when you want each line numbered; wrap `aligned` inside `equation` (or a single `$$...$$`) when you want the whole block treated — and numbered, if at all — as one unit.",
+			"tags": ["environments", "align", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-026",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 2,
+			"prompt": "Write the LaTeX source for this matrix with square brackets: $$\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$$ Then reveal and compare.",
+			"answer": "\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}",
+			"explanation": "`bmatrix` (from `amsmath`) automatically wraps the array in square brackets — compare `pmatrix` for parentheses and `vmatrix` for the single vertical bars used in determinants.",
+			"tags": ["matrices", "environments", "bmatrix", "generated"]
+		},
+		{
+			"id": "gen-latex-027",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A student writes `$\\left( \\frac{a}{b}$`, intending to show a fraction inside an auto-sized parenthesis, but forgets to close the delimiter. What happens when this is compiled?",
+			"choices": [
+				"It compiles fine — `\\left(` on its own just renders a normal-sized opening parenthesis",
+				"LaTeX throws a 'Missing \\right' error, because every `\\left` must be paired with a matching `\\right` (which can be `\\right.` for an invisible delimiter if none is wanted)",
+				"It silently renders the fraction with no parenthesis at all",
+				"It compiles fine, but the parenthesis appears on the wrong side of the fraction"
+			],
+			"answer": "LaTeX throws a 'Missing \\right' error, because every `\\left` must be paired with a matching `\\right` (which can be `\\right.` for an invisible delimiter if none is wanted)",
+			"explanation": "`\\left` and `\\right` must always come in pairs — the delimiters on each side can differ, or even be invisible via `\\right.`, but one can never appear without the other.",
+			"tags": ["gotcha", "errors", "delimiters", "generated"]
+		}
+	]
+}

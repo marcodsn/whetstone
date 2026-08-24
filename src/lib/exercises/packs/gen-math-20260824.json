@@ -1,0 +1,82 @@
+{
+	"pack": "gen-math-20260824",
+	"exercises": [
+		{
+			"id": "gen-math-107",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "There's a mental-math shortcut for multiplying any two-digit number by 11: write the two digits with their sum slotted between them (carrying a 1 into the left digit if that sum is 10 or more). Use it to compute $54 \\times 11$.",
+			"answer": "594",
+			"accepted": ["594"],
+			"explanation": "5 and 4 sum to 9, so slot it between them: 5_9_4 → 594. (If the digit sum were 10 or more, you'd carry the 1 into the left digit — e.g. $67 \\times 11$: $6+7=13$, so carry to get 737.)",
+			"tags": ["mental-math", "arithmetic-trick", "multiplication", "generated"]
+		},
+		{
+			"id": "gen-math-108",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A square is drawn together with both of its diagonals. Counting triangles of every size formed by the lines — including ones made up of several smaller pieces — how many triangles are there in total?",
+			"choices": ["4", "6", "8", "12"],
+			"answer": "8",
+			"explanation": "The diagonals cut the square into 4 small triangles. Each pair of small triangles sharing one full diagonal as their common edge recombines into one of the square's 4 side-based half-triangles, giving $4 + 4 = 8$ in total.",
+			"tags": ["geometry", "recreational", "counting", "generated"]
+		},
+		{
+			"id": "gen-math-109",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Quick test for divisibility by 11: take the alternating sum of a number's digits (add, subtract, add, ...) — if that result is a multiple of 11 (including 0), so is the original number. Use it to find $9152 \\div 11$.",
+			"answer": "832",
+			"accepted": ["832"],
+			"explanation": "Reading digit by digit, the alternating sum is $2 - 5 + 1 - 9 = -11$, a multiple of 11, so 9152 divides evenly by 11 — and $9152 / 11 = 832$.",
+			"tags": ["number-theory", "divisibility", "mental-math", "generated"]
+		},
+		{
+			"id": "gen-math-110",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "You roll a fair six-sided die over and over until it shows a 6. What is the expected number of rolls this takes?",
+			"choices": ["3", "5", "6", "36"],
+			"answer": "6",
+			"explanation": "The number of rolls until the first success is geometrically distributed with success probability $p = 1/6$; its expected value is $1/p = 6$.",
+			"tags": ["probability", "expected-value", "generated"]
+		},
+		{
+			"id": "gen-math-111",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Using only pennies (1c), nickels (5c), and dimes (10c), in how many different ways can you make exactly 25 cents?",
+			"answer": "12",
+			"accepted": ["12", "12 ways"],
+			"explanation": "Fix the number of dimes at 0, 1, or 2. Each choice leaves a remainder that can be filled with 0 up to some maximum number of nickels, with pennies making up the rest exactly one way each: $6 + 4 + 2 = 12$ combinations total.",
+			"tags": ["counting", "coins", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-112",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "What is the sum of the first 50 positive even integers ($2 + 4 + 6 + \\dots + 100$)?",
+			"choices": ["2500", "2525", "2550", "2600"],
+			"answer": "2550",
+			"explanation": "The sum of the first $n$ even numbers is $n(n+1)$; with $n = 50$ that's $50 \\times 51 = 2550$.",
+			"tags": ["arithmetic", "series", "mental-math", "generated"]
+		},
+		{
+			"id": "gen-math-113",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A number is increased by 10% to give 253. What was the original number?",
+			"answer": "230",
+			"accepted": ["230"],
+			"explanation": "$1.1x = 253$, so $x = 253 / 1.1 = 230$.",
+			"tags": ["percentages", "algebra", "generated"]
+		}
+	]
+}

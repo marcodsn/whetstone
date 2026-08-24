@@ -2173,6 +2173,129 @@
 		]
 	},
 	{
+		"id": "gen-code-071",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this Python print? (Give both tuples, in order, separated by a space.)",
+		"code": {
+			"lang": "python",
+			"src": "def track(fn):\n    calls = []\n    def wrapper(*args):\n        calls.append(args)\n        return fn(*args), len(calls)\n    return wrapper\n\n@track\ndef square(x):\n    return x * x\n\nprint(square(3), square(4))"
+		},
+		"answer": "(9, 1) (16, 2)",
+		"accepted": [
+			"(9, 1) (16, 2)",
+			"(9,1) (16,2)"
+		],
+		"explanation": "`@track` wraps `square` so every call appends its args to a shared `calls` list and returns `(result, call_count)`. Python evaluates function-call arguments left to right, so `square(3)` runs first (1 prior call recorded) and `square(4)` runs second (2 prior calls recorded).",
+		"tags": [
+			"python",
+			"decorators",
+			"closures",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-072",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this C program print?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n#define SQUARE(x) x * x\n\nint main(void) {\n    int a = 2, b = 3;\n    printf(\"%d\\n\", SQUARE(a + b));\n    return 0;\n}"
+		},
+		"answer": "11",
+		"accepted": [
+			"11"
+		],
+		"explanation": "Function-like macros substitute their argument text verbatim, with no added parentheses, so `SQUARE(a + b)` expands to `a + b * a + b`. By operator precedence that's `a + (b*a) + b = 2 + 6 + 3 = 11`, not `(a+b)^2 = 25` as the name suggests.",
+		"tags": [
+			"c",
+			"macros",
+			"preprocessor",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-073",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to return True exactly when the digits of `n`'s absolute value form a palindrome, so both 121 and -121 should count as palindromes. What's actually wrong with it?",
+		"code": {
+			"lang": "python",
+			"src": "def is_palindrome_number(n):\n    s = str(n)\n    return s == s[::-1]"
+		},
+		"choices": [
+			"It works correctly for all integers, including negatives",
+			"It includes the minus sign when reversing, so negative palindromes like -121 are incorrectly reported as False",
+			"String reversal with `s[::-1]` doesn't actually reverse the string in Python",
+			"It fails for palindromes with an even number of digits, like 1221"
+		],
+		"answer": "It includes the minus sign when reversing, so negative palindromes like -121 are incorrectly reported as False",
+		"explanation": "`str(-121)` is `\"-121\"`, whose reverse is `\"121-\"` — the minus sign lands on the wrong end, so the comparison fails even though the digits 1-2-1 are themselves a palindrome. The fix is to compare `str(abs(n))` against its reverse.",
+		"tags": [
+			"python",
+			"strings",
+			"spot-the-bug",
+			"edge-case",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-074",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `power(base, exp)` below, as a function of $n = $ `exp`?",
+		"code": {
+			"lang": "python",
+			"src": "def power(base, exp):\n    if exp == 0:\n        return 1\n    half = power(base, exp // 2)\n    result = half * half\n    if exp % 2 == 1:\n        result *= base\n    return result"
+		},
+		"choices": [
+			"$O(1)$",
+			"$O(\\log n)$",
+			"$O(n)$",
+			"$O(n \\log n)$"
+		],
+		"answer": "$O(\\log n)$",
+		"explanation": "Each recursive call halves `exp` and does only O(1) extra work (one multiplication, maybe two), so the recursion depth and total work are both $O(\\log n)$ — this is the classic fast (binary) exponentiation trick.",
+		"tags": [
+			"python",
+			"complexity",
+			"recursion",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-075",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Two candidate implementations of an anagram check are shown below. Both are meant to return True exactly when `a` and `b` use the exact same letters the same number of times. Which one is actually correct?",
+		"code": {
+			"lang": "python",
+			"src": "def is_anagram_v1(a, b):\n    return set(a) == set(b)\n\ndef is_anagram_v2(a, b):\n    return sorted(a) == sorted(b)"
+		},
+		"choices": [
+			"is_anagram_v1",
+			"is_anagram_v2",
+			"Both are correct",
+			"Neither is correct"
+		],
+		"answer": "is_anagram_v2",
+		"explanation": "`sorted(a) == sorted(b)` compares the full multiset of characters, so it correctly requires matching counts. `set(a) == set(b)` only compares which distinct letters are present — e.g. `is_anagram_v1('aab', 'abb')` wrongly returns True, even though 'aab' has two a's and one b while 'abb' has the reverse.",
+		"tags": [
+			"python",
+			"strings",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -3695,6 +3818,206 @@
 		]
 	},
 	{
+		"id": "gen-general-081",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What can travel around the world while staying in a corner?",
+		"answer": "A stamp",
+		"accepted": [
+			"stamp",
+			"a stamp",
+			"a postage stamp",
+			"postage stamp"
+		],
+		"explanation": "A postage stamp sits in the corner of an envelope, yet the envelope it's stuck to can travel anywhere in the world.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"lateral",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-082",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "A man walks into a restaurant and orders albatross soup. He takes one bite, then quietly pulls out a gun and shoots himself. Why? Work out the reasoning, then reveal and compare.",
+		"answer": "Years earlier he'd been shipwrecked with other survivors, who fed him 'albatross soup' to keep him alive — really the flesh of a crewmate who had died, though he was never told. Tasting real albatross soup for the first time, he realizes it tastes completely different from what he was fed back then, and understands with horror what he actually ate. That realization is what drives him to suicide.",
+		"explanation": "This is a classic lateral-thinking 'situation puzzle': the solver has to reconstruct a hidden backstory from a single strange clue — the taste of real albatross not matching the remembered taste is the entire key.",
+		"tags": [
+			"lateral",
+			"situation-puzzle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-083",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In each of two hospitals, Hospital A has a higher survival rate than Hospital B among low-risk patients, AND a higher survival rate than Hospital B among high-risk patients. Is it possible that, overall — combining both patient groups — Hospital B actually has the higher survival rate?",
+		"choices": [
+			"No — if A beats B in every subgroup, A must beat B overall",
+			"Yes — this can happen if the hospitals treat very different proportions of high-risk vs. low-risk patients (Simpson's paradox)",
+			"Only if the two hospitals have exactly equal numbers of patients",
+			"Only if survival is measured over different time periods at each hospital"
+		],
+		"answer": "Yes — this can happen if the hospitals treat very different proportions of high-risk vs. low-risk patients (Simpson's paradox)",
+		"explanation": "This is Simpson's paradox: if Hospital A treats far more high-risk patients (who have lower survival odds regardless of hospital) than Hospital B does, A's overall average gets dragged down below B's even though A does better within every individual risk group.",
+		"tags": [
+			"probability",
+			"paradox",
+			"simpsons-paradox",
+			"statistics",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-084",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how many breaths does a person take over an average 80-year lifetime?",
+		"choices": [
+			"about 6 million",
+			"about 60 million",
+			"about 600 million",
+			"about 6 billion"
+		],
+		"answer": "about 600 million",
+		"explanation": "At a resting rate of about 15 breaths per minute, that's roughly $15 \\times 60 \\times 24 \\approx 21{,}600$ breaths a day, or about 7.9 million a year — over 80 years, that's on the order of 630 million, closest to 600 million.",
+		"tags": [
+			"estimation",
+			"scale",
+			"fermi-estimate",
+			"biology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-085",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: different regions of the tongue are specialized to detect different tastes — sweet at the tip, bitter at the back, and so on (the 'tongue map').",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "The 'tongue map' comes from a 1901 German study that was later mistranslated and popularized. In reality, taste receptors for all the basic tastes are distributed across the whole tongue, and any region can detect any of them.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-086",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "During WWII, researchers studying bullet holes on returning bombers initially proposed adding armor to the areas with the most hits. Statistician Abraham Wald argued for the opposite: armor the areas with the FEWEST hits among survivors. Why was he right?",
+		"choices": [
+			"Because armor is heavier than it looks, so lightly-hit areas need it more to balance the plane",
+			"Because the bombers studied were the survivors — planes hit in the sparsely-damaged areas were likely the ones that got shot there and never made it back",
+			"Because enemy gunners deliberately avoided the heavily-hit areas",
+			"Because the damage data had been recorded backwards"
+		],
+		"answer": "Because the bombers studied were the survivors — planes hit in the sparsely-damaged areas were likely the ones that got shot there and never made it back",
+		"explanation": "This is survivorship bias: the sample only includes planes that made it home. Few recorded hits in a given spot among survivors doesn't mean that spot rarely gets hit — it can mean a hit there is usually fatal, which is exactly where armor is needed most.",
+		"tags": [
+			"cognitive-bias",
+			"survivorship-bias",
+			"statistics",
+			"history",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-087",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: the Sahara is the largest desert in the world.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "By the technical definition — average annual precipitation under about 250 mm — Antarctica is a desert too, and at roughly 14 million km² it's larger than the Sahara's 9.2 million km², making it the largest desert on Earth.",
+		"tags": [
+			"geography",
+			"trivia",
+			"naming-trap",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-088",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which weighs more: a pound of gold, or a pound of feathers?",
+		"choices": [
+			"They weigh the same",
+			"A pound of gold is heavier",
+			"A pound of feathers is heavier",
+			"It depends on the altitude"
+		],
+		"answer": "A pound of feathers is heavier",
+		"explanation": "Precious metals like gold are weighed in troy pounds (12 troy ounces, about 373 g), while everyday goods like feathers use avoirdupois pounds (16 ounces, about 454 g). Even though a troy ounce is heavier than an avoirdupois ounce, the troy pound has fewer of them — so a full troy pound of gold ends up lighter than a full avoirdupois pound of feathers.",
+		"tags": [
+			"trick",
+			"units",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-089",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What has a bed but never sleeps, and a mouth but never eats?",
+		"answer": "A river",
+		"accepted": [
+			"river",
+			"a river"
+		],
+		"explanation": "A river has a 'bed' (its channel) and a 'mouth' (where it meets the sea), but neither is used the way the words usually suggest.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-090",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A cereal brand puts 1 of 6 different toys, chosen at random, in every box. Roughly how many boxes do you expect to buy, on average, before you've collected all 6 toys?",
+		"choices": [
+			"6",
+			"10",
+			"15",
+			"36"
+		],
+		"answer": "15",
+		"explanation": "This is the coupon collector's problem: the expected number of boxes is $n \\times (1 + \\tfrac12 + \\tfrac13 + \\dots + \\tfrac1n)$ for $n=6$, which works out to $6 \\times 2.45 \\approx 14.7$ — collecting the last one or two toys takes disproportionately long since you keep getting duplicates.",
+		"tags": [
+			"probability",
+			"estimation",
+			"coupon-collector",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -4125,6 +4448,63 @@
 			"writing",
 			"set-theory",
 			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-025",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Both `align` and `aligned` produce a multi-line, vertically-aligned block of equations in LaTeX (both from the `amsmath` package). What's the key practical difference between them?",
+		"choices": [
+			"`align` is a top-level environment that numbers each line by default; `aligned` is meant to be nested inside math delimiters (like `equation` or `$$...$$`) and produces no numbering of its own",
+			"They are exactly interchangeable in every context",
+			"`aligned` only works in text mode, never inside math delimiters",
+			"`align` requires loading `amsmath` while `aligned` does not, but they otherwise behave identically"
+		],
+		"answer": "`align` is a top-level environment that numbers each line by default; `aligned` is meant to be nested inside math delimiters (like `equation` or `$$...$$`) and produces no numbering of its own",
+		"explanation": "Use `align` directly when you want each line numbered; wrap `aligned` inside `equation` (or a single `$$...$$`) when you want the whole block treated — and numbered, if at all — as one unit.",
+		"tags": [
+			"environments",
+			"align",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-026",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "Write the LaTeX source for this matrix with square brackets: $$\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$$ Then reveal and compare.",
+		"answer": "\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}",
+		"explanation": "`bmatrix` (from `amsmath`) automatically wraps the array in square brackets — compare `pmatrix` for parentheses and `vmatrix` for the single vertical bars used in determinants.",
+		"tags": [
+			"matrices",
+			"environments",
+			"bmatrix",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-027",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A student writes `$\\left( \\frac{a}{b}$`, intending to show a fraction inside an auto-sized parenthesis, but forgets to close the delimiter. What happens when this is compiled?",
+		"choices": [
+			"It compiles fine — `\\left(` on its own just renders a normal-sized opening parenthesis",
+			"LaTeX throws a 'Missing \\right' error, because every `\\left` must be paired with a matching `\\right` (which can be `\\right.` for an invisible delimiter if none is wanted)",
+			"It silently renders the fraction with no parenthesis at all",
+			"It compiles fine, but the parenthesis appears on the wrong side of the fraction"
+		],
+		"answer": "LaTeX throws a 'Missing \\right' error, because every `\\left` must be paired with a matching `\\right` (which can be `\\right.` for an invisible delimiter if none is wanted)",
+		"explanation": "`\\left` and `\\right` must always come in pairs — the delimiters on each side can differ, or even be invisible via `\\right.`, but one can never appear without the other.",
+		"tags": [
+			"gotcha",
+			"errors",
+			"delimiters",
 			"generated"
 		]
 	},
@@ -5339,6 +5719,125 @@
 		"tags": [
 			"propositional",
 			"reasoning",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-065",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three coworkers — Priya, Marcus, and Elena — each drink a different beverage (coffee, tea, or juice) and play a different instrument (piano, violin, or drums) during lunch break. Clues: (1) The coffee drinker does not play piano. (2) Marcus plays violin. (3) Elena drinks tea. (4) The drummer drinks juice. Who drinks coffee, and what instrument do they play?",
+		"choices": [
+			"Marcus, violin",
+			"Priya, drums",
+			"Elena, piano",
+			"Marcus, piano"
+		],
+		"answer": "Marcus, violin",
+		"explanation": "Elena drinks tea, so by clue 4 she isn't the drummer, meaning she plays piano. That leaves Priya on drums, so by clue 4 Priya drinks juice. Coffee is left for Marcus, who plays violin (clue 2) — consistent with clue 1, since the coffee drinker doesn't play piano.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-066",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "In the classic ultimatum game, Player A is given $10 to split with Player B in whole-dollar amounts. A proposes a split; B can either accept (both keep their share) or reject (both get $0). Assuming both players are purely rational and self-interested, and B accepts any offer that leaves them better off than rejecting, how much should A rationally offer B in order to keep the most money for themself?",
+		"answer": "$1",
+		"accepted": [
+			"1",
+			"$1",
+			"one dollar",
+			"1 dollar"
+		],
+		"explanation": "A rational B accepts any amount greater than $0 rather than get nothing, so A can offer the smallest possible positive amount — $1 in whole-dollar terms — and keep $9.",
+		"tags": [
+			"game-theory",
+			"strategy",
+			"bargaining",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-067",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A card has 'The statement on the other side of this card is TRUE' written on the front, and 'The statement on the other side of this card is FALSE' written on the back. Assuming every written statement is simply true or simply false, what happens if you try to consistently assign truth values to the two statements?",
+		"choices": [
+			"It's consistent, and both statements are true",
+			"It's consistent, and both statements are false",
+			"It leads to a contradiction under either assumption — a two-card version of the Liar Paradox",
+			"The front is true and the back is false, with no issue"
+		],
+		"answer": "It leads to a contradiction under either assumption — a two-card version of the Liar Paradox",
+		"explanation": "Assume the front is true: then the back is true, but the back says the front is false — contradiction. Assume the front is false: then the back is false, but the back says the front is false, meaning the front is true — contradiction again. Neither assignment is stable.",
+		"tags": [
+			"self-reference",
+			"paradox",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-068",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Alex claims, 'No programmer would ever write code without tests.' Sam replies, 'My coworker Jamie is a programmer, and he never writes tests.' Alex responds, 'Well, then Jamie isn't a real programmer.' What informal fallacy is Alex committing?",
+		"choices": [
+			"Post hoc ergo propter hoc",
+			"No true Scotsman",
+			"Slippery slope",
+			"Affirming the consequent"
+		],
+		"answer": "No true Scotsman",
+		"explanation": "Alex redefines 'programmer' on the fly to exclude the counterexample, protecting the original claim from ever being falsified — the hallmark of the No True Scotsman fallacy.",
+		"tags": [
+			"fallacy",
+			"informal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-069",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What letter comes next in this sequence: A, C, F, J, O, ?",
+		"answer": "U",
+		"accepted": [
+			"U",
+			"u"
+		],
+		"explanation": "The letters sit at positions 1, 3, 6, 10, 15 in the alphabet — the triangular numbers, where each gap grows by one more than the last (+2, +3, +4, +5, then +6). $15 + 6 = 21$, and the 21st letter is U.",
+		"tags": [
+			"pattern-recognition",
+			"sequences",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-070",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Every day for 999 days, a farmer feeds a turkey, and the turkey comes to trust more and more that the farmer means it well. On day 1000 — Thanksgiving — the farmer kills it instead. What point does this parable (Russell's inductivist turkey) illustrate?",
+		"choices": [
+			"Deductive arguments can be valid but still unsound",
+			"However strong the past evidence, inductive reasoning never logically guarantees the future will resemble the past",
+			"Correlation does not imply causation",
+			"Circular reasoning assumes what it's trying to prove"
+		],
+		"answer": "However strong the past evidence, inductive reasoning never logically guarantees the future will resemble the past",
+		"explanation": "999 days of confirming evidence gave the turkey excellent inductive grounds for its belief — and it was still catastrophically wrong, because induction only ever produces probable conclusions, never certain ones.",
+		"tags": [
+			"induction",
+			"epistemology",
 			"generated"
 		]
 	},
@@ -7298,6 +7797,140 @@
 			"algebra",
 			"word-problem",
 			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-107",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "There's a mental-math shortcut for multiplying any two-digit number by 11: write the two digits with their sum slotted between them (carrying a 1 into the left digit if that sum is 10 or more). Use it to compute $54 \\times 11$.",
+		"answer": "594",
+		"accepted": [
+			"594"
+		],
+		"explanation": "5 and 4 sum to 9, so slot it between them: 5_9_4 → 594. (If the digit sum were 10 or more, you'd carry the 1 into the left digit — e.g. $67 \\times 11$: $6+7=13$, so carry to get 737.)",
+		"tags": [
+			"mental-math",
+			"arithmetic-trick",
+			"multiplication",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-108",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A square is drawn together with both of its diagonals. Counting triangles of every size formed by the lines — including ones made up of several smaller pieces — how many triangles are there in total?",
+		"choices": [
+			"4",
+			"6",
+			"8",
+			"12"
+		],
+		"answer": "8",
+		"explanation": "The diagonals cut the square into 4 small triangles. Each pair of small triangles sharing one full diagonal as their common edge recombines into one of the square's 4 side-based half-triangles, giving $4 + 4 = 8$ in total.",
+		"tags": [
+			"geometry",
+			"recreational",
+			"counting",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-109",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Quick test for divisibility by 11: take the alternating sum of a number's digits (add, subtract, add, ...) — if that result is a multiple of 11 (including 0), so is the original number. Use it to find $9152 \\div 11$.",
+		"answer": "832",
+		"accepted": [
+			"832"
+		],
+		"explanation": "Reading digit by digit, the alternating sum is $2 - 5 + 1 - 9 = -11$, a multiple of 11, so 9152 divides evenly by 11 — and $9152 / 11 = 832$.",
+		"tags": [
+			"number-theory",
+			"divisibility",
+			"mental-math",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-110",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You roll a fair six-sided die over and over until it shows a 6. What is the expected number of rolls this takes?",
+		"choices": [
+			"3",
+			"5",
+			"6",
+			"36"
+		],
+		"answer": "6",
+		"explanation": "The number of rolls until the first success is geometrically distributed with success probability $p = 1/6$; its expected value is $1/p = 6$.",
+		"tags": [
+			"probability",
+			"expected-value",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-111",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Using only pennies (1c), nickels (5c), and dimes (10c), in how many different ways can you make exactly 25 cents?",
+		"answer": "12",
+		"accepted": [
+			"12",
+			"12 ways"
+		],
+		"explanation": "Fix the number of dimes at 0, 1, or 2. Each choice leaves a remainder that can be filled with 0 up to some maximum number of nickels, with pennies making up the rest exactly one way each: $6 + 4 + 2 = 12$ combinations total.",
+		"tags": [
+			"counting",
+			"coins",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-112",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "What is the sum of the first 50 positive even integers ($2 + 4 + 6 + \\dots + 100$)?",
+		"choices": [
+			"2500",
+			"2525",
+			"2550",
+			"2600"
+		],
+		"answer": "2550",
+		"explanation": "The sum of the first $n$ even numbers is $n(n+1)$; with $n = 50$ that's $50 \\times 51 = 2550$.",
+		"tags": [
+			"arithmetic",
+			"series",
+			"mental-math",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-113",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A number is increased by 10% to give 253. What was the original number?",
+		"answer": "230",
+		"accepted": [
+			"230"
+		],
+		"explanation": "$1.1x = 253$, so $x = 253 / 1.1 = 230$.",
+		"tags": [
+			"percentages",
+			"algebra",
 			"generated"
 		]
 	},

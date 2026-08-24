@@ -1,0 +1,124 @@
+{
+	"pack": "gen-general-20260824",
+	"exercises": [
+		{
+			"id": "gen-general-081",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What can travel around the world while staying in a corner?",
+			"answer": "A stamp",
+			"accepted": ["stamp", "a stamp", "a postage stamp", "postage stamp"],
+			"explanation": "A postage stamp sits in the corner of an envelope, yet the envelope it's stuck to can travel anywhere in the world.",
+			"tags": ["riddle", "wordplay", "lateral", "generated"]
+		},
+		{
+			"id": "gen-general-082",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "A man walks into a restaurant and orders albatross soup. He takes one bite, then quietly pulls out a gun and shoots himself. Why? Work out the reasoning, then reveal and compare.",
+			"answer": "Years earlier he'd been shipwrecked with other survivors, who fed him 'albatross soup' to keep him alive — really the flesh of a crewmate who had died, though he was never told. Tasting real albatross soup for the first time, he realizes it tastes completely different from what he was fed back then, and understands with horror what he actually ate. That realization is what drives him to suicide.",
+			"explanation": "This is a classic lateral-thinking 'situation puzzle': the solver has to reconstruct a hidden backstory from a single strange clue — the taste of real albatross not matching the remembered taste is the entire key.",
+			"tags": ["lateral", "situation-puzzle", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-083",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In each of two hospitals, Hospital A has a higher survival rate than Hospital B among low-risk patients, AND a higher survival rate than Hospital B among high-risk patients. Is it possible that, overall — combining both patient groups — Hospital B actually has the higher survival rate?",
+			"choices": [
+				"No — if A beats B in every subgroup, A must beat B overall",
+				"Yes — this can happen if the hospitals treat very different proportions of high-risk vs. low-risk patients (Simpson's paradox)",
+				"Only if the two hospitals have exactly equal numbers of patients",
+				"Only if survival is measured over different time periods at each hospital"
+			],
+			"answer": "Yes — this can happen if the hospitals treat very different proportions of high-risk vs. low-risk patients (Simpson's paradox)",
+			"explanation": "This is Simpson's paradox: if Hospital A treats far more high-risk patients (who have lower survival odds regardless of hospital) than Hospital B does, A's overall average gets dragged down below B's even though A does better within every individual risk group.",
+			"tags": ["probability", "paradox", "simpsons-paradox", "statistics", "generated"]
+		},
+		{
+			"id": "gen-general-084",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Roughly how many breaths does a person take over an average 80-year lifetime?",
+			"choices": ["about 6 million", "about 60 million", "about 600 million", "about 6 billion"],
+			"answer": "about 600 million",
+			"explanation": "At a resting rate of about 15 breaths per minute, that's roughly $15 \\times 60 \\times 24 \\approx 21{,}600$ breaths a day, or about 7.9 million a year — over 80 years, that's on the order of 630 million, closest to 600 million.",
+			"tags": ["estimation", "scale", "fermi-estimate", "biology", "generated"]
+		},
+		{
+			"id": "gen-general-085",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: different regions of the tongue are specialized to detect different tastes — sweet at the tip, bitter at the back, and so on (the 'tongue map').",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "The 'tongue map' comes from a 1901 German study that was later mistranslated and popularized. In reality, taste receptors for all the basic tastes are distributed across the whole tongue, and any region can detect any of them.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-086",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "During WWII, researchers studying bullet holes on returning bombers initially proposed adding armor to the areas with the most hits. Statistician Abraham Wald argued for the opposite: armor the areas with the FEWEST hits among survivors. Why was he right?",
+			"choices": [
+				"Because armor is heavier than it looks, so lightly-hit areas need it more to balance the plane",
+				"Because the bombers studied were the survivors — planes hit in the sparsely-damaged areas were likely the ones that got shot there and never made it back",
+				"Because enemy gunners deliberately avoided the heavily-hit areas",
+				"Because the damage data had been recorded backwards"
+			],
+			"answer": "Because the bombers studied were the survivors — planes hit in the sparsely-damaged areas were likely the ones that got shot there and never made it back",
+			"explanation": "This is survivorship bias: the sample only includes planes that made it home. Few recorded hits in a given spot among survivors doesn't mean that spot rarely gets hit — it can mean a hit there is usually fatal, which is exactly where armor is needed most.",
+			"tags": ["cognitive-bias", "survivorship-bias", "statistics", "history", "generated"]
+		},
+		{
+			"id": "gen-general-087",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: the Sahara is the largest desert in the world.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "By the technical definition — average annual precipitation under about 250 mm — Antarctica is a desert too, and at roughly 14 million km² it's larger than the Sahara's 9.2 million km², making it the largest desert on Earth.",
+			"tags": ["geography", "trivia", "naming-trap", "generated"]
+		},
+		{
+			"id": "gen-general-088",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which weighs more: a pound of gold, or a pound of feathers?",
+			"choices": ["They weigh the same", "A pound of gold is heavier", "A pound of feathers is heavier", "It depends on the altitude"],
+			"answer": "A pound of feathers is heavier",
+			"explanation": "Precious metals like gold are weighed in troy pounds (12 troy ounces, about 373 g), while everyday goods like feathers use avoirdupois pounds (16 ounces, about 454 g). Even though a troy ounce is heavier than an avoirdupois ounce, the troy pound has fewer of them — so a full troy pound of gold ends up lighter than a full avoirdupois pound of feathers.",
+			"tags": ["trick", "units", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-089",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What has a bed but never sleeps, and a mouth but never eats?",
+			"answer": "A river",
+			"accepted": ["river", "a river"],
+			"explanation": "A river has a 'bed' (its channel) and a 'mouth' (where it meets the sea), but neither is used the way the words usually suggest.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-090",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A cereal brand puts 1 of 6 different toys, chosen at random, in every box. Roughly how many boxes do you expect to buy, on average, before you've collected all 6 toys?",
+			"choices": ["6", "10", "15", "36"],
+			"answer": "15",
+			"explanation": "This is the coupon collector's problem: the expected number of boxes is $n \\times (1 + \\tfrac12 + \\tfrac13 + \\dots + \\tfrac1n)$ for $n=6$, which works out to $6 \\times 2.45 \\approx 14.7$ — collecting the last one or two toys takes disproportionately long since you keep getting duplicates.",
+			"tags": ["probability", "estimation", "coupon-collector", "generated"]
+		}
+	]
+}

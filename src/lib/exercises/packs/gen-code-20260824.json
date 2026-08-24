@@ -1,0 +1,85 @@
+{
+	"pack": "gen-code-20260824",
+	"exercises": [
+		{
+			"id": "gen-code-071",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What does this Python print? (Give both tuples, in order, separated by a space.)",
+			"code": {
+				"lang": "python",
+				"src": "def track(fn):\n    calls = []\n    def wrapper(*args):\n        calls.append(args)\n        return fn(*args), len(calls)\n    return wrapper\n\n@track\ndef square(x):\n    return x * x\n\nprint(square(3), square(4))"
+			},
+			"answer": "(9, 1) (16, 2)",
+			"accepted": ["(9, 1) (16, 2)", "(9,1) (16,2)"],
+			"explanation": "`@track` wraps `square` so every call appends its args to a shared `calls` list and returns `(result, call_count)`. Python evaluates function-call arguments left to right, so `square(3)` runs first (1 prior call recorded) and `square(4)` runs second (2 prior calls recorded).",
+			"tags": ["python", "decorators", "closures", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-072",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this C program print?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n#define SQUARE(x) x * x\n\nint main(void) {\n    int a = 2, b = 3;\n    printf(\"%d\\n\", SQUARE(a + b));\n    return 0;\n}"
+			},
+			"answer": "11",
+			"accepted": ["11"],
+			"explanation": "Function-like macros substitute their argument text verbatim, with no added parentheses, so `SQUARE(a + b)` expands to `a + b * a + b`. By operator precedence that's `a + (b*a) + b = 2 + 6 + 3 = 11`, not `(a+b)^2 = 25` as the name suggests.",
+			"tags": ["c", "macros", "preprocessor", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-073",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to return True exactly when the digits of `n`'s absolute value form a palindrome, so both 121 and -121 should count as palindromes. What's actually wrong with it?",
+			"code": {
+				"lang": "python",
+				"src": "def is_palindrome_number(n):\n    s = str(n)\n    return s == s[::-1]"
+			},
+			"choices": [
+				"It works correctly for all integers, including negatives",
+				"It includes the minus sign when reversing, so negative palindromes like -121 are incorrectly reported as False",
+				"String reversal with `s[::-1]` doesn't actually reverse the string in Python",
+				"It fails for palindromes with an even number of digits, like 1221"
+			],
+			"answer": "It includes the minus sign when reversing, so negative palindromes like -121 are incorrectly reported as False",
+			"explanation": "`str(-121)` is `\"-121\"`, whose reverse is `\"121-\"` — the minus sign lands on the wrong end, so the comparison fails even though the digits 1-2-1 are themselves a palindrome. The fix is to compare `str(abs(n))` against its reverse.",
+			"tags": ["python", "strings", "spot-the-bug", "edge-case", "generated"]
+		},
+		{
+			"id": "gen-code-074",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `power(base, exp)` below, as a function of $n = $ `exp`?",
+			"code": {
+				"lang": "python",
+				"src": "def power(base, exp):\n    if exp == 0:\n        return 1\n    half = power(base, exp // 2)\n    result = half * half\n    if exp % 2 == 1:\n        result *= base\n    return result"
+			},
+			"choices": ["$O(1)$", "$O(\\log n)$", "$O(n)$", "$O(n \\log n)$"],
+			"answer": "$O(\\log n)$",
+			"explanation": "Each recursive call halves `exp` and does only O(1) extra work (one multiplication, maybe two), so the recursion depth and total work are both $O(\\log n)$ — this is the classic fast (binary) exponentiation trick.",
+			"tags": ["python", "complexity", "recursion", "generated"]
+		},
+		{
+			"id": "gen-code-075",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Two candidate implementations of an anagram check are shown below. Both are meant to return True exactly when `a` and `b` use the exact same letters the same number of times. Which one is actually correct?",
+			"code": {
+				"lang": "python",
+				"src": "def is_anagram_v1(a, b):\n    return set(a) == set(b)\n\ndef is_anagram_v2(a, b):\n    return sorted(a) == sorted(b)"
+			},
+			"choices": ["is_anagram_v1", "is_anagram_v2", "Both are correct", "Neither is correct"],
+			"answer": "is_anagram_v2",
+			"explanation": "`sorted(a) == sorted(b)` compares the full multiset of characters, so it correctly requires matching counts. `set(a) == set(b)` only compares which distinct letters are present — e.g. `is_anagram_v1('aab', 'abb')` wrongly returns True, even though 'aab' has two a's and one b while 'abb' has the reverse.",
+			"tags": ["python", "strings", "algorithms", "generated"]
+		}
+	]
+}

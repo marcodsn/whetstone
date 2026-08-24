@@ -1,0 +1,81 @@
+{
+	"pack": "gen-logic-20260824",
+	"exercises": [
+		{
+			"id": "gen-logic-065",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three coworkers — Priya, Marcus, and Elena — each drink a different beverage (coffee, tea, or juice) and play a different instrument (piano, violin, or drums) during lunch break. Clues: (1) The coffee drinker does not play piano. (2) Marcus plays violin. (3) Elena drinks tea. (4) The drummer drinks juice. Who drinks coffee, and what instrument do they play?",
+			"choices": ["Marcus, violin", "Priya, drums", "Elena, piano", "Marcus, piano"],
+			"answer": "Marcus, violin",
+			"explanation": "Elena drinks tea, so by clue 4 she isn't the drummer, meaning she plays piano. That leaves Priya on drums, so by clue 4 Priya drinks juice. Coffee is left for Marcus, who plays violin (clue 2) — consistent with clue 1, since the coffee drinker doesn't play piano.",
+			"tags": ["deduction", "constraint-puzzle", "generated"]
+		},
+		{
+			"id": "gen-logic-066",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "In the classic ultimatum game, Player A is given $10 to split with Player B in whole-dollar amounts. A proposes a split; B can either accept (both keep their share) or reject (both get $0). Assuming both players are purely rational and self-interested, and B accepts any offer that leaves them better off than rejecting, how much should A rationally offer B in order to keep the most money for themself?",
+			"answer": "$1",
+			"accepted": ["1", "$1", "one dollar", "1 dollar"],
+			"explanation": "A rational B accepts any amount greater than $0 rather than get nothing, so A can offer the smallest possible positive amount — $1 in whole-dollar terms — and keep $9.",
+			"tags": ["game-theory", "strategy", "bargaining", "generated"]
+		},
+		{
+			"id": "gen-logic-067",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A card has 'The statement on the other side of this card is TRUE' written on the front, and 'The statement on the other side of this card is FALSE' written on the back. Assuming every written statement is simply true or simply false, what happens if you try to consistently assign truth values to the two statements?",
+			"choices": [
+				"It's consistent, and both statements are true",
+				"It's consistent, and both statements are false",
+				"It leads to a contradiction under either assumption — a two-card version of the Liar Paradox",
+				"The front is true and the back is false, with no issue"
+			],
+			"answer": "It leads to a contradiction under either assumption — a two-card version of the Liar Paradox",
+			"explanation": "Assume the front is true: then the back is true, but the back says the front is false — contradiction. Assume the front is false: then the back is false, but the back says the front is false, meaning the front is true — contradiction again. Neither assignment is stable.",
+			"tags": ["self-reference", "paradox", "generated"]
+		},
+		{
+			"id": "gen-logic-068",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Alex claims, 'No programmer would ever write code without tests.' Sam replies, 'My coworker Jamie is a programmer, and he never writes tests.' Alex responds, 'Well, then Jamie isn't a real programmer.' What informal fallacy is Alex committing?",
+			"choices": ["Post hoc ergo propter hoc", "No true Scotsman", "Slippery slope", "Affirming the consequent"],
+			"answer": "No true Scotsman",
+			"explanation": "Alex redefines 'programmer' on the fly to exclude the counterexample, protecting the original claim from ever being falsified — the hallmark of the No True Scotsman fallacy.",
+			"tags": ["fallacy", "informal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-069",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What letter comes next in this sequence: A, C, F, J, O, ?",
+			"answer": "U",
+			"accepted": ["U", "u"],
+			"explanation": "The letters sit at positions 1, 3, 6, 10, 15 in the alphabet — the triangular numbers, where each gap grows by one more than the last (+2, +3, +4, +5, then +6). $15 + 6 = 21$, and the 21st letter is U.",
+			"tags": ["pattern-recognition", "sequences", "generated"]
+		},
+		{
+			"id": "gen-logic-070",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Every day for 999 days, a farmer feeds a turkey, and the turkey comes to trust more and more that the farmer means it well. On day 1000 — Thanksgiving — the farmer kills it instead. What point does this parable (Russell's inductivist turkey) illustrate?",
+			"choices": [
+				"Deductive arguments can be valid but still unsound",
+				"However strong the past evidence, inductive reasoning never logically guarantees the future will resemble the past",
+				"Correlation does not imply causation",
+				"Circular reasoning assumes what it's trying to prove"
+			],
+			"answer": "However strong the past evidence, inductive reasoning never logically guarantees the future will resemble the past",
+			"explanation": "999 days of confirming evidence gave the turkey excellent inductive grounds for its belief — and it was still catastrophically wrong, because induction only ever produces probable conclusions, never certain ones.",
+			"tags": ["induction", "epistemology", "generated"]
+		}
+	]
+}
