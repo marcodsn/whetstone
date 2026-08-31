@@ -1,0 +1,95 @@
+{
+	"pack": "gen-code-20260831",
+	"exercises": [
+		{
+			"id": "gen-code-076",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this C program print?",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nint main(void) {\n    unsigned char x = 250;\n    x += 10;\n    printf(\"%d\\n\", x);\n    return 0;\n}"
+			},
+			"answer": "4",
+			"accepted": ["4"],
+			"explanation": "`unsigned char` wraps modulo 256: $250 + 10 = 260$, and $260 \\bmod 256 = 4$. When passed to `printf` via `%d`, `x` is promoted to `int`, but its stored value is already 4.",
+			"tags": ["c", "overflow", "unsigned", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-077",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "What does this JavaScript print? (Give the two numbers in order, separated by a space.)",
+			"code": {
+				"lang": "javascript",
+				"src": "let calls = 0;\nconst a = Array(3).map(x => {\n  calls++;\n  return 1;\n});\nconsole.log(calls, a.length);"
+			},
+			"answer": "0 3",
+			"accepted": ["0 3", "0, 3"],
+			"explanation": "`Array(3)` creates an array of length 3 with no actual elements — just empty slots ('holes'). `Array.prototype.map` skips holes entirely, never invoking the callback for an index that doesn't exist, so `calls` stays 0. The resulting array still has the same length, so `a.length` is 3.",
+			"tags": ["javascript", "arrays", "sparse-array", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-078",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to remove all negative numbers from an array in place. For the input `[1, -2, -3, 4]`, it actually returns `[1, -3, 4]` — the -3 survives. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "function removeNegatives(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] < 0) arr.splice(i, 1);\n  }\n  return arr;\n}"
+			},
+			"choices": [
+				"`splice` doesn't actually remove elements, it only marks them as deleted",
+				"After `splice` removes an element, every later element shifts left by one index, but `i` still increments — so the element that just shifted into the vacated index gets skipped",
+				"The loop condition `i < arr.length` should be `i <= arr.length`",
+				"`arr[i] < 0` fails to detect negative numbers correctly"
+			],
+			"answer": "After `splice` removes an element, every later element shifts left by one index, but `i` still increments — so the element that just shifted into the vacated index gets skipped",
+			"explanation": "When `i=1`, `arr[1]=-2` is removed, shifting -3 into index 1 and 4 into index 2. The loop then increments `i` to 2, so index 1 (now holding -3) is never checked again. The fix is to decrement `i` after a splice, or iterate backward.",
+			"tags": ["javascript", "arrays", "spot-the-bug", "mutation", "generated"]
+		},
+		{
+			"id": "gen-code-079",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This code is meant to safely increment a shared counter three times using async calls, ending with `count` equal to 3. Instead it prints 1. What's the bug?",
+			"code": {
+				"lang": "javascript",
+				"src": "let count = 0;\n\nasync function increment() {\n  const current = count;\n  await Promise.resolve();\n  count = current + 1;\n}\n\nasync function main() {\n  await Promise.all([increment(), increment(), increment()]);\n  console.log(count);\n}\n\nmain();"
+			},
+			"choices": [
+				"`Promise.all` runs its promises sequentially, so only the last call's increment counts",
+				"Each call to `increment` reads `count` into `current` before any of them have written back, so all three calls compute `current + 1` from the same starting value of 0 and overwrite each other",
+				"`await Promise.resolve()` actually blocks all other code from running, so this should print 3 correctly",
+				"`count` is redeclared as a new variable inside each call to `increment`, so the increments never affect the outer `count`"
+			],
+			"answer": "Each call to `increment` reads `count` into `current` before any of them have written back, so all three calls compute `current + 1` from the same starting value of 0 and overwrite each other",
+			"explanation": "All three `increment()` calls run synchronously up to their `await`, each capturing `current = 0` before any writes happen. Once the microtask queue resumes each one, they all compute `0 + 1` and overwrite `count` with 1 — a classic read-modify-write race condition from interleaved async execution, even though JavaScript itself is single-threaded.",
+			"tags": ["javascript", "async", "race-condition", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-080",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This quicksort always picks the first element as the pivot. What is its worst-case time complexity as a function of `n = len(arr)`, and what kind of input triggers that worst case?",
+			"code": {
+				"lang": "python",
+				"src": "def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[0]\n    less = [x for x in arr[1:] if x < pivot]\n    more = [x for x in arr[1:] if x >= pivot]\n    return quicksort(less) + [pivot] + quicksort(more)"
+			},
+			"choices": [
+				"O(n log n) in every case, since quicksort is always log-linear",
+				"O(n^2), triggered by an already-sorted (or reverse-sorted) array, since the first element is then always the smallest or largest remaining value, giving maximally unbalanced partitions",
+				"O(n^2), but only for arrays containing duplicate values",
+				"O(log n), since each recursive call only processes one partition"
+			],
+			"answer": "O(n^2), triggered by an already-sorted (or reverse-sorted) array, since the first element is then always the smallest or largest remaining value, giving maximally unbalanced partitions",
+			"explanation": "With a sorted input, `pivot = arr[0]` is always the minimum, so `less` is always empty and `more` has n-1 elements — the recursion depth is n and each level does O(n) partitioning work, giving O(n^2) total.",
+			"tags": ["python", "complexity", "algorithms", "sort", "generated"]
+		}
+	]
+}

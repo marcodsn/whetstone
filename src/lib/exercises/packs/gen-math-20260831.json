@@ -1,0 +1,82 @@
+{
+	"pack": "gen-math-20260831",
+	"exercises": [
+		{
+			"id": "gen-math-114",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "There's a shortcut for squaring a two-digit number ending in 5: multiply the leading digit by one more than itself, then append 25. Use it to compute $65^2$.",
+			"answer": "4225",
+			"accepted": ["4225"],
+			"explanation": "The leading digit is 6; $6 \\times 7 = 42$, then append 25 to get 4225. This works because $(10a+5)^2 = 100a(a+1) + 25$.",
+			"tags": ["mental-math", "arithmetic-trick", "squares", "generated"]
+		},
+		{
+			"id": "gen-math-115",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A chemist has a 40% acid solution and a 10% acid solution. How many liters of the 40% solution must be mixed with the 10% solution to produce 30 liters of a 20% acid solution?",
+			"answer": "10",
+			"accepted": ["10", "10 liters", "10 l"],
+			"explanation": "Let $x$ be the liters of the 40% solution, so $30-x$ liters come from the 10% solution. Matching total acid content: $0.4x + 0.1(30-x) = 0.2(30)$, which simplifies to $0.3x = 3$, so $x = 10$ liters.",
+			"tags": ["algebra", "word-problem", "percentages", "generated"]
+		},
+		{
+			"id": "gen-math-116",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Think of any number. Double it. Add 10. Divide the result by 2. Subtract your original number. Whatever number you started with, what do you always end up with?",
+			"answer": "5",
+			"accepted": ["5", "five"],
+			"explanation": "Algebraically, for starting number $x$: $\\frac{2x+10}{2} - x = (x+5) - x = 5$. The original number always cancels out, so the trick works for any starting value.",
+			"tags": ["algebra", "number-trick", "generated"]
+		},
+		{
+			"id": "gen-math-117",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You roll two fair six-sided dice and add the results. Which total is more likely: a sum of 7, or a sum of 8?",
+			"choices": ["A sum of 7 is more likely", "A sum of 8 is more likely", "They are equally likely", "It depends on which die is rolled first"],
+			"answer": "A sum of 7 is more likely",
+			"explanation": "There are 6 ways to roll a 7 out of 36 outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), but only 5 ways to roll an 8 (2+6, 3+5, 4+4, 5+3, 6+2) — 7 is the single most likely sum on two dice.",
+			"tags": ["probability", "dice", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-118",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the units digit of $7^{2023}$?",
+			"choices": ["1", "3", "7", "9"],
+			"answer": "3",
+			"explanation": "The units digits of powers of 7 cycle with period 4: $7, 9, 3, 1, 7, 9, 3, 1, \\dots$. Since $2023 = 4 \\times 505 + 3$, $7^{2023}$ has the same units digit as $7^3 = 343$, which is 3.",
+			"tags": ["number-theory", "modular-arithmetic", "powers", "generated"]
+		},
+		{
+			"id": "gen-math-119",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Two runners start together at the same point on a circular track and run in the same direction at constant speeds. One completes a full lap every 8 minutes, the other every 12 minutes. After how many minutes will they next both be exactly back at the starting point together?",
+			"answer": "24",
+			"accepted": ["24", "24 minutes"],
+			"explanation": "Each runner is back at the start at every multiple of their own lap time; both are there together at the first common multiple, $\\operatorname{lcm}(8,12) = 24$ minutes.",
+			"tags": ["number-theory", "word-problem", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-120",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A kite is flying directly above a point on the ground that is 12 m from where you're standing. The kite's string is taut and stretches 15 m from your hand to the kite. How high above the ground is the kite?",
+			"answer": "9",
+			"accepted": ["9", "9 m", "9 meters"],
+			"explanation": "The string, the vertical height, and the horizontal ground distance form a right triangle: $\\sqrt{15^2 - 12^2} = \\sqrt{225-144} = \\sqrt{81} = 9$ m.",
+			"tags": ["geometry", "pythagoras", "generated"]
+		}
+	]
+}

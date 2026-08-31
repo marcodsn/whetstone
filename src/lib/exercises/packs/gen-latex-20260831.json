@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260831",
+	"exercises": [
+		{
+			"id": "gen-latex-028",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What LaTeX command draws a box around a formula, producing something like $\\boxed{E = mc^2}$?",
+			"answer": "\\boxed",
+			"accepted": ["\\boxed", "boxed"],
+			"explanation": "`\\boxed{...}` (from `amsmath`) draws a rectangular box around its argument — commonly used to highlight a final answer.",
+			"tags": ["commands", "symbols", "generated"]
+		},
+		{
+			"id": "gen-latex-029",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You want to label part of an expression with a brace underneath it, like marking the sum in $\\underbrace{1+2+3}_{6}$. Which command produces a brace below the expression, as opposed to above it?",
+			"choices": ["\\overbrace", "\\underbrace", "\\underline", "\\underset"],
+			"answer": "\\underbrace",
+			"explanation": "`\\underbrace{...}_{label}` draws a brace beneath the expression with an optional label under it; `\\overbrace{...}^{label}` does the same above. `\\underline` just underlines text, and `\\underset` stacks one symbol under another with no brace at all.",
+			"tags": ["commands", "symbols", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-030",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for this double integral over a region D: $$\\iint_D xy \\, dA$$ Then reveal and compare.",
+			"answer": "\\iint_D xy \\, dA",
+			"explanation": "`\\iint` (from `amsmath`) typesets a double-integral sign as a single unit rather than stacking two separate `\\int`s by hand; `\\,` inserts the small conventional space before the differential.",
+			"tags": ["operators", "writing", "generated"]
+		}
+	]
+}

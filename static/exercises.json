@@ -2296,6 +2296,132 @@
 		]
 	},
 	{
+		"id": "gen-code-076",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this C program print?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint main(void) {\n    unsigned char x = 250;\n    x += 10;\n    printf(\"%d\\n\", x);\n    return 0;\n}"
+		},
+		"answer": "4",
+		"accepted": [
+			"4"
+		],
+		"explanation": "`unsigned char` wraps modulo 256: $250 + 10 = 260$, and $260 \\bmod 256 = 4$. When passed to `printf` via `%d`, `x` is promoted to `int`, but its stored value is already 4.",
+		"tags": [
+			"c",
+			"overflow",
+			"unsigned",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-077",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript print? (Give the two numbers in order, separated by a space.)",
+		"code": {
+			"lang": "javascript",
+			"src": "let calls = 0;\nconst a = Array(3).map(x => {\n  calls++;\n  return 1;\n});\nconsole.log(calls, a.length);"
+		},
+		"answer": "0 3",
+		"accepted": [
+			"0 3",
+			"0, 3"
+		],
+		"explanation": "`Array(3)` creates an array of length 3 with no actual elements — just empty slots ('holes'). `Array.prototype.map` skips holes entirely, never invoking the callback for an index that doesn't exist, so `calls` stays 0. The resulting array still has the same length, so `a.length` is 3.",
+		"tags": [
+			"javascript",
+			"arrays",
+			"sparse-array",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-078",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function is meant to remove all negative numbers from an array in place. For the input `[1, -2, -3, 4]`, it actually returns `[1, -3, 4]` — the -3 survives. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "function removeNegatives(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] < 0) arr.splice(i, 1);\n  }\n  return arr;\n}"
+		},
+		"choices": [
+			"`splice` doesn't actually remove elements, it only marks them as deleted",
+			"After `splice` removes an element, every later element shifts left by one index, but `i` still increments — so the element that just shifted into the vacated index gets skipped",
+			"The loop condition `i < arr.length` should be `i <= arr.length`",
+			"`arr[i] < 0` fails to detect negative numbers correctly"
+		],
+		"answer": "After `splice` removes an element, every later element shifts left by one index, but `i` still increments — so the element that just shifted into the vacated index gets skipped",
+		"explanation": "When `i=1`, `arr[1]=-2` is removed, shifting -3 into index 1 and 4 into index 2. The loop then increments `i` to 2, so index 1 (now holding -3) is never checked again. The fix is to decrement `i` after a splice, or iterate backward.",
+		"tags": [
+			"javascript",
+			"arrays",
+			"spot-the-bug",
+			"mutation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-079",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "This code is meant to safely increment a shared counter three times using async calls, ending with `count` equal to 3. Instead it prints 1. What's the bug?",
+		"code": {
+			"lang": "javascript",
+			"src": "let count = 0;\n\nasync function increment() {\n  const current = count;\n  await Promise.resolve();\n  count = current + 1;\n}\n\nasync function main() {\n  await Promise.all([increment(), increment(), increment()]);\n  console.log(count);\n}\n\nmain();"
+		},
+		"choices": [
+			"`Promise.all` runs its promises sequentially, so only the last call's increment counts",
+			"Each call to `increment` reads `count` into `current` before any of them have written back, so all three calls compute `current + 1` from the same starting value of 0 and overwrite each other",
+			"`await Promise.resolve()` actually blocks all other code from running, so this should print 3 correctly",
+			"`count` is redeclared as a new variable inside each call to `increment`, so the increments never affect the outer `count`"
+		],
+		"answer": "Each call to `increment` reads `count` into `current` before any of them have written back, so all three calls compute `current + 1` from the same starting value of 0 and overwrite each other",
+		"explanation": "All three `increment()` calls run synchronously up to their `await`, each capturing `current = 0` before any writes happen. Once the microtask queue resumes each one, they all compute `0 + 1` and overwrite `count` with 1 — a classic read-modify-write race condition from interleaved async execution, even though JavaScript itself is single-threaded.",
+		"tags": [
+			"javascript",
+			"async",
+			"race-condition",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-080",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "This quicksort always picks the first element as the pivot. What is its worst-case time complexity as a function of `n = len(arr)`, and what kind of input triggers that worst case?",
+		"code": {
+			"lang": "python",
+			"src": "def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[0]\n    less = [x for x in arr[1:] if x < pivot]\n    more = [x for x in arr[1:] if x >= pivot]\n    return quicksort(less) + [pivot] + quicksort(more)"
+		},
+		"choices": [
+			"O(n log n) in every case, since quicksort is always log-linear",
+			"O(n^2), triggered by an already-sorted (or reverse-sorted) array, since the first element is then always the smallest or largest remaining value, giving maximally unbalanced partitions",
+			"O(n^2), but only for arrays containing duplicate values",
+			"O(log n), since each recursive call only processes one partition"
+		],
+		"answer": "O(n^2), triggered by an already-sorted (or reverse-sorted) array, since the first element is then always the smallest or largest remaining value, giving maximally unbalanced partitions",
+		"explanation": "With a sorted input, `pivot = arr[0]` is always the minimum, so `less` is always empty and `more` has n-1 elements — the recursion depth is n and each level does O(n) partitioning work, giving O(n^2) total.",
+		"tags": [
+			"python",
+			"complexity",
+			"algorithms",
+			"sort",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -4018,6 +4144,200 @@
 		]
 	},
 	{
+		"id": "gen-general-091",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What has many keys but can't open a single lock?",
+		"answer": "A piano",
+		"accepted": [
+			"piano",
+			"a piano"
+		],
+		"explanation": "A piano's 'keys' are the black and white levers you press to play notes — nothing to do with locks.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-092",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What can you catch, but never throw?",
+		"answer": "A cold",
+		"accepted": [
+			"a cold",
+			"cold",
+			"an illness",
+			"a disease"
+		],
+		"explanation": "You 'catch' a cold in the sense of contracting an illness, not in the sense of catching a thrown object.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-093",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Roughly how many ping-pong balls would fit inside an empty standard school bus (about 12 m long, seats removed, roughly 2.5 m wide and 2 m of usable interior height)? Work through a Fermi estimate — the bus's interior volume, one ball's volume, and a reasonable sphere-packing efficiency — then reveal and compare.",
+		"answer": "Very roughly 1,000,000 balls (order of magnitude, not an exact count). Bus volume: 12 x 2.5 x 2 = 60 m^3. A ping-pong ball is about 40 mm across (radius 0.02 m), so its volume is (4/3)*pi*0.02^3 ~ 3.35e-5 m^3. Random sphere packing fills about 64% of the space, so usable ball-volume is 60 x 0.64 = 38.4 m^3. Dividing: 38.4 / 3.35e-5 ~ 1,150,000 balls.",
+		"explanation": "The point of a Fermi estimate isn't nailing the exact number — it's breaking an intimidating question into a chain of estimatable pieces (volume in, volume of one unit, packing efficiency) that multiply out to the right order of magnitude.",
+		"tags": [
+			"estimation",
+			"fermi-estimate",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-094",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: cracking your knuckles causes arthritis.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Multiple long-term studies — including one physician who cracked the knuckles on only one hand for over 60 years as a personal experiment — found no link between knuckle cracking and arthritis. The popping sound comes from gas bubbles collapsing in the joint's synovial fluid, not damage.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-095",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: Albert Einstein failed math in school.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Einstein excelled at mathematics from a young age, mastering calculus before age 15. The myth likely spread from a mix-up over grading scales — Swiss schools he later attended used a 1-6 scale where 6 was the top mark, the reverse of some other systems, making his excellent grades look poor to people unfamiliar with the scale.",
+		"tags": [
+			"myth-busting",
+			"trivia",
+			"history",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-096",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "You're handed two identical sealed envelopes and told one contains twice as much money as the other. You open one and find $50. A friend argues: 'The other envelope contains either $25 or $100, each equally likely, so its expected value is 0.5x25 + 0.5x100 = $62.50 — you should switch.' By that same argument, you'd want to switch back after switching again, and again, forever. What's the flaw in this reasoning?",
+		"choices": [
+			"There's no flaw — you really should keep switching forever",
+			"The argument secretly assumes the other envelope holds $25 or $100 with 50/50 probability regardless of what amount you actually observed, which needs a prior over the original envelope amounts that isn't generally justified — once you account for a coherent prior, the 50/50-after-seeing-$50 assumption breaks down",
+			"The flaw is purely arithmetic: the expected value should have been computed as $75, not $62.50",
+			"Real envelopes can never be exactly identical, so the paradox only applies in unrealistic theoretical setups"
+		],
+		"answer": "The argument secretly assumes the other envelope holds $25 or $100 with 50/50 probability regardless of what amount you actually observed, which needs a prior over the original envelope amounts that isn't generally justified — once you account for a coherent prior, the 50/50-after-seeing-$50 assumption breaks down",
+		"explanation": "This is the Two Envelopes Paradox. Treating the other envelope as '50% chance of half, 50% chance of double' for every amount you might observe is inconsistent — it implies you should switch no matter what you see, which can't be right for a fixed pair of envelopes. A proper prior over the amounts (which is required to reason about probabilities at all) makes the naive 50/50 split invalid once you condition on the number you actually saw.",
+		"tags": [
+			"paradox",
+			"probability",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-097",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A wooden ship has every one of its planks gradually replaced over 30 years of repairs, until no original wood remains — yet everyone agrees throughout that it's 'the same ship.' Now suppose someone had secretly collected every discarded original plank and, at the end, assembled them into a second ship elsewhere. Which ship is 'the real' original: the continuously repaired one, or the one rebuilt from all-original material?",
+		"choices": [
+			"The continuously repaired ship, without question — the material it's made of never matters for identity",
+			"The reassembled ship, without question — only the original material can count as 'the same' object",
+			"There's no single fact of the matter: it depends on which criterion of identity you apply — continuity of form and function points to the repaired ship, continuity of matter points to the reassembled one — and the puzzle exists precisely because both criteria feel valid yet conflict",
+			"Both ships are equally the original at once, with no contradiction involved"
+		],
+		"answer": "There's no single fact of the matter: it depends on which criterion of identity you apply — continuity of form and function points to the repaired ship, continuity of matter points to the reassembled one — and the puzzle exists precisely because both criteria feel valid yet conflict",
+		"explanation": "This is the Ship of Theseus paradox. It's less a puzzle with a hidden 'correct' answer than a demonstration that our everyday notion of 'the same object over time' silently relies on more than one criterion — and those criteria can be pulled apart until they point in different directions.",
+		"tags": [
+			"paradox",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-098",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Consider all two-child families where each child is, independently, equally likely to be a boy or a girl. Restrict attention to families where at least one child is a boy. Among exactly those families, what is the probability that both children are boys?",
+		"choices": [
+			"1/4",
+			"1/3",
+			"1/2",
+			"2/3"
+		],
+		"answer": "1/3",
+		"explanation": "Before any information, the four equally likely outcomes are BB, BG, GB, GG. Restricting to 'at least one boy' removes GG, leaving BB, BG, GB — three equally likely outcomes, only one of which is BB. So the probability is 1/3, not the 1/2 that intuition suggests.",
+		"tags": [
+			"probability",
+			"paradox",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-099",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If the Sun (actual diameter about 1,392,000 km) were shrunk down to the size of a basketball (about 24 cm across), roughly how far away would Earth need to be, at the same scale (the real Earth-Sun distance is about 149,600,000 km)?",
+		"choices": [
+			"About 3 meters away",
+			"About 26 meters away — roughly the length of a basketball court",
+			"About 260 meters away",
+			"About 2.6 kilometers away"
+		],
+		"answer": "About 26 meters away — roughly the length of a basketball court",
+		"explanation": "The scale factor is 0.24 km / 1,392,000 km. Applying it to the real Earth-Sun distance: 149,600,000 km x (0.24 / 1,392,000) is about 0.0258 km, or roughly 26 meters — space is far emptier than the tidy solar-system diagrams suggest.",
+		"tags": [
+			"estimation",
+			"scale",
+			"astronomy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-100",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "At a resting rate of about 70 beats per minute, roughly how many times does a human heart beat over an 80-year lifetime?",
+		"choices": [
+			"About 30 million",
+			"About 300 million",
+			"About 3 billion",
+			"About 30 billion"
+		],
+		"answer": "About 3 billion",
+		"explanation": "70 beats/min x 60 x 24 x 365 x 80 years is about 2.94 billion beats — closest to 3 billion.",
+		"tags": [
+			"estimation",
+			"scale",
+			"biology",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -4505,6 +4825,59 @@
 			"gotcha",
 			"errors",
 			"delimiters",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-028",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What LaTeX command draws a box around a formula, producing something like $\\boxed{E = mc^2}$?",
+		"answer": "\\boxed",
+		"accepted": [
+			"\\boxed",
+			"boxed"
+		],
+		"explanation": "`\\boxed{...}` (from `amsmath`) draws a rectangular box around its argument — commonly used to highlight a final answer.",
+		"tags": [
+			"commands",
+			"symbols",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-029",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You want to label part of an expression with a brace underneath it, like marking the sum in $\\underbrace{1+2+3}_{6}$. Which command produces a brace below the expression, as opposed to above it?",
+		"choices": [
+			"\\overbrace",
+			"\\underbrace",
+			"\\underline",
+			"\\underset"
+		],
+		"answer": "\\underbrace",
+		"explanation": "`\\underbrace{...}_{label}` draws a brace beneath the expression with an optional label under it; `\\overbrace{...}^{label}` does the same above. `\\underline` just underlines text, and `\\underset` stacks one symbol under another with no brace at all.",
+		"tags": [
+			"commands",
+			"symbols",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-030",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for this double integral over a region D: $$\\iint_D xy \\, dA$$ Then reveal and compare.",
+		"answer": "\\iint_D xy \\, dA",
+		"explanation": "`\\iint` (from `amsmath`) typesets a double-integral sign as a single unit rather than stacking two separate `\\int`s by hand; `\\,` inserts the small conventional space before the differential.",
+		"tags": [
+			"operators",
+			"writing",
 			"generated"
 		]
 	},
@@ -5838,6 +6211,121 @@
 		"tags": [
 			"induction",
 			"epistemology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-071",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You meet two people on an island where every inhabitant is either a knight (always tells the truth) or a knave (always lies). Ann says: 'At least one of us is a knave.' What are Ann and Bob, respectively?",
+		"choices": [
+			"Ann is a knight, Bob is a knave",
+			"Ann is a knave, Bob is a knight",
+			"Both are knights",
+			"Both are knaves"
+		],
+		"answer": "Ann is a knight, Bob is a knave",
+		"explanation": "If Ann were a knave, her statement would be a lie, meaning it's false that at least one of them is a knave — so both would be knights, contradicting Ann being a knave. So Ann must be a knight, making her statement true: at least one of them is a knave. Since Ann is a knight, that knave must be Bob.",
+		"tags": [
+			"knights-knaves",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-072",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "All gleebs are zorps. All zorps are plonks. No plonks are quiet. Miko is a gleeb. Is Miko quiet?",
+		"choices": [
+			"Yes",
+			"No",
+			"Cannot be determined from the given information",
+			"Only if Miko is also a zorp"
+		],
+		"answer": "No",
+		"explanation": "Miko is a gleeb, so Miko is a zorp (premise 1), so Miko is a plonk (premise 2). Since no plonks are quiet (premise 3), Miko is not quiet. The nonsense words force you to track the chain of categories on pure structure, without any real-world meaning to lean on.",
+		"tags": [
+			"syllogism",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-073",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Consider three arguments that all start from the same premise, 'If P, then Q':\n(A) Also given Q; conclude P.\n(B) Also given not-P; conclude not-Q.\n(C) Also given not-Q; conclude not-P.\nWhich of these three arguments is logically valid?",
+		"choices": [
+			"Only A",
+			"Only B",
+			"Only C",
+			"All three are valid"
+		],
+		"answer": "Only C",
+		"explanation": "(C) is modus tollens, a valid form: if P guarantees Q, then Q's absence guarantees P's absence. (A) is the invalid fallacy of affirming the consequent (Q could hold for reasons other than P), and (B) is the invalid fallacy of denying the antecedent (Q could still hold even without P).",
+		"tags": [
+			"propositional",
+			"conditionals",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-074",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What letter comes next in this sequence, where each letter is the first letter of a number word: O, T, T, F, F, S, S, E, ?",
+		"answer": "N",
+		"accepted": [
+			"N",
+			"n",
+			"Nine",
+			"nine"
+		],
+		"explanation": "The letters are the first letters of One, Two, Three, Four, Five, Six, Seven, Eight — so the next term is the first letter of Nine, which is N.",
+		"tags": [
+			"pattern-recognition",
+			"sequences",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-075",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 5,
+		"prompt": "A teacher announces: 'There will be a surprise exam next week — you won't be able to know in advance which day it's on, not even the night before.' A student reasons: 'It can't be Friday, the last possible day — if it hadn't happened by Thursday evening, I'd know it must be Friday, so it wouldn't be a surprise. But that makes Thursday the new last possible day, so by the same logic it can't be Thursday either. Continuing backward, no day at all works — so there can't be a surprise exam!' Yet the teacher gives the exam on, say, Wednesday, and the student is genuinely caught off guard. Work through where the student's backward-induction argument seems to break down (there is no single agreed-upon resolution — this is a genuine open paradox), then reveal and compare.",
+		"answer": "This is the Surprise Exam (Unexpected Hanging) paradox. A widely offered diagnosis: the student's argument assumes their own future certainty at every step, but the argument's own conclusion ('no day is possible') is exactly what should make the student uncertain again — if the student truly believed no surprise exam could happen, then any day the teacher picks, Friday included, would in fact surprise them, which undermines the very premise the backward induction relied on. The argument essentially uses a chain of self-referential certainty claims that collapse once you ask whether the student can be certain of their own future state of knowledge. Philosophers still disagree on exactly how to formalize the flaw.",
+		"explanation": "The paradox shows how ordinary backward induction, which works cleanly in games with no self-reference, breaks down once the reasoner's own knowledge state becomes part of what's being reasoned about.",
+		"tags": [
+			"paradox",
+			"self-reference",
+			"induction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-076",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In the classic Prisoner's Dilemma, two suspects are held separately and can each either stay silent or betray the other. Mutual silence: both get 1 year. Mutual betrayal: both get 3 years. One betrays while the other stays silent: the betrayer goes free, the silent one gets 5 years. Assuming each prisoner only cares about minimizing their own sentence, what is each prisoner's individually rational (dominant) strategy — and is it the outcome that's best for both together?",
+		"choices": [
+			"Stay silent — cooperating gives the shortest sentence and is also the individually rational choice",
+			"Betray — betraying gives a shorter (or equal) sentence than staying silent no matter what the other player does, even though mutual betrayal leaves both worse off than mutual silence would have",
+			"There is no dominant strategy — the best move depends entirely on guessing what the other player will do",
+			"Stay silent — it's individually rational, and it also happens to be jointly optimal"
+		],
+		"answer": "Betray — betraying gives a shorter (or equal) sentence than staying silent no matter what the other player does, even though mutual betrayal leaves both worse off than mutual silence would have",
+		"explanation": "Betrayal dominates: if the other stays silent, betraying gets 0 years instead of 1; if the other betrays, betraying gets 3 years instead of 5. So each prisoner rationally betrays — yet the resulting (3,3) outcome is worse for both than the (1,1) they'd get by cooperating. That gap between individual and joint rationality is the heart of the dilemma.",
+		"tags": [
+			"game-theory",
+			"strategy",
 			"generated"
 		]
 	},
@@ -7931,6 +8419,142 @@
 		"tags": [
 			"percentages",
 			"algebra",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-114",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "There's a shortcut for squaring a two-digit number ending in 5: multiply the leading digit by one more than itself, then append 25. Use it to compute $65^2$.",
+		"answer": "4225",
+		"accepted": [
+			"4225"
+		],
+		"explanation": "The leading digit is 6; $6 \\times 7 = 42$, then append 25 to get 4225. This works because $(10a+5)^2 = 100a(a+1) + 25$.",
+		"tags": [
+			"mental-math",
+			"arithmetic-trick",
+			"squares",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-115",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A chemist has a 40% acid solution and a 10% acid solution. How many liters of the 40% solution must be mixed with the 10% solution to produce 30 liters of a 20% acid solution?",
+		"answer": "10",
+		"accepted": [
+			"10",
+			"10 liters",
+			"10 l"
+		],
+		"explanation": "Let $x$ be the liters of the 40% solution, so $30-x$ liters come from the 10% solution. Matching total acid content: $0.4x + 0.1(30-x) = 0.2(30)$, which simplifies to $0.3x = 3$, so $x = 10$ liters.",
+		"tags": [
+			"algebra",
+			"word-problem",
+			"percentages",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-116",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Think of any number. Double it. Add 10. Divide the result by 2. Subtract your original number. Whatever number you started with, what do you always end up with?",
+		"answer": "5",
+		"accepted": [
+			"5",
+			"five"
+		],
+		"explanation": "Algebraically, for starting number $x$: $\\frac{2x+10}{2} - x = (x+5) - x = 5$. The original number always cancels out, so the trick works for any starting value.",
+		"tags": [
+			"algebra",
+			"number-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-117",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You roll two fair six-sided dice and add the results. Which total is more likely: a sum of 7, or a sum of 8?",
+		"choices": [
+			"A sum of 7 is more likely",
+			"A sum of 8 is more likely",
+			"They are equally likely",
+			"It depends on which die is rolled first"
+		],
+		"answer": "A sum of 7 is more likely",
+		"explanation": "There are 6 ways to roll a 7 out of 36 outcomes (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), but only 5 ways to roll an 8 (2+6, 3+5, 4+4, 5+3, 6+2) — 7 is the single most likely sum on two dice.",
+		"tags": [
+			"probability",
+			"dice",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-118",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the units digit of $7^{2023}$?",
+		"choices": [
+			"1",
+			"3",
+			"7",
+			"9"
+		],
+		"answer": "3",
+		"explanation": "The units digits of powers of 7 cycle with period 4: $7, 9, 3, 1, 7, 9, 3, 1, \\dots$. Since $2023 = 4 \\times 505 + 3$, $7^{2023}$ has the same units digit as $7^3 = 343$, which is 3.",
+		"tags": [
+			"number-theory",
+			"modular-arithmetic",
+			"powers",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-119",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Two runners start together at the same point on a circular track and run in the same direction at constant speeds. One completes a full lap every 8 minutes, the other every 12 minutes. After how many minutes will they next both be exactly back at the starting point together?",
+		"answer": "24",
+		"accepted": [
+			"24",
+			"24 minutes"
+		],
+		"explanation": "Each runner is back at the start at every multiple of their own lap time; both are there together at the first common multiple, $\\operatorname{lcm}(8,12) = 24$ minutes.",
+		"tags": [
+			"number-theory",
+			"word-problem",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-120",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A kite is flying directly above a point on the ground that is 12 m from where you're standing. The kite's string is taut and stretches 15 m from your hand to the kite. How high above the ground is the kite?",
+		"answer": "9",
+		"accepted": [
+			"9",
+			"9 m",
+			"9 meters"
+		],
+		"explanation": "The string, the vertical height, and the horizontal ground distance form a right triangle: $\\sqrt{15^2 - 12^2} = \\sqrt{225-144} = \\sqrt{81} = 9$ m.",
+		"tags": [
+			"geometry",
+			"pythagoras",
 			"generated"
 		]
 	},

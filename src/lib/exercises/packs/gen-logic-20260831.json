@@ -1,0 +1,75 @@
+{
+	"pack": "gen-logic-20260831",
+	"exercises": [
+		{
+			"id": "gen-logic-071",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "You meet two people on an island where every inhabitant is either a knight (always tells the truth) or a knave (always lies). Ann says: 'At least one of us is a knave.' What are Ann and Bob, respectively?",
+			"choices": ["Ann is a knight, Bob is a knave", "Ann is a knave, Bob is a knight", "Both are knights", "Both are knaves"],
+			"answer": "Ann is a knight, Bob is a knave",
+			"explanation": "If Ann were a knave, her statement would be a lie, meaning it's false that at least one of them is a knave — so both would be knights, contradicting Ann being a knave. So Ann must be a knight, making her statement true: at least one of them is a knave. Since Ann is a knight, that knave must be Bob.",
+			"tags": ["knights-knaves", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-072",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "All gleebs are zorps. All zorps are plonks. No plonks are quiet. Miko is a gleeb. Is Miko quiet?",
+			"choices": ["Yes", "No", "Cannot be determined from the given information", "Only if Miko is also a zorp"],
+			"answer": "No",
+			"explanation": "Miko is a gleeb, so Miko is a zorp (premise 1), so Miko is a plonk (premise 2). Since no plonks are quiet (premise 3), Miko is not quiet. The nonsense words force you to track the chain of categories on pure structure, without any real-world meaning to lean on.",
+			"tags": ["syllogism", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-073",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Consider three arguments that all start from the same premise, 'If P, then Q':\n(A) Also given Q; conclude P.\n(B) Also given not-P; conclude not-Q.\n(C) Also given not-Q; conclude not-P.\nWhich of these three arguments is logically valid?",
+			"choices": ["Only A", "Only B", "Only C", "All three are valid"],
+			"answer": "Only C",
+			"explanation": "(C) is modus tollens, a valid form: if P guarantees Q, then Q's absence guarantees P's absence. (A) is the invalid fallacy of affirming the consequent (Q could hold for reasons other than P), and (B) is the invalid fallacy of denying the antecedent (Q could still hold even without P).",
+			"tags": ["propositional", "conditionals", "generated"]
+		},
+		{
+			"id": "gen-logic-074",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What letter comes next in this sequence, where each letter is the first letter of a number word: O, T, T, F, F, S, S, E, ?",
+			"answer": "N",
+			"accepted": ["N", "n", "Nine", "nine"],
+			"explanation": "The letters are the first letters of One, Two, Three, Four, Five, Six, Seven, Eight — so the next term is the first letter of Nine, which is N.",
+			"tags": ["pattern-recognition", "sequences", "generated"]
+		},
+		{
+			"id": "gen-logic-075",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 5,
+			"prompt": "A teacher announces: 'There will be a surprise exam next week — you won't be able to know in advance which day it's on, not even the night before.' A student reasons: 'It can't be Friday, the last possible day — if it hadn't happened by Thursday evening, I'd know it must be Friday, so it wouldn't be a surprise. But that makes Thursday the new last possible day, so by the same logic it can't be Thursday either. Continuing backward, no day at all works — so there can't be a surprise exam!' Yet the teacher gives the exam on, say, Wednesday, and the student is genuinely caught off guard. Work through where the student's backward-induction argument seems to break down (there is no single agreed-upon resolution — this is a genuine open paradox), then reveal and compare.",
+			"answer": "This is the Surprise Exam (Unexpected Hanging) paradox. A widely offered diagnosis: the student's argument assumes their own future certainty at every step, but the argument's own conclusion ('no day is possible') is exactly what should make the student uncertain again — if the student truly believed no surprise exam could happen, then any day the teacher picks, Friday included, would in fact surprise them, which undermines the very premise the backward induction relied on. The argument essentially uses a chain of self-referential certainty claims that collapse once you ask whether the student can be certain of their own future state of knowledge. Philosophers still disagree on exactly how to formalize the flaw.",
+			"explanation": "The paradox shows how ordinary backward induction, which works cleanly in games with no self-reference, breaks down once the reasoner's own knowledge state becomes part of what's being reasoned about.",
+			"tags": ["paradox", "self-reference", "induction", "generated"]
+		},
+		{
+			"id": "gen-logic-076",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "In the classic Prisoner's Dilemma, two suspects are held separately and can each either stay silent or betray the other. Mutual silence: both get 1 year. Mutual betrayal: both get 3 years. One betrays while the other stays silent: the betrayer goes free, the silent one gets 5 years. Assuming each prisoner only cares about minimizing their own sentence, what is each prisoner's individually rational (dominant) strategy — and is it the outcome that's best for both together?",
+			"choices": [
+				"Stay silent — cooperating gives the shortest sentence and is also the individually rational choice",
+				"Betray — betraying gives a shorter (or equal) sentence than staying silent no matter what the other player does, even though mutual betrayal leaves both worse off than mutual silence would have",
+				"There is no dominant strategy — the best move depends entirely on guessing what the other player will do",
+				"Stay silent — it's individually rational, and it also happens to be jointly optimal"
+			],
+			"answer": "Betray — betraying gives a shorter (or equal) sentence than staying silent no matter what the other player does, even though mutual betrayal leaves both worse off than mutual silence would have",
+			"explanation": "Betrayal dominates: if the other stays silent, betraying gets 0 years instead of 1; if the other betrays, betraying gets 3 years instead of 5. So each prisoner rationally betrays — yet the resulting (3,3) outcome is worse for both than the (1,1) they'd get by cooperating. That gap between individual and joint rationality is the heart of the dilemma.",
+			"tags": ["game-theory", "strategy", "generated"]
+		}
+	]
+}

@@ -1,0 +1,124 @@
+{
+	"pack": "gen-general-20260831",
+	"exercises": [
+		{
+			"id": "gen-general-091",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What has many keys but can't open a single lock?",
+			"answer": "A piano",
+			"accepted": ["piano", "a piano"],
+			"explanation": "A piano's 'keys' are the black and white levers you press to play notes — nothing to do with locks.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-092",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What can you catch, but never throw?",
+			"answer": "A cold",
+			"accepted": ["a cold", "cold", "an illness", "a disease"],
+			"explanation": "You 'catch' a cold in the sense of contracting an illness, not in the sense of catching a thrown object.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-093",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Roughly how many ping-pong balls would fit inside an empty standard school bus (about 12 m long, seats removed, roughly 2.5 m wide and 2 m of usable interior height)? Work through a Fermi estimate — the bus's interior volume, one ball's volume, and a reasonable sphere-packing efficiency — then reveal and compare.",
+			"answer": "Very roughly 1,000,000 balls (order of magnitude, not an exact count). Bus volume: 12 x 2.5 x 2 = 60 m^3. A ping-pong ball is about 40 mm across (radius 0.02 m), so its volume is (4/3)*pi*0.02^3 ~ 3.35e-5 m^3. Random sphere packing fills about 64% of the space, so usable ball-volume is 60 x 0.64 = 38.4 m^3. Dividing: 38.4 / 3.35e-5 ~ 1,150,000 balls.",
+			"explanation": "The point of a Fermi estimate isn't nailing the exact number — it's breaking an intimidating question into a chain of estimatable pieces (volume in, volume of one unit, packing efficiency) that multiply out to the right order of magnitude.",
+			"tags": ["estimation", "fermi-estimate", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-094",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: cracking your knuckles causes arthritis.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Multiple long-term studies — including one physician who cracked the knuckles on only one hand for over 60 years as a personal experiment — found no link between knuckle cracking and arthritis. The popping sound comes from gas bubbles collapsing in the joint's synovial fluid, not damage.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-095",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: Albert Einstein failed math in school.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Einstein excelled at mathematics from a young age, mastering calculus before age 15. The myth likely spread from a mix-up over grading scales — Swiss schools he later attended used a 1-6 scale where 6 was the top mark, the reverse of some other systems, making his excellent grades look poor to people unfamiliar with the scale.",
+			"tags": ["myth-busting", "trivia", "history", "generated"]
+		},
+		{
+			"id": "gen-general-096",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "You're handed two identical sealed envelopes and told one contains twice as much money as the other. You open one and find $50. A friend argues: 'The other envelope contains either $25 or $100, each equally likely, so its expected value is 0.5x25 + 0.5x100 = $62.50 — you should switch.' By that same argument, you'd want to switch back after switching again, and again, forever. What's the flaw in this reasoning?",
+			"choices": [
+				"There's no flaw — you really should keep switching forever",
+				"The argument secretly assumes the other envelope holds $25 or $100 with 50/50 probability regardless of what amount you actually observed, which needs a prior over the original envelope amounts that isn't generally justified — once you account for a coherent prior, the 50/50-after-seeing-$50 assumption breaks down",
+				"The flaw is purely arithmetic: the expected value should have been computed as $75, not $62.50",
+				"Real envelopes can never be exactly identical, so the paradox only applies in unrealistic theoretical setups"
+			],
+			"answer": "The argument secretly assumes the other envelope holds $25 or $100 with 50/50 probability regardless of what amount you actually observed, which needs a prior over the original envelope amounts that isn't generally justified — once you account for a coherent prior, the 50/50-after-seeing-$50 assumption breaks down",
+			"explanation": "This is the Two Envelopes Paradox. Treating the other envelope as '50% chance of half, 50% chance of double' for every amount you might observe is inconsistent — it implies you should switch no matter what you see, which can't be right for a fixed pair of envelopes. A proper prior over the amounts (which is required to reason about probabilities at all) makes the naive 50/50 split invalid once you condition on the number you actually saw.",
+			"tags": ["paradox", "probability", "generated"]
+		},
+		{
+			"id": "gen-general-097",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A wooden ship has every one of its planks gradually replaced over 30 years of repairs, until no original wood remains — yet everyone agrees throughout that it's 'the same ship.' Now suppose someone had secretly collected every discarded original plank and, at the end, assembled them into a second ship elsewhere. Which ship is 'the real' original: the continuously repaired one, or the one rebuilt from all-original material?",
+			"choices": [
+				"The continuously repaired ship, without question — the material it's made of never matters for identity",
+				"The reassembled ship, without question — only the original material can count as 'the same' object",
+				"There's no single fact of the matter: it depends on which criterion of identity you apply — continuity of form and function points to the repaired ship, continuity of matter points to the reassembled one — and the puzzle exists precisely because both criteria feel valid yet conflict",
+				"Both ships are equally the original at once, with no contradiction involved"
+			],
+			"answer": "There's no single fact of the matter: it depends on which criterion of identity you apply — continuity of form and function points to the repaired ship, continuity of matter points to the reassembled one — and the puzzle exists precisely because both criteria feel valid yet conflict",
+			"explanation": "This is the Ship of Theseus paradox. It's less a puzzle with a hidden 'correct' answer than a demonstration that our everyday notion of 'the same object over time' silently relies on more than one criterion — and those criteria can be pulled apart until they point in different directions.",
+			"tags": ["paradox", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-098",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Consider all two-child families where each child is, independently, equally likely to be a boy or a girl. Restrict attention to families where at least one child is a boy. Among exactly those families, what is the probability that both children are boys?",
+			"choices": ["1/4", "1/3", "1/2", "2/3"],
+			"answer": "1/3",
+			"explanation": "Before any information, the four equally likely outcomes are BB, BG, GB, GG. Restricting to 'at least one boy' removes GG, leaving BB, BG, GB — three equally likely outcomes, only one of which is BB. So the probability is 1/3, not the 1/2 that intuition suggests.",
+			"tags": ["probability", "paradox", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-099",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "If the Sun (actual diameter about 1,392,000 km) were shrunk down to the size of a basketball (about 24 cm across), roughly how far away would Earth need to be, at the same scale (the real Earth-Sun distance is about 149,600,000 km)?",
+			"choices": ["About 3 meters away", "About 26 meters away — roughly the length of a basketball court", "About 260 meters away", "About 2.6 kilometers away"],
+			"answer": "About 26 meters away — roughly the length of a basketball court",
+			"explanation": "The scale factor is 0.24 km / 1,392,000 km. Applying it to the real Earth-Sun distance: 149,600,000 km x (0.24 / 1,392,000) is about 0.0258 km, or roughly 26 meters — space is far emptier than the tidy solar-system diagrams suggest.",
+			"tags": ["estimation", "scale", "astronomy", "generated"]
+		},
+		{
+			"id": "gen-general-100",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "At a resting rate of about 70 beats per minute, roughly how many times does a human heart beat over an 80-year lifetime?",
+			"choices": ["About 30 million", "About 300 million", "About 3 billion", "About 30 billion"],
+			"answer": "About 3 billion",
+			"explanation": "70 beats/min x 60 x 24 x 365 x 80 years is about 2.94 billion beats — closest to 3 billion.",
+			"tags": ["estimation", "scale", "biology", "generated"]
+		}
+	]
+}
