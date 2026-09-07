@@ -1,0 +1,135 @@
+{
+	"pack": "gen-general-20260907",
+	"exercises": [
+		{
+			"id": "gen-general-101",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What has a face and two hands, but no arms or legs?",
+			"answer": "A clock",
+			"accepted": ["a clock", "clock"],
+			"explanation": "A clock's 'face' is its dial and its 'hands' are the hour and minute pointers — pure wordplay, no anatomy involved.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-102",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: chameleons change color mainly to camouflage with their surroundings.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Chameleons' baseline color already provides some camouflage, but their dramatic color shifts are driven mostly by mood, temperature regulation, and social signaling to other chameleons — not active background-matching.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-103",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "If you shrank the Earth down to the size of a marble (about 1.5 cm across), roughly how big would the Moon be at that same scale?",
+			"choices": [
+				"About the size of a period on this page (~0.5 mm)",
+				"About the size of a BB pellet or small pea (~4 mm)",
+				"About the size of a golf ball (~4 cm)",
+				"About the size of a grapefruit (~10 cm)"
+			],
+			"answer": "About the size of a BB pellet or small pea (~4 mm)",
+			"explanation": "The Moon's diameter is about 27% of Earth's (3,474 km vs. 12,742 km). At marble scale, $1.5\\text{ cm} \\times 0.27 \\approx 0.4\\text{ cm}$ — roughly a BB pellet, smaller than most people picture it.",
+			"tags": ["estimation", "scale", "astronomy", "generated"]
+		},
+		{
+			"id": "gen-general-104",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "You flip a fair coin repeatedly. On average, which takes longer to appear: the pattern HTH, or the pattern HHH?",
+			"choices": [
+				"HTH takes longer on average",
+				"HHH takes longer on average",
+				"They take exactly the same number of flips on average",
+				"It depends on which pattern you decide to look for first"
+			],
+			"answer": "HHH takes longer on average",
+			"explanation": "Despite looking equally 'special,' the expected wait for HTH is 10 flips while HHH takes 14 on average. The reason is overlap: after almost getting HHH and failing (e.g. landing HHT), you've made zero progress toward a fresh HHH attempt, but a failed attempt at HTH (like HTT) still leaves a useful H at the end to build on. This asymmetry is the heart of Penney's game.",
+			"tags": ["probability", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-105",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A man answers a knock at his door. A stranger says, 'Sorry, wrong house,' and walks away without asking a single question. The homeowner immediately calls the police to report a suspicious would-be burglar. What tipped him off?",
+			"choices": [
+				"The stranger was carrying a large bag, which is inherently suspicious",
+				"The stranger apologized and left without ever asking who lived there or what address they were looking for — meaning they couldn't actually have known it was the wrong house unless they'd already been watching the place",
+				"It's illegal to knock on someone's door after dark",
+				"The stranger's clothes didn't match the neighborhood"
+			],
+			"answer": "The stranger apologized and left without ever asking who lived there or what address they were looking for — meaning they couldn't actually have known it was the wrong house unless they'd already been watching the place",
+			"explanation": "Someone genuinely at the wrong house would normally ask a clarifying question first ('Does Sam live here?' or 'Is this Elm Street?') before realizing their mistake. Leaving immediately with no question at all suggests they already knew whose house it was and were checking whether anyone was home.",
+			"tags": ["lateral", "deduction", "generated"]
+		},
+		{
+			"id": "gen-general-106",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A barge loaded with scrap iron floats in a canal lock full of water. The crew throws all the iron overboard, and it sinks to the bottom of the lock. Does the water level in the lock rise, fall, or stay exactly the same?",
+			"choices": ["Rises", "Falls", "Stays exactly the same"],
+			"answer": "Falls",
+			"explanation": "Floating iron displaces water equal to its full weight (Archimedes' principle), but once it sinks, it only displaces water equal to its much smaller volume (iron is far denser than water). Less water is displaced overall, so the level falls.",
+			"tags": ["physics", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-107",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Which planet in our solar system rotates almost completely on its side, with an axial tilt of about 98 degrees?",
+			"answer": "Uranus",
+			"accepted": ["Uranus", "uranus"],
+			"explanation": "Most planets spin roughly upright relative to their orbit, but Uranus is tipped over so far that its poles point almost directly at the Sun during parts of its 84-year orbit — likely the result of an ancient massive collision.",
+			"tags": ["astronomy", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-108",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A school gives tutoring to the students who scored in the bottom 10% on a test, then retests them. Their average score rises substantially, and the school claims this proves the tutoring worked. What effect could produce most of that improvement even if the tutoring did nothing at all?",
+			"choices": [
+				"Regression to the mean — extremely low scores are partly bad luck/noise, so on a retest those same students naturally drift back toward their true average even with no intervention",
+				"The test must have gotten easier the second time",
+				"Students who scored low the first time are inherently more motivated the second time",
+				"There's no other explanation — the improvement must be due to the tutoring"
+			],
+			"answer": "Regression to the mean — extremely low scores are partly bad luck/noise, so on a retest those same students naturally drift back toward their true average even with no intervention",
+			"explanation": "Selecting the most extreme scorers guarantees you've picked up some students who simply had an unusually bad day. On a retest, that noise doesn't repeat, so scores tend to move back toward the average regardless of any real intervention — a statistical effect easy to mistake for a treatment effect.",
+			"tags": ["statistics", "cognitive-bias", "generated"]
+		},
+		{
+			"id": "gen-general-109",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "The more you remove from me, the bigger I get. What am I?",
+			"answer": "A hole",
+			"accepted": ["a hole", "hole"],
+			"explanation": "Digging out more material only makes a hole larger — a simple riddle that plays on 'removing' being the opposite of what usually shrinks things.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-110",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "The line 'I disapprove of what you say, but I will defend to the death your right to say it' is famously attributed to Voltaire. Did Voltaire actually write or say this?",
+			"choices": ["True — it's a direct quote from Voltaire's own writing", "False — it's a later paraphrase of his views, not his actual words"],
+			"answer": "False — it's a later paraphrase of his views, not his actual words",
+			"explanation": "The line was written by Evelyn Beatrice Hall in her 1906 book about Voltaire, as her own summary of his attitude toward free speech — not a quotation from Voltaire himself. It stuck so well that it's now almost universally misattributed to him directly.",
+			"tags": ["trivia", "myth-busting", "history", "generated"]
+		}
+	]
+}

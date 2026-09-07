@@ -2422,6 +2422,131 @@
 		]
 	},
 	{
+		"id": "gen-code-081",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "What does this Python code print? (Give both printed lines, in order, separated by ' / '.)",
+		"code": {
+			"lang": "python",
+			"src": "t = (1, [2, 3])\ntry:\n    t[1] += [4]\nexcept TypeError:\n    print(\"error\")\nprint(t)"
+		},
+		"answer": "error / (1, [2, 3, 4])",
+		"accepted": [
+			"error / (1, [2, 3, 4])"
+		],
+		"explanation": "`t[1] += [4]` first calls the list's in-place `__iadd__`, which mutates the list to [2, 3, 4] and returns it — then Python tries to assign that result back into `t[1]`, which fails because tuples don't support item assignment, raising TypeError. The mutation already happened before the assignment failed, so the except block prints 'error', and the tuple now permanently contains the mutated list.",
+		"tags": [
+			"python",
+			"gotcha",
+			"tuples",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-082",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "const nums = [10, 1, 21, 2];\nconsole.log(nums.sort());"
+		},
+		"choices": [
+			"[1, 10, 2, 21]",
+			"[1, 2, 10, 21]",
+			"[2, 1, 10, 21]",
+			"[10, 1, 21, 2]"
+		],
+		"answer": "[1, 10, 2, 21]",
+		"explanation": "Without a comparator, `Array.prototype.sort` converts elements to strings and compares them lexicographically, not numerically. As strings, '1' < '10' < '2' < '21', giving [1, 10, 2, 21] — not the numerically sorted order most people expect.",
+		"tags": [
+			"javascript",
+			"gotcha",
+			"sort",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-083",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Let n be the total number of elements across all the input lists combined. What is the time complexity of `merge_lists` as a function of n?",
+		"code": {
+			"lang": "python",
+			"src": "def merge_lists(lists):\n    result = []\n    for lst in lists:\n        result.extend(lst)\n    result.sort()\n    return result"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)",
+			"O(k log k), where k is the number of lists"
+		],
+		"answer": "O(n log n)",
+		"explanation": "Building `result` via repeated `.extend()` calls touches each of the n elements once, costing O(n) overall. But the final `result.sort()` costs O(n log n) on the full n-element list, and that term dominates — so the whole function is O(n log n).",
+		"tags": [
+			"python",
+			"complexity",
+			"sorting",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-084",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "This function is meant to print the array in reverse and stop cleanly once it passes index 0. What's the bug?",
+		"code": {
+			"lang": "c",
+			"src": "void printReverse(int arr[], int n) {\n    for (unsigned int i = n - 1; i >= 0; i--) {\n        printf(\"%d \", arr[i]);\n    }\n}"
+		},
+		"choices": [
+			"i is declared unsigned, so i >= 0 is always true; once i underflows past 0 it wraps to a huge positive value (UINT_MAX), and the loop keeps reading far out of bounds instead of stopping",
+			"The array index should start at n instead of n - 1",
+			"The format specifier should be %u instead of %d",
+			"The loop should use a do-while loop instead of a for loop"
+		],
+		"answer": "i is declared unsigned, so i >= 0 is always true; once i underflows past 0 it wraps to a huge positive value (UINT_MAX), and the loop keeps reading far out of bounds instead of stopping",
+		"explanation": "Unsigned integers can't be negative, so `i >= 0` can never become false. When i hits 0 and decrements again, it wraps around to UINT_MAX instead of going negative, sending the loop reading arbitrary out-of-bounds memory — a classic signed/unsigned comparison bug.",
+		"tags": [
+			"c",
+			"gotcha",
+			"unsigned",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-085",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Both functions are meant to remove duplicates from an array while keeping the first occurrence of each value. For `arr = [1, NaN, 2, NaN]`, which one correctly keeps exactly one `NaN` in its result?",
+		"code": {
+			"lang": "javascript",
+			"src": "function dedupeA(arr) {\n  return arr.filter((v, i) => arr.indexOf(v) === i);\n}\nfunction dedupeB(arr) {\n  return [...new Set(arr)];\n}"
+		},
+		"choices": [
+			"dedupeA",
+			"dedupeB",
+			"Both produce the same result",
+			"Neither keeps a NaN in the result"
+		],
+		"answer": "dedupeB",
+		"explanation": "`indexOf` uses strict equality, and `NaN === NaN` is false, so `arr.indexOf(NaN)` always returns -1 no matter where NaN sits — meaning `dedupeA` drops every NaN entirely, giving [1, 2]. `Set` instead uses SameValueZero, which treats all NaNs as equal to each other, so `dedupeB` correctly collapses them to one, giving [1, NaN, 2].",
+		"tags": [
+			"javascript",
+			"gotcha",
+			"sets",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -4338,6 +4463,198 @@
 		]
 	},
 	{
+		"id": "gen-general-101",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What has a face and two hands, but no arms or legs?",
+		"answer": "A clock",
+		"accepted": [
+			"a clock",
+			"clock"
+		],
+		"explanation": "A clock's 'face' is its dial and its 'hands' are the hour and minute pointers — pure wordplay, no anatomy involved.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-102",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: chameleons change color mainly to camouflage with their surroundings.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Chameleons' baseline color already provides some camouflage, but their dramatic color shifts are driven mostly by mood, temperature regulation, and social signaling to other chameleons — not active background-matching.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-103",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If you shrank the Earth down to the size of a marble (about 1.5 cm across), roughly how big would the Moon be at that same scale?",
+		"choices": [
+			"About the size of a period on this page (~0.5 mm)",
+			"About the size of a BB pellet or small pea (~4 mm)",
+			"About the size of a golf ball (~4 cm)",
+			"About the size of a grapefruit (~10 cm)"
+		],
+		"answer": "About the size of a BB pellet or small pea (~4 mm)",
+		"explanation": "The Moon's diameter is about 27% of Earth's (3,474 km vs. 12,742 km). At marble scale, $1.5\\text{ cm} \\times 0.27 \\approx 0.4\\text{ cm}$ — roughly a BB pellet, smaller than most people picture it.",
+		"tags": [
+			"estimation",
+			"scale",
+			"astronomy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-104",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "You flip a fair coin repeatedly. On average, which takes longer to appear: the pattern HTH, or the pattern HHH?",
+		"choices": [
+			"HTH takes longer on average",
+			"HHH takes longer on average",
+			"They take exactly the same number of flips on average",
+			"It depends on which pattern you decide to look for first"
+		],
+		"answer": "HHH takes longer on average",
+		"explanation": "Despite looking equally 'special,' the expected wait for HTH is 10 flips while HHH takes 14 on average. The reason is overlap: after almost getting HHH and failing (e.g. landing HHT), you've made zero progress toward a fresh HHH attempt, but a failed attempt at HTH (like HTT) still leaves a useful H at the end to build on. This asymmetry is the heart of Penney's game.",
+		"tags": [
+			"probability",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-105",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A man answers a knock at his door. A stranger says, 'Sorry, wrong house,' and walks away without asking a single question. The homeowner immediately calls the police to report a suspicious would-be burglar. What tipped him off?",
+		"choices": [
+			"The stranger was carrying a large bag, which is inherently suspicious",
+			"The stranger apologized and left without ever asking who lived there or what address they were looking for — meaning they couldn't actually have known it was the wrong house unless they'd already been watching the place",
+			"It's illegal to knock on someone's door after dark",
+			"The stranger's clothes didn't match the neighborhood"
+		],
+		"answer": "The stranger apologized and left without ever asking who lived there or what address they were looking for — meaning they couldn't actually have known it was the wrong house unless they'd already been watching the place",
+		"explanation": "Someone genuinely at the wrong house would normally ask a clarifying question first ('Does Sam live here?' or 'Is this Elm Street?') before realizing their mistake. Leaving immediately with no question at all suggests they already knew whose house it was and were checking whether anyone was home.",
+		"tags": [
+			"lateral",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-106",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A barge loaded with scrap iron floats in a canal lock full of water. The crew throws all the iron overboard, and it sinks to the bottom of the lock. Does the water level in the lock rise, fall, or stay exactly the same?",
+		"choices": [
+			"Rises",
+			"Falls",
+			"Stays exactly the same"
+		],
+		"answer": "Falls",
+		"explanation": "Floating iron displaces water equal to its full weight (Archimedes' principle), but once it sinks, it only displaces water equal to its much smaller volume (iron is far denser than water). Less water is displaced overall, so the level falls.",
+		"tags": [
+			"physics",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-107",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Which planet in our solar system rotates almost completely on its side, with an axial tilt of about 98 degrees?",
+		"answer": "Uranus",
+		"accepted": [
+			"Uranus",
+			"uranus"
+		],
+		"explanation": "Most planets spin roughly upright relative to their orbit, but Uranus is tipped over so far that its poles point almost directly at the Sun during parts of its 84-year orbit — likely the result of an ancient massive collision.",
+		"tags": [
+			"astronomy",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-108",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A school gives tutoring to the students who scored in the bottom 10% on a test, then retests them. Their average score rises substantially, and the school claims this proves the tutoring worked. What effect could produce most of that improvement even if the tutoring did nothing at all?",
+		"choices": [
+			"Regression to the mean — extremely low scores are partly bad luck/noise, so on a retest those same students naturally drift back toward their true average even with no intervention",
+			"The test must have gotten easier the second time",
+			"Students who scored low the first time are inherently more motivated the second time",
+			"There's no other explanation — the improvement must be due to the tutoring"
+		],
+		"answer": "Regression to the mean — extremely low scores are partly bad luck/noise, so on a retest those same students naturally drift back toward their true average even with no intervention",
+		"explanation": "Selecting the most extreme scorers guarantees you've picked up some students who simply had an unusually bad day. On a retest, that noise doesn't repeat, so scores tend to move back toward the average regardless of any real intervention — a statistical effect easy to mistake for a treatment effect.",
+		"tags": [
+			"statistics",
+			"cognitive-bias",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-109",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "The more you remove from me, the bigger I get. What am I?",
+		"answer": "A hole",
+		"accepted": [
+			"a hole",
+			"hole"
+		],
+		"explanation": "Digging out more material only makes a hole larger — a simple riddle that plays on 'removing' being the opposite of what usually shrinks things.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-110",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The line 'I disapprove of what you say, but I will defend to the death your right to say it' is famously attributed to Voltaire. Did Voltaire actually write or say this?",
+		"choices": [
+			"True — it's a direct quote from Voltaire's own writing",
+			"False — it's a later paraphrase of his views, not his actual words"
+		],
+		"answer": "False — it's a later paraphrase of his views, not his actual words",
+		"explanation": "The line was written by Evelyn Beatrice Hall in her 1906 book about Voltaire, as her own summary of his attitude toward free speech — not a quotation from Voltaire himself. It stuck so well that it's now almost universally misattributed to him directly.",
+		"tags": [
+			"trivia",
+			"myth-busting",
+			"history",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -4878,6 +5195,60 @@
 		"tags": [
 			"operators",
 			"writing",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-031",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command produces the hat accent shown here, commonly used for estimators or unit vectors: $\\hat{x}$?",
+		"answer": "hat",
+		"accepted": [
+			"hat",
+			"\\hat"
+		],
+		"explanation": "`\\hat{x}` places a caret-shaped accent over its argument — used for estimators like $\\hat{\\theta}$ or occasionally unit vectors.",
+		"tags": [
+			"symbols",
+			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-032",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Inline math like $\\frac{1}{2}$ renders as a small, cramped fraction. Which command forces the larger, full display-style fraction even inline?",
+		"choices": [
+			"\\dfrac",
+			"\\tfrac",
+			"\\bigfrac",
+			"\\Frac"
+		],
+		"answer": "\\dfrac",
+		"explanation": "`\\dfrac` (from amsmath) forces display-style sizing for a fraction no matter the surrounding context; `\\tfrac` does the opposite, forcing the small text-style size even in display math. `\\bigfrac` and `\\Frac` aren't real LaTeX commands.",
+		"tags": [
+			"fractions",
+			"commands",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-033",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for this fitted regression line, matching this target exactly: $$\\hat{y} = \\beta_0 + \\beta_1 x$$ Then reveal and compare.",
+		"answer": "\\hat{y} = \\beta_0 + \\beta_1 x",
+		"explanation": "Combines a hat accent (`\\hat{y}`), Greek letters with subscripts (`\\beta_0`, `\\beta_1`), and ordinary math-mode variables — a common pattern in statistics and machine-learning notation.",
+		"tags": [
+			"writing",
+			"symbols",
+			"subscripts",
 			"generated"
 		]
 	},
@@ -6326,6 +6697,119 @@
 		"tags": [
 			"game-theory",
 			"strategy",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-077",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 5,
+		"prompt": "Albert and Bernard want to know when Cheryl's birthday is. Cheryl gives them a list of 10 possible dates: May 15, May 16, May 19, June 17, June 18, July 14, July 16, August 14, August 15, August 17. She tells Albert only the month and Bernard only the day. Albert says: 'I don't know when Cheryl's birthday is, but I know Bernard doesn't know either.' Bernard then says: 'At first I didn't know when Cheryl's birthday is, but now I know.' Albert then says: 'Then I also know when Cheryl's birthday is.' When is Cheryl's birthday?",
+		"answer": "July 16",
+		"accepted": [
+			"July 16",
+			"July 16th",
+			"16 July"
+		],
+		"explanation": "Albert's first statement means his month can't contain a day that's unique across the whole list (May 19 and June 18 are each unique), so the month is July or August. That narrows Bernard's options to July 14, July 16, Aug 14, Aug 15, Aug 17; his statement means his day isn't 14 (which still appears twice), leaving July 16, Aug 15, Aug 17. Albert's final statement means his month has only one remaining date — only July qualifies (August still has two) — so the date is July 16.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-078",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Reading widely is necessary for becoming a skilled writer, though it isn't sufficient by itself — plenty of avid readers never become skilled writers. Let R = 'reads widely' and W = 'is a skilled writer.' Which logical relationship correctly captures 'R is necessary for W'?",
+		"choices": [
+			"R -> W (reading widely guarantees becoming a skilled writer)",
+			"W -> R (being a skilled writer implies having read widely, but not the reverse)",
+			"R <-> W (the two are logically equivalent)",
+			"Neither implication holds in either direction"
+		],
+		"answer": "W -> R (being a skilled writer implies having read widely, but not the reverse)",
+		"explanation": "A necessary condition is required for the outcome but doesn't guarantee it: you can't be a skilled writer without having read widely (W implies R), but reading widely alone doesn't make you a skilled writer (R does not imply W).",
+		"tags": [
+			"propositional",
+			"conditionals",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-079",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A simple code replaces each letter with its position in the alphabet (A=1, B=2, ..., Z=26) and runs the numbers together with no separators. Under this code, CAT becomes '3120' and DOG becomes '4157'. What does BIRD become?",
+		"answer": "29184",
+		"accepted": [
+			"29184",
+			"2-9-18-4"
+		],
+		"explanation": "B=2, I=9, R=18, D=4 — concatenated with no separators, that's 2, 9, 18, 4 -> '29184'.",
+		"tags": [
+			"pattern-recognition",
+			"cipher",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-080",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Four developers — Wren, Xavier, Yara, and Zane — each favor a different language (Python, Rust, Go, Java) and each has a different number of years of experience (2, 5, 8, 12). Clues: (1) Wren uses Go. (2) Zane doesn't use Go or Java. (3) Whoever has 2 years of experience uses Java. (4) Yara has 8 years of experience. (5) The Python developer has fewer years of experience than the Rust developer. (6) Wren has more years of experience than Zane. Who is the Rust developer?",
+		"answer": "Yara",
+		"accepted": [
+			"Yara",
+			"yara"
+		],
+		"explanation": "Clue 1 gives Wren=Go. Clue 2 leaves Python/Rust/Java for Xavier, Yara, Zane, with Zane excluded from Java, so Java is Xavier or Yara; clue 4 (Yara=8) rules out Yara for Java since clue 3 ties Java to 2 years, so Xavier=Java with 2 years. That leaves Python and Rust for Yara and Zane, with years 5 and 12 left for Wren and Zane. Clue 6 (Wren>Zane) forces Zane=5 and Wren=12. Clue 5 needs Python's years < Rust's years: Yara has 8 and Zane has 5, so Zane(5)=Python and Yara(8)=Rust is the only consistent assignment.",
+		"tags": [
+			"constraint-puzzle",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-081",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A study finds that cities with more fire trucks tend to have more total fire damage per year. A city council concludes that fire trucks cause fire damage and votes to cut the fire department's budget. What is the flaw in this reasoning?",
+		"choices": [
+			"There is no flaw — the correlation shows causation, so cutting the budget is justified",
+			"Both quantities are driven by a confounding variable (city size and fire frequency): bigger, fire-prone cities buy more trucks AND suffer more damage, so cutting trucks won't reduce damage and may make it worse",
+			"The sample size must be too small to draw any conclusion",
+			"The correlation must be a data-collection error, since trucks obviously can't relate to damage"
+		],
+		"answer": "Both quantities are driven by a confounding variable (city size and fire frequency): bigger, fire-prone cities buy more trucks AND suffer more damage, so cutting trucks won't reduce damage and may make it worse",
+		"explanation": "This is a classic confounding-variable fallacy: a third factor (city size/fire risk) drives both the number of trucks and the amount of damage, so the correlation says nothing about causation — and acting on it backwards, by cutting trucks, would likely make fire outcomes worse.",
+		"tags": [
+			"fallacy",
+			"correlation-causation",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-082",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Two army divisions camp on hills on opposite sides of an enemy valley. They can only communicate by sending a messenger through the valley, where the enemy might capture the messenger so the message never arrives — and there's no way to confirm a message got through except by receiving a reply, which itself could be captured. Both generals must attack at exactly the same time to win; attacking alone means defeat. Try to design a messaging protocol (however many messages and acknowledgments you like) that lets both generals become fully certain the attack is coordinated. Then reveal the answer below and compare: is it actually possible?",
+		"answer": "It is provably impossible. Suppose some finite protocol worked and consider its very last message. Whoever sends that last message can never be sure it arrived (it might be the one captured), yet the protocol supposedly gives them certainty anyway — so that message could be dropped and the protocol would still 'work' by the same logic, contradicting the assumption that it was necessary. Applying this argument repeatedly strips away every message, showing no finite exchange — no matter how long — can give both generals simultaneous certainty over an unreliable channel. This is the classic Two Generals Problem, and it's why real network protocols (like TCP's handshake) only ever achieve practical confidence, never mathematical certainty, that both ends agree.",
+		"explanation": "The insight is an induction on the last message: certainty can never depend on a message whose delivery isn't itself certain, so certainty can never be established at all over a channel that can silently lose messages.",
+		"tags": [
+			"proof",
+			"computer-science",
+			"self-reference",
 			"generated"
 		]
 	},
@@ -8555,6 +9039,141 @@
 		"tags": [
 			"geometry",
 			"pythagoras",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-121",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A father's age (a two-digit number) reversed gives his son's age. The father is 27 years older than the son, and the digits of the son's age add up to 5. How old is the son?",
+		"answer": "14",
+		"accepted": [
+			"14",
+			"14 years old",
+			"fourteen"
+		],
+		"explanation": "Let the son's age be 10x+y and the father's (the reversed digits) be 10y+x with y>x. The age gap is 9(y-x)=27, so y-x=3; combined with digit sum x+y=5, that gives x=1, y=4 — the son is 14 and the father is 41.",
+		"tags": [
+			"algebra",
+			"age-puzzle",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-122",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Legend has it a chessboard reward starts with 1 grain of rice on the first square, then doubles on each following square (2, 4, 8, ...). How many grains are on the 10th square alone (not the running total)?",
+		"choices": [
+			"512",
+			"1024",
+			"511",
+			"1023"
+		],
+		"answer": "512",
+		"explanation": "Square n holds $2^{n-1}$ grains, so the 10th square holds $2^9 = 512$ grains — the classic wheat-and-chessboard problem, whose full-board total famously dwarfs the world's rice production.",
+		"tags": [
+			"powers",
+			"recreational",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-123",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Three bell towers ring every 4, 6, and 9 minutes respectively. All three ring together at exactly noon. How many minutes until all three ring together again?",
+		"answer": "36",
+		"accepted": [
+			"36",
+			"36 minutes"
+		],
+		"explanation": "The towers next align after $\\mathrm{lcm}(4,6,9)=36$ minutes: $4=2^2$, $6=2\\cdot3$, $9=3^2$, so the lcm takes the highest power of each prime, $2^2\\cdot3^2=36$.",
+		"tags": [
+			"number-theory",
+			"lcm",
+			"word-problem",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-124",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "20 lockers, numbered 1 to 20, all start closed. Student 1 opens every locker. Student 2 then toggles every 2nd locker (closing 2, 4, 6, ...). Student 3 toggles every 3rd locker, and so on through student 20, with student k toggling every k-th locker. After all 20 students finish, how many lockers are open?",
+		"answer": "4",
+		"accepted": [
+			"4",
+			"four"
+		],
+		"explanation": "Locker i gets toggled once per divisor of i, so it ends open only if i has an odd number of divisors — which happens exactly when i is a perfect square (divisors pair up except for the square root). The perfect squares from 1 to 20 are 1, 4, 9, and 16 — 4 lockers.",
+		"tags": [
+			"number-theory",
+			"recreational",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-125",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three ants sit at the three corners of a triangular plate. At the same instant, each ant independently and randomly picks one of the other two corners (50/50) and walks straight toward it along the edge. What is the probability that no two ants collide head-on along the same edge?",
+		"choices": [
+			"1/4",
+			"1/2",
+			"1/8",
+			"3/4"
+		],
+		"answer": "1/4",
+		"explanation": "Each ant has 2 choices, giving $2^3=8$ equally likely combinations. A head-on collision is avoided only when all three ants move in the same rotational direction (all clockwise or all counterclockwise) — 2 of the 8 outcomes — so the probability is $2/8=1/4$.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-126",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Using the double-and-halve trick (repeatedly halve one factor while doubling the other, until one factor reaches 1), compute $15 \\times 16$.",
+		"answer": "240",
+		"accepted": [
+			"240"
+		],
+		"explanation": "$15\\times16 \\to 30\\times8 \\to 60\\times4 \\to 120\\times2 \\to 240\\times1 = 240$ — halving and doubling never changes the product, turning an awkward multiplication into repeated doubling.",
+		"tags": [
+			"mental-math",
+			"arithmetic-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-127",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A chocolate bar is a 6x4 grid of 24 unit squares. Each 'break' takes one existing rectangular piece and snaps it in a straight line along the grid into two smaller pieces. What is the minimum number of breaks needed to separate the whole bar into all 24 individual unit squares?",
+		"answer": "23",
+		"accepted": [
+			"23"
+		],
+		"explanation": "Every single break turns exactly one piece into two, increasing the piece count by exactly 1, regardless of where or in what order you break. Starting from 1 piece and needing 24, you always need exactly 24-1=23 breaks — no strategy can do better or worse.",
+		"tags": [
+			"recreational",
+			"invariant",
+			"combinatorics",
 			"generated"
 		]
 	},

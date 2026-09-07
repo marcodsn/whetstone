@@ -1,0 +1,80 @@
+{
+	"pack": "gen-logic-20260907",
+	"exercises": [
+		{
+			"id": "gen-logic-077",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "Albert and Bernard want to know when Cheryl's birthday is. Cheryl gives them a list of 10 possible dates: May 15, May 16, May 19, June 17, June 18, July 14, July 16, August 14, August 15, August 17. She tells Albert only the month and Bernard only the day. Albert says: 'I don't know when Cheryl's birthday is, but I know Bernard doesn't know either.' Bernard then says: 'At first I didn't know when Cheryl's birthday is, but now I know.' Albert then says: 'Then I also know when Cheryl's birthday is.' When is Cheryl's birthday?",
+			"answer": "July 16",
+			"accepted": ["July 16", "July 16th", "16 July"],
+			"explanation": "Albert's first statement means his month can't contain a day that's unique across the whole list (May 19 and June 18 are each unique), so the month is July or August. That narrows Bernard's options to July 14, July 16, Aug 14, Aug 15, Aug 17; his statement means his day isn't 14 (which still appears twice), leaving July 16, Aug 15, Aug 17. Albert's final statement means his month has only one remaining date — only July qualifies (August still has two) — so the date is July 16.",
+			"tags": ["deduction", "constraint-puzzle", "classic", "generated"]
+		},
+		{
+			"id": "gen-logic-078",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Reading widely is necessary for becoming a skilled writer, though it isn't sufficient by itself — plenty of avid readers never become skilled writers. Let R = 'reads widely' and W = 'is a skilled writer.' Which logical relationship correctly captures 'R is necessary for W'?",
+			"choices": [
+				"R -> W (reading widely guarantees becoming a skilled writer)",
+				"W -> R (being a skilled writer implies having read widely, but not the reverse)",
+				"R <-> W (the two are logically equivalent)",
+				"Neither implication holds in either direction"
+			],
+			"answer": "W -> R (being a skilled writer implies having read widely, but not the reverse)",
+			"explanation": "A necessary condition is required for the outcome but doesn't guarantee it: you can't be a skilled writer without having read widely (W implies R), but reading widely alone doesn't make you a skilled writer (R does not imply W).",
+			"tags": ["propositional", "conditionals", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-079",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A simple code replaces each letter with its position in the alphabet (A=1, B=2, ..., Z=26) and runs the numbers together with no separators. Under this code, CAT becomes '3120' and DOG becomes '4157'. What does BIRD become?",
+			"answer": "29184",
+			"accepted": ["29184", "2-9-18-4"],
+			"explanation": "B=2, I=9, R=18, D=4 — concatenated with no separators, that's 2, 9, 18, 4 -> '29184'.",
+			"tags": ["pattern-recognition", "cipher", "generated"]
+		},
+		{
+			"id": "gen-logic-080",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "Four developers — Wren, Xavier, Yara, and Zane — each favor a different language (Python, Rust, Go, Java) and each has a different number of years of experience (2, 5, 8, 12). Clues: (1) Wren uses Go. (2) Zane doesn't use Go or Java. (3) Whoever has 2 years of experience uses Java. (4) Yara has 8 years of experience. (5) The Python developer has fewer years of experience than the Rust developer. (6) Wren has more years of experience than Zane. Who is the Rust developer?",
+			"answer": "Yara",
+			"accepted": ["Yara", "yara"],
+			"explanation": "Clue 1 gives Wren=Go. Clue 2 leaves Python/Rust/Java for Xavier, Yara, Zane, with Zane excluded from Java, so Java is Xavier or Yara; clue 4 (Yara=8) rules out Yara for Java since clue 3 ties Java to 2 years, so Xavier=Java with 2 years. That leaves Python and Rust for Yara and Zane, with years 5 and 12 left for Wren and Zane. Clue 6 (Wren>Zane) forces Zane=5 and Wren=12. Clue 5 needs Python's years < Rust's years: Yara has 8 and Zane has 5, so Zane(5)=Python and Yara(8)=Rust is the only consistent assignment.",
+			"tags": ["constraint-puzzle", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-081",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A study finds that cities with more fire trucks tend to have more total fire damage per year. A city council concludes that fire trucks cause fire damage and votes to cut the fire department's budget. What is the flaw in this reasoning?",
+			"choices": [
+				"There is no flaw — the correlation shows causation, so cutting the budget is justified",
+				"Both quantities are driven by a confounding variable (city size and fire frequency): bigger, fire-prone cities buy more trucks AND suffer more damage, so cutting trucks won't reduce damage and may make it worse",
+				"The sample size must be too small to draw any conclusion",
+				"The correlation must be a data-collection error, since trucks obviously can't relate to damage"
+			],
+			"answer": "Both quantities are driven by a confounding variable (city size and fire frequency): bigger, fire-prone cities buy more trucks AND suffer more damage, so cutting trucks won't reduce damage and may make it worse",
+			"explanation": "This is a classic confounding-variable fallacy: a third factor (city size/fire risk) drives both the number of trucks and the amount of damage, so the correlation says nothing about causation — and acting on it backwards, by cutting trucks, would likely make fire outcomes worse.",
+			"tags": ["fallacy", "correlation-causation", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-082",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Two army divisions camp on hills on opposite sides of an enemy valley. They can only communicate by sending a messenger through the valley, where the enemy might capture the messenger so the message never arrives — and there's no way to confirm a message got through except by receiving a reply, which itself could be captured. Both generals must attack at exactly the same time to win; attacking alone means defeat. Try to design a messaging protocol (however many messages and acknowledgments you like) that lets both generals become fully certain the attack is coordinated. Then reveal the answer below and compare: is it actually possible?",
+			"answer": "It is provably impossible. Suppose some finite protocol worked and consider its very last message. Whoever sends that last message can never be sure it arrived (it might be the one captured), yet the protocol supposedly gives them certainty anyway — so that message could be dropped and the protocol would still 'work' by the same logic, contradicting the assumption that it was necessary. Applying this argument repeatedly strips away every message, showing no finite exchange — no matter how long — can give both generals simultaneous certainty over an unreliable channel. This is the classic Two Generals Problem, and it's why real network protocols (like TCP's handshake) only ever achieve practical confidence, never mathematical certainty, that both ends agree.",
+			"explanation": "The insight is an induction on the last message: certainty can never depend on a message whose delivery isn't itself certain, so certainty can never be established at all over a channel that can silently lose messages.",
+			"tags": ["proof", "computer-science", "self-reference", "generated"]
+		}
+	]
+}

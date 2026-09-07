@@ -1,0 +1,82 @@
+{
+	"pack": "gen-math-20260907",
+	"exercises": [
+		{
+			"id": "gen-math-121",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A father's age (a two-digit number) reversed gives his son's age. The father is 27 years older than the son, and the digits of the son's age add up to 5. How old is the son?",
+			"answer": "14",
+			"accepted": ["14", "14 years old", "fourteen"],
+			"explanation": "Let the son's age be 10x+y and the father's (the reversed digits) be 10y+x with y>x. The age gap is 9(y-x)=27, so y-x=3; combined with digit sum x+y=5, that gives x=1, y=4 — the son is 14 and the father is 41.",
+			"tags": ["algebra", "age-puzzle", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-122",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Legend has it a chessboard reward starts with 1 grain of rice on the first square, then doubles on each following square (2, 4, 8, ...). How many grains are on the 10th square alone (not the running total)?",
+			"choices": ["512", "1024", "511", "1023"],
+			"answer": "512",
+			"explanation": "Square n holds $2^{n-1}$ grains, so the 10th square holds $2^9 = 512$ grains — the classic wheat-and-chessboard problem, whose full-board total famously dwarfs the world's rice production.",
+			"tags": ["powers", "recreational", "classic", "generated"]
+		},
+		{
+			"id": "gen-math-123",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Three bell towers ring every 4, 6, and 9 minutes respectively. All three ring together at exactly noon. How many minutes until all three ring together again?",
+			"answer": "36",
+			"accepted": ["36", "36 minutes"],
+			"explanation": "The towers next align after $\\mathrm{lcm}(4,6,9)=36$ minutes: $4=2^2$, $6=2\\cdot3$, $9=3^2$, so the lcm takes the highest power of each prime, $2^2\\cdot3^2=36$.",
+			"tags": ["number-theory", "lcm", "word-problem", "generated"]
+		},
+		{
+			"id": "gen-math-124",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "20 lockers, numbered 1 to 20, all start closed. Student 1 opens every locker. Student 2 then toggles every 2nd locker (closing 2, 4, 6, ...). Student 3 toggles every 3rd locker, and so on through student 20, with student k toggling every k-th locker. After all 20 students finish, how many lockers are open?",
+			"answer": "4",
+			"accepted": ["4", "four"],
+			"explanation": "Locker i gets toggled once per divisor of i, so it ends open only if i has an odd number of divisors — which happens exactly when i is a perfect square (divisors pair up except for the square root). The perfect squares from 1 to 20 are 1, 4, 9, and 16 — 4 lockers.",
+			"tags": ["number-theory", "recreational", "classic", "generated"]
+		},
+		{
+			"id": "gen-math-125",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Three ants sit at the three corners of a triangular plate. At the same instant, each ant independently and randomly picks one of the other two corners (50/50) and walks straight toward it along the edge. What is the probability that no two ants collide head-on along the same edge?",
+			"choices": ["1/4", "1/2", "1/8", "3/4"],
+			"answer": "1/4",
+			"explanation": "Each ant has 2 choices, giving $2^3=8$ equally likely combinations. A head-on collision is avoided only when all three ants move in the same rotational direction (all clockwise or all counterclockwise) — 2 of the 8 outcomes — so the probability is $2/8=1/4$.",
+			"tags": ["probability", "combinatorics", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-126",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "Using the double-and-halve trick (repeatedly halve one factor while doubling the other, until one factor reaches 1), compute $15 \\times 16$.",
+			"answer": "240",
+			"accepted": ["240"],
+			"explanation": "$15\\times16 \\to 30\\times8 \\to 60\\times4 \\to 120\\times2 \\to 240\\times1 = 240$ — halving and doubling never changes the product, turning an awkward multiplication into repeated doubling.",
+			"tags": ["mental-math", "arithmetic-trick", "generated"]
+		},
+		{
+			"id": "gen-math-127",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A chocolate bar is a 6x4 grid of 24 unit squares. Each 'break' takes one existing rectangular piece and snaps it in a straight line along the grid into two smaller pieces. What is the minimum number of breaks needed to separate the whole bar into all 24 individual unit squares?",
+			"answer": "23",
+			"accepted": ["23"],
+			"explanation": "Every single break turns exactly one piece into two, increasing the piece count by exactly 1, regardless of where or in what order you break. Starting from 1 piece and needing 24, you always need exactly 24-1=23 breaks — no strategy can do better or worse.",
+			"tags": ["recreational", "invariant", "combinatorics", "generated"]
+		}
+	]
+}

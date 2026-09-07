@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260907",
+	"exercises": [
+		{
+			"id": "gen-latex-031",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What command produces the hat accent shown here, commonly used for estimators or unit vectors: $\\hat{x}$?",
+			"answer": "hat",
+			"accepted": ["hat", "\\hat"],
+			"explanation": "`\\hat{x}` places a caret-shaped accent over its argument — used for estimators like $\\hat{\\theta}$ or occasionally unit vectors.",
+			"tags": ["symbols", "commands", "generated"]
+		},
+		{
+			"id": "gen-latex-032",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Inline math like $\\frac{1}{2}$ renders as a small, cramped fraction. Which command forces the larger, full display-style fraction even inline?",
+			"choices": ["\\dfrac", "\\tfrac", "\\bigfrac", "\\Frac"],
+			"answer": "\\dfrac",
+			"explanation": "`\\dfrac` (from amsmath) forces display-style sizing for a fraction no matter the surrounding context; `\\tfrac` does the opposite, forcing the small text-style size even in display math. `\\bigfrac` and `\\Frac` aren't real LaTeX commands.",
+			"tags": ["fractions", "commands", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-033",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for this fitted regression line, matching this target exactly: $$\\hat{y} = \\beta_0 + \\beta_1 x$$ Then reveal and compare.",
+			"answer": "\\hat{y} = \\beta_0 + \\beta_1 x",
+			"explanation": "Combines a hat accent (`\\hat{y}`), Greek letters with subscripts (`\\beta_0`, `\\beta_1`), and ordinary math-mode variables — a common pattern in statistics and machine-learning notation.",
+			"tags": ["writing", "symbols", "subscripts", "generated"]
+		}
+	]
+}

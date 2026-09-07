@@ -1,0 +1,70 @@
+{
+	"pack": "gen-code-20260907",
+	"exercises": [
+		{
+			"id": "gen-code-081",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "What does this Python code print? (Give both printed lines, in order, separated by ' / '.)",
+			"code": { "lang": "python", "src": "t = (1, [2, 3])\ntry:\n    t[1] += [4]\nexcept TypeError:\n    print(\"error\")\nprint(t)" },
+			"answer": "error / (1, [2, 3, 4])",
+			"accepted": ["error / (1, [2, 3, 4])"],
+			"explanation": "`t[1] += [4]` first calls the list's in-place `__iadd__`, which mutates the list to [2, 3, 4] and returns it — then Python tries to assign that result back into `t[1]`, which fails because tuples don't support item assignment, raising TypeError. The mutation already happened before the assignment failed, so the except block prints 'error', and the tuple now permanently contains the mutated list.",
+			"tags": ["python", "gotcha", "tuples", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-082",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print?",
+			"code": { "lang": "javascript", "src": "const nums = [10, 1, 21, 2];\nconsole.log(nums.sort());" },
+			"choices": ["[1, 10, 2, 21]", "[1, 2, 10, 21]", "[2, 1, 10, 21]", "[10, 1, 21, 2]"],
+			"answer": "[1, 10, 2, 21]",
+			"explanation": "Without a comparator, `Array.prototype.sort` converts elements to strings and compares them lexicographically, not numerically. As strings, '1' < '10' < '2' < '21', giving [1, 10, 2, 21] — not the numerically sorted order most people expect.",
+			"tags": ["javascript", "gotcha", "sort", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-083",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Let n be the total number of elements across all the input lists combined. What is the time complexity of `merge_lists` as a function of n?",
+			"code": { "lang": "python", "src": "def merge_lists(lists):\n    result = []\n    for lst in lists:\n        result.extend(lst)\n    result.sort()\n    return result" },
+			"choices": ["O(n)", "O(n log n)", "O(n^2)", "O(k log k), where k is the number of lists"],
+			"answer": "O(n log n)",
+			"explanation": "Building `result` via repeated `.extend()` calls touches each of the n elements once, costing O(n) overall. But the final `result.sort()` costs O(n log n) on the full n-element list, and that term dominates — so the whole function is O(n log n).",
+			"tags": ["python", "complexity", "sorting", "generated"]
+		},
+		{
+			"id": "gen-code-084",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This function is meant to print the array in reverse and stop cleanly once it passes index 0. What's the bug?",
+			"code": { "lang": "c", "src": "void printReverse(int arr[], int n) {\n    for (unsigned int i = n - 1; i >= 0; i--) {\n        printf(\"%d \", arr[i]);\n    }\n}" },
+			"choices": [
+				"i is declared unsigned, so i >= 0 is always true; once i underflows past 0 it wraps to a huge positive value (UINT_MAX), and the loop keeps reading far out of bounds instead of stopping",
+				"The array index should start at n instead of n - 1",
+				"The format specifier should be %u instead of %d",
+				"The loop should use a do-while loop instead of a for loop"
+			],
+			"answer": "i is declared unsigned, so i >= 0 is always true; once i underflows past 0 it wraps to a huge positive value (UINT_MAX), and the loop keeps reading far out of bounds instead of stopping",
+			"explanation": "Unsigned integers can't be negative, so `i >= 0` can never become false. When i hits 0 and decrements again, it wraps around to UINT_MAX instead of going negative, sending the loop reading arbitrary out-of-bounds memory — a classic signed/unsigned comparison bug.",
+			"tags": ["c", "gotcha", "unsigned", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-085",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Both functions are meant to remove duplicates from an array while keeping the first occurrence of each value. For `arr = [1, NaN, 2, NaN]`, which one correctly keeps exactly one `NaN` in its result?",
+			"code": { "lang": "javascript", "src": "function dedupeA(arr) {\n  return arr.filter((v, i) => arr.indexOf(v) === i);\n}\nfunction dedupeB(arr) {\n  return [...new Set(arr)];\n}" },
+			"choices": ["dedupeA", "dedupeB", "Both produce the same result", "Neither keeps a NaN in the result"],
+			"answer": "dedupeB",
+			"explanation": "`indexOf` uses strict equality, and `NaN === NaN` is false, so `arr.indexOf(NaN)` always returns -1 no matter where NaN sits — meaning `dedupeA` drops every NaN entirely, giving [1, 2]. `Set` instead uses SameValueZero, which treats all NaNs as equal to each other, so `dedupeB` correctly collapses them to one, giving [1, NaN, 2].",
+			"tags": ["javascript", "gotcha", "sets", "generated"]
+		}
+	]
+}
