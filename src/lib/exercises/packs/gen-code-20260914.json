@@ -1,0 +1,75 @@
+{
+	"pack": "gen-code-20260914",
+	"exercises": [
+		{
+			"id": "gen-code-086",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this Python code print?",
+			"code": { "lang": "python", "src": "funcs = []\nfor i in range(3):\n    funcs.append(lambda: i)\nprint([f() for f in funcs])" },
+			"choices": ["[0, 1, 2]", "[2, 2, 2]", "[0, 0, 0]", "[1, 2, 3]"],
+			"answer": "[2, 2, 2]",
+			"explanation": "Each lambda captures the variable `i` itself, not its value at creation time. By the time the lambdas are actually called, the loop has finished and `i` holds its final value, 2 — so all three calls return 2.",
+			"tags": ["python", "closures", "gotcha", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-087",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In what order does this JavaScript print its output?",
+			"code": { "lang": "javascript", "src": "console.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');" },
+			"choices": ["A, D, C, B", "A, B, C, D", "A, D, B, C", "A, C, D, B"],
+			"answer": "A, D, C, B",
+			"explanation": "Synchronous code runs first, in order: 'A' then 'D'. Then, before any timer callback, the microtask queue drains: the resolved Promise's `.then` runs, printing 'C'. Only after the microtask queue is empty does the event loop get to the macrotask queue, running the `setTimeout` callback and printing 'B' last — even though its delay was 0ms.",
+			"tags": ["javascript", "async", "event-loop", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-088",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "This C++ code is meant to remove the value 3 from the vector. What's the bug?",
+			"code": { "lang": "cpp", "src": "std::vector<int> v = {1, 2, 3, 4, 5};\nfor (auto it = v.begin(); it != v.end(); ++it) {\n    if (*it == 3) v.erase(it);\n}" },
+			"choices": [
+				"v.erase(it) invalidates it (and every iterator after it), so the loop's ++it on the next pass uses a dangling iterator — undefined behavior; the loop should instead use the iterator that erase() returns",
+				"v.begin() should be v.cbegin(), otherwise the code fails to compile",
+				"The comparison should use <= instead of == to find the value",
+				"Vectors cannot be modified while being iterated, so this code fails to compile"
+			],
+			"answer": "v.erase(it) invalidates it (and every iterator after it), so the loop's ++it on the next pass uses a dangling iterator — undefined behavior; the loop should instead use the iterator that erase() returns",
+			"explanation": "std::vector::erase invalidates the erased iterator and every iterator after it, since later elements shift down to fill the gap. Advancing that same, now-dangling iterator with ++it is undefined behavior. This compiles and often appears to work by luck, but the fix is to reassign it = v.erase(it) and skip the ++it on that pass.",
+			"tags": ["cpp", "gotcha", "iterators", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-089",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of has_pair_sum as a function of n = len(nums)?",
+			"code": { "lang": "python", "src": "def has_pair_sum(nums, target):\n    seen = set()\n    for n in nums:\n        if target - n in seen:\n            return True\n        seen.add(n)\n    return False" },
+			"answer": "O(n)",
+			"accepted": ["O(n)", "linear"],
+			"explanation": "The function makes a single pass over `nums`, and each set membership check and insertion is O(1) on average — so the total work scales linearly with n, giving O(n) overall, rather than the O(n^2) a naive nested-loop pair search would need.",
+			"tags": ["python", "complexity", "hashing", "generated"]
+		},
+		{
+			"id": "gen-code-090",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This function is meant to return a list containing only the item passed to it, but repeated calls unexpectedly accumulate items across calls. What causes the bug?",
+			"code": { "lang": "python", "src": "def add_item(item, lst=[]):\n    lst.append(item)\n    return lst" },
+			"choices": [
+				"The default argument [] is evaluated once, when the function is defined, not on each call — so every call that omits lst shares and mutates that same list object",
+				"append() returns a new list each time, so lst is never actually updated",
+				"Python automatically resets default arguments after each call, but only for immutable types like strings",
+				"The bug is that item should be added with the + operator instead of .append()"
+			],
+			"answer": "The default argument [] is evaluated once, when the function is defined, not on each call — so every call that omits lst shares and mutates that same list object",
+			"explanation": "Default argument values in Python are created exactly once, at function-definition time, not fresh on every call. Since a list is mutable, every call that relies on the default keeps appending to the very same list object, silently accumulating state across unrelated calls — a classic Python gotcha usually fixed with `lst=None` and creating a new list inside the function body.",
+			"tags": ["python", "gotcha", "mutable-default-argument", "spot-the-bug", "generated"]
+		}
+	]
+}

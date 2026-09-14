@@ -1,0 +1,82 @@
+{
+	"pack": "gen-math-20260914",
+	"exercises": [
+		{
+			"id": "gen-math-128",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "Pick any whole number. Add 8 to it. Double that result. Subtract 4. Divide by 2. Finally, subtract your original number. What number do you always end up with, no matter which number you started with?",
+			"answer": "6",
+			"accepted": ["6", "six"],
+			"explanation": "Following the steps algebraically: $((x+8)\\times2-4)\\div2-x = (2x+12)\\div2-x = (x+6)-x = 6$ — the starting number cancels out completely, so the trick always lands on 6.",
+			"tags": ["algebra", "mental-math", "number-trick", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-129",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "In this puzzle, each letter stands for a single digit 0-9 (the same letter always means the same digit, different letters mean different digits, and no number may start with a 0): SO + SO = TOO. What two-digit number does SO represent?",
+			"answer": "50",
+			"accepted": ["50"],
+			"explanation": "Doubling any two-digit number gives at most 198, so the result TOO must start with T=1. That gives $2(10S+O) = 100+11O$, i.e. $20S = 100+9O$. Testing digits 0-9 for O, only O=0 makes the right side a multiple of 20 (giving S=5) while keeping S, O, T all different — so SO = 50, and indeed $50+50=100$.",
+			"tags": ["cryptarithm", "algebra", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-130",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A farmer's barn has only chickens (2 legs each) and rabbits (4 legs each). Counting heads, there are 10 animals in total; counting legs, there are 32 in total. How many rabbits are there?",
+			"choices": ["6", "4", "5", "7"],
+			"answer": "6",
+			"explanation": "If all 10 animals were chickens, there'd be 20 legs — 12 short of 32. Each chicken swapped for a rabbit adds 2 legs, so $12\\div2=6$ swaps are needed: 6 rabbits (and 4 chickens), giving $6\\times4+4\\times2=24+8=32$ legs.",
+			"tags": ["algebra", "word-problem", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-131",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A boat travels 30 km downstream in 2 hours, helped by a steady 3 km/h current. Moving upstream over the same stretch of water instead — against that same current, with the boat's own speed in still water unchanged — how fast does it travel, in km/h?",
+			"answer": "9",
+			"accepted": ["9", "9 km/h"],
+			"explanation": "The downstream speed is $30\\div2=15$ km/h, which equals the boat's still-water speed plus the 3 km/h current, so the boat's own speed is 12 km/h. Upstream, the current works against it: $12-3=9$ km/h.",
+			"tags": ["algebra", "rate", "word-problem", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-132",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You have two rods, one 18 cm long and one 24 cm long. You want to cut both into equal-length pieces with no waste and no leftover, using the longest possible piece length. How long, in cm, should each piece be?",
+			"choices": ["6", "3", "12", "2"],
+			"answer": "6",
+			"explanation": "The longest piece length that divides both rod lengths evenly is their greatest common divisor: $18=2\\times3^2$ and $24=2^3\\times3$ share $2\\times3=6$, so $\\gcd(18,24)=6$ — giving 3 pieces from the first rod and 4 from the second.",
+			"tags": ["number-theory", "gcd", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-133",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A water tank is 80% full. You drain out 25% of the water currently in the tank. What percentage of the tank's total capacity is filled now?",
+			"choices": ["60%", "55%", "50%", "65%"],
+			"answer": "60%",
+			"explanation": "Draining 25% of the current water leaves 75% of it behind: $0.80\\times0.75=0.60$, so the tank ends up 60% full of its total capacity — not 55% (which comes from wrongly subtracting the two percentages directly).",
+			"tags": ["percentages", "arithmetic", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-134",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "The three-digit number 4d7 (where d is one missing digit) is exactly divisible by 9. What digit is d?",
+			"answer": "7",
+			"accepted": ["7"],
+			"explanation": "A number is divisible by 9 exactly when its digit sum is. Here the digit sum is $4+d+7=11+d$, which must be a multiple of 9. Since $d$ is a single digit, $11+d$ ranges from 11 to 20, and only 18 (when $d=7$) is a multiple of 9 — so $d=7$, making the number 477 ($477\\div9=53$).",
+			"tags": ["number-theory", "divisibility", "recreational", "generated"]
+		}
+	]
+}

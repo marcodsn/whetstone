@@ -1,0 +1,85 @@
+{
+	"pack": "gen-logic-20260914",
+	"exercises": [
+		{
+			"id": "gen-logic-083",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "The statement 'All ravens are black' is logically equivalent to its contrapositive, 'Everything that is not black is not a raven.' You see a green apple — an object that is both non-black and not a raven. According to strict logic, does observing the green apple count as evidence supporting 'All ravens are black'?",
+			"choices": [
+				"Yes — technically it does, however weak; this counterintuitive result is known as Hempel's raven paradox",
+				"No — only observing actual ravens can ever provide evidence about ravens",
+				"No — the statement and its contrapositive are not actually logically equivalent",
+				"Yes, but only because green and black are adjacent on the color wheel"
+			],
+			"answer": "Yes — technically it does, however weak; this counterintuitive result is known as Hempel's raven paradox",
+			"explanation": "'All ravens are black' (R→B) is logically equivalent to its contrapositive (¬B→¬R), so anything confirming one formally confirms the other. A green apple is both non-black and a non-raven, satisfying ¬B→¬R — making it, by strict logical equivalence, a vanishingly weak piece of confirming evidence for a statement about ravens. This is Hempel's paradox of confirmation, a famous challenge to naive theories of inductive evidence.",
+			"tags": ["paradox", "propositional", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-084",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A heap of sand has 1,000,000 grains. Removing a single grain from a heap obviously still leaves a heap — one grain can never be the difference between 'heap' and 'not heap.' But if you apply that rule one grain at a time, you eventually reach a single grain, which is clearly not a heap. Work out your own take on where this reasoning breaks down, then reveal one standard resolution and compare.",
+			"answer": "This is the Sorites (heap) paradox, and there's no single universally agreed fix — but the standard diagnosis is that 'heap' is a vague predicate with no sharp numerical cutoff, so the premise 'removing one grain never changes heap-status' cannot actually be true for every single grain removed, even though no individual case ever feels like the crossing point. Formal responses include treating heapness as a matter of degree rather than yes/no (fuzzy logic), accepting that there is a sharp but practically unknowable cutoff (epistemicism), or treating some grain-counts as genuinely indeterminate (supervaluationism). All of them agree that the intuitively airtight premise must fail somewhere, or the absurd conclusion wouldn't validly follow.",
+			"explanation": "The paradox exposes how vague, boundary-free language lets an individually plausible rule, applied enough times, validly derive an absurd result.",
+			"tags": ["paradox", "vagueness", "self-reference", "generated"]
+		},
+		{
+			"id": "gen-logic-085",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Standing at point A, you face north and walk forward one block. You turn 90° right, walk forward one block. You turn 90° right again, walk forward one block. You turn 90° right one final time, and walk forward one more block (the same length as each block before it). Which direction are you now facing, and where are you relative to point A?",
+			"choices": [
+				"Facing west, and back exactly at point A",
+				"Facing north, and back exactly at point A",
+				"Facing west, one block north of point A",
+				"Facing south, one block east of point A"
+			],
+			"answer": "Facing west, and back exactly at point A",
+			"explanation": "Tracing it out: north one block, then (after turning right) east one block, then (right again) south one block, then (right again) west one block. Four equal legs with 90° right turns each trace out a closed square, landing you exactly back at A — and since your last turn pointed you west just before that final leg, you end up facing west.",
+			"tags": ["spatial", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-086",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A politician says: \"You're either with us, or you're against us.\" What logical fallacy does this statement commit?",
+			"choices": [
+				"False dilemma — it ignores that there may be positions besides the two extremes on offer",
+				"Circular reasoning — the conclusion is smuggled into the premise",
+				"Appeal to authority — it relies on the speaker's status rather than evidence",
+				"Slippery slope — it claims one small step inevitably leads to an extreme outcome"
+			],
+			"answer": "False dilemma — it ignores that there may be positions besides the two extremes on offer",
+			"explanation": "This is a textbook false dilemma (also called false dichotomy): it presents only two options as if they were exhaustive, when in reality people can be neutral, partially supportive, or opposed for entirely different reasons than 'against us.'",
+			"tags": ["fallacy", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-087",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 5,
+			"prompt": "In a classic game, every player privately picks a whole number from 0 to 100. Whoever's number is closest to two-thirds of the average of everyone's numbers wins. If every player is perfectly rational and also assumes every other player is perfectly rational (and that this is common knowledge), what number should a player pick?",
+			"answer": "0",
+			"accepted": ["0", "zero"],
+			"explanation": "No number above 67 can ever be two-thirds of an average that's at most 100, so a rational player never picks above 67. But if everyone reasons this way, the average is now at most 67, so two-thirds of that is at most about 44 — and no rational player should pick above 44 either. Repeating this elimination indefinitely drives the rational choice all the way down to 0, the unique Nash equilibrium under full common knowledge of rationality (in real human groups, the actual winning guess tends to land well above 0, since perfect common knowledge rarely holds).",
+			"tags": ["game-theory", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-088",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "This is the 'look-and-say' sequence: 1, 11, 21, 1211, 111221, ? — each term describes the digits of the previous one aloud. What is the next term?",
+			"answer": "312211",
+			"accepted": ["312211"],
+			"explanation": "Reading \"111221\" aloud digit-group by digit-group: three 1s, two 2s, one 1 — which is written as \"312211\". Each term is generated purely by describing the run-lengths of the previous term, not by any arithmetic relationship between the numbers themselves.",
+			"tags": ["sequences", "pattern-recognition", "generated"]
+		}
+	]
+}

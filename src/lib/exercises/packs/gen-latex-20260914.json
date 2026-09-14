@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260914",
+	"exercises": [
+		{
+			"id": "gen-latex-034",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What command produces the left half of the floor-function brackets shown here: $\\lfloor x \\rfloor$?",
+			"answer": "lfloor",
+			"accepted": ["lfloor", "\\lfloor"],
+			"explanation": "`\\lfloor` and `\\rfloor` draw the floor-function corner brackets; the analogous `\\lceil`/`\\rceil` pair draws ceiling brackets instead.",
+			"tags": ["symbols", "commands", "generated"]
+		},
+		{
+			"id": "gen-latex-035",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which command stacks a label directly underneath a symbol, as used to write $\\underset{n\\to\\infty}{\\lim}$ (placing the limit condition below \"lim\" instead of using a subscript)?",
+			"choices": ["\\underset", "\\substack", "\\below", "\\underbrace"],
+			"answer": "\\underset",
+			"explanation": "`\\underset{below}{main}` stacks `below` directly beneath `main`, commonly used for custom limit conditions or annotated relations. `\\overset` does the mirror image above; `\\underbrace` instead draws a labeled brace under an expression; `\\below` isn't a real LaTeX command.",
+			"tags": ["commands", "operators", "generated"]
+		},
+		{
+			"id": "gen-latex-036",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for this labeled arrow (a function f mapping A to B), matching this target exactly: $$A \\xrightarrow{f} B$$ Then reveal and compare.",
+			"answer": "A \\xrightarrow{f} B",
+			"explanation": "`\\xrightarrow{label}` draws a rightward arrow with `label` typeset above it — common in function notation and commutative diagrams; `\\xleftarrow` mirrors it pointing left.",
+			"tags": ["writing", "arrows", "generated"]
+		}
+	]
+}

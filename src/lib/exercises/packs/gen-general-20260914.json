@@ -1,0 +1,119 @@
+{
+	"pack": "gen-general-20260914",
+	"exercises": [
+		{
+			"id": "gen-general-111",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What has a spine but no bones, and pages but cannot turn them itself?",
+			"answer": "A book",
+			"accepted": ["a book", "book"],
+			"explanation": "A book's 'spine' and 'pages' are purely structural terms borrowed from anatomy — pure wordplay, no biology involved.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-112",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What five-letter word, when you drop its last four letters, still sounds exactly the same said out loud?",
+			"answer": "Queue",
+			"accepted": ["queue", "Queue"],
+			"explanation": "\"Queue\" is pronounced identically to its first letter, \"Q\" — dropping the silent \"ueue\" changes the spelling but not the sound.",
+			"tags": ["wordplay", "riddle", "generated"]
+		},
+		{
+			"id": "gen-general-113",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "Three identical boxes each hold two coins: Box 1 has two gold coins, Box 2 has two silver coins, and Box 3 has one gold and one silver coin. You pick a box at random and pull out one random coin from it — it turns out to be gold. What is the probability that the OTHER coin in that same box is also gold?",
+			"answer": "2/3",
+			"accepted": ["2/3", "two-thirds", "0.667", "66.7%"],
+			"explanation": "Think in terms of coins, not boxes: there are 3 gold coins overall, each equally likely to be the one you happened to draw — 2 of them sit in the all-gold box, 1 in the mixed box. So given that you drew gold, the odds are 2-to-1 that you're holding a coin from the all-gold box, making the other coin gold with probability 2/3. This is Bertrand's box paradox; the naive answer of 1/2 wrongly ignores that drawing gold is twice as likely to happen from the all-gold box in the first place.",
+			"tags": ["probability", "paradox", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-114",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: on average, people swallow several spiders per year in their sleep without noticing.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "This is a widely repeated piece of internet trivia with no scientific basis. Spiders actively avoid humans and are repelled by the vibrations, warmth, and carbon dioxide of a sleeping person's breathing — entomologists consider it essentially never happening. The claim is believed to have spread precisely as a demonstration of how easily fabricated \"facts\" get repeated as true.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-115",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Roughly how many times does a typical human heart beat over an average 80-year lifetime?",
+			"choices": ["About 300 thousand", "About 30 million", "About 3 billion", "About 300 billion"],
+			"answer": "About 3 billion",
+			"explanation": "At a resting rate of about 70 beats per minute, that's roughly $70 \\times 60 \\times 24 \\times 365 \\approx 3.7\\times10^7$ beats per year, and over 80 years, about $3\\times10^9$ — 3 billion. Most people badly underestimate the cumulative total because the per-minute rate feels so small.",
+			"tags": ["estimation", "biology", "generated"]
+		},
+		{
+			"id": "gen-general-116",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "A rope hangs over a frictionless, massless pulley. A weight hangs from one end, exactly balancing a monkey of identical weight hanging from the other end. The monkey starts climbing the rope, speeding up, slowing down, and even stopping at random. What happens to the weight on the other side while the monkey does this?",
+			"choices": [
+				"The weight always stays exactly level with the monkey, no matter how the monkey speeds up, slows down, or stops",
+				"The weight rises faster than the monkey climbs, since the monkey's pulling adds extra upward force",
+				"The weight stays perfectly still throughout, since its weight exactly balances the monkey's",
+				"The weight falls, since the monkey climbing takes tension off its end of the rope"
+			],
+			"answer": "The weight always stays exactly level with the monkey, no matter how the monkey speeds up, slows down, or stops",
+			"explanation": "Because the monkey and weight have identical mass and the pulley is ideal, Newton's laws force both sides of the rope to accelerate identically at every instant, regardless of exactly how the monkey climbs — so the two always remain at the same height, as if glued together vertically. This is a classic (and surprising) result in introductory mechanics.",
+			"tags": ["physics", "aha", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-117",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A cowboy rode into town on Friday. He stayed in town for exactly three days, then rode back out again on Friday — without breaking any rule of the calendar. How was this possible?",
+			"answer": "His horse is named Friday",
+			"accepted": ["his horse was named friday", "the horse is called friday", "friday is the name of his horse"],
+			"explanation": "\"Friday\" refers to the cowboy's horse, not the day of the week — a classic lateral-thinking riddle that plays on an unstated assumption about what \"Friday\" must mean.",
+			"tags": ["lateral", "riddle", "generated"]
+		},
+		{
+			"id": "gen-general-118",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: the koala is a member of the bear family.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Koalas are marsupials, not bears — they're more closely related to kangaroos and wombats than to any bear species. The name \"koala bear,\" coined by early European settlers because of a passing resemblance, is a misnomer that stuck.",
+			"tags": ["myth-busting", "biology", "naming-trap", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-119",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A patch of lily pads on a pond doubles in size every day. It takes exactly 48 days for the patch to cover the entire pond. On what day was the pond exactly half covered?",
+			"answer": "Day 47",
+			"accepted": ["47", "day 47"],
+			"explanation": "Since the patch doubles every single day, whatever fraction it covers today, it covered exactly half that much yesterday. The day right before full coverage (day 48) must therefore be the half-covered day — day 47, not the intuitively tempting halfway point of day 24.",
+			"tags": ["aha", "exponential-growth", "estimation", "generated"]
+		},
+		{
+			"id": "gen-general-120",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "In Zeno's paradox, Achilles gives a tortoise a head start in a race. By the time Achilles reaches the tortoise's starting point, the tortoise has crawled a little further; by the time he reaches that new point, it has moved further still — seemingly forever. Work out for yourself why Achilles nonetheless catches the tortoise in a perfectly finite amount of time, then reveal one standard resolution and compare.",
+			"answer": "Zeno's argument quietly assumes that infinitely many steps must take infinitely long, but that's false whenever each successive step also takes proportionally less time. Here, the time needed for each leg of the chase shrinks geometrically (say, by the same fixed ratio each time), so the total time is a convergent infinite series — like $1 + \\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\cdots = 2$ — which sums to a finite value despite having infinitely many terms. Calculus formalizes exactly this idea with limits of infinite series, which is why the paradox is a puzzle about intuition rather than an actual proof that motion is impossible.",
+			"explanation": "The resolution hinges on realizing that an infinite number of steps can still sum to a finite total duration, as long as the step durations shrink fast enough — a convergent geometric series.",
+			"tags": ["paradox", "aha", "calculus", "generated"]
+		}
+	]
+}
