@@ -1,0 +1,81 @@
+{
+	"pack": "gen-math-20260921",
+	"exercises": [
+		{
+			"id": "gen-math-135",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A clock takes 6 seconds to strike 6 o'clock, counting from the first strike to the last, with equal gaps between strikes. At that same pace, how many seconds does it take to strike 12 o'clock?",
+			"answer": "13.2",
+			"accepted": ["13.2", "13.2 seconds", "66/5"],
+			"explanation": "6 strikes have only 5 gaps between them, so each gap is $6/5 = 1.2$ seconds. 12 strikes have 11 gaps, so the total time is $11 \\times 1.2 = 13.2$ seconds — not the naive-seeming 12 seconds you'd get by just doubling.",
+			"tags": ["recreational", "aha", "arithmetic-trick", "generated"]
+		},
+		{
+			"id": "gen-math-136",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "A digital clock reads 21:45 (using 24-hour time). How many minutes remain until midnight (00:00)?",
+			"answer": "135",
+			"accepted": ["135", "135 minutes"],
+			"explanation": "From 21:45 to 24:00 is 2 hours 15 minutes, i.e. $2\\times 60 + 15 = 135$ minutes.",
+			"tags": ["arithmetic", "mental-math", "generated"]
+		},
+		{
+			"id": "gen-math-137",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A fair coin is flipped 5 times. What is the probability of getting at least 4 heads?",
+			"choices": ["1/2", "5/32", "3/16", "1/32"],
+			"answer": "3/16",
+			"explanation": "There are $\\binom{5}{4}=5$ ways to get exactly 4 heads and $\\binom{5}{5}=1$ way to get 5 heads, out of $2^5=32$ total outcomes: $(5+1)/32 = 6/32 = 3/16$. The distractor $5/32$ forgets to also count the all-heads case.",
+			"tags": ["probability", "combinatorics", "generated"]
+		},
+		{
+			"id": "gen-math-138",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "The sum of a mother's and daughter's current ages is 66. Six years ago, the mother's age was exactly 5 times the daughter's age. How old is the daughter now?",
+			"answer": "15",
+			"accepted": ["15", "15 years old"],
+			"explanation": "Let $d$ be the daughter's age now, so the mother is $66-d$. Six years ago: $66-d-6 = 5(d-6)$, giving $60-d = 5d-30$, so $90=6d$ and $d=15$ (mother is 51). Check: six years ago they were 45 and 9, and $45 = 5\\times 9$.",
+			"tags": ["algebra", "word-problem", "generated"]
+		},
+		{
+			"id": "gen-math-139",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "An equilateral triangle has a perimeter of 36 cm. What is its area?",
+			"choices": ["$144$ cm²", "$72$ cm²", "$36\\sqrt{3}$ cm²", "$18\\sqrt{3}$ cm²"],
+			"answer": "$36\\sqrt{3}$ cm²",
+			"explanation": "Each side is $36/3 = 12$ cm. An equilateral triangle's area is $\\frac{\\sqrt{3}}{4}s^2 = \\frac{\\sqrt{3}}{4}(144) = 36\\sqrt{3}$ cm² ($\\approx 62.4$ cm²).",
+			"tags": ["geometry", "generated"]
+		},
+		{
+			"id": "gen-math-140",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "The product of two consecutive positive integers is 132. What is their sum?",
+			"answer": "23",
+			"accepted": ["23"],
+			"explanation": "Since $\\sqrt{132}\\approx 11.5$, try integers near it: $11\\times 12 = 132$. Their sum is $11+12=23$.",
+			"tags": ["number-trick", "arithmetic", "generated"]
+		},
+		{
+			"id": "gen-math-141",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "The triangular numbers are $T_n = \\frac{n(n+1)}{2}$ (so $T_1=1, T_2=3, T_3=6, T_4=10,\\dots$). Prove that the sum of any two consecutive triangular numbers, $T_n + T_{n+1}$, is always a perfect square. Then verify your proof numerically using $T_5$ and $T_6$. Work it out, then reveal and compare.",
+			"answer": "$T_n + T_{n+1} = \\frac{n(n+1)}{2} + \\frac{(n+1)(n+2)}{2} = \\frac{(n+1)\\big[n + (n+2)\\big]}{2} = \\frac{(n+1)(2n+2)}{2} = (n+1)(n+1) = (n+1)^2$, which is a perfect square for every $n$. Checking with $n=5$: $T_5=15$, $T_6=21$, and $15+21=36=6^2$, matching $(n+1)^2=6^2$.",
+			"explanation": "Two consecutive triangular numbers correspond geometrically to a square staircase — visually, stacking a size-$n$ triangle of dots against a size-$(n+1)$ triangle of dots tiles exactly into an $(n+1)\\times(n+1)$ square.",
+			"tags": ["recreational", "number-theory", "generated"]
+		}
+	]
+}

@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260921",
+	"exercises": [
+		{
+			"id": "gen-code-091",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this C program print? (Give all three numbers, in order, separated by spaces.)",
+			"code": {
+				"lang": "c",
+				"src": "#include <stdio.h>\n\nint next_id() {\n    static int id = 100;\n    return id++;\n}\n\nint main() {\n    printf(\"%d\\n\", next_id());\n    printf(\"%d\\n\", next_id());\n    printf(\"%d\\n\", next_id());\n    return 0;\n}"
+			},
+			"answer": "100 101 102",
+			"accepted": ["100 101 102", "100, 101, 102"],
+			"explanation": "A `static` local variable is initialized once and keeps its value across calls, unlike an ordinary local which is recreated fresh every time. `id++` returns the old value then increments, so successive calls yield 100, 101, 102.",
+			"tags": ["c", "static", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-092",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "What does this C++ program print? (Give both numbers, in order, separated by a space.)",
+			"code": {
+				"lang": "cpp",
+				"src": "#include <iostream>\n\nint main() {\n    std::cout << -7 / 2 << \" \" << -7 % 2 << std::endl;\n    return 0;\n}"
+			},
+			"answer": "-3 -1",
+			"accepted": ["-3 -1", "-3, -1"],
+			"explanation": "Since C++11, integer division truncates toward zero rather than flooring, so $-7/2 = -3.5$ truncates to $-3$ (not $-4$). The remainder then satisfies $(-3)\\times 2 + r = -7$, so $r=-1$ — negative, matching the sign of the dividend, which surprises developers used to Python's floor-toward-negative-infinity `//`.",
+			"tags": ["cpp", "integer-division", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-093",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "This function is meant to print 'Weekend' exactly once for day 6 (Saturday). What actually happens when `describe(6)` is called, and why?",
+			"code": {
+				"lang": "c",
+				"src": "void describe(int day) {\n    switch (day) {\n        case 6:\n            printf(\"Weekend\\n\");\n        case 7:\n            printf(\"Weekend\\n\");\n            break;\n        default:\n            printf(\"Weekday\\n\");\n    }\n}"
+			},
+			"choices": [
+				"It prints 'Weekend' twice — the `case 6` branch has no `break`, so execution falls through into `case 7`",
+				"It prints 'Weekend' once, exactly as intended, since `day` only matches one case",
+				"It prints 'Weekday', because `default` always runs after any matched case",
+				"It's a compile error, since two cases can't print the same string"
+			],
+			"answer": "It prints 'Weekend' twice — the `case 6` branch has no `break`, so execution falls through into `case 7`",
+			"explanation": "C's `switch` falls through to the next case by default unless a `break` stops it. `case 6` has no `break`, so after printing once it continues straight into `case 7`'s `printf` too, printing 'Weekend' a second time before finally hitting `break`.",
+			"tags": ["c", "switch", "fallthrough", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-094",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the time complexity of `dedupe` as a function of `n = len(items)`, in the worst case (e.g. when every item is already distinct)?",
+			"code": {
+				"lang": "python",
+				"src": "def dedupe(items):\n    result = []\n    for x in items:\n        if x not in result:\n            result.append(x)\n    return result"
+			},
+			"choices": ["O(n)", "O(n log n)", "O(n\u00b2)", "O(2^n)"],
+			"answer": "O(n\u00b2)",
+			"explanation": "There's only one loop, but `x not in result` scans the entire `result` list built so far — which grows to length $n$ in the worst case. Summing $1+2+\\dots+n$ gives $O(n^2)$ total work, a classic 'hidden' quadratic hiding inside code that looks linear at a glance.",
+			"tags": ["python", "complexity", "generated"]
+		},
+		{
+			"id": "gen-code-095",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "For a non-negative integer `n`, what does `mystery(n)` compute?",
+			"code": {
+				"lang": "python",
+				"src": "def mystery(n):\n    count = 0\n    while n:\n        n &= (n - 1)\n        count += 1\n    return count"
+			},
+			"choices": [
+				"The number of 1 bits in n's binary representation",
+				"The position of the lowest set bit in n",
+				"n rounded down to the nearest power of 2",
+				"The number of trailing zero bits in n"
+			],
+			"answer": "The number of 1 bits in n's binary representation",
+			"explanation": "`n & (n - 1)` always clears exactly the lowest set bit of `n` (e.g. `0b1011 & 0b1010 = 0b1010`). The loop runs once per set bit until `n` reaches 0, so `count` ends up counting the 1 bits — this is Brian Kernighan's classic popcount trick.",
+			"tags": ["python", "bitwise", "algorithms", "generated"]
+		}
+	]
+}

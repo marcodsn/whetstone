@@ -1,0 +1,128 @@
+{
+	"pack": "gen-general-20260921",
+	"exercises": [
+		{
+			"id": "gen-general-121",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "I have a neck but no head, and two arms but no hands. What am I?",
+			"answer": "A shirt",
+			"accepted": ["a shirt", "shirt", "a jacket", "jacket"],
+			"explanation": "A shirt's collar is its 'neck' and its sleeves are its 'arms' — purely structural, borrowed terms, no anatomy involved.",
+			"tags": ["riddle", "wordplay", "generated"]
+		},
+		{
+			"id": "gen-general-122",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What's the longest common English word you can type using only the letters on the top row of a QWERTY keyboard (Q W E R T Y U I O P)?",
+			"answer": "typewriter",
+			"accepted": ["typewriter", "TYPEWRITER"],
+			"explanation": "Every letter in \"typewriter\" — T, Y, P, E, W, R, I — sits on the top row of a standard QWERTY layout, which is exactly why the word was chosen to demo typewriters in stores.",
+			"tags": ["wordplay", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-123",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "You're 90 minutes into a bad 3-hour movie at the theater. You're bored and getting a headache, but you think: 'I already paid for the ticket and sat through half of it — I might as well stay and finish it.' What is this reasoning pattern called?",
+			"choices": [
+				"The sunk cost fallacy",
+				"The endowment effect",
+				"Loss aversion",
+				"The anchoring effect"
+			],
+			"answer": "The sunk cost fallacy",
+			"explanation": "The money and time already spent are gone regardless of what you do next, so they shouldn't factor into the decision — only how the remaining 90 minutes compares to your other options. Letting an unrecoverable past cost justify a bad ongoing choice is the sunk cost fallacy.",
+			"tags": ["cognitive-bias", "generated"]
+		},
+		{
+			"id": "gen-general-124",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: ostriches bury their heads in the sand when frightened.",
+			"choices": ["True", "False"],
+			"answer": "False",
+			"explanation": "Ostriches never bury their heads. The myth likely comes from their habit of lying flat with their head and long neck stretched along the ground to appear as a low mound when threatened, or from watching them dip their heads into ground nests to turn their eggs.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-125",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "A teacher announces: 'There will be a surprise test next week, on one weekday (Monday-Friday). You will not be able to deduce the day in advance from this announcement alone — it will still be a surprise on the morning it happens.' A clever student reasons: 'It can't be Friday — if it hadn't happened by Thursday evening, I'd know it must be Friday, which wouldn't be a surprise. So Friday is ruled out. But then Thursday becomes the last possible day, so by the same logic Thursday is ruled out too. Continuing backward, every day gets eliminated — so the test is logically impossible!' And yet, the test happens on, say, Wednesday, and genuinely surprises the student. Work out what's wrong with the student's elimination argument, then reveal and compare.",
+			"answer": "The student's backward-elimination argument seems airtight but quietly assumes that the announcement's truth (a surprise test WILL happen, and it will be a surprise) survives being combined with the student's own chain of deductions — but it doesn't. Each step in the elimination relies on the student trusting all the previous eliminations, yet the argument's own conclusion (\"no day works\") contradicts the announcement's premise (\"a test will happen\"), so the reasoning undermines its own starting assumption partway through. In practice this means the student can never fully trust the elimination chain, so when the test actually happens on, say, Wednesday, it genuinely surprises them — their\" airtight\" proof was never something they could act on with full confidence at each step. This is the unexpected hanging (or surprise exam) paradox, and it remains a genuinely debated problem in epistemic logic with no single universally accepted resolution — the instructive part is seeing exactly where the seemingly valid backward induction quietly breaks down.",
+			"explanation": "The paradox shows that a chain of individually plausible deductions can undermine the very premise it depends on, so the 'proof' that no day works can never be fully trusted by the reasoner living inside it — which is precisely why the surprise still lands.",
+			"tags": ["paradox", "self-reference", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-126",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Roughly what fraction of all the humans who have ever lived, across all of history, are alive right now?",
+			"choices": ["About 0.1%", "About 7%", "About 25%", "About 50%"],
+			"answer": "About 7%",
+			"explanation": "Demographers estimate that around 100-120 billion humans have ever been born, and roughly 8 billion are alive today — about 7% of everyone who has ever lived is alive right now, far higher than most people's gut estimate.",
+			"tags": ["estimation", "trivia", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-127",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which of these is NOT actually a fruit, botanically speaking: tomato, cucumber, avocado, or carrot?",
+			"choices": ["Tomato", "Cucumber", "Avocado", "Carrot"],
+			"answer": "Carrot",
+			"explanation": "Botanically, a fruit develops from a flower's ovary and contains seeds — which covers the tomato, the cucumber, and the avocado (itself a large single-seeded berry). A carrot is a root, with no seed-bearing structure at all, making it the true odd one out even though most people assume the tomato is the trick answer.",
+			"tags": ["naming-trap", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-128",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In traffic-network theory, Braess's paradox describes a counterintuitive result about adding capacity to a road network where drivers each selfishly pick their fastest route. What does it state?",
+			"choices": [
+				"Adding a new road can sometimes increase everyone's average travel time, even though every driver still just picks their fastest available route",
+				"Removing a road always increases travel time for everyone on the network",
+				"More lanes on a highway always proportionally reduce congestion",
+				"Total network travel time is unaffected by how many roads exist, only by the number of drivers"
+			],
+			"answer": "Adding a new road can sometimes increase everyone's average travel time, even though every driver still just picks their fastest available route",
+			"explanation": "When drivers act selfishly, a new shortcut can pull enough traffic onto it that it creates a new bottleneck, worsening the equilibrium for everyone — several real cities have measured shorter commute times after closing, not adding, a road.",
+			"tags": ["paradox", "aha", "game-theory", "generated"]
+		},
+		{
+			"id": "gen-general-129",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 5,
+			"prompt": "Parrondo's paradox is a result from game theory involving two games that each lose money for the player in the long run if played alone. What does the paradox demonstrate you can do with them?",
+			"choices": [
+				"Alternate between the two losing games, using a specific switching pattern, to produce a strategy that wins overall in the long run",
+				"Play them simultaneously to guarantee breaking even, never winning or losing overall",
+				"Combine them to lose money strictly faster than playing either one alone",
+				"Use one game to predict the outcome of the other, though neither becomes profitable"
+			],
+			"answer": "Alternate between the two losing games, using a specific switching pattern, to produce a strategy that wins overall in the long run",
+			"explanation": "Each game is individually a losing proposition, but because the two games interact (typically through a shared, evolving capital or state), switching between them in the right pattern can turn a net loss into a net gain — a genuinely counterintuitive, mathematically verified result, not just a thought experiment.",
+			"tags": ["paradox", "aha", "game-theory", "generated"]
+		},
+		{
+			"id": "gen-general-130",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "At a party, several guests drink from a large bowl of iced punch throughout the evening. Later, everyone who drank the punch falls seriously ill — except one guest, who drank plenty of it early on and is completely fine. Nobody tampered with any individual glass. How did that one guest avoid being poisoned while drinking from the very same bowl as everyone else? Work out an explanation, then reveal and compare.",
+			"answer": "The poison was in the ice cubes, not in the punch itself. Ice takes time to melt, so early in the party the punch was unpoisoned — the one guest who drank a glass right away got punch with still-solid, not-yet-melted ice and escaped unharmed. Everyone who drank later got punch that had been sitting long enough for the poisoned ice to melt and mix in, poisoning their drinks even though it came from the exact same bowl.",
+			"explanation": "The trap is assuming 'same bowl' means 'same drink at every moment' — the ice's slow melt turns a single shared source into a poison that only appears over time, which is why timing, not the glass, determined who was affected.",
+			"tags": ["lateral", "riddle", "generated"]
+		}
+	]
+}

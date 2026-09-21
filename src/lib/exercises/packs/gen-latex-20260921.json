@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260921",
+	"exercises": [
+		{
+			"id": "gen-latex-037",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "What command typesets the product symbol used in $\\prod_{i=1}^{n} a_i$?",
+			"answer": "\\prod",
+			"accepted": ["\\prod", "prod"],
+			"explanation": "`\\prod` is the product counterpart to `\\sum`, and takes the same `_{...}^{...}` limits syntax.",
+			"tags": ["symbols", "generated"]
+		},
+		{
+			"id": "gen-latex-038",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "In LaTeX math mode, which command inserts a small manual space, as conventionally used right before a differential like $\\int f(x)\\,dx$?",
+			"choices": ["\\,", "\\quad", "\\!", "\\ "],
+			"answer": "\\,",
+			"explanation": "`\\,` inserts a thin space — the standard spacing convention before a differential. `\\quad` is a much wider space, `\\!` is a *negative* thin space (pulls things closer together), and a plain backslash-space is an ordinary full interword space, all noticeably too large or wrong-direction for this use.",
+			"tags": ["spacing", "generated"]
+		},
+		{
+			"id": "gen-latex-039",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Write the LaTeX source for the Taylor series of $e^x$, matching this target exactly: $$e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}$$ Then reveal and compare.",
+			"answer": "e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}",
+			"explanation": "Combines `\\sum` with `_{n=0}^{\\infty}` limits and a `\\frac{x^n}{n!}` term — the same pattern used for any infinite-series formula.",
+			"tags": ["writing", "sum", "generated"]
+		}
+	]
+}

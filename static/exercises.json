@@ -2674,6 +2674,127 @@
 		]
 	},
 	{
+		"id": "gen-code-091",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What does this C program print? (Give all three numbers, in order, separated by spaces.)",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint next_id() {\n    static int id = 100;\n    return id++;\n}\n\nint main() {\n    printf(\"%d\\n\", next_id());\n    printf(\"%d\\n\", next_id());\n    printf(\"%d\\n\", next_id());\n    return 0;\n}"
+		},
+		"answer": "100 101 102",
+		"accepted": [
+			"100 101 102",
+			"100, 101, 102"
+		],
+		"explanation": "A `static` local variable is initialized once and keeps its value across calls, unlike an ordinary local which is recreated fresh every time. `id++` returns the old value then increments, so successive calls yield 100, 101, 102.",
+		"tags": [
+			"c",
+			"static",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-092",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this C++ program print? (Give both numbers, in order, separated by a space.)",
+		"code": {
+			"lang": "cpp",
+			"src": "#include <iostream>\n\nint main() {\n    std::cout << -7 / 2 << \" \" << -7 % 2 << std::endl;\n    return 0;\n}"
+		},
+		"answer": "-3 -1",
+		"accepted": [
+			"-3 -1",
+			"-3, -1"
+		],
+		"explanation": "Since C++11, integer division truncates toward zero rather than flooring, so $-7/2 = -3.5$ truncates to $-3$ (not $-4$). The remainder then satisfies $(-3)\\times 2 + r = -7$, so $r=-1$ — negative, matching the sign of the dividend, which surprises developers used to Python's floor-toward-negative-infinity `//`.",
+		"tags": [
+			"cpp",
+			"integer-division",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-093",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This function is meant to print 'Weekend' exactly once for day 6 (Saturday). What actually happens when `describe(6)` is called, and why?",
+		"code": {
+			"lang": "c",
+			"src": "void describe(int day) {\n    switch (day) {\n        case 6:\n            printf(\"Weekend\\n\");\n        case 7:\n            printf(\"Weekend\\n\");\n            break;\n        default:\n            printf(\"Weekday\\n\");\n    }\n}"
+		},
+		"choices": [
+			"It prints 'Weekend' twice — the `case 6` branch has no `break`, so execution falls through into `case 7`",
+			"It prints 'Weekend' once, exactly as intended, since `day` only matches one case",
+			"It prints 'Weekday', because `default` always runs after any matched case",
+			"It's a compile error, since two cases can't print the same string"
+		],
+		"answer": "It prints 'Weekend' twice — the `case 6` branch has no `break`, so execution falls through into `case 7`",
+		"explanation": "C's `switch` falls through to the next case by default unless a `break` stops it. `case 6` has no `break`, so after printing once it continues straight into `case 7`'s `printf` too, printing 'Weekend' a second time before finally hitting `break`.",
+		"tags": [
+			"c",
+			"switch",
+			"fallthrough",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-094",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `dedupe` as a function of `n = len(items)`, in the worst case (e.g. when every item is already distinct)?",
+		"code": {
+			"lang": "python",
+			"src": "def dedupe(items):\n    result = []\n    for x in items:\n        if x not in result:\n            result.append(x)\n    return result"
+		},
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n²)",
+			"O(2^n)"
+		],
+		"answer": "O(n²)",
+		"explanation": "There's only one loop, but `x not in result` scans the entire `result` list built so far — which grows to length $n$ in the worst case. Summing $1+2+\\dots+n$ gives $O(n^2)$ total work, a classic 'hidden' quadratic hiding inside code that looks linear at a glance.",
+		"tags": [
+			"python",
+			"complexity",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-095",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "For a non-negative integer `n`, what does `mystery(n)` compute?",
+		"code": {
+			"lang": "python",
+			"src": "def mystery(n):\n    count = 0\n    while n:\n        n &= (n - 1)\n        count += 1\n    return count"
+		},
+		"choices": [
+			"The number of 1 bits in n's binary representation",
+			"The position of the lowest set bit in n",
+			"n rounded down to the nearest power of 2",
+			"The number of trailing zero bits in n"
+		],
+		"answer": "The number of 1 bits in n's binary representation",
+		"explanation": "`n & (n - 1)` always clears exactly the lowest set bit of `n` (e.g. `0b1011 & 0b1010 = 0b1010`). The loop runs once per set bit until `n` reaches 0, so `count` ends up counting the 1 bits — this is Brian Kernighan's classic popcount trick.",
+		"tags": [
+			"python",
+			"bitwise",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -4972,6 +5093,195 @@
 		]
 	},
 	{
+		"id": "gen-general-121",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "I have a neck but no head, and two arms but no hands. What am I?",
+		"answer": "A shirt",
+		"accepted": [
+			"a shirt",
+			"shirt",
+			"a jacket",
+			"jacket"
+		],
+		"explanation": "A shirt's collar is its 'neck' and its sleeves are its 'arms' — purely structural, borrowed terms, no anatomy involved.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-122",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What's the longest common English word you can type using only the letters on the top row of a QWERTY keyboard (Q W E R T Y U I O P)?",
+		"answer": "typewriter",
+		"accepted": [
+			"typewriter",
+			"TYPEWRITER"
+		],
+		"explanation": "Every letter in \"typewriter\" — T, Y, P, E, W, R, I — sits on the top row of a standard QWERTY layout, which is exactly why the word was chosen to demo typewriters in stores.",
+		"tags": [
+			"wordplay",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-123",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You're 90 minutes into a bad 3-hour movie at the theater. You're bored and getting a headache, but you think: 'I already paid for the ticket and sat through half of it — I might as well stay and finish it.' What is this reasoning pattern called?",
+		"choices": [
+			"The sunk cost fallacy",
+			"The endowment effect",
+			"Loss aversion",
+			"The anchoring effect"
+		],
+		"answer": "The sunk cost fallacy",
+		"explanation": "The money and time already spent are gone regardless of what you do next, so they shouldn't factor into the decision — only how the remaining 90 minutes compares to your other options. Letting an unrecoverable past cost justify a bad ongoing choice is the sunk cost fallacy.",
+		"tags": [
+			"cognitive-bias",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-124",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: ostriches bury their heads in the sand when frightened.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Ostriches never bury their heads. The myth likely comes from their habit of lying flat with their head and long neck stretched along the ground to appear as a low mound when threatened, or from watching them dip their heads into ground nests to turn their eggs.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-125",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "A teacher announces: 'There will be a surprise test next week, on one weekday (Monday-Friday). You will not be able to deduce the day in advance from this announcement alone — it will still be a surprise on the morning it happens.' A clever student reasons: 'It can't be Friday — if it hadn't happened by Thursday evening, I'd know it must be Friday, which wouldn't be a surprise. So Friday is ruled out. But then Thursday becomes the last possible day, so by the same logic Thursday is ruled out too. Continuing backward, every day gets eliminated — so the test is logically impossible!' And yet, the test happens on, say, Wednesday, and genuinely surprises the student. Work out what's wrong with the student's elimination argument, then reveal and compare.",
+		"answer": "The student's backward-elimination argument seems airtight but quietly assumes that the announcement's truth (a surprise test WILL happen, and it will be a surprise) survives being combined with the student's own chain of deductions — but it doesn't. Each step in the elimination relies on the student trusting all the previous eliminations, yet the argument's own conclusion (\"no day works\") contradicts the announcement's premise (\"a test will happen\"), so the reasoning undermines its own starting assumption partway through. In practice this means the student can never fully trust the elimination chain, so when the test actually happens on, say, Wednesday, it genuinely surprises them — their\" airtight\" proof was never something they could act on with full confidence at each step. This is the unexpected hanging (or surprise exam) paradox, and it remains a genuinely debated problem in epistemic logic with no single universally accepted resolution — the instructive part is seeing exactly where the seemingly valid backward induction quietly breaks down.",
+		"explanation": "The paradox shows that a chain of individually plausible deductions can undermine the very premise it depends on, so the 'proof' that no day works can never be fully trusted by the reasoner living inside it — which is precisely why the surprise still lands.",
+		"tags": [
+			"paradox",
+			"self-reference",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-126",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly what fraction of all the humans who have ever lived, across all of history, are alive right now?",
+		"choices": [
+			"About 0.1%",
+			"About 7%",
+			"About 25%",
+			"About 50%"
+		],
+		"answer": "About 7%",
+		"explanation": "Demographers estimate that around 100-120 billion humans have ever been born, and roughly 8 billion are alive today — about 7% of everyone who has ever lived is alive right now, far higher than most people's gut estimate.",
+		"tags": [
+			"estimation",
+			"trivia",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-127",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which of these is NOT actually a fruit, botanically speaking: tomato, cucumber, avocado, or carrot?",
+		"choices": [
+			"Tomato",
+			"Cucumber",
+			"Avocado",
+			"Carrot"
+		],
+		"answer": "Carrot",
+		"explanation": "Botanically, a fruit develops from a flower's ovary and contains seeds — which covers the tomato, the cucumber, and the avocado (itself a large single-seeded berry). A carrot is a root, with no seed-bearing structure at all, making it the true odd one out even though most people assume the tomato is the trick answer.",
+		"tags": [
+			"naming-trap",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-128",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In traffic-network theory, Braess's paradox describes a counterintuitive result about adding capacity to a road network where drivers each selfishly pick their fastest route. What does it state?",
+		"choices": [
+			"Adding a new road can sometimes increase everyone's average travel time, even though every driver still just picks their fastest available route",
+			"Removing a road always increases travel time for everyone on the network",
+			"More lanes on a highway always proportionally reduce congestion",
+			"Total network travel time is unaffected by how many roads exist, only by the number of drivers"
+		],
+		"answer": "Adding a new road can sometimes increase everyone's average travel time, even though every driver still just picks their fastest available route",
+		"explanation": "When drivers act selfishly, a new shortcut can pull enough traffic onto it that it creates a new bottleneck, worsening the equilibrium for everyone — several real cities have measured shorter commute times after closing, not adding, a road.",
+		"tags": [
+			"paradox",
+			"aha",
+			"game-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-129",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Parrondo's paradox is a result from game theory involving two games that each lose money for the player in the long run if played alone. What does the paradox demonstrate you can do with them?",
+		"choices": [
+			"Alternate between the two losing games, using a specific switching pattern, to produce a strategy that wins overall in the long run",
+			"Play them simultaneously to guarantee breaking even, never winning or losing overall",
+			"Combine them to lose money strictly faster than playing either one alone",
+			"Use one game to predict the outcome of the other, though neither becomes profitable"
+		],
+		"answer": "Alternate between the two losing games, using a specific switching pattern, to produce a strategy that wins overall in the long run",
+		"explanation": "Each game is individually a losing proposition, but because the two games interact (typically through a shared, evolving capital or state), switching between them in the right pattern can turn a net loss into a net gain — a genuinely counterintuitive, mathematically verified result, not just a thought experiment.",
+		"tags": [
+			"paradox",
+			"aha",
+			"game-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-130",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "At a party, several guests drink from a large bowl of iced punch throughout the evening. Later, everyone who drank the punch falls seriously ill — except one guest, who drank plenty of it early on and is completely fine. Nobody tampered with any individual glass. How did that one guest avoid being poisoned while drinking from the very same bowl as everyone else? Work out an explanation, then reveal and compare.",
+		"answer": "The poison was in the ice cubes, not in the punch itself. Ice takes time to melt, so early in the party the punch was unpoisoned — the one guest who drank a glass right away got punch with still-solid, not-yet-melted ice and escaped unharmed. Everyone who drank later got punch that had been sitting long enough for the poisoned ice to melt and mix in, poisoning their drinks even though it came from the exact same bowl.",
+		"explanation": "The trap is assuming 'same bowl' means 'same drink at every moment' — the ice's slow melt turns a single shared source into a poison that only appears over time, which is why timing, not the glass, determined who was affected.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -5618,6 +5928,56 @@
 		"tags": [
 			"writing",
 			"arrows",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-037",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What command typesets the product symbol used in $\\prod_{i=1}^{n} a_i$?",
+		"answer": "\\prod",
+		"accepted": [
+			"\\prod",
+			"prod"
+		],
+		"explanation": "`\\prod` is the product counterpart to `\\sum`, and takes the same `_{...}^{...}` limits syntax.",
+		"tags": [
+			"symbols",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-038",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "In LaTeX math mode, which command inserts a small manual space, as conventionally used right before a differential like $\\int f(x)\\,dx$?",
+		"choices": [
+			"\\,",
+			"\\quad",
+			"\\!",
+			"\\ "
+		],
+		"answer": "\\,",
+		"explanation": "`\\,` inserts a thin space — the standard spacing convention before a differential. `\\quad` is a much wider space, `\\!` is a *negative* thin space (pulls things closer together), and a plain backslash-space is an ordinary full interword space, all noticeably too large or wrong-direction for this use.",
+		"tags": [
+			"spacing",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-039",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the Taylor series of $e^x$, matching this target exactly: $$e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}$$ Then reveal and compare.",
+		"answer": "e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}",
+		"explanation": "Combines `\\sum` with `_{n=0}^{\\infty}` limits and a `\\frac{x^n}{n!}` term — the same pattern used for any infinite-series formula.",
+		"tags": [
+			"writing",
+			"sum",
 			"generated"
 		]
 	},
@@ -7290,6 +7650,111 @@
 		"tags": [
 			"sequences",
 			"pattern-recognition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-089",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Three missionaries and three cannibals must cross a river using a single boat that holds at most two people. If, on either bank (or in the boat), cannibals ever outnumber missionaries while at least one missionary is present, the missionaries get eaten. The boat cannot cross empty (someone must row it). Find a sequence of crossings that gets everyone across safely, then reveal and compare.",
+		"answer": "An 11-crossing solution: (1) two cannibals cross; (2) one cannibal returns; (3) two cannibals cross; (4) one cannibal returns; (5) two missionaries cross; (6) one missionary and one cannibal return; (7) two missionaries cross; (8) one cannibal returns; (9) two cannibals cross; (10) one cannibal returns; (11) two cannibals cross. At every intermediate step, missionaries are never outnumbered on either bank.",
+		"explanation": "The key insight is that cannibals must do most of the 'ferrying' work early and late, while the missionaries can only move in a pair once the far bank is safe (all-cannibal) to receive them — bringing a missionary across too early strands them outnumbered.",
+		"tags": [
+			"river-crossing",
+			"constraint-puzzle",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-090",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which logical connective between two statements $P$ and $Q$ is true exactly when $P$ and $Q$ have the same truth value — both true or both false?",
+		"choices": [
+			"Biconditional ($P \\leftrightarrow Q$)",
+			"Exclusive or ($P \\oplus Q$)",
+			"Conditional ($P \\to Q$)",
+			"Conjunction ($P \\land Q$)"
+		],
+		"answer": "Biconditional ($P \\leftrightarrow Q$)",
+		"explanation": "The biconditional ('if and only if') is true precisely when both sides agree; exclusive or is true precisely when they disagree — its exact opposite.",
+		"tags": [
+			"propositional",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-091",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "There are 366 possible birthdays in a year (including February 29). In a room of 367 people, is it guaranteed — with certainty, not just high probability — that at least two of them share the exact same birthday (month and day)?",
+		"choices": [
+			"Yes — guaranteed by the pigeonhole principle",
+			"No — it's extremely likely, but not strictly guaranteed",
+			"Only if the room has at least 400 people",
+			"It depends on which year it is"
+		],
+		"answer": "Yes — guaranteed by the pigeonhole principle",
+		"explanation": "With only 366 possible birthdays, 367 people can't each get a unique one — at least two must share a slot. This is the pigeonhole principle: a guarantee, unlike the probabilistic 'birthday paradox' (which needs only 23 people for better-than-even odds of a match, but no certainty).",
+		"tags": [
+			"deduction",
+			"pigeonhole",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-092",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "41 people stand in a circle, numbered 1 through 41. Starting at person 1, go around eliminating every 2nd remaining person (so person 2 is eliminated first, then person 4, then person 6, and so on, wrapping around the shrinking circle). Continue until only one person remains. What is that person's number?",
+		"answer": "19",
+		"accepted": [
+			"19"
+		],
+		"explanation": "This is the Josephus problem with $k=2$. Writing $n = 2^m + \\ell$ (the largest power of 2 not exceeding $n$, plus a remainder), the survivor's position is $2\\ell+1$. Here $41 = 32 + 9$, so the survivor is $2(9)+1 = 19$.",
+		"tags": [
+			"josephus",
+			"elimination",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-093",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 5,
+		"prompt": "In a three-way duel ('truel'), A hits their target 1 time in 3, B hits 2 times in 3, and C never misses. They fire in turn, in the order A, B, C, repeating, and may choose who to shoot at; a hit player is eliminated and skipped in future turns. Everyone plays optimally to maximize their own chance of being the last one standing, and A is allowed to deliberately fire into the air instead of at a rival. A shoots first. What should A do, and why is it better than shooting at B or C? Work out your reasoning, then reveal and compare.",
+		"answer": "A's best move is to deliberately fire into the air (miss on purpose). If A instead hits B, then only A and C remain with C to shoot next — and C never misses, so A is dead. If A instead hits C, then only A and B remain with B to shoot next, and B hits 2 times in 3 — still bad odds for A. But if A fires into the air, it's now B's turn with both rivals alive; B and C are each other's biggest threat (not A, the weakest shooter), so they'll shoot at each other, and A gets to keep surviving as the fight thins out ahead of him. Counterintuitively, the worst shooter benefits from not shooting at all on his turn.",
+		"explanation": "This is a classic result in game theory solved by backward induction: being the weakest player is itself a kind of protection, since the stronger players' rational move is to eliminate each other before either bothers with the weakest threat.",
+		"tags": [
+			"game-theory",
+			"backward-induction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-094",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In the classic 15-puzzle (a 4x4 sliding tray with tiles 1-15 and one blank), suppose you start from the solved arrangement and then physically lift out and swap just the tiles labeled 14 and 15, leaving everything else — including the blank — untouched. Using only legal slides, can you always restore the puzzle to its original solved order?",
+		"choices": [
+			"No — swapping any two tiles changes the permutation's parity, and legal slides can never change that parity, so it's provably impossible",
+			"Yes — with enough patient sliding, any arrangement can eventually be restored to solved order",
+			"It depends on where you start sliding from first",
+			"Only if you're also allowed to lift and rotate the whole tray"
+		],
+		"answer": "No — swapping any two tiles changes the permutation's parity, and legal slides can never change that parity, so it's provably impossible",
+		"explanation": "A single tile swap is one transposition — an odd permutation. It's a proven theorem (Johnson & Story, 1879) that every legal slide preserves the parity of the tile permutation relative to the blank's position, so an odd permutation with the blank back in its starting spot can never be reached. This is the basis of Sam Loyd's famous 'unsolvable 14-15 puzzle.'",
+		"tags": [
+			"invariant",
+			"parity",
+			"aha",
 			"generated"
 		]
 	},
@@ -9793,6 +10258,132 @@
 			"number-theory",
 			"divisibility",
 			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-135",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A clock takes 6 seconds to strike 6 o'clock, counting from the first strike to the last, with equal gaps between strikes. At that same pace, how many seconds does it take to strike 12 o'clock?",
+		"answer": "13.2",
+		"accepted": [
+			"13.2",
+			"13.2 seconds",
+			"66/5"
+		],
+		"explanation": "6 strikes have only 5 gaps between them, so each gap is $6/5 = 1.2$ seconds. 12 strikes have 11 gaps, so the total time is $11 \\times 1.2 = 13.2$ seconds — not the naive-seeming 12 seconds you'd get by just doubling.",
+		"tags": [
+			"recreational",
+			"aha",
+			"arithmetic-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-136",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A digital clock reads 21:45 (using 24-hour time). How many minutes remain until midnight (00:00)?",
+		"answer": "135",
+		"accepted": [
+			"135",
+			"135 minutes"
+		],
+		"explanation": "From 21:45 to 24:00 is 2 hours 15 minutes, i.e. $2\\times 60 + 15 = 135$ minutes.",
+		"tags": [
+			"arithmetic",
+			"mental-math",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-137",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A fair coin is flipped 5 times. What is the probability of getting at least 4 heads?",
+		"choices": [
+			"1/2",
+			"5/32",
+			"3/16",
+			"1/32"
+		],
+		"answer": "3/16",
+		"explanation": "There are $\\binom{5}{4}=5$ ways to get exactly 4 heads and $\\binom{5}{5}=1$ way to get 5 heads, out of $2^5=32$ total outcomes: $(5+1)/32 = 6/32 = 3/16$. The distractor $5/32$ forgets to also count the all-heads case.",
+		"tags": [
+			"probability",
+			"combinatorics",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-138",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "The sum of a mother's and daughter's current ages is 66. Six years ago, the mother's age was exactly 5 times the daughter's age. How old is the daughter now?",
+		"answer": "15",
+		"accepted": [
+			"15",
+			"15 years old"
+		],
+		"explanation": "Let $d$ be the daughter's age now, so the mother is $66-d$. Six years ago: $66-d-6 = 5(d-6)$, giving $60-d = 5d-30$, so $90=6d$ and $d=15$ (mother is 51). Check: six years ago they were 45 and 9, and $45 = 5\\times 9$.",
+		"tags": [
+			"algebra",
+			"word-problem",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-139",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "An equilateral triangle has a perimeter of 36 cm. What is its area?",
+		"choices": [
+			"$144$ cm²",
+			"$72$ cm²",
+			"$36\\sqrt{3}$ cm²",
+			"$18\\sqrt{3}$ cm²"
+		],
+		"answer": "$36\\sqrt{3}$ cm²",
+		"explanation": "Each side is $36/3 = 12$ cm. An equilateral triangle's area is $\\frac{\\sqrt{3}}{4}s^2 = \\frac{\\sqrt{3}}{4}(144) = 36\\sqrt{3}$ cm² ($\\approx 62.4$ cm²).",
+		"tags": [
+			"geometry",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-140",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "The product of two consecutive positive integers is 132. What is their sum?",
+		"answer": "23",
+		"accepted": [
+			"23"
+		],
+		"explanation": "Since $\\sqrt{132}\\approx 11.5$, try integers near it: $11\\times 12 = 132$. Their sum is $11+12=23$.",
+		"tags": [
+			"number-trick",
+			"arithmetic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-141",
+		"domain": "math",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "The triangular numbers are $T_n = \\frac{n(n+1)}{2}$ (so $T_1=1, T_2=3, T_3=6, T_4=10,\\dots$). Prove that the sum of any two consecutive triangular numbers, $T_n + T_{n+1}$, is always a perfect square. Then verify your proof numerically using $T_5$ and $T_6$. Work it out, then reveal and compare.",
+		"answer": "$T_n + T_{n+1} = \\frac{n(n+1)}{2} + \\frac{(n+1)(n+2)}{2} = \\frac{(n+1)\\big[n + (n+2)\\big]}{2} = \\frac{(n+1)(2n+2)}{2} = (n+1)(n+1) = (n+1)^2$, which is a perfect square for every $n$. Checking with $n=5$: $T_5=15$, $T_6=21$, and $15+21=36=6^2$, matching $(n+1)^2=6^2$.",
+		"explanation": "Two consecutive triangular numbers correspond geometrically to a square staircase — visually, stacking a size-$n$ triangle of dots against a size-$(n+1)$ triangle of dots tiles exactly into an $(n+1)\\times(n+1)$ square.",
+		"tags": [
+			"recreational",
+			"number-theory",
 			"generated"
 		]
 	},

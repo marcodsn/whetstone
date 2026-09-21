@@ -1,0 +1,84 @@
+{
+	"pack": "gen-logic-20260921",
+	"exercises": [
+		{
+			"id": "gen-logic-089",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Three missionaries and three cannibals must cross a river using a single boat that holds at most two people. If, on either bank (or in the boat), cannibals ever outnumber missionaries while at least one missionary is present, the missionaries get eaten. The boat cannot cross empty (someone must row it). Find a sequence of crossings that gets everyone across safely, then reveal and compare.",
+			"answer": "An 11-crossing solution: (1) two cannibals cross; (2) one cannibal returns; (3) two cannibals cross; (4) one cannibal returns; (5) two missionaries cross; (6) one missionary and one cannibal return; (7) two missionaries cross; (8) one cannibal returns; (9) two cannibals cross; (10) one cannibal returns; (11) two cannibals cross. At every intermediate step, missionaries are never outnumbered on either bank.",
+			"explanation": "The key insight is that cannibals must do most of the 'ferrying' work early and late, while the missionaries can only move in a pair once the far bank is safe (all-cannibal) to receive them — bringing a missionary across too early strands them outnumbered.",
+			"tags": ["river-crossing", "constraint-puzzle", "generated"]
+		},
+		{
+			"id": "gen-logic-090",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "Which logical connective between two statements $P$ and $Q$ is true exactly when $P$ and $Q$ have the same truth value — both true or both false?",
+			"choices": [
+				"Biconditional ($P \\leftrightarrow Q$)",
+				"Exclusive or ($P \\oplus Q$)",
+				"Conditional ($P \\to Q$)",
+				"Conjunction ($P \\land Q$)"
+			],
+			"answer": "Biconditional ($P \\leftrightarrow Q$)",
+			"explanation": "The biconditional ('if and only if') is true precisely when both sides agree; exclusive or is true precisely when they disagree — its exact opposite.",
+			"tags": ["propositional", "generated"]
+		},
+		{
+			"id": "gen-logic-091",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 1,
+			"prompt": "There are 366 possible birthdays in a year (including February 29). In a room of 367 people, is it guaranteed — with certainty, not just high probability — that at least two of them share the exact same birthday (month and day)?",
+			"choices": [
+				"Yes — guaranteed by the pigeonhole principle",
+				"No — it's extremely likely, but not strictly guaranteed",
+				"Only if the room has at least 400 people",
+				"It depends on which year it is"
+			],
+			"answer": "Yes — guaranteed by the pigeonhole principle",
+			"explanation": "With only 366 possible birthdays, 367 people can't each get a unique one — at least two must share a slot. This is the pigeonhole principle: a guarantee, unlike the probabilistic 'birthday paradox' (which needs only 23 people for better-than-even odds of a match, but no certainty).",
+			"tags": ["deduction", "pigeonhole", "generated"]
+		},
+		{
+			"id": "gen-logic-092",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 4,
+			"prompt": "41 people stand in a circle, numbered 1 through 41. Starting at person 1, go around eliminating every 2nd remaining person (so person 2 is eliminated first, then person 4, then person 6, and so on, wrapping around the shrinking circle). Continue until only one person remains. What is that person's number?",
+			"answer": "19",
+			"accepted": ["19"],
+			"explanation": "This is the Josephus problem with $k=2$. Writing $n = 2^m + \\ell$ (the largest power of 2 not exceeding $n$, plus a remainder), the survivor's position is $2\\ell+1$. Here $41 = 32 + 9$, so the survivor is $2(9)+1 = 19$.",
+			"tags": ["josephus", "elimination", "generated"]
+		},
+		{
+			"id": "gen-logic-093",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 5,
+			"prompt": "In a three-way duel ('truel'), A hits their target 1 time in 3, B hits 2 times in 3, and C never misses. They fire in turn, in the order A, B, C, repeating, and may choose who to shoot at; a hit player is eliminated and skipped in future turns. Everyone plays optimally to maximize their own chance of being the last one standing, and A is allowed to deliberately fire into the air instead of at a rival. A shoots first. What should A do, and why is it better than shooting at B or C? Work out your reasoning, then reveal and compare.",
+			"answer": "A's best move is to deliberately fire into the air (miss on purpose). If A instead hits B, then only A and C remain with C to shoot next — and C never misses, so A is dead. If A instead hits C, then only A and B remain with B to shoot next, and B hits 2 times in 3 — still bad odds for A. But if A fires into the air, it's now B's turn with both rivals alive; B and C are each other's biggest threat (not A, the weakest shooter), so they'll shoot at each other, and A gets to keep surviving as the fight thins out ahead of him. Counterintuitively, the worst shooter benefits from not shooting at all on his turn.",
+			"explanation": "This is a classic result in game theory solved by backward induction: being the weakest player is itself a kind of protection, since the stronger players' rational move is to eliminate each other before either bothers with the weakest threat.",
+			"tags": ["game-theory", "backward-induction", "generated"]
+		},
+		{
+			"id": "gen-logic-094",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "In the classic 15-puzzle (a 4x4 sliding tray with tiles 1-15 and one blank), suppose you start from the solved arrangement and then physically lift out and swap just the tiles labeled 14 and 15, leaving everything else — including the blank — untouched. Using only legal slides, can you always restore the puzzle to its original solved order?",
+			"choices": [
+				"No — swapping any two tiles changes the permutation's parity, and legal slides can never change that parity, so it's provably impossible",
+				"Yes — with enough patient sliding, any arrangement can eventually be restored to solved order",
+				"It depends on where you start sliding from first",
+				"Only if you're also allowed to lift and rotate the whole tray"
+			],
+			"answer": "No — swapping any two tiles changes the permutation's parity, and legal slides can never change that parity, so it's provably impossible",
+			"explanation": "A single tile swap is one transposition — an odd permutation. It's a proven theorem (Johnson & Story, 1879) that every legal slide preserves the parity of the tile permutation relative to the blank's position, so an odd permutation with the blank back in its starting spot can never be reached. This is the basis of Sam Loyd's famous 'unsolvable 14-15 puzzle.'",
+			"tags": ["invariant", "parity", "aha", "generated"]
+		}
+	]
+}
