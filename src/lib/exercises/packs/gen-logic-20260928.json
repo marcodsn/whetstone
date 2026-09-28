@@ -1,0 +1,80 @@
+{
+	"pack": "gen-logic-20260928",
+	"exercises": [
+		{
+			"id": "gen-logic-095",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "A simple substitution cipher shifts every letter 3 positions later in the alphabet (A→D, B→E, ..., wrapping so X→A, Y→B, Z→C). Under this cipher, what does the word 'CAT' encrypt to?",
+			"choices": ["FDW", "ECV", "GEX", "ZXQ"],
+			"answer": "FDW",
+			"explanation": "Shift each letter forward by 3: C→F, A→D, T→W, giving 'FDW'. This is the classic Caesar cipher.",
+			"tags": ["cipher", "pattern-recognition", "generated"]
+		},
+		{
+			"id": "gen-logic-096",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A comedian jokes: 'Nothing is better than true love. But a ham sandwich is better than nothing. Therefore, a ham sandwich is better than true love.' What logical flaw makes this argument fall apart despite each step sounding plausible?",
+			"choices": [
+				"Equivocation — 'nothing' shifts meaning between 'no single thing' and 'the absence of anything'",
+				"Circular reasoning — the conclusion just restates the first premise",
+				"False dilemma — the argument wrongly assumes only two options exist",
+				"Ad hominem — the argument attacks true love itself rather than a claim about it"
+			],
+			"answer": "Equivocation — 'nothing' shifts meaning between 'no single thing' and 'the absence of anything'",
+			"explanation": "The first 'nothing' means 'no single thing is better than true love'; the second treats 'nothing' as an actual thing you can compare a sandwich to. Swapping meanings of the same word mid-argument is equivocation.",
+			"tags": ["fallacy", "equivocation", "informal-logic", "generated"]
+		},
+		{
+			"id": "gen-logic-097",
+			"domain": "logic",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Which of these four words does NOT belong with the other three, and why: LISTEN, SILENT, ENLIST, INSULT?",
+			"answer": "INSULT",
+			"accepted": ["INSULT", "insult"],
+			"explanation": "LISTEN, SILENT, and ENLIST are all anagrams of each other (same six letters: L, I, S, T, E, N). INSULT swaps that E for a U, so it isn't an anagram of the rest.",
+			"tags": ["wordplay", "pattern-recognition", "deduction", "generated"]
+		},
+		{
+			"id": "gen-logic-098",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Two players alternate flipping a fair coin (Player A flips first); whoever flips heads first wins immediately. What is the probability that Player A wins?",
+			"choices": ["1/2", "2/3", "3/4", "1/3"],
+			"answer": "2/3",
+			"explanation": "If $p$ is A's win probability: A wins immediately with probability $1/2$; otherwise (both flip tails, probability $1/4$) the game resets with A to move again. So $p = \\tfrac12 + \\tfrac14 p$, giving $p = \\tfrac23$ — going first is worth more than a naive 50/50 guess.",
+			"tags": ["game-theory", "probability", "strategy", "generated"]
+		},
+		{
+			"id": "gen-logic-099",
+			"domain": "logic",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Consider the statement: 'If a triangle has four sides, then it is a hexagon.' Since no triangle actually has four sides, how should this conditional statement be classified?",
+			"choices": [
+				"Vacuously true — a conditional with a false antecedent is true no matter what the consequent says",
+				"False — a hexagon has six sides, not four, so the statement is simply wrong",
+				"Meaningless — statements about impossible things have no truth value",
+				"A contradiction — the statement asserts something that can never happen"
+			],
+			"answer": "Vacuously true — a conditional with a false antecedent is true no matter what the consequent says",
+			"explanation": "In classical logic, 'if P then Q' is only false when P is true and Q is false. Since 'a triangle has four sides' is always false, the whole conditional is automatically true — vacuously, since it's never actually put to the test.",
+			"tags": ["propositional-logic", "conditionals", "vacuous-truth", "generated"]
+		},
+		{
+			"id": "gen-logic-100",
+			"domain": "logic",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "I'm thinking of a whole number between 1 and 1000 (inclusive). You may ask me yes/no questions, and I'll always answer truthfully. What is the minimum number of questions that GUARANTEES you can identify my number, and what strategy achieves it? Work it out, then reveal and compare.",
+			"answer": "10 questions, using binary search: each question ('is it greater than the midpoint of the remaining range?') splits the remaining possibilities roughly in half. Since $2^9 = 512 < 1000 \\le 1024 = 2^{10}$, 9 questions can distinguish at most 512 numbers (not enough), but 10 questions can distinguish up to 1024 — enough to pin down any number from 1 to 1000.",
+			"explanation": "Each yes/no answer carries at most 1 bit of information, so you need at least $\\lceil \\log_2 1000 \\rceil = 10$ questions — and binary search achieves exactly that bound.",
+			"tags": ["strategy", "binary-search", "information-theory", "generated"]
+		}
+	]
+}

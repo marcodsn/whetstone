@@ -1,0 +1,90 @@
+{
+	"pack": "gen-code-20260928",
+	"exercises": [
+		{
+			"id": "gen-code-096",
+			"domain": "code",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What does this Python print?",
+			"code": {
+				"lang": "python",
+				"src": "s = \"hello\"\nprint(s[::-1][1:3])"
+			},
+			"answer": "ll",
+			"accepted": ["ll"],
+			"explanation": "`s[::-1]` reverses the string to `\"olleh\"`; slicing that with `[1:3]` takes the characters at indices 1 and 2, which are both `'l'`.",
+			"tags": ["python", "strings", "slicing", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-097",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What does this JavaScript print?",
+			"code": {
+				"lang": "javascript",
+				"src": "console.log([1, [2, [3, [4]]]].flat());"
+			},
+			"choices": ["[1, 2, 3, 4]", "[1, 2, [3, [4]]]", "[1, [2, [3, [4]]]]", "[[1], 2, [3, [4]]]"],
+			"answer": "[1, 2, [3, [4]]]",
+			"explanation": "`Array.prototype.flat()` defaults to depth 1: it only flattens the outermost level of nesting, so the inner `[3, [4]]` stays nested. You'd need `.flat(Infinity)` to fully flatten every level.",
+			"tags": ["javascript", "arrays", "flat", "predict-output", "generated"]
+		},
+		{
+			"id": "gen-code-098",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "This is meant to print the area of a 50000×50000 grid as a `long`, i.e. `2500000000`. On a typical system with a 32-bit `int`, it instead prints a wrong (often negative) number. What's the bug?",
+			"code": {
+				"lang": "c",
+				"src": "int width = 50000, height = 50000;\nlong area = width * height;\nprintf(\"%ld\\n\", area);"
+			},
+			"choices": [
+				"`width * height` is computed using `int` arithmetic and overflows before the result is widened to `long`",
+				"`printf`'s `%ld` format specifier is wrong for a `long` value",
+				"`long` is only 16 bits wide on this platform, so it can't hold the result",
+				"Multiplying two `int` variables always promotes automatically to `long`, so the code is actually correct"
+			],
+			"answer": "`width * height` is computed using `int` arithmetic and overflows before the result is widened to `long`",
+			"explanation": "C computes `width * height` entirely in `int` (both operands are `int`) before ever looking at what it's assigned to. Since $50000 \\times 50000 = 2{,}500{,}000{,}000$ exceeds a 32-bit `int`'s range, it overflows; the result is only widened to `long` afterward, too late to help. Casting one operand to `long` before multiplying fixes it.",
+			"tags": ["c", "integer-overflow", "implicit-conversion", "spot-the-bug", "generated"]
+		},
+		{
+			"id": "gen-code-099",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "What is the space complexity of `fib_memo(n)` as a function of `n`, counting both the memoization cache and the recursion call stack?",
+			"code": {
+				"lang": "python",
+				"src": "def fib_memo(n, memo=None):\n    if memo is None:\n        memo = {}\n    if n in memo:\n        return memo[n]\n    if n <= 1:\n        return n\n    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)\n    return memo[n]"
+			},
+			"choices": ["O(1)", "O(log n)", "O(n)", "O(2^n)"],
+			"answer": "O(n)",
+			"explanation": "The memo dictionary ends up holding one entry per value from 0 to n, and the deepest recursive call chain (following the `n - 1` branch down to the base case) is also n frames deep. Both are $O(n)$, so the total extra space is $O(n)$ — even though the *naive* unmemoized Fibonacci takes $O(2^n)$ time, memoizing doesn't blow up the space the same way.",
+			"tags": ["python", "complexity", "space-complexity", "recursion", "memoization", "generated"]
+		},
+		{
+			"id": "gen-code-100",
+			"domain": "code",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "Does this function compile? If not, why not?",
+			"code": {
+				"lang": "cpp",
+				"src": "#include <vector>\n#include <iostream>\nusing namespace std;\n\nvoid printDoubled(const vector<int>& v) {\n    for (auto& x : v) {\n        x *= 2;\n        cout << x << \" \";\n    }\n}"
+			},
+			"choices": [
+				"No — since `v` is `const`, `auto&` deduces to `const int&`, so `x *= 2` tries to modify a value through a const reference",
+				"No — range-based `for` loops can't be used on `const` containers at all",
+				"Yes — it compiles and prints each element doubled",
+				"Yes — it compiles, but `x` is a copy of each element, so the doubling has no visible effect"
+			],
+			"answer": "No — since `v` is `const`, `auto&` deduces to `const int&`, so `x *= 2` tries to modify a value through a const reference",
+			"explanation": "Iterating a `const vector<int>&` with `for (auto& x : v)` binds `x` as `const int&` (a `const` container only ever hands out const references to its elements). Assigning to a `const int&` is a compile error — to actually double the values in place, `v` would need to not be `const`.",
+			"tags": ["cpp", "const-correctness", "compile-error", "spot-the-bug", "generated"]
+		}
+	]
+}

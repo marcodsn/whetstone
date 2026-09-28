@@ -1,0 +1,81 @@
+{
+	"pack": "gen-math-20260928",
+	"exercises": [
+		{
+			"id": "gen-math-142",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 1,
+			"prompt": "There's a shortcut for multiplying by 25: since $25 = 100/4$, divide by 4 first, then multiply by 100. Use it to compute $88 \\times 25$.",
+			"answer": "2200",
+			"accepted": ["2200"],
+			"explanation": "$88 \\times 25 = 88 \\times 100 \\div 4 = 8800 \\div 4 = 2200$ — often faster than multiplying directly.",
+			"tags": ["mental-math", "arithmetic-trick", "generated"]
+		},
+		{
+			"id": "gen-math-143",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "You have exactly 40 m of fencing to enclose a rectangular pen. Which of these length × width pairs encloses the largest area?",
+			"choices": ["15 m × 5 m", "12 m × 8 m", "10 m × 10 m", "18 m × 2 m"],
+			"answer": "10 m × 10 m",
+			"explanation": "All four pairs use exactly 40 m of fencing ($2(l+w)=40$), but their areas differ: 75, 96, 100, and 36 m². Among rectangles with a fixed perimeter, the square always encloses the most area.",
+			"tags": ["geometry", "optimization", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-144",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Nines-complement shortcut for subtracting from 1000: subtract each digit of the other number from 9, then add 1 to the result. Use it to compute $1000 - 437$.",
+			"answer": "563",
+			"accepted": ["563"],
+			"explanation": "Subtract each digit of 437 from 9: $9-4=5$, $9-3=6$, $9-7=2$, giving 562; add 1 to get 563 — the trick that makes 9's-complement subtraction fast by hand.",
+			"tags": ["mental-math", "arithmetic-trick", "subtraction", "generated"]
+		},
+		{
+			"id": "gen-math-145",
+			"domain": "math",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "Prove that the product of any three consecutive integers is always divisible by 6. Work out the argument, then reveal and compare.",
+			"answer": "Among any three consecutive integers, at least one is a multiple of 2 (every other integer is even) and exactly one is a multiple of 3 (every third integer is). So the product always contains a factor of 2 and a factor of 3, hence a factor of 2×3=6.",
+			"explanation": "This is why $n(n+1)(n+2)$ always comes out divisible by 6 — the same reasoning behind why binomial coefficients like $\\binom{n+2}{3} = n(n+1)(n+2)/6$ are always integers.",
+			"tags": ["number-theory", "proof", "divisibility", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-146",
+			"domain": "math",
+			"type": "input",
+			"difficulty": 3,
+			"prompt": "A country only issues 3-cent and 8-cent stamps (unlimited supply of each). What is the largest postage amount, in cents, that CANNOT be made exactly using some combination of these two stamps?",
+			"answer": "13",
+			"accepted": ["13", "13 cents"],
+			"explanation": "Since $\\gcd(3,8)=1$, the largest unreachable amount is given by the Frobenius (Chicken McNugget) formula $3\\times 8 - 3 - 8 = 13$. Every integer from 14 upward can be made from 3s and 8s, but 13 cannot.",
+			"tags": ["number-theory", "frobenius", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-147",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A 3×3 grid of unit squares (drawn with 4 evenly spaced horizontal lines and 4 evenly spaced vertical lines) contains rectangles of many sizes, from single 1×1 squares up to the whole 3×3 square. Counting every possible axis-aligned rectangle (including all the squares), how many are there in total?",
+			"choices": ["14", "36", "16", "100"],
+			"answer": "36",
+			"explanation": "Any rectangle is determined by choosing 2 of the 4 horizontal lines and 2 of the 4 vertical lines: $\\binom{4}{2}\\times\\binom{4}{2} = 6\\times 6 = 36$. (14 only counts the squares of each size — $9+4+1$ — missing all the non-square rectangles.)",
+			"tags": ["geometry", "counting", "recreational", "generated"]
+		},
+		{
+			"id": "gen-math-148",
+			"domain": "math",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "A hiker walks exactly 1 km due south, then 1 km due east, then 1 km due north, and ends up exactly back at her starting point. Which of these could be her starting location?",
+			"choices": ["The North Pole", "The South Pole", "Somewhere on the Equator", "Nowhere — this is impossible"],
+			"answer": "The North Pole",
+			"explanation": "From the North Pole, walking south 1 km leaves the pole; walking east 1 km traces a small circle around the pole without changing distance from it; walking north 1 km then returns exactly to the pole. Starting at the South Pole doesn't work, since you can't walk south from there at all.",
+			"tags": ["geometry", "spatial", "aha", "classic", "generated"]
+		}
+	]
+}

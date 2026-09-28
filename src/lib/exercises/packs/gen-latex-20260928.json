@@ -1,0 +1,37 @@
+{
+	"pack": "gen-latex-20260928",
+	"exercises": [
+		{
+			"id": "gen-latex-040",
+			"domain": "latex",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What command produces the calligraphic capital letters used in Big-O notation, as in $\\mathcal{O}(n \\log n)$?",
+			"answer": "\\mathcal",
+			"accepted": ["\\mathcal", "mathcal"],
+			"explanation": "`\\mathcal{}` is a core LaTeX command (no extra package needed) for calligraphic/script uppercase letters — used for Big-O, the Lagrangian $\\mathcal{L}$, and more.",
+			"tags": ["symbols", "commands", "generated"]
+		},
+		{
+			"id": "gen-latex-041",
+			"domain": "latex",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Which command renders a bold math symbol for a vector, e.g. $\\mathbf{v}$, without needing any extra package?",
+			"choices": ["\\mathbf{v}", "\\textbf{v}", "\\emph{v}", "\\underline{v}"],
+			"answer": "\\mathbf{v}",
+			"explanation": "`\\mathbf` is the standard command for bold math symbols. `\\textbf` instead typesets upright bold *text*, breaking the usual italic styling of math variables; `\\emph` and `\\underline` don't bold anything at all.",
+			"tags": ["commands", "symbols", "gotcha", "generated"]
+		},
+		{
+			"id": "gen-latex-042",
+			"domain": "latex",
+			"type": "self",
+			"difficulty": 4,
+			"prompt": "Write the LaTeX source for the Cauchy–Schwarz inequality, matching this target exactly: $$\\left(\\sum_{i=1}^n a_ib_i\\right)^2 \\le \\left(\\sum_{i=1}^n a_i^2\\right)\\left(\\sum_{i=1}^n b_i^2\\right)$$ Then reveal and compare.",
+			"answer": "\\left(\\sum_{i=1}^n a_ib_i\\right)^2 \\le \\left(\\sum_{i=1}^n a_i^2\\right)\\left(\\sum_{i=1}^n b_i^2\\right)",
+			"explanation": "`\\left(` and `\\right)` auto-size the parentheses to fit the tall `\\sum` inside; `\\le` gives the relation, and each `\\sum_{i=1}^n` follows the usual subscript/superscript pattern.",
+			"tags": ["writing", "operators", "sum", "generated"]
+		}
+	]
+}

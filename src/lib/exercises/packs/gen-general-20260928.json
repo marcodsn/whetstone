@@ -1,0 +1,124 @@
+{
+	"pack": "gen-general-20260928",
+	"exercises": [
+		{
+			"id": "gen-general-131",
+			"domain": "general",
+			"type": "self",
+			"difficulty": 3,
+			"prompt": "A man is found dead, lying in a puddle of water next to some broken glass, in a room with no other people and no sign of injury on his body. What happened? Work out an explanation, then reveal and compare.",
+			"answer": "He was a goldfish. He jumped (or was knocked) out of his bowl, the bowl shattered on the floor (the broken glass), and he died out of water (the puddle).",
+			"explanation": "The riddle plants misleading images — 'man,' 'dead,' 'no sign of injury' — that all still fit once you realize 'he' refers to the fish, not a person.",
+			"tags": ["lateral", "riddle", "classic", "generated"]
+		},
+		{
+			"id": "gen-general-132",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "What word begins with an 'e', ends with an 'e', but usually contains only one letter?",
+			"answer": "envelope",
+			"accepted": ["envelope", "an envelope"],
+			"explanation": "An envelope starts and ends with the letter 'e' and, in the everyday sense, holds just one letter — the piece of mail inside it.",
+			"tags": ["wordplay", "riddle", "generated"]
+		},
+		{
+			"id": "gen-general-133",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 2,
+			"prompt": "True or false: bats are blind, which is why they rely on echolocation to get around.",
+			"choices": [
+				"False — bats can see; most species have decent vision alongside echolocation",
+				"True — all bat species are completely blind from birth",
+				"True, but only fruit bats can see; all other bats are blind",
+				"False — bats can't see, but they aren't blind either since they lack eyes altogether"
+			],
+			"answer": "False — bats can see; most species have decent vision alongside echolocation",
+			"explanation": "'Blind as a bat' is a myth: bats have functional eyes and decent eyesight, and use echolocation mainly to navigate and hunt in the dark, not because they can't see at all.",
+			"tags": ["myth-busting", "biology", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-134",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "Roughly how many times does a person blink over an average 80-year lifetime? (People blink roughly 15–20 times per minute while awake, for about 16 waking hours a day.)",
+			"choices": ["~5 hundred thousand", "~5 million", "~500 million", "~5 billion"],
+			"answer": "~500 million",
+			"explanation": "About $17\\times 60\\times 16 \\approx 16{,}000$ blinks/day, times roughly $80\\times365 \\approx 29{,}200$ days, gives about $4.7\\times10^8$ — in the ballpark of 500 million blinks.",
+			"tags": ["estimation", "fermi-estimate", "biology", "scale", "generated"]
+		},
+		{
+			"id": "gen-general-135",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "When patients get reclassified into a new, more sensitive diagnostic category that catches milder cases doctors used to miss entirely, the average outcome of BOTH the old category (now missing its mildest cases) and the new category (full of only mild cases) can improve — even though no individual patient's health actually changed. This effect is named, tongue-in-cheek, after a humorist's quip about migration between US states. What is it called?",
+			"choices": ["The Will Rogers phenomenon", "Simpson's paradox", "Survivorship bias", "Regression to the mean"],
+			"answer": "The Will Rogers phenomenon",
+			"explanation": "Named after Will Rogers' joke that when Okies moved to California during the Dust Bowl, they raised the average intelligence in both states — moving the 'worst' cases out of one group and into another can raise both groups' averages without changing anyone.",
+			"tags": ["statistics", "paradox", "generated"]
+		},
+		{
+			"id": "gen-general-136",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Which planet in our solar system has a day (one full rotation) that lasts longer than its own year (one full orbit around the Sun)?",
+			"answer": "Venus",
+			"accepted": ["Venus"],
+			"explanation": "Venus rotates once every 243 Earth days but orbits the Sun in only about 225 Earth days — its 'day' outlasts its 'year.'",
+			"tags": ["astronomy", "trivia", "generated"]
+		},
+		{
+			"id": "gen-general-137",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "In a family, a boy has exactly as many sisters as he has brothers. Each of his sisters, however, has only half as many sisters as she has brothers. How many brothers and sisters are in this family?",
+			"choices": ["4 brothers, 3 sisters", "3 brothers, 4 sisters", "5 brothers, 3 sisters", "4 brothers, 4 sisters"],
+			"answer": "4 brothers, 3 sisters",
+			"explanation": "Let there be $b$ brothers and $g$ sisters. From the boy's view: $g = b - 1$. From a sister's view: $g - 1 = b/2$. Solving gives $b=4$, $g=3$: the boy sees 3 brothers and 3 sisters (equal), and each girl sees 4 brothers and 2 sisters (half).",
+			"tags": ["riddle", "lateral", "algebra", "generated"]
+		},
+		{
+			"id": "gen-general-138",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 3,
+			"prompt": "In a classic experiment, participants spun a wheel rigged to stop on either 10 or 65, then were asked to estimate the percentage of African countries in the United Nations. People who saw '65' guessed significantly higher percentages than people who saw '10' — even though the spin was random and had nothing to do with the question. What cognitive bias does this demonstrate?",
+			"choices": ["The anchoring effect", "The framing effect", "The availability heuristic", "Confirmation bias"],
+			"answer": "The anchoring effect",
+			"explanation": "Anchoring is the tendency to lean on the first number you're exposed to, even when it's arbitrary and irrelevant, when estimating an unknown quantity.",
+			"tags": ["cognitive-bias", "psychology", "generated"]
+		},
+		{
+			"id": "gen-general-139",
+			"domain": "general",
+			"type": "choice",
+			"difficulty": 4,
+			"prompt": "You're riding in a windowless train car moving in a perfectly straight line at a constant speed — no acceleration, no vibration, no sound. Is there any physics experiment you could perform entirely inside the car to tell whether you're moving or standing still?",
+			"choices": [
+				"No — the laws of physics are identical in any frame moving at constant velocity, so no internal experiment can tell",
+				"Yes — a hanging pendulum will visibly lean backward the whole time the train moves",
+				"Yes — a scale will read a different weight while the train is moving at constant speed",
+				"Yes — a beam of light shone across the car will visibly bend backward"
+			],
+			"answer": "No — the laws of physics are identical in any frame moving at constant velocity, so no internal experiment can tell",
+			"explanation": "This is the principle of relativity (going back to Galileo's ship thought experiment): uniform, unaccelerated motion is physically indistinguishable from rest for anyone enclosed inside. Only acceleration, not constant velocity, produces detectable effects.",
+			"tags": ["physics", "relativity", "aha", "generated"]
+		},
+		{
+			"id": "gen-general-140",
+			"domain": "general",
+			"type": "input",
+			"difficulty": 2,
+			"prompt": "Which two countries share the longest international land border in the world?",
+			"answer": "Canada and the United States",
+			"accepted": ["Canada and the United States", "the United States and Canada", "USA and Canada", "Canada and the USA"],
+			"explanation": "The Canada–US border runs about 8,891 km (including the Alaska boundary) — the longest border between any two countries.",
+			"tags": ["geography", "trivia", "generated"]
+		}
+	]
+}
