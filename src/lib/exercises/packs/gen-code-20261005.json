@@ -1,0 +1,136 @@
+{
+  "pack": "gen-code-20261005",
+  "exercises": [
+    {
+      "id": "gen-code-101",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This Python snippet is meant to add a default entry while looping over the dictionary. What happens when it runs?",
+      "code": {
+        "lang": "python",
+        "src": "d = {\"a\": 1, \"b\": 2}\nfor k in d:\n    if d[k] == 1:\n        d[\"c\"] = 3\nprint(d)"
+      },
+      "choices": [
+        "It raises RuntimeError: dictionary changed size during iteration",
+        "It prints {'a': 1, 'b': 2, 'c': 3}",
+        "It loops forever",
+        "It prints {'a': 1, 'b': 2}"
+      ],
+      "answer": "It raises RuntimeError: dictionary changed size during iteration",
+      "explanation": "Adding or removing keys while iterating over a dict invalidates the iterator, so Python raises a RuntimeError on the next step. Iterate over `list(d)` or build a new dict instead.",
+      "tags": [
+        "python",
+        "dictionaries",
+        "spot-the-bug",
+        "gotcha",
+        "mutation",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-102",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "What is the time complexity of `count_steps` as a function of `n`?",
+      "code": {
+        "lang": "python",
+        "src": "def count_steps(n):\n    steps = 0\n    for i in range(1, n):\n        j = i\n        while j < n:\n            j *= 2\n            steps += 1\n    return steps"
+      },
+      "choices": [
+        "$O(\\log n)$",
+        "$O(n)$",
+        "$O(n \\log n)$",
+        "$O(n^2)$"
+      ],
+      "answer": "$O(n)$",
+      "explanation": "Index `i` needs about $\\log_2(n/i)$ doublings, and $\\sum_{i=1}^{n}\\log_2(n/i)$ is about $1.44\\,n$, so it is linear, not $O(n \\log n)$. Most values of `i` are large and need only a doubling or two.",
+      "tags": [
+        "python",
+        "complexity",
+        "algorithms",
+        "loops",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-103",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "This C program is meant to print `five` only when `x` is 5. What does it actually print?",
+      "code": {
+        "lang": "c",
+        "src": "#include <stdio.h>\nint main(void) {\n    int x = 3;\n    if (x = 5)\n        printf(\"five\\n\");\n    else\n        printf(\"not five\\n\");\n    return 0;\n}"
+      },
+      "choices": [
+        "five",
+        "not five",
+        "Nothing; it fails to compile",
+        "five not five"
+      ],
+      "answer": "five",
+      "explanation": "`x = 5` is an assignment, not a comparison. It stores 5 in `x` and evaluates to 5 (non-zero, so true), so the branch always runs. The comparison needs `==`.",
+      "tags": [
+        "c",
+        "spot-the-bug",
+        "gotcha",
+        "operators",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-104",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "The programmer expected this Python to print the sum and then the maximum. What actually happens?",
+      "code": {
+        "lang": "python",
+        "src": "nums = map(int, \"1 2 3\".split())\nprint(sum(nums))\nprint(max(nums))"
+      },
+      "choices": [
+        "It prints 6, then 3",
+        "It prints 6, then raises ValueError on the second print",
+        "It prints 6, then None",
+        "It raises TypeError immediately"
+      ],
+      "answer": "It prints 6, then raises ValueError on the second print",
+      "explanation": "`map` returns a one-shot iterator. `sum(nums)` consumes it completely, so `max(nums)` sees an empty sequence and raises `ValueError`. Wrap it in `list(...)` if you need to reuse the values.",
+      "tags": [
+        "python",
+        "iterators",
+        "spot-the-bug",
+        "gotcha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-105",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What does this JavaScript print?",
+      "code": {
+        "lang": "javascript",
+        "src": "console.log([\"1\", \"2\", \"3\"].map(parseInt));"
+      },
+      "choices": [
+        "[ 1, 2, 3 ]",
+        "[ 1, NaN, NaN ]",
+        "[ 1, NaN, 3 ]",
+        "[ NaN, NaN, NaN ]"
+      ],
+      "answer": "[ 1, NaN, NaN ]",
+      "explanation": "`map` passes `(value, index, array)`, so `parseInt` receives the index as its radix: radix 0 means base 10 (giving 1), radix 1 is invalid (NaN), and \"3\" is not a valid base-2 digit (NaN).",
+      "tags": [
+        "javascript",
+        "predict-output",
+        "gotcha",
+        "higher-order-functions",
+        "generated"
+      ]
+    }
+  ]
+}

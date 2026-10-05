@@ -1,0 +1,60 @@
+{
+  "pack": "gen-latex-20261005",
+  "exercises": [
+    {
+      "id": "gen-latex-043",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What command produces the reduced Planck constant $\\hbar$?",
+      "answer": "\\hbar",
+      "accepted": [
+        "\\hbar",
+        "hbar"
+      ],
+      "explanation": "`\\hbar` is $h$ with a bar through it, i.e. $h/2\\pi$; plain `\\bar{h}` puts a bar above the letter instead.",
+      "tags": [
+        "symbols",
+        "commands",
+        "physics",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-044",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which source typesets an angle of ninety degrees correctly, $90^\\circ$?",
+      "choices": [
+        "90^\\circ",
+        "90^o",
+        "90\\circ",
+        "90^{degree}"
+      ],
+      "answer": "90^\\circ",
+      "explanation": "`^\\circ` raises the circle symbol to the superscript position. `^o` gives an italic letter, `\\circ` alone sits at mid-height, and `^{degree}` typesets italic text.",
+      "tags": [
+        "symbols",
+        "gotcha",
+        "spot-the-bug",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-045",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 3,
+      "prompt": "Write the LaTeX source for the quadratic formula, matching this display: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ Write it out, then reveal and compare.",
+      "answer": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      "explanation": "Use `\\frac{numerator}{denominator}`, `\\pm` for ±, and `\\sqrt{...}` over the whole discriminant, with `b^2` braced as needed.",
+      "tags": [
+        "writing",
+        "commands",
+        "fractions",
+        "generated"
+      ]
+    }
+  ]
+}

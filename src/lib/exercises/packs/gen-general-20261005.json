@@ -1,0 +1,207 @@
+{
+  "pack": "gen-general-20261005",
+  "exercises": [
+    {
+      "id": "gen-general-141",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What gets wetter and wetter the more it dries?",
+      "answer": "towel",
+      "accepted": [
+        "a towel",
+        "towel",
+        "towels"
+      ],
+      "explanation": "A towel does its job by absorbing water, so the more it dries things, the wetter it gets.",
+      "tags": [
+        "riddle",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-142",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Two coins add up to 30 cents, and one of them is not a nickel. Which two coins are they?",
+      "choices": [
+        "A quarter and a nickel",
+        "Two 15-cent coins",
+        "A dime and a quarter",
+        "It is impossible"
+      ],
+      "answer": "A quarter and a nickel",
+      "explanation": "\"One of them is not a nickel\" only says that one coin is not a nickel; the other one is. A quarter (25¢) plus a nickel (5¢) makes 30¢.",
+      "tags": [
+        "lateral",
+        "trick",
+        "reading-trap",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-143",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "100 passengers board a plane with assigned seats. The first passenger lost their boarding pass and sits in a uniformly random seat. Every later passenger takes their own seat if it is free, otherwise a random free seat. What is the probability that the last passenger gets their own seat?",
+      "choices": [
+        "1/2",
+        "1/100",
+        "99/100",
+        "1/3"
+      ],
+      "answer": "1/2",
+      "explanation": "By symmetry, the process ends when someone picks seat 1 or seat 100 first; these are equally likely at every random choice, so the last passenger gets seat 100 with probability exactly 1/2, no matter how many passengers there are.",
+      "tags": [
+        "probability",
+        "aha",
+        "probability-intuition",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-144",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which institution is older: the University of Oxford, or the Aztec city of Tenochtitlan?",
+      "choices": [
+        "The University of Oxford",
+        "Tenochtitlan",
+        "They are about the same age",
+        "Neither can be dated"
+      ],
+      "answer": "The University of Oxford",
+      "explanation": "Teaching was already going on at Oxford by 1096, while Tenochtitlan was founded in 1325. Oxford predates the Aztec capital by well over two centuries.",
+      "tags": [
+        "trivia",
+        "history",
+        "naming-trap",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-145",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Roughly how long is one billion seconds?",
+      "choices": [
+        "About 12 days",
+        "About 3 months",
+        "About 32 years",
+        "About 320 years"
+      ],
+      "answer": "About 32 years",
+      "explanation": "A billion seconds is 10^9 / 86,400 ≈ 11,600 days, or about 31.7 years. A million seconds, by contrast, is only about 11.5 days, which is why the jump from million to billion is so easy to underestimate.",
+      "tags": [
+        "estimation",
+        "scale",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-146",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Forward I am heavy, but backward I am not. What am I?",
+      "answer": "ton",
+      "accepted": [
+        "a ton",
+        "ton",
+        "Ton"
+      ],
+      "explanation": "\"Ton\" is a heavy unit of weight; spelled backward it is \"not\".",
+      "tags": [
+        "riddle",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-147",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "True or false: the blood in your veins is blue until it meets oxygen in the air.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Blood is always red; deoxygenated blood is just a darker red. Veins look blue through the skin because of how skin scatters and absorbs different wavelengths of light.",
+      "tags": [
+        "myth-busting",
+        "biology",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-148",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A truck driver goes the wrong way down a one-way street for several blocks, passing several police officers, yet is never stopped and breaks no law. How?",
+      "choices": [
+        "He was walking, not driving",
+        "The officers were off duty",
+        "The street was closed",
+        "It was a holiday"
+      ],
+      "answer": "He was walking, not driving",
+      "explanation": "The puzzle says he is a truck driver, not that he is driving. On foot, he can walk either way along the street.",
+      "tags": [
+        "lateral",
+        "riddle",
+        "reading-trap",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-149",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "Which has the larger surface area: Pluto, or the country of Russia?",
+      "choices": [
+        "Pluto, by a small margin",
+        "Russia, by a small margin",
+        "Russia, by a factor of about 10",
+        "Pluto, by a factor of about 10"
+      ],
+      "answer": "Pluto, by a small margin",
+      "explanation": "Pluto has a radius of about 1,188 km, giving a surface area of about 17.7 million km². Russia covers about 17.1 million km², so Pluto is slightly bigger.",
+      "tags": [
+        "trivia",
+        "estimation",
+        "scale",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-150",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "30 party guests each throw their hat into a pile, and everyone then takes a random hat back (every shuffle equally likely). On average, how many guests get their own hat back?",
+      "answer": "1",
+      "accepted": [
+        "1",
+        "one",
+        "1.0"
+      ],
+      "explanation": "Each guest gets their own hat with probability 1/30, and by linearity of expectation 30 × 1/30 = 1. The answer is 1 regardless of how many guests there are.",
+      "tags": [
+        "probability",
+        "aha",
+        "probability-intuition",
+        "generated"
+      ]
+    }
+  ]
+}

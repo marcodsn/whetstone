@@ -2923,6 +2923,137 @@
 		]
 	},
 	{
+		"id": "gen-code-101",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This Python snippet is meant to add a default entry while looping over the dictionary. What happens when it runs?",
+		"code": {
+			"lang": "python",
+			"src": "d = {\"a\": 1, \"b\": 2}\nfor k in d:\n    if d[k] == 1:\n        d[\"c\"] = 3\nprint(d)"
+		},
+		"choices": [
+			"It raises RuntimeError: dictionary changed size during iteration",
+			"It prints {'a': 1, 'b': 2, 'c': 3}",
+			"It loops forever",
+			"It prints {'a': 1, 'b': 2}"
+		],
+		"answer": "It raises RuntimeError: dictionary changed size during iteration",
+		"explanation": "Adding or removing keys while iterating over a dict invalidates the iterator, so Python raises a RuntimeError on the next step. Iterate over `list(d)` or build a new dict instead.",
+		"tags": [
+			"python",
+			"dictionaries",
+			"spot-the-bug",
+			"gotcha",
+			"mutation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-102",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What is the time complexity of `count_steps` as a function of `n`?",
+		"code": {
+			"lang": "python",
+			"src": "def count_steps(n):\n    steps = 0\n    for i in range(1, n):\n        j = i\n        while j < n:\n            j *= 2\n            steps += 1\n    return steps"
+		},
+		"choices": [
+			"$O(\\log n)$",
+			"$O(n)$",
+			"$O(n \\log n)$",
+			"$O(n^2)$"
+		],
+		"answer": "$O(n)$",
+		"explanation": "Index `i` needs about $\\log_2(n/i)$ doublings, and $\\sum_{i=1}^{n}\\log_2(n/i)$ is about $1.44\\,n$, so it is linear, not $O(n \\log n)$. Most values of `i` are large and need only a doubling or two.",
+		"tags": [
+			"python",
+			"complexity",
+			"algorithms",
+			"loops",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-103",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This C program is meant to print `five` only when `x` is 5. What does it actually print?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\nint main(void) {\n    int x = 3;\n    if (x = 5)\n        printf(\"five\\n\");\n    else\n        printf(\"not five\\n\");\n    return 0;\n}"
+		},
+		"choices": [
+			"five",
+			"not five",
+			"Nothing; it fails to compile",
+			"five not five"
+		],
+		"answer": "five",
+		"explanation": "`x = 5` is an assignment, not a comparison. It stores 5 in `x` and evaluates to 5 (non-zero, so true), so the branch always runs. The comparison needs `==`.",
+		"tags": [
+			"c",
+			"spot-the-bug",
+			"gotcha",
+			"operators",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-104",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The programmer expected this Python to print the sum and then the maximum. What actually happens?",
+		"code": {
+			"lang": "python",
+			"src": "nums = map(int, \"1 2 3\".split())\nprint(sum(nums))\nprint(max(nums))"
+		},
+		"choices": [
+			"It prints 6, then 3",
+			"It prints 6, then raises ValueError on the second print",
+			"It prints 6, then None",
+			"It raises TypeError immediately"
+		],
+		"answer": "It prints 6, then raises ValueError on the second print",
+		"explanation": "`map` returns a one-shot iterator. `sum(nums)` consumes it completely, so `max(nums)` sees an empty sequence and raises `ValueError`. Wrap it in `list(...)` if you need to reuse the values.",
+		"tags": [
+			"python",
+			"iterators",
+			"spot-the-bug",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-105",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log([\"1\", \"2\", \"3\"].map(parseInt));"
+		},
+		"choices": [
+			"[ 1, 2, 3 ]",
+			"[ 1, NaN, NaN ]",
+			"[ 1, NaN, 3 ]",
+			"[ NaN, NaN, NaN ]"
+		],
+		"answer": "[ 1, NaN, NaN ]",
+		"explanation": "`map` passes `(value, index, array)`, so `parseInt` receives the index as its radix: radix 0 means base 10 (giving 1), radix 1 is invalid (NaN), and \"3\" is not a valid base-2 digit (NaN).",
+		"tags": [
+			"javascript",
+			"predict-output",
+			"gotcha",
+			"higher-order-functions",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -5605,6 +5736,208 @@
 		]
 	},
 	{
+		"id": "gen-general-141",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What gets wetter and wetter the more it dries?",
+		"answer": "towel",
+		"accepted": [
+			"a towel",
+			"towel",
+			"towels"
+		],
+		"explanation": "A towel does its job by absorbing water, so the more it dries things, the wetter it gets.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-142",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Two coins add up to 30 cents, and one of them is not a nickel. Which two coins are they?",
+		"choices": [
+			"A quarter and a nickel",
+			"Two 15-cent coins",
+			"A dime and a quarter",
+			"It is impossible"
+		],
+		"answer": "A quarter and a nickel",
+		"explanation": "\"One of them is not a nickel\" only says that one coin is not a nickel; the other one is. A quarter (25¢) plus a nickel (5¢) makes 30¢.",
+		"tags": [
+			"lateral",
+			"trick",
+			"reading-trap",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-143",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "100 passengers board a plane with assigned seats. The first passenger lost their boarding pass and sits in a uniformly random seat. Every later passenger takes their own seat if it is free, otherwise a random free seat. What is the probability that the last passenger gets their own seat?",
+		"choices": [
+			"1/2",
+			"1/100",
+			"99/100",
+			"1/3"
+		],
+		"answer": "1/2",
+		"explanation": "By symmetry, the process ends when someone picks seat 1 or seat 100 first; these are equally likely at every random choice, so the last passenger gets seat 100 with probability exactly 1/2, no matter how many passengers there are.",
+		"tags": [
+			"probability",
+			"aha",
+			"probability-intuition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-144",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which institution is older: the University of Oxford, or the Aztec city of Tenochtitlan?",
+		"choices": [
+			"The University of Oxford",
+			"Tenochtitlan",
+			"They are about the same age",
+			"Neither can be dated"
+		],
+		"answer": "The University of Oxford",
+		"explanation": "Teaching was already going on at Oxford by 1096, while Tenochtitlan was founded in 1325. Oxford predates the Aztec capital by well over two centuries.",
+		"tags": [
+			"trivia",
+			"history",
+			"naming-trap",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-145",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how long is one billion seconds?",
+		"choices": [
+			"About 12 days",
+			"About 3 months",
+			"About 32 years",
+			"About 320 years"
+		],
+		"answer": "About 32 years",
+		"explanation": "A billion seconds is 10^9 / 86,400 ≈ 11,600 days, or about 31.7 years. A million seconds, by contrast, is only about 11.5 days, which is why the jump from million to billion is so easy to underestimate.",
+		"tags": [
+			"estimation",
+			"scale",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-146",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Forward I am heavy, but backward I am not. What am I?",
+		"answer": "ton",
+		"accepted": [
+			"a ton",
+			"ton",
+			"Ton"
+		],
+		"explanation": "\"Ton\" is a heavy unit of weight; spelled backward it is \"not\".",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-147",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: the blood in your veins is blue until it meets oxygen in the air.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Blood is always red; deoxygenated blood is just a darker red. Veins look blue through the skin because of how skin scatters and absorbs different wavelengths of light.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-148",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A truck driver goes the wrong way down a one-way street for several blocks, passing several police officers, yet is never stopped and breaks no law. How?",
+		"choices": [
+			"He was walking, not driving",
+			"The officers were off duty",
+			"The street was closed",
+			"It was a holiday"
+		],
+		"answer": "He was walking, not driving",
+		"explanation": "The puzzle says he is a truck driver, not that he is driving. On foot, he can walk either way along the street.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"reading-trap",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-149",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which has the larger surface area: Pluto, or the country of Russia?",
+		"choices": [
+			"Pluto, by a small margin",
+			"Russia, by a small margin",
+			"Russia, by a factor of about 10",
+			"Pluto, by a factor of about 10"
+		],
+		"answer": "Pluto, by a small margin",
+		"explanation": "Pluto has a radius of about 1,188 km, giving a surface area of about 17.7 million km². Russia covers about 17.1 million km², so Pluto is slightly bigger.",
+		"tags": [
+			"trivia",
+			"estimation",
+			"scale",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-150",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "30 party guests each throw their hat into a pile, and everyone then takes a random hat back (every shuffle equally likely). On average, how many guests get their own hat back?",
+		"answer": "1",
+		"accepted": [
+			"1",
+			"one",
+			"1.0"
+		],
+		"explanation": "Each guest gets their own hat with probability 1/30, and by linearity of expectation 30 × 1/30 = 1. The answer is 1 regardless of how many guests there are.",
+		"tags": [
+			"probability",
+			"aha",
+			"probability-intuition",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -6355,6 +6688,61 @@
 			"writing",
 			"operators",
 			"sum",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-043",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command produces the reduced Planck constant $\\hbar$?",
+		"answer": "\\hbar",
+		"accepted": [
+			"\\hbar",
+			"hbar"
+		],
+		"explanation": "`\\hbar` is $h$ with a bar through it, i.e. $h/2\\pi$; plain `\\bar{h}` puts a bar above the letter instead.",
+		"tags": [
+			"symbols",
+			"commands",
+			"physics",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-044",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which source typesets an angle of ninety degrees correctly, $90^\\circ$?",
+		"choices": [
+			"90^\\circ",
+			"90^o",
+			"90\\circ",
+			"90^{degree}"
+		],
+		"answer": "90^\\circ",
+		"explanation": "`^\\circ` raises the circle symbol to the superscript position. `^o` gives an italic letter, `\\circ` alone sits at mid-height, and `^{degree}` typesets italic text.",
+		"tags": [
+			"symbols",
+			"gotcha",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-045",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the quadratic formula, matching this display: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ Write it out, then reveal and compare.",
+		"answer": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+		"explanation": "Use `\\frac{numerator}{denominator}`, `\\pm` for ±, and `\\sqrt{...}` over the whole discriminant, with `b^2` braced as needed.",
+		"tags": [
+			"writing",
+			"commands",
+			"fractions",
 			"generated"
 		]
 	},
@@ -8249,6 +8637,120 @@
 			"strategy",
 			"binary-search",
 			"information-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-101",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "For how many of the 8 possible true/false assignments to $P$, $Q$, $R$ is the statement $(P \\lor Q) \\rightarrow R$ true?",
+		"answer": "5",
+		"accepted": [
+			"5",
+			"five"
+		],
+		"explanation": "The conditional is false only when $P \\lor Q$ is true and $R$ is false: 3 assignments ($P,Q$ not both false) with $R$ false. So $8 - 3 = 5$ assignments make it true.",
+		"tags": [
+			"propositional",
+			"truth-table",
+			"conditionals",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-102",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Some snargs are plinths. All plinths are vorks. Which conclusion must be true?",
+		"choices": [
+			"Some vorks are snargs",
+			"All snargs are vorks",
+			"No vork is a snarg",
+			"Some plinths are not vorks"
+		],
+		"answer": "Some vorks are snargs",
+		"explanation": "Take a snarg that is a plinth; since all plinths are vorks, it is also a vork, so at least one vork is a snarg. The other options claim more than the premises give.",
+		"tags": [
+			"syllogism",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-103",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Seven people are at a party. Is it possible for each of them to shake hands with exactly three of the others (each pair shaking at most once)?",
+		"choices": [
+			"Yes, arrange them in a circle",
+			"Yes, but only if two of them are a couple",
+			"No, because the total number of handshake ends would be odd",
+			"No, because 7 is prime"
+		],
+		"answer": "No, because the total number of handshake ends would be odd",
+		"explanation": "Each handshake involves two people, so the sum of everyone's handshake counts must be even. Seven people with three each gives 21, which is odd, so it is impossible.",
+		"tags": [
+			"parity",
+			"graph-theory",
+			"proof",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-104",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Two players take turns placing identical coins on a round table, with no overlap, and no coin may hang off the edge. The player who cannot place a coin loses. Who wins with perfect play?",
+		"choices": [
+			"The first player, by starting at the centre and then mirroring through it",
+			"The second player, by mirroring the first",
+			"Whoever has the bigger coins",
+			"It depends on the table size"
+		],
+		"answer": "The first player, by starting at the centre and then mirroring through it",
+		"explanation": "Place the first coin at the exact centre. After that, answer every opponent move by placing a coin at the point diametrically opposite; that spot is always free by symmetry, so you can never run out of moves first.",
+		"tags": [
+			"game-theory",
+			"strategy",
+			"symmetry",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-105",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What comes next in this sequence? $2,\\ 3,\\ 5,\\ 9,\\ 17,\\ ?$",
+		"answer": "33",
+		"accepted": [
+			"33"
+		],
+		"explanation": "The differences are 1, 2, 4, 8, doubling each time, so the next difference is 16 and the next term is $17+16=33$. (Equivalently, each term is $2^k+1$.)",
+		"tags": [
+			"sequences",
+			"pattern-recognition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-106",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "You have only a 7-minute hourglass and an 11-minute hourglass. How can you time exactly 15 minutes? Describe the steps, then reveal and compare.",
+		"answer": "Start both at time 0. When the 7-minute glass runs out (t=7), flip it at once. When the 11-minute glass runs out (t=11), the 7-minute glass has been running for 4 minutes, so it has 3 minutes of sand left on top: flip it. The 4 minutes already run now sit in the top, so it finishes 4 minutes later, at t=15.",
+		"explanation": "The trick is that flipping a partly run hourglass measures the time already elapsed on it: the 7-minute glass, 4 minutes into its second run, becomes a 4-minute timer at t=11, and 11+4=15.",
+		"tags": [
+			"puzzle",
+			"classic",
+			"lateral",
+			"procedure",
 			"generated"
 		]
 	},
@@ -11012,6 +11514,141 @@
 			"spatial",
 			"aha",
 			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-149",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How many squares of any size are there on a standard 8×8 chessboard?",
+		"answer": "204",
+		"accepted": [
+			"204"
+		],
+		"explanation": "There are $k$-by-$k$ squares in $(9-k)^2$ positions, so the total is $1^2+2^2+\\dots+8^2 = 204$.",
+		"tags": [
+			"recreational",
+			"counting",
+			"geometry",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-150",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "If you write out every whole number from 1 to 99 and add up all the digits you wrote, what total do you get?",
+		"answer": "900",
+		"accepted": [
+			"900"
+		],
+		"explanation": "Treat 1–99 as 00–99: each digit 0–9 appears 10 times in the tens place and 10 times in the units place. So the total is $45 \\times 10 \\times 2 = 900$.",
+		"tags": [
+			"recreational",
+			"counting",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-151",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Compute mentally: $999 \\times 999$",
+		"answer": "998001",
+		"accepted": [
+			"998001",
+			"998,001"
+		],
+		"explanation": "$999^2 = (1000-1)^2 = 1{,}000{,}000 - 2000 + 1 = 998{,}001$.",
+		"tags": [
+			"recreational",
+			"mental-math",
+			"arithmetic-trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-152",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Five numbers have an average of 12. When a sixth number is added, the average of all six becomes 13. What is the sixth number?",
+		"answer": "18",
+		"accepted": [
+			"18"
+		],
+		"explanation": "The first five sum to 60; all six must sum to $6 \\times 13 = 78$, so the new number is $78 - 60 = 18$.",
+		"tags": [
+			"recreational",
+			"word-problem",
+			"averages",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-153",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A number is picked uniformly at random from 1 to 100. What is the probability that it is a perfect square or a perfect cube (or both)?",
+		"choices": [
+			"$\\frac{3}{25}$",
+			"$\\frac{7}{50}$",
+			"$\\frac{7}{25}$",
+			"$\\frac{1}{10}$"
+		],
+		"answer": "$\\frac{3}{25}$",
+		"explanation": "There are 10 squares and 4 cubes (1, 8, 27, 64); 1 and 64 are both, so $10 + 4 - 2 = 12$ numbers qualify, giving $12/100 = 3/25$.",
+		"tags": [
+			"recreational",
+			"probability",
+			"counting",
+			"inclusion-exclusion",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-154",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "You are ordering pizza. Which gives you more pizza: one 12-inch pizza, or two 8-inch pizzas? (Same thickness.)",
+		"choices": [
+			"The single 12-inch pizza",
+			"The two 8-inch pizzas",
+			"They are exactly equal",
+			"It depends on the toppings"
+		],
+		"answer": "The single 12-inch pizza",
+		"explanation": "Area scales with the square of the diameter: $12^2 = 144$ versus $2 \\times 8^2 = 128$ (in the same units of $\\pi/4$). The big pizza is about 12% more.",
+		"tags": [
+			"recreational",
+			"geometry",
+			"area",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-155",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the smallest integer greater than 1 that leaves a remainder of 1 when divided by each of 2, 3, 4, 5 and 6?",
+		"answer": "61",
+		"accepted": [
+			"61"
+		],
+		"explanation": "The number minus 1 must be divisible by all of 2–6, i.e. by $\\operatorname{lcm}=60$. So the smallest such number is $60+1=61$.",
+		"tags": [
+			"recreational",
+			"number-theory",
+			"lcm",
 			"generated"
 		]
 	},

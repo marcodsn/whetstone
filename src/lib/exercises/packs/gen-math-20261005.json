@@ -1,0 +1,140 @@
+{
+  "pack": "gen-math-20261005",
+  "exercises": [
+    {
+      "id": "gen-math-149",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "How many squares of any size are there on a standard 8×8 chessboard?",
+      "answer": "204",
+      "accepted": [
+        "204"
+      ],
+      "explanation": "There are $k$-by-$k$ squares in $(9-k)^2$ positions, so the total is $1^2+2^2+\\dots+8^2 = 204$.",
+      "tags": [
+        "recreational",
+        "counting",
+        "geometry",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-150",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "If you write out every whole number from 1 to 99 and add up all the digits you wrote, what total do you get?",
+      "answer": "900",
+      "accepted": [
+        "900"
+      ],
+      "explanation": "Treat 1–99 as 00–99: each digit 0–9 appears 10 times in the tens place and 10 times in the units place. So the total is $45 \\times 10 \\times 2 = 900$.",
+      "tags": [
+        "recreational",
+        "counting",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-151",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Compute mentally: $999 \\times 999$",
+      "answer": "998001",
+      "accepted": [
+        "998001",
+        "998,001"
+      ],
+      "explanation": "$999^2 = (1000-1)^2 = 1{,}000{,}000 - 2000 + 1 = 998{,}001$.",
+      "tags": [
+        "recreational",
+        "mental-math",
+        "arithmetic-trick",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-152",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Five numbers have an average of 12. When a sixth number is added, the average of all six becomes 13. What is the sixth number?",
+      "answer": "18",
+      "accepted": [
+        "18"
+      ],
+      "explanation": "The first five sum to 60; all six must sum to $6 \\times 13 = 78$, so the new number is $78 - 60 = 18$.",
+      "tags": [
+        "recreational",
+        "word-problem",
+        "averages",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-153",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "A number is picked uniformly at random from 1 to 100. What is the probability that it is a perfect square or a perfect cube (or both)?",
+      "choices": [
+        "$\\frac{3}{25}$",
+        "$\\frac{7}{50}$",
+        "$\\frac{7}{25}$",
+        "$\\frac{1}{10}$"
+      ],
+      "answer": "$\\frac{3}{25}$",
+      "explanation": "There are 10 squares and 4 cubes (1, 8, 27, 64); 1 and 64 are both, so $10 + 4 - 2 = 12$ numbers qualify, giving $12/100 = 3/25$.",
+      "tags": [
+        "recreational",
+        "probability",
+        "counting",
+        "inclusion-exclusion",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-154",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "You are ordering pizza. Which gives you more pizza: one 12-inch pizza, or two 8-inch pizzas? (Same thickness.)",
+      "choices": [
+        "The single 12-inch pizza",
+        "The two 8-inch pizzas",
+        "They are exactly equal",
+        "It depends on the toppings"
+      ],
+      "answer": "The single 12-inch pizza",
+      "explanation": "Area scales with the square of the diameter: $12^2 = 144$ versus $2 \\times 8^2 = 128$ (in the same units of $\\pi/4$). The big pizza is about 12% more.",
+      "tags": [
+        "recreational",
+        "geometry",
+        "area",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-155",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What is the smallest integer greater than 1 that leaves a remainder of 1 when divided by each of 2, 3, 4, 5 and 6?",
+      "answer": "61",
+      "accepted": [
+        "61"
+      ],
+      "explanation": "The number minus 1 must be divisible by all of 2–6, i.e. by $\\operatorname{lcm}=60$. So the smallest such number is $60+1=61$.",
+      "tags": [
+        "recreational",
+        "number-theory",
+        "lcm",
+        "generated"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "pack": "gen-logic-20261005",
+  "exercises": [
+    {
+      "id": "gen-logic-101",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "For how many of the 8 possible true/false assignments to $P$, $Q$, $R$ is the statement $(P \\lor Q) \\rightarrow R$ true?",
+      "answer": "5",
+      "accepted": [
+        "5",
+        "five"
+      ],
+      "explanation": "The conditional is false only when $P \\lor Q$ is true and $R$ is false: 3 assignments ($P,Q$ not both false) with $R$ false. So $8 - 3 = 5$ assignments make it true.",
+      "tags": [
+        "propositional",
+        "truth-table",
+        "conditionals",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-102",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Some snargs are plinths. All plinths are vorks. Which conclusion must be true?",
+      "choices": [
+        "Some vorks are snargs",
+        "All snargs are vorks",
+        "No vork is a snarg",
+        "Some plinths are not vorks"
+      ],
+      "answer": "Some vorks are snargs",
+      "explanation": "Take a snarg that is a plinth; since all plinths are vorks, it is also a vork, so at least one vork is a snarg. The other options claim more than the premises give.",
+      "tags": [
+        "syllogism",
+        "deduction",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-103",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "Seven people are at a party. Is it possible for each of them to shake hands with exactly three of the others (each pair shaking at most once)?",
+      "choices": [
+        "Yes, arrange them in a circle",
+        "Yes, but only if two of them are a couple",
+        "No, because the total number of handshake ends would be odd",
+        "No, because 7 is prime"
+      ],
+      "answer": "No, because the total number of handshake ends would be odd",
+      "explanation": "Each handshake involves two people, so the sum of everyone's handshake counts must be even. Seven people with three each gives 21, which is odd, so it is impossible.",
+      "tags": [
+        "parity",
+        "graph-theory",
+        "proof",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-104",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "Two players take turns placing identical coins on a round table, with no overlap, and no coin may hang off the edge. The player who cannot place a coin loses. Who wins with perfect play?",
+      "choices": [
+        "The first player, by starting at the centre and then mirroring through it",
+        "The second player, by mirroring the first",
+        "Whoever has the bigger coins",
+        "It depends on the table size"
+      ],
+      "answer": "The first player, by starting at the centre and then mirroring through it",
+      "explanation": "Place the first coin at the exact centre. After that, answer every opponent move by placing a coin at the point diametrically opposite; that spot is always free by symmetry, so you can never run out of moves first.",
+      "tags": [
+        "game-theory",
+        "strategy",
+        "symmetry",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-105",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What comes next in this sequence? $2,\\ 3,\\ 5,\\ 9,\\ 17,\\ ?$",
+      "answer": "33",
+      "accepted": [
+        "33"
+      ],
+      "explanation": "The differences are 1, 2, 4, 8, doubling each time, so the next difference is 16 and the next term is $17+16=33$. (Equivalently, each term is $2^k+1$.)",
+      "tags": [
+        "sequences",
+        "pattern-recognition",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-106",
+      "domain": "logic",
+      "type": "self",
+      "difficulty": 4,
+      "prompt": "You have only a 7-minute hourglass and an 11-minute hourglass. How can you time exactly 15 minutes? Describe the steps, then reveal and compare.",
+      "answer": "Start both at time 0. When the 7-minute glass runs out (t=7), flip it at once. When the 11-minute glass runs out (t=11), the 7-minute glass has been running for 4 minutes, so it has 3 minutes of sand left on top: flip it. The 4 minutes already run now sit in the top, so it finishes 4 minutes later, at t=15.",
+      "explanation": "The trick is that flipping a partly run hourglass measures the time already elapsed on it: the 7-minute glass, 4 minutes into its second run, becomes a 4-minute timer at t=11, and 11+4=15.",
+      "tags": [
+        "puzzle",
+        "classic",
+        "lateral",
+        "procedure",
+        "generated"
+      ]
+    }
+  ]
+}
