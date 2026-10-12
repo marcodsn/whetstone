@@ -1,0 +1,137 @@
+{
+  "pack": "gen-code-20261012",
+  "exercises": [
+    {
+      "id": "gen-code-106",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This binary search is meant to return the index of `x` in the sorted list `a`, or -1 if absent. `find([1, 3, 5], 5)` returns -1. Why?",
+      "choices": [
+        "The loop condition should be `lo <= hi`; with `lo < hi` it quits when one candidate remains, never checking it",
+        "`mid` should be computed with `/` instead of `//`",
+        "`hi` should start at `len(a)`, so the last element is included",
+        "`lo = mid + 1` should be `lo = mid`"
+      ],
+      "answer": "The loop condition should be `lo <= hi`; with `lo < hi` it quits when one candidate remains, never checking it",
+      "explanation": "Here the search narrows to lo = hi = 2, the index of 5, but `lo < hi` is false so the loop exits without comparing. Whenever `hi` is an inclusive bound, the loop must continue while `lo <= hi`.",
+      "tags": [
+        "python",
+        "algorithms",
+        "binary-search",
+        "spot-the-bug",
+        "off-by-one",
+        "generated"
+      ],
+      "code": {
+        "lang": "python",
+        "src": "def find(a, x):\n    lo, hi = 0, len(a) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if a[mid] == x:\n            return mid\n        if a[mid] < x:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1"
+      }
+    },
+    {
+      "id": "gen-code-107",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This C function is meant to return a heap copy of the string `s`. What is wrong with it?",
+      "choices": [
+        "`malloc` is one byte short: the terminating NUL needs `strlen(s) + 1` bytes",
+        "`strcpy` cannot be used on a heap pointer",
+        "It never frees `s`",
+        "It returns a pointer to a local variable"
+      ],
+      "answer": "`malloc` is one byte short: the terminating NUL needs `strlen(s) + 1` bytes",
+      "explanation": "`strlen` doesn't count the trailing '\\0', but `strcpy` writes it, so the copy overflows the buffer by one byte (undefined behaviour). Allocate `strlen(s) + 1` or just use `strdup`.",
+      "tags": [
+        "c",
+        "strings",
+        "memory",
+        "spot-the-bug",
+        "off-by-one",
+        "generated"
+      ],
+      "code": {
+        "lang": "c",
+        "src": "char *copy(const char *s) {\n    char *p = malloc(strlen(s));\n    strcpy(p, s);\n    return p;\n}"
+      }
+    },
+    {
+      "id": "gen-code-108",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "What is the time complexity of `f` as a function of `n`?",
+      "choices": [
+        "O(n)",
+        "O(n log n)",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "answer": "O(n)",
+      "explanation": "The inner loop runs i times, and i halves each round: n + n/2 + n/4 + ... < 2n. A geometric series sums to a constant multiple of its first term, so it is O(n), not O(n log n).",
+      "tags": [
+        "python",
+        "complexity",
+        "algorithms",
+        "geometric-series",
+        "generated"
+      ],
+      "code": {
+        "lang": "python",
+        "src": "def f(n):\n    total = 0\n    i = n\n    while i > 1:\n        for j in range(i):\n            total += 1\n        i //= 2\n    return total"
+      }
+    },
+    {
+      "id": "gen-code-109",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "What does this JavaScript do when run?",
+      "choices": [
+        "It throws a ReferenceError",
+        "It prints 1",
+        "It prints 2",
+        "It prints undefined"
+      ],
+      "answer": "It throws a ReferenceError",
+      "explanation": "`let x = 2` inside the block shadows the outer `x` for the whole block, including the lines before the declaration (the temporal dead zone). Reading it there throws a ReferenceError instead of falling back to the outer value.",
+      "tags": [
+        "javascript",
+        "scoping",
+        "tdz",
+        "predict-output",
+        "gotcha",
+        "generated"
+      ],
+      "code": {
+        "lang": "javascript",
+        "src": "let x = 1;\n{\n  console.log(x);\n  let x = 2;\n}"
+      }
+    },
+    {
+      "id": "gen-code-110",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What does this Python print? (Give the three values separated by spaces.)",
+      "answer": "0 2 1",
+      "accepted": [
+        "0, 2, 1",
+        "0,2,1"
+      ],
+      "explanation": "`self.count += 1` reads the class attribute but writes a new instance attribute, so each object gets its own counter and `Counter.count` stays 0. a.inc() twice gives 2, b.inc() once gives 1.",
+      "tags": [
+        "python",
+        "classes",
+        "class-attributes",
+        "predict-output",
+        "gotcha",
+        "generated"
+      ],
+      "code": {
+        "lang": "python",
+        "src": "class Counter:\n    count = 0\n    def inc(self):\n        self.count += 1\n\na, b = Counter(), Counter()\na.inc(); a.inc(); b.inc()\nprint(Counter.count, a.count, b.count)"
+      }
+    }
+  ]
+}

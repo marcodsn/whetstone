@@ -3054,6 +3054,138 @@
 		]
 	},
 	{
+		"id": "gen-code-106",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This binary search is meant to return the index of `x` in the sorted list `a`, or -1 if absent. `find([1, 3, 5], 5)` returns -1. Why?",
+		"choices": [
+			"The loop condition should be `lo <= hi`; with `lo < hi` it quits when one candidate remains, never checking it",
+			"`mid` should be computed with `/` instead of `//`",
+			"`hi` should start at `len(a)`, so the last element is included",
+			"`lo = mid + 1` should be `lo = mid`"
+		],
+		"answer": "The loop condition should be `lo <= hi`; with `lo < hi` it quits when one candidate remains, never checking it",
+		"explanation": "Here the search narrows to lo = hi = 2, the index of 5, but `lo < hi` is false so the loop exits without comparing. Whenever `hi` is an inclusive bound, the loop must continue while `lo <= hi`.",
+		"tags": [
+			"python",
+			"algorithms",
+			"binary-search",
+			"spot-the-bug",
+			"off-by-one",
+			"generated"
+		],
+		"code": {
+			"lang": "python",
+			"src": "def find(a, x):\n    lo, hi = 0, len(a) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if a[mid] == x:\n            return mid\n        if a[mid] < x:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1"
+		}
+	},
+	{
+		"id": "gen-code-107",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This C function is meant to return a heap copy of the string `s`. What is wrong with it?",
+		"choices": [
+			"`malloc` is one byte short: the terminating NUL needs `strlen(s) + 1` bytes",
+			"`strcpy` cannot be used on a heap pointer",
+			"It never frees `s`",
+			"It returns a pointer to a local variable"
+		],
+		"answer": "`malloc` is one byte short: the terminating NUL needs `strlen(s) + 1` bytes",
+		"explanation": "`strlen` doesn't count the trailing '\\0', but `strcpy` writes it, so the copy overflows the buffer by one byte (undefined behaviour). Allocate `strlen(s) + 1` or just use `strdup`.",
+		"tags": [
+			"c",
+			"strings",
+			"memory",
+			"spot-the-bug",
+			"off-by-one",
+			"generated"
+		],
+		"code": {
+			"lang": "c",
+			"src": "char *copy(const char *s) {\n    char *p = malloc(strlen(s));\n    strcpy(p, s);\n    return p;\n}"
+		}
+	},
+	{
+		"id": "gen-code-108",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What is the time complexity of `f` as a function of `n`?",
+		"choices": [
+			"O(n)",
+			"O(n log n)",
+			"O(n^2)",
+			"O(log n)"
+		],
+		"answer": "O(n)",
+		"explanation": "The inner loop runs i times, and i halves each round: n + n/2 + n/4 + ... < 2n. A geometric series sums to a constant multiple of its first term, so it is O(n), not O(n log n).",
+		"tags": [
+			"python",
+			"complexity",
+			"algorithms",
+			"geometric-series",
+			"generated"
+		],
+		"code": {
+			"lang": "python",
+			"src": "def f(n):\n    total = 0\n    i = n\n    while i > 1:\n        for j in range(i):\n            total += 1\n        i //= 2\n    return total"
+		}
+	},
+	{
+		"id": "gen-code-109",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What does this JavaScript do when run?",
+		"choices": [
+			"It throws a ReferenceError",
+			"It prints 1",
+			"It prints 2",
+			"It prints undefined"
+		],
+		"answer": "It throws a ReferenceError",
+		"explanation": "`let x = 2` inside the block shadows the outer `x` for the whole block, including the lines before the declaration (the temporal dead zone). Reading it there throws a ReferenceError instead of falling back to the outer value.",
+		"tags": [
+			"javascript",
+			"scoping",
+			"tdz",
+			"predict-output",
+			"gotcha",
+			"generated"
+		],
+		"code": {
+			"lang": "javascript",
+			"src": "let x = 1;\n{\n  console.log(x);\n  let x = 2;\n}"
+		}
+	},
+	{
+		"id": "gen-code-110",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python print? (Give the three values separated by spaces.)",
+		"answer": "0 2 1",
+		"accepted": [
+			"0, 2, 1",
+			"0,2,1"
+		],
+		"explanation": "`self.count += 1` reads the class attribute but writes a new instance attribute, so each object gets its own counter and `Counter.count` stays 0. a.inc() twice gives 2, b.inc() once gives 1.",
+		"tags": [
+			"python",
+			"classes",
+			"class-attributes",
+			"predict-output",
+			"gotcha",
+			"generated"
+		],
+		"code": {
+			"lang": "python",
+			"src": "class Counter:\n    count = 0\n    def inc(self):\n        self.count += 1\n\na, b = Counter(), Counter()\na.inc(); a.inc(); b.inc()\nprint(Counter.count, a.count, b.count)"
+		}
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -5938,6 +6070,211 @@
 		]
 	},
 	{
+		"id": "gen-general-151",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What goes up but never comes down?",
+		"answer": "age",
+		"accepted": [
+			"your age",
+			"Age",
+			"a person's age"
+		],
+		"explanation": "Your age only ever increases. The riddle works by making you picture a physical object going up and falling back.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-152",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What occurs once in a minute, twice in a moment, and never in a thousand years?",
+		"answer": "the letter m",
+		"accepted": [
+			"m",
+			"letter m",
+			"the letter M",
+			"M"
+		],
+		"explanation": "Count the letter M in each word: one in \"minute\", two in \"moment\", none in \"a thousand years\".",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-153",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which one of these letters does NOT appear in the name of any of the 50 US states?",
+		"choices": [
+			"J",
+			"X",
+			"Z",
+			"Q"
+		],
+		"answer": "Q",
+		"explanation": "J is in New Jersey, X in Texas and New Mexico, Z in Arizona. Q is the one letter no state name contains.",
+		"tags": [
+			"trivia",
+			"geography",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-154",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You flip a fair coin 100 times. How likely is it that somewhere in the sequence there is a run of at least 5 identical results in a row (5 heads or 5 tails)?",
+		"choices": [
+			"About 10%",
+			"About 50%",
+			"About 75%",
+			"Over 95%"
+		],
+		"answer": "Over 95%",
+		"explanation": "Long streaks are far more common than intuition says: with ~96 starting positions for a run, the chance of no run of 5 in 100 flips is only about 3%. This is why human-faked coin-flip sequences are easy to spot: they lack streaks.",
+		"tags": [
+			"probability",
+			"statistics",
+			"intuition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-155",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If you spent one dollar every second, nonstop, roughly how long would it take to spend one trillion dollars?",
+		"choices": [
+			"About 32 years",
+			"About 317 years",
+			"About 31,700 years",
+			"About 3.2 million years"
+		],
+		"answer": "About 31,700 years",
+		"explanation": "A trillion is $10^{12}$ and a year has about $3.15\\times10^7$ seconds, so $10^{12}/3.15\\times10^7 \\approx 31{,}700$ years. A billion seconds is only ~32 years, which is why the trillion feels deceptively close.",
+		"tags": [
+			"estimation",
+			"scale",
+			"fermi-estimate",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-156",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: a penny dropped from the top of the Empire State Building can kill a person on the street below.",
+		"choices": [
+			"False",
+			"True"
+		],
+		"answer": "False",
+		"explanation": "A penny is light and tumbles, so air drag caps its speed at roughly 30-50 mph. That stings but is nowhere near lethal.",
+		"tags": [
+			"myth-busting",
+			"physics",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-157",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which came first in English: the name of the color orange, or the name of the fruit orange?",
+		"choices": [
+			"The fruit",
+			"The color",
+			"They appeared at the same time",
+			"They are unrelated words"
+		],
+		"answer": "The fruit",
+		"explanation": "The fruit's name (via Old French and ultimately Sanskrit) came first; English only used \"orange\" for the color from the 1500s. Before that people said \"yellow-red\" or \"saffron\".",
+		"tags": [
+			"trivia",
+			"naming-trap",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-158",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A man manages to go eight days without sleep and is perfectly healthy and well-rested. How?",
+		"choices": [
+			"He only sleeps at night",
+			"He is a very heavy sleeper",
+			"He takes a lot of naps",
+			"He is lying about it"
+		],
+		"answer": "He only sleeps at night",
+		"explanation": "Going eight days without sleep during the day is easy: he just sleeps at night. The trap is hearing \"without sleep\" as eight days with none at all.",
+		"tags": [
+			"lateral",
+			"riddle",
+			"trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-159",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 5,
+		"prompt": "Penney's game: you flip a fair coin repeatedly, and I choose the pattern HHH. You then choose a different 3-flip pattern. Whoever's pattern appears first in the sequence wins. With your best choice, what is your winning probability?",
+		"choices": [
+			"1/2",
+			"2/3",
+			"7/8",
+			"1/8"
+		],
+		"answer": "7/8",
+		"explanation": "Choosing THH wins 7/8 of the time: HHH can only appear first if the very first three flips are all heads (1/8); otherwise a T gets in front of the first HH and THH occurs first. Penney's game is non-transitive: whatever pattern I choose, you can pick one that beats it.",
+		"tags": [
+			"probability",
+			"paradox",
+			"game-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-160",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which is wider: the Moon (about 3,474 km in diameter) or Australia measured east to west?",
+		"choices": [
+			"Australia, at roughly 4,000 km",
+			"The Moon",
+			"They are almost exactly equal",
+			"Australia, at roughly 8,000 km"
+		],
+		"answer": "Australia, at roughly 4,000 km",
+		"explanation": "Mainland Australia spans about 4,000 km east to west, more than the Moon's diameter of 3,474 km. The Moon is much smaller than most people picture.",
+		"tags": [
+			"trivia",
+			"scale",
+			"geography",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -6743,6 +7080,62 @@
 			"writing",
 			"commands",
 			"fractions",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-046",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command produces the 'proportional to' symbol $\\propto$?",
+		"answer": "\\propto",
+		"accepted": [
+			"propto",
+			"\\propto "
+		],
+		"explanation": "`\\propto` typesets the proportionality sign, as in $y \\propto x$. It looks like a rotated alpha but is its own symbol; don't use `\\alpha`.",
+		"tags": [
+			"symbols",
+			"commands",
+			"relations",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-047",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A student types `$log x$` and gets italic letters $log x$ with awkward spacing. What is the correct source for the properly typeset $\\log x$?",
+		"choices": [
+			"\\log x",
+			"\\Log x",
+			"\\operatorname{lg} x",
+			"\\textlog x"
+		],
+		"answer": "\\log x",
+		"explanation": "Without a backslash, `log` is read as the product of three italic variables l, o, g. `\\log` is a predefined operator that uses upright type and proper spacing.",
+		"tags": [
+			"operators",
+			"gotcha",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-048",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the Euclidean norm, matching this display exactly. Then reveal and compare.\n\n$$\\|x\\|_2 = \\sqrt{\\sum_{i=1}^{n} x_i^2}$$",
+		"answer": "\\|x\\|_2 = \\sqrt{\\sum_{i=1}^{n} x_i^2}",
+		"explanation": "Use `\\|` for the double bar (not `||`, which gets bad spacing), `_2` for the subscript, and `\\sqrt{...}` around the whole sum with limits `_{i=1}^{n}`.",
+		"tags": [
+			"writing",
+			"operators",
+			"sum",
+			"norms",
 			"generated"
 		]
 	},
@@ -8751,6 +9144,122 @@
 			"classic",
 			"lateral",
 			"procedure",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-107",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "These are the number of letters in the English words for the numbers 1, 2, 3, ...: 3, 3, 5, 4, 4, 3, 5, ... What is the next number in the sequence?",
+		"answer": "5",
+		"accepted": [
+			"five"
+		],
+		"explanation": "The numbers are \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", so the next is \"eight\", which has 5 letters. The pattern is in the words, not the arithmetic.",
+		"tags": [
+			"sequences",
+			"pattern-recognition",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-108",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Four friends stand in a line, positions 1 to 4 from left to right. Ann is somewhere to the left of Ben. Ben is at one end of the line. Cal is not at either end. Dee stands directly next to Ann. Ann is not in position 1. What is the order from left to right?",
+		"choices": [
+			"Dee, Ann, Cal, Ben",
+			"Ann, Dee, Cal, Ben",
+			"Ann, Cal, Dee, Ben",
+			"Dee, Cal, Ann, Ben"
+		],
+		"answer": "Dee, Ann, Cal, Ben",
+		"explanation": "Ben has Ann on his left, so Ben is at the right end (position 4). Cal is in 2 or 3; if in 2, Ann and Dee would be at 1 and 3 and not adjacent, so Cal is 3, leaving Ann and Dee in 1-2. Ann is not first, so Dee is first.",
+		"tags": [
+			"constraint-puzzle",
+			"deduction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-109",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "You have two identical eggs and a 100-story building. The eggs break at the same unknown floor, and an egg that survives a drop can be reused. What is the smallest number of drops that always suffices (in the worst case) to find the highest safe floor?",
+		"answer": "14",
+		"accepted": [
+			"14 drops",
+			"fourteen"
+		],
+		"explanation": "Drop the first egg from floors 14, 27, 39, ... stepping by one less each time (14+13+12+...+1 = 105 >= 100), then walk up with the second egg. In general you need the smallest $n$ with $n(n+1)/2 \\ge 100$, which is 14.",
+		"tags": [
+			"puzzle",
+			"classic",
+			"strategy",
+			"induction",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-110",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "\"No true Scotsman puts sugar on his porridge.\" \"But my friend Angus is a Scotsman and he puts sugar on his porridge.\" \"Well, then no TRUE Scotsman does.\" What fallacy is the speaker committing?",
+		"choices": [
+			"No true Scotsman (moving the goalposts of a definition)",
+			"Ad hominem",
+			"Slippery slope",
+			"Affirming the consequent"
+		],
+		"answer": "No true Scotsman (moving the goalposts of a definition)",
+		"explanation": "When a counterexample appears, the speaker redefines the group so the counterexample is excluded, making the claim unfalsifiable.",
+		"tags": [
+			"fallacy",
+			"informal-logic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-111",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "You look at a wall clock in a mirror and it appears to show 3:20. What time is it really? (Give it as h:mm, 12-hour clock.)",
+		"answer": "8:40",
+		"accepted": [
+			"8:40",
+			"08:40",
+			"eight forty"
+		],
+		"explanation": "A mirror reflects the clock face left to right, so the true time is the mirror time subtracted from 12:00: 12:00 - 3:20 = 8:40.",
+		"tags": [
+			"spatial",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-112",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "If the day after tomorrow is Thursday, what day was the day before yesterday?",
+		"answer": "Sunday",
+		"accepted": [
+			"sunday",
+			"Sun"
+		],
+		"explanation": "If two days from now is Thursday, today is Tuesday. The day before yesterday is two days earlier: Sunday.",
+		"tags": [
+			"reading-trap",
+			"deduction",
+			"trick",
 			"generated"
 		]
 	},
@@ -11649,6 +12158,152 @@
 			"recreational",
 			"number-theory",
 			"lcm",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-156",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "A straight fence 100 m long has a post every 10 m, with a post at each end. How many posts are there?",
+		"answer": "11",
+		"accepted": [
+			"11 posts",
+			"eleven"
+		],
+		"explanation": "There are 10 gaps between posts, but 11 posts because both ends have one (the classic fencepost error).",
+		"tags": [
+			"recreational",
+			"counting",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-157",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "You want to leave a 15% tip on a restaurant bill of $48. How much is the tip, in dollars?",
+		"answer": "7.20",
+		"accepted": [
+			"7.2",
+			"$7.20",
+			"$7.2"
+		],
+		"explanation": "10% of 48 is 4.80 and 5% is half of that, 2.40, so 15% is 4.80 + 2.40 = 7.20.",
+		"tags": [
+			"mental-math",
+			"percentages",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-158",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A single-elimination tournament has 64 players, with no byes and no ties. How many matches are played in total to determine the champion?",
+		"choices": [
+			"32",
+			"63",
+			"64",
+			"6"
+		],
+		"answer": "63",
+		"explanation": "Every match eliminates exactly one player, and 63 of the 64 players must be eliminated, so there are 63 matches. No need to add up 32+16+8+4+2+1.",
+		"tags": [
+			"recreational",
+			"aha",
+			"counting",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-159",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A census-taker asks a farmer the ages of his three daughters. The farmer says: \"The product of their ages is 36, and the sum is the number on that house.\" The census-taker says that is not enough information. The farmer adds: \"My oldest daughter plays the piano.\" What are the three ages? (Give them in ascending order.)",
+		"answer": "2, 2, 9",
+		"accepted": [
+			"2,2,9",
+			"2 2 9",
+			"2, 2 and 9",
+			"9, 2, 2",
+			"9,2,2"
+		],
+		"explanation": "The triples with product 36 have sums 38, 21, 16, 14, 13, 13, 11, 10. Only the sum 13 repeats (1,6,6 and 2,2,9), which is why the census-taker was stuck. \"The oldest\" rules out 1,6,6 (two oldest are tied), leaving 2,2,9.",
+		"tags": [
+			"recreational",
+			"puzzle",
+			"classic",
+			"number-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-160",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How many three-digit positive integers are palindromes (read the same forwards and backwards, like 121 or 505)?",
+		"answer": "90",
+		"accepted": [
+			"90 numbers",
+			"ninety"
+		],
+		"explanation": "The first digit (1-9) fixes the last digit, and the middle digit is free (0-9): 9 x 10 = 90.",
+		"tags": [
+			"recreational",
+			"counting",
+			"number-theory",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-161",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the maximum number of pieces you can cut a flat round pancake into with 4 straight cuts (you may not rearrange the pieces)?",
+		"choices": [
+			"8",
+			"10",
+			"11",
+			"16"
+		],
+		"answer": "11",
+		"explanation": "The $n$th cut can cross all earlier cuts, adding $n$ pieces: 1 + 1 + 2 + 3 + 4 = 11. Doubling each time (16) is the tempting wrong pattern.",
+		"tags": [
+			"recreational",
+			"geometry",
+			"counting",
+			"sequences",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-162",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A rectangle's length and width are both increased by 20%. By what percent does its area increase?",
+		"choices": [
+			"40%",
+			"44%",
+			"20%",
+			"400%"
+		],
+		"answer": "44%",
+		"explanation": "The area scales by $1.2 \\times 1.2 = 1.44$, a 44% increase. The percentages multiply rather than add.",
+		"tags": [
+			"percentages",
+			"geometry",
+			"trick",
+			"recreational",
 			"generated"
 		]
 	},

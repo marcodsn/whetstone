@@ -1,0 +1,121 @@
+{
+  "pack": "gen-logic-20261012",
+  "exercises": [
+    {
+      "id": "gen-logic-107",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "These are the number of letters in the English words for the numbers 1, 2, 3, ...: 3, 3, 5, 4, 4, 3, 5, ... What is the next number in the sequence?",
+      "answer": "5",
+      "accepted": [
+        "five"
+      ],
+      "explanation": "The numbers are \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", so the next is \"eight\", which has 5 letters. The pattern is in the words, not the arithmetic.",
+      "tags": [
+        "sequences",
+        "pattern-recognition",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-108",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Four friends stand in a line, positions 1 to 4 from left to right. Ann is somewhere to the left of Ben. Ben is at one end of the line. Cal is not at either end. Dee stands directly next to Ann. Ann is not in position 1. What is the order from left to right?",
+      "choices": [
+        "Dee, Ann, Cal, Ben",
+        "Ann, Dee, Cal, Ben",
+        "Ann, Cal, Dee, Ben",
+        "Dee, Cal, Ann, Ben"
+      ],
+      "answer": "Dee, Ann, Cal, Ben",
+      "explanation": "Ben has Ann on his left, so Ben is at the right end (position 4). Cal is in 2 or 3; if in 2, Ann and Dee would be at 1 and 3 and not adjacent, so Cal is 3, leaving Ann and Dee in 1-2. Ann is not first, so Dee is first.",
+      "tags": [
+        "constraint-puzzle",
+        "deduction",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-109",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "You have two identical eggs and a 100-story building. The eggs break at the same unknown floor, and an egg that survives a drop can be reused. What is the smallest number of drops that always suffices (in the worst case) to find the highest safe floor?",
+      "answer": "14",
+      "accepted": [
+        "14 drops",
+        "fourteen"
+      ],
+      "explanation": "Drop the first egg from floors 14, 27, 39, ... stepping by one less each time (14+13+12+...+1 = 105 >= 100), then walk up with the second egg. In general you need the smallest $n$ with $n(n+1)/2 \\ge 100$, which is 14.",
+      "tags": [
+        "puzzle",
+        "classic",
+        "strategy",
+        "induction",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-110",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "\"No true Scotsman puts sugar on his porridge.\" \"But my friend Angus is a Scotsman and he puts sugar on his porridge.\" \"Well, then no TRUE Scotsman does.\" What fallacy is the speaker committing?",
+      "choices": [
+        "No true Scotsman (moving the goalposts of a definition)",
+        "Ad hominem",
+        "Slippery slope",
+        "Affirming the consequent"
+      ],
+      "answer": "No true Scotsman (moving the goalposts of a definition)",
+      "explanation": "When a counterexample appears, the speaker redefines the group so the counterexample is excluded, making the claim unfalsifiable.",
+      "tags": [
+        "fallacy",
+        "informal-logic",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-111",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "You look at a wall clock in a mirror and it appears to show 3:20. What time is it really? (Give it as h:mm, 12-hour clock.)",
+      "answer": "8:40",
+      "accepted": [
+        "8:40",
+        "08:40",
+        "eight forty"
+      ],
+      "explanation": "A mirror reflects the clock face left to right, so the true time is the mirror time subtracted from 12:00: 12:00 - 3:20 = 8:40.",
+      "tags": [
+        "spatial",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-112",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "If the day after tomorrow is Thursday, what day was the day before yesterday?",
+      "answer": "Sunday",
+      "accepted": [
+        "sunday",
+        "Sun"
+      ],
+      "explanation": "If two days from now is Thursday, today is Tuesday. The day before yesterday is two days earlier: Sunday.",
+      "tags": [
+        "reading-trap",
+        "deduction",
+        "trick",
+        "generated"
+      ]
+    }
+  ]
+}

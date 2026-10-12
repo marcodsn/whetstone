@@ -1,0 +1,210 @@
+{
+  "pack": "gen-general-20261012",
+  "exercises": [
+    {
+      "id": "gen-general-151",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What goes up but never comes down?",
+      "answer": "age",
+      "accepted": [
+        "your age",
+        "Age",
+        "a person's age"
+      ],
+      "explanation": "Your age only ever increases. The riddle works by making you picture a physical object going up and falling back.",
+      "tags": [
+        "riddle",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-152",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What occurs once in a minute, twice in a moment, and never in a thousand years?",
+      "answer": "the letter m",
+      "accepted": [
+        "m",
+        "letter m",
+        "the letter M",
+        "M"
+      ],
+      "explanation": "Count the letter M in each word: one in \"minute\", two in \"moment\", none in \"a thousand years\".",
+      "tags": [
+        "riddle",
+        "wordplay",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-153",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which one of these letters does NOT appear in the name of any of the 50 US states?",
+      "choices": [
+        "J",
+        "X",
+        "Z",
+        "Q"
+      ],
+      "answer": "Q",
+      "explanation": "J is in New Jersey, X in Texas and New Mexico, Z in Arizona. Q is the one letter no state name contains.",
+      "tags": [
+        "trivia",
+        "geography",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-154",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "You flip a fair coin 100 times. How likely is it that somewhere in the sequence there is a run of at least 5 identical results in a row (5 heads or 5 tails)?",
+      "choices": [
+        "About 10%",
+        "About 50%",
+        "About 75%",
+        "Over 95%"
+      ],
+      "answer": "Over 95%",
+      "explanation": "Long streaks are far more common than intuition says: with ~96 starting positions for a run, the chance of no run of 5 in 100 flips is only about 3%. This is why human-faked coin-flip sequences are easy to spot: they lack streaks.",
+      "tags": [
+        "probability",
+        "statistics",
+        "intuition",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-155",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "If you spent one dollar every second, nonstop, roughly how long would it take to spend one trillion dollars?",
+      "choices": [
+        "About 32 years",
+        "About 317 years",
+        "About 31,700 years",
+        "About 3.2 million years"
+      ],
+      "answer": "About 31,700 years",
+      "explanation": "A trillion is $10^{12}$ and a year has about $3.15\\times10^7$ seconds, so $10^{12}/3.15\\times10^7 \\approx 31{,}700$ years. A billion seconds is only ~32 years, which is why the trillion feels deceptively close.",
+      "tags": [
+        "estimation",
+        "scale",
+        "fermi-estimate",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-156",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "True or false: a penny dropped from the top of the Empire State Building can kill a person on the street below.",
+      "choices": [
+        "False",
+        "True"
+      ],
+      "answer": "False",
+      "explanation": "A penny is light and tumbles, so air drag caps its speed at roughly 30-50 mph. That stings but is nowhere near lethal.",
+      "tags": [
+        "myth-busting",
+        "physics",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-157",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which came first in English: the name of the color orange, or the name of the fruit orange?",
+      "choices": [
+        "The fruit",
+        "The color",
+        "They appeared at the same time",
+        "They are unrelated words"
+      ],
+      "answer": "The fruit",
+      "explanation": "The fruit's name (via Old French and ultimately Sanskrit) came first; English only used \"orange\" for the color from the 1500s. Before that people said \"yellow-red\" or \"saffron\".",
+      "tags": [
+        "trivia",
+        "naming-trap",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-158",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A man manages to go eight days without sleep and is perfectly healthy and well-rested. How?",
+      "choices": [
+        "He only sleeps at night",
+        "He is a very heavy sleeper",
+        "He takes a lot of naps",
+        "He is lying about it"
+      ],
+      "answer": "He only sleeps at night",
+      "explanation": "Going eight days without sleep during the day is easy: he just sleeps at night. The trap is hearing \"without sleep\" as eight days with none at all.",
+      "tags": [
+        "lateral",
+        "riddle",
+        "trick",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-159",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 5,
+      "prompt": "Penney's game: you flip a fair coin repeatedly, and I choose the pattern HHH. You then choose a different 3-flip pattern. Whoever's pattern appears first in the sequence wins. With your best choice, what is your winning probability?",
+      "choices": [
+        "1/2",
+        "2/3",
+        "7/8",
+        "1/8"
+      ],
+      "answer": "7/8",
+      "explanation": "Choosing THH wins 7/8 of the time: HHH can only appear first if the very first three flips are all heads (1/8); otherwise a T gets in front of the first HH and THH occurs first. Penney's game is non-transitive: whatever pattern I choose, you can pick one that beats it.",
+      "tags": [
+        "probability",
+        "paradox",
+        "game-theory",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-160",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which is wider: the Moon (about 3,474 km in diameter) or Australia measured east to west?",
+      "choices": [
+        "Australia, at roughly 4,000 km",
+        "The Moon",
+        "They are almost exactly equal",
+        "Australia, at roughly 8,000 km"
+      ],
+      "answer": "Australia, at roughly 4,000 km",
+      "explanation": "Mainland Australia spans about 4,000 km east to west, more than the Moon's diameter of 3,474 km. The Moon is much smaller than most people picture.",
+      "tags": [
+        "trivia",
+        "scale",
+        "geography",
+        "generated"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "pack": "gen-latex-20261012",
+  "exercises": [
+    {
+      "id": "gen-latex-046",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What command produces the 'proportional to' symbol $\\propto$?",
+      "answer": "\\propto",
+      "accepted": [
+        "propto",
+        "\\propto "
+      ],
+      "explanation": "`\\propto` typesets the proportionality sign, as in $y \\propto x$. It looks like a rotated alpha but is its own symbol; don't use `\\alpha`.",
+      "tags": [
+        "symbols",
+        "commands",
+        "relations",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-047",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A student types `$log x$` and gets italic letters $log x$ with awkward spacing. What is the correct source for the properly typeset $\\log x$?",
+      "choices": [
+        "\\log x",
+        "\\Log x",
+        "\\operatorname{lg} x",
+        "\\textlog x"
+      ],
+      "answer": "\\log x",
+      "explanation": "Without a backslash, `log` is read as the product of three italic variables l, o, g. `\\log` is a predefined operator that uses upright type and proper spacing.",
+      "tags": [
+        "operators",
+        "gotcha",
+        "spot-the-bug",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-048",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 3,
+      "prompt": "Write the LaTeX source for the Euclidean norm, matching this display exactly. Then reveal and compare.\n\n$$\\|x\\|_2 = \\sqrt{\\sum_{i=1}^{n} x_i^2}$$",
+      "answer": "\\|x\\|_2 = \\sqrt{\\sum_{i=1}^{n} x_i^2}",
+      "explanation": "Use `\\|` for the double bar (not `||`, which gets bad spacing), `_2` for the subscript, and `\\sqrt{...}` around the whole sum with limits `_{i=1}^{n}`.",
+      "tags": [
+        "writing",
+        "operators",
+        "sum",
+        "norms",
+        "generated"
+      ]
+    }
+  ]
+}

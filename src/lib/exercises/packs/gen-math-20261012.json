@@ -1,0 +1,151 @@
+{
+  "pack": "gen-math-20261012",
+  "exercises": [
+    {
+      "id": "gen-math-156",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "A straight fence 100 m long has a post every 10 m, with a post at each end. How many posts are there?",
+      "answer": "11",
+      "accepted": [
+        "11 posts",
+        "eleven"
+      ],
+      "explanation": "There are 10 gaps between posts, but 11 posts because both ends have one (the classic fencepost error).",
+      "tags": [
+        "recreational",
+        "counting",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-157",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "You want to leave a 15% tip on a restaurant bill of $48. How much is the tip, in dollars?",
+      "answer": "7.20",
+      "accepted": [
+        "7.2",
+        "$7.20",
+        "$7.2"
+      ],
+      "explanation": "10% of 48 is 4.80 and 5% is half of that, 2.40, so 15% is 4.80 + 2.40 = 7.20.",
+      "tags": [
+        "mental-math",
+        "percentages",
+        "recreational",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-158",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A single-elimination tournament has 64 players, with no byes and no ties. How many matches are played in total to determine the champion?",
+      "choices": [
+        "32",
+        "63",
+        "64",
+        "6"
+      ],
+      "answer": "63",
+      "explanation": "Every match eliminates exactly one player, and 63 of the 64 players must be eliminated, so there are 63 matches. No need to add up 32+16+8+4+2+1.",
+      "tags": [
+        "recreational",
+        "aha",
+        "counting",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-159",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "A census-taker asks a farmer the ages of his three daughters. The farmer says: \"The product of their ages is 36, and the sum is the number on that house.\" The census-taker says that is not enough information. The farmer adds: \"My oldest daughter plays the piano.\" What are the three ages? (Give them in ascending order.)",
+      "answer": "2, 2, 9",
+      "accepted": [
+        "2,2,9",
+        "2 2 9",
+        "2, 2 and 9",
+        "9, 2, 2",
+        "9,2,2"
+      ],
+      "explanation": "The triples with product 36 have sums 38, 21, 16, 14, 13, 13, 11, 10. Only the sum 13 repeats (1,6,6 and 2,2,9), which is why the census-taker was stuck. \"The oldest\" rules out 1,6,6 (two oldest are tied), leaving 2,2,9.",
+      "tags": [
+        "recreational",
+        "puzzle",
+        "classic",
+        "number-theory",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-160",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "How many three-digit positive integers are palindromes (read the same forwards and backwards, like 121 or 505)?",
+      "answer": "90",
+      "accepted": [
+        "90 numbers",
+        "ninety"
+      ],
+      "explanation": "The first digit (1-9) fixes the last digit, and the middle digit is free (0-9): 9 x 10 = 90.",
+      "tags": [
+        "recreational",
+        "counting",
+        "number-theory",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-161",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What is the maximum number of pieces you can cut a flat round pancake into with 4 straight cuts (you may not rearrange the pieces)?",
+      "choices": [
+        "8",
+        "10",
+        "11",
+        "16"
+      ],
+      "answer": "11",
+      "explanation": "The $n$th cut can cross all earlier cuts, adding $n$ pieces: 1 + 1 + 2 + 3 + 4 = 11. Doubling each time (16) is the tempting wrong pattern.",
+      "tags": [
+        "recreational",
+        "geometry",
+        "counting",
+        "sequences",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-162",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A rectangle's length and width are both increased by 20%. By what percent does its area increase?",
+      "choices": [
+        "40%",
+        "44%",
+        "20%",
+        "400%"
+      ],
+      "answer": "44%",
+      "explanation": "The area scales by $1.2 \\times 1.2 = 1.44$, a 44% increase. The percentages multiply rather than add.",
+      "tags": [
+        "percentages",
+        "geometry",
+        "trick",
+        "recreational",
+        "generated"
+      ]
+    }
+  ]
+}
