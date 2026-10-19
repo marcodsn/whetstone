@@ -1,0 +1,140 @@
+{
+  "pack": "gen-math-20261019",
+  "exercises": [
+    {
+      "id": "gen-math-163",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "You cut a long log into 5 pieces, using straight cuts. How many cuts do you need?",
+      "answer": "4",
+      "accepted": [
+        "four"
+      ],
+      "explanation": "Each cut adds exactly one piece to the one you started with, so 5 pieces need 4 cuts. This is the fence-post counting trap.",
+      "tags": [
+        "recreational",
+        "counting",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-164",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A jacket's price is raised by 50%, and then the new price is reduced by 50%. Compared with the original price, the final price is:",
+      "choices": [
+        "The same as the original",
+        "25% lower than the original",
+        "25% higher than the original",
+        "50% lower than the original"
+      ],
+      "answer": "25% lower than the original",
+      "explanation": "$100 \\to 150 \\to 75$. The second percentage applies to a bigger base, so the changes don't cancel.",
+      "tags": [
+        "percentages",
+        "trick",
+        "recreational",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-165",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What is the sum of all the digits of the number $10^{20} - 1$?",
+      "answer": "180",
+      "accepted": [],
+      "explanation": "$10^{20}-1$ is a string of twenty 9s, so the digit sum is $20 \\times 9 = 180$.",
+      "tags": [
+        "recreational",
+        "arithmetic-trick",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-166",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Exactly one of these numbers has an odd number of positive divisors. Which one?",
+      "choices": [
+        "36",
+        "40",
+        "45",
+        "48"
+      ],
+      "answer": "36",
+      "explanation": "Divisors pair up as $d$ and $n/d$, so the count is odd only when some $d = n/d$, meaning $n$ is a perfect square. 36 has 9 divisors; 40 has 8, 45 has 6, 48 has 10.",
+      "tags": [
+        "number-theory",
+        "divisibility",
+        "aha",
+        "recreational",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-167",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A rectangle has a perimeter of 28 cm and an area of 48 cm². How long, in cm, is its longer side?",
+      "answer": "8",
+      "accepted": [
+        "8 cm"
+      ],
+      "explanation": "The semi-perimeter is $l + w = 14$ and $lw = 48$. The pair $6$ and $8$ satisfies both, so the longer side is 8.",
+      "tags": [
+        "geometry",
+        "algebra",
+        "word-problem",
+        "recreational",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-168",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Evaluate $$\\frac{1}{1\\cdot 2}+\\frac{1}{2\\cdot 3}+\\frac{1}{3\\cdot 4}+\\dots+\\frac{1}{99\\cdot 100}$$ Give the answer as a fraction.",
+      "answer": "99/100",
+      "accepted": [
+        "0.99",
+        "99 / 100",
+        "\\frac{99}{100}"
+      ],
+      "explanation": "Each term is $\\frac1k - \\frac1{k+1}$, so the sum telescopes to $1 - \\frac1{100} = \\frac{99}{100}$.",
+      "tags": [
+        "series",
+        "telescoping",
+        "aha",
+        "recreational",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-math-169",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "Think of any number. Double it, add 6, halve the result, then subtract your original number. What number do you end up with?",
+      "answer": "3",
+      "accepted": [
+        "three"
+      ],
+      "explanation": "$(2n+6)/2 - n = n + 3 - n = 3$, whatever $n$ you started with. This is how most 'mind-reading' number tricks work.",
+      "tags": [
+        "number-trick",
+        "algebra",
+        "recreational",
+        "generated"
+      ]
+    }
+  ]
+}

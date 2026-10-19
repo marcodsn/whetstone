@@ -1,0 +1,125 @@
+{
+  "pack": "gen-code-20261019",
+  "exercises": [
+    {
+      "id": "gen-code-111",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "This Python code is meant to print 'primary' only when the user types `red` or `blue`. Why does it print 'primary' for any input at all?",
+      "code": {
+        "lang": "python",
+        "src": "color = input()\nif color == 'red' or 'blue':\n    print('primary')"
+      },
+      "choices": [
+        "`'blue'` alone is a non-empty string, which is always truthy, so the condition is always true",
+        "`or` only works on booleans, so Python converts the whole condition to `True`",
+        "`input()` returns bytes in Python 3, so the equality test is skipped"
+      ],
+      "answer": "`'blue'` alone is a non-empty string, which is always truthy, so the condition is always true",
+      "explanation": "The condition parses as `(color == 'red') or 'blue'`. Because the right operand is a truthy string, the `if` always passes. The fix is `color in ('red', 'blue')`.",
+      "tags": [
+        "python",
+        "spot-the-bug",
+        "gotcha",
+        "truthiness",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-112",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What is the worst-case time complexity of `drain` as a function of $n$ = `len(items)`?",
+      "code": {
+        "lang": "python",
+        "src": "def drain(items):\n    out = []\n    while items:\n        out.append(items.pop(0))\n    return out"
+      },
+      "choices": [
+        "$O(n)$",
+        "$O(n \\log n)$",
+        "$O(n^2)$",
+        "$O(2^n)$"
+      ],
+      "answer": "$O(n^2)$",
+      "explanation": "`list.pop(0)` must shift every remaining element left, so it costs $O(n)$ each call. Done $n$ times that totals $O(n^2)$. A `collections.deque` with `popleft()` makes it $O(n)$.",
+      "tags": [
+        "python",
+        "complexity",
+        "lists",
+        "gotcha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-113",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What does this Python code print? (Give both lists on one line, in order, separated by a space.)",
+      "code": {
+        "lang": "python",
+        "src": "a = [1, 2, 3]\nb = a\nb += [4]\nc = a\nc = c + [5]\nprint(a, c)"
+      },
+      "answer": "[1, 2, 3, 4] [1, 2, 3, 4, 5]",
+      "accepted": [
+        "[1,2,3,4] [1,2,3,4,5]"
+      ],
+      "explanation": "`b += [4]` extends the shared list in place, so `a` sees it. `c + [5]` builds a brand-new list and rebinds `c`, leaving `a` alone.",
+      "tags": [
+        "python",
+        "mutation",
+        "aliasing",
+        "predict-output",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-114",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What does this C++ program print? (Give the full output, with a single space between the words and number.)",
+      "code": {
+        "lang": "cpp",
+        "src": "std::map<std::string, int> m;\nif (m[\"x\"] == 0)\n    std::cout << \"none \";\nstd::cout << m.size();"
+      },
+      "answer": "none 1",
+      "accepted": [
+        "none1"
+      ],
+      "explanation": "`operator[]` on a `std::map` inserts a default-constructed value when the key is missing. So `m[\"x\"]` creates the entry with value 0 (the test passes), and the size is then 1.",
+      "tags": [
+        "cpp",
+        "stl",
+        "map",
+        "gotcha",
+        "predict-output",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-115",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "For ints `0 <= a <= b`, both close to `INT_MAX`, which expression correctly computes `(a + b) / 2` (rounded down) without ever overflowing?",
+      "choices": [
+        "`(a + b) / 2`",
+        "`a / 2 + b / 2`",
+        "`a + (b - a) / 2`",
+        "`(a + b) >> 1`"
+      ],
+      "answer": "`a + (b - a) / 2`",
+      "explanation": "`b - a` can't overflow when `0 <= a <= b`, so this form is safe. `(a + b)` overflows, and `a / 2 + b / 2` loses a 1 whenever both are odd (for `a = b = 3` it gives 2).",
+      "tags": [
+        "c",
+        "integer-overflow",
+        "binary-search",
+        "spot-the-bug",
+        "generated"
+      ]
+    }
+  ]
+}

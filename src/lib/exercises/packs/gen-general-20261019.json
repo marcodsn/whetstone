@@ -1,0 +1,212 @@
+{
+  "pack": "gen-general-20261019",
+  "exercises": [
+    {
+      "id": "gen-general-161",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "The Great Dane dog breed is named for Denmark, but which country did the breed actually come from?",
+      "choices": [
+        "Denmark",
+        "Germany",
+        "Netherlands",
+        "Sweden"
+      ],
+      "answer": "Germany",
+      "explanation": "Despite the name, the breed was developed in Germany (where it is called the 'Deutsche Dogge'); the 'Dane' label is a historical misnomer.",
+      "tags": [
+        "trivia",
+        "naming-trap",
+        "geography",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-162",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Roughly how long is one million seconds?",
+      "choices": [
+        "About 11.5 days",
+        "About 1 day",
+        "About 3 months",
+        "About 2 years"
+      ],
+      "answer": "About 11.5 days",
+      "explanation": "1,000,000 / 86,400 seconds per day is about 11.6 days. A million feels like a short wait, while a billion seconds is over 31 years.",
+      "tags": [
+        "estimation",
+        "scale",
+        "fermi-estimate",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-163",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "Which is larger: the number of possible orderings of a shuffled 52-card deck ($52!$), or the number of seconds that have passed since the Big Bang (about $4\\times10^{17}$)?",
+      "choices": [
+        "The number of orderings, by roughly 50 orders of magnitude",
+        "The number of seconds, by a factor of about 1,000",
+        "They are roughly equal",
+        "The number of seconds, by roughly 50 orders of magnitude"
+      ],
+      "answer": "The number of orderings, by roughly 50 orders of magnitude",
+      "explanation": "$52! \\approx 8\\times10^{67}$, versus about $4\\times10^{17}$ seconds. Any well-shuffled deck has almost certainly never occurred before in history.",
+      "tags": [
+        "estimation",
+        "scale",
+        "combinatorics",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-164",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What can you hold in your right hand but never in your left hand?",
+      "answer": "your left hand",
+      "accepted": [
+        "left hand",
+        "left elbow",
+        "your left elbow",
+        "left"
+      ],
+      "explanation": "Your left hand can't be held in your left hand, though your right hand can easily hold it. The riddle sounds like it's about objects, but it's about the hand itself.",
+      "tags": [
+        "riddle",
+        "lateral",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-165",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A rooster lays an egg on the very peak of a slanted barn roof. Which way does the egg roll?",
+      "choices": [
+        "Down the left side",
+        "Down the right side",
+        "Neither — roosters don't lay eggs",
+        "It stays balanced at the peak"
+      ],
+      "answer": "Neither — roosters don't lay eggs",
+      "explanation": "The trap is in the reading: the question presupposes a rooster lays eggs. Only hens do.",
+      "tags": [
+        "riddle",
+        "trick",
+        "reading-trap",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-166",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "A town has two hospitals. About 45 babies are born each day in the larger one and about 15 in the smaller one. Roughly 50% of all babies are boys, but on any given day the exact share varies. Over a year, which hospital records more days on which more than 60% of the babies born were boys?",
+      "choices": [
+        "The larger hospital",
+        "The smaller hospital",
+        "About the same number of days",
+        "It's impossible to tell"
+      ],
+      "answer": "The smaller hospital",
+      "explanation": "Small samples fluctuate more. A 15-baby day swings past 60% boys much more often than a 45-baby day does, which is the 'law of small numbers' trap.",
+      "tags": [
+        "probability",
+        "probability-intuition",
+        "statistics",
+        "cognitive-bias",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-167",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "True or false: swallowed chewing gum stays in your stomach for seven years.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Gum base resists digestion, but the gut moves it along like other indigestible material, and it normally passes within a few days.",
+      "tags": [
+        "myth-busting",
+        "biology",
+        "trivia",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-168",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which statement about the hair and fingernails of a dead body is accurate?",
+      "choices": [
+        "Both keep growing for weeks after death",
+        "Neither grows; the skin dehydrates and retracts, making them look longer",
+        "Hair keeps growing but nails stop",
+        "Nails keep growing but hair stops"
+      ],
+      "answer": "Neither grows; the skin dehydrates and retracts, making them look longer",
+      "explanation": "Growth needs living cells and a supply of glucose and oxygen. After death the skin around the nails and chin shrinks back, exposing more of the nail or stubble.",
+      "tags": [
+        "myth-busting",
+        "biology",
+        "trivia",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-169",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What gets bigger the more you take away from it?",
+      "answer": "a hole",
+      "accepted": [
+        "hole",
+        "hole in the ground",
+        "a hole in the ground"
+      ],
+      "explanation": "A hole grows as material is removed from it. It's the classic example of an object defined by absence.",
+      "tags": [
+        "riddle",
+        "wordplay",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-general-170",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which of these cities lies farther north: Seattle (USA) or Montreal (Canada)?",
+      "choices": [
+        "Seattle",
+        "Montreal",
+        "They are at almost exactly the same latitude"
+      ],
+      "answer": "Seattle",
+      "explanation": "Seattle is at about 47.6°N and Montreal at about 45.5°N. Most of Canada's big cities hug the southern border, and many sit further south than expected.",
+      "tags": [
+        "geography",
+        "trivia",
+        "naming-trap",
+        "generated"
+      ]
+    }
+  ]
+}

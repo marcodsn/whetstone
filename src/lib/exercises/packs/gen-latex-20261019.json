@@ -1,0 +1,60 @@
+{
+  "pack": "gen-latex-20261019",
+  "exercises": [
+    {
+      "id": "gen-latex-049",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What command produces the cursive script letter $\\ell$, often used instead of a plain 'l' for lengths and as a loop variable?",
+      "answer": "\\ell",
+      "accepted": [
+        "ell",
+        "\\ell "
+      ],
+      "explanation": "`\\ell` typesets a script lowercase l that can't be mistaken for the digit 1 or capital I, unlike a plain `l` in math mode.",
+      "tags": [
+        "symbols",
+        "commands",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-050",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which source typesets the least common multiple with an upright operator name, $\\operatorname{lcm}(a,b)$, with correct spacing?",
+      "choices": [
+        "`\\operatorname{lcm}(a,b)`",
+        "`lcm(a,b)`",
+        "`\\lcm(a,b)`",
+        "`\\mathit{lcm}(a,b)`"
+      ],
+      "answer": "`\\operatorname{lcm}(a,b)`",
+      "explanation": "Plain `lcm` is typeset as the italic product of l, c and m. `\\lcm` doesn't exist in standard LaTeX, and `\\mathit` gives italic letters. `\\operatorname` makes an upright operator name with operator spacing.",
+      "tags": [
+        "operators",
+        "gotcha",
+        "commands",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-latex-051",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 4,
+      "prompt": "Write the LaTeX source for this display, with parentheses that grow to fit the fraction. Then reveal and compare. $$\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^n = e$$",
+      "answer": "\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^n = e",
+      "explanation": "`\\left(` and `\\right)` size the delimiters to their contents, and the exponent goes after `\\right)`. `\\to` gives the arrow in the limit subscript.",
+      "tags": [
+        "writing",
+        "delimiters",
+        "sizing",
+        "operators",
+        "generated"
+      ]
+    }
+  ]
+}

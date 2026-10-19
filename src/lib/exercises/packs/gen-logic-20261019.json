@@ -1,0 +1,118 @@
+{
+  "pack": "gen-logic-20261019",
+  "exercises": [
+    {
+      "id": "gen-logic-113",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which statement is the logical negation of \"All the students passed the exam\"?",
+      "choices": [
+        "At least one student did not pass the exam",
+        "No student passed the exam",
+        "All the students failed the exam",
+        "At least one student passed the exam"
+      ],
+      "answer": "At least one student did not pass the exam",
+      "explanation": "The negation of 'all are P' is 'at least one is not P'. 'No student passed' is a much stronger claim, and is not the opposite.",
+      "tags": [
+        "deduction",
+        "quantifiers",
+        "negation",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-114",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "In a class of 30 students, 18 take French, 15 take Spanish, and 5 take neither. How many students take both languages?",
+      "answer": "8",
+      "accepted": [
+        "eight"
+      ],
+      "explanation": "25 students take at least one language. By inclusion-exclusion, $18 + 15 - \\text{both} = 25$, so both $= 8$.",
+      "tags": [
+        "deduction",
+        "set-logic",
+        "inclusion-exclusion",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-115",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "You have four weights of 1 kg, 3 kg, 9 kg and 27 kg, and a balance scale. Weights may go on either pan, along with the object. What is the largest whole number $N$ such that every load from 1 kg to $N$ kg can be weighed exactly?",
+      "answer": "40",
+      "accepted": [
+        "40 kg",
+        "forty"
+      ],
+      "explanation": "Each weight can go on the left, the right, or not be used, which is balanced ternary. Four digits cover every integer from $-40$ to $40$, since $1+3+9+27 = 40$.",
+      "tags": [
+        "puzzle",
+        "classic",
+        "number-systems",
+        "aha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-116",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What comes next in this sequence? $1,\\ 2,\\ 4,\\ 7,\\ 11,\\ 16,\\ ?$",
+      "answer": "22",
+      "accepted": [
+        "twenty-two",
+        "twenty two"
+      ],
+      "explanation": "The gaps are $1, 2, 3, 4, 5$, so the next gap is 6 and the next term is $16 + 6 = 22$.",
+      "tags": [
+        "sequences",
+        "pattern-recognition",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-117",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Three boxes are labelled 'Apples', 'Oranges' and 'Apples & Oranges'. You know every label is wrong. You may take one fruit from one box without looking inside. Which box should you pick from to work out the contents of all three?",
+      "choices": [
+        "The box labelled 'Apples'",
+        "The box labelled 'Oranges'",
+        "The box labelled 'Apples & Oranges'",
+        "Any box works equally well"
+      ],
+      "answer": "The box labelled 'Apples & Oranges'",
+      "explanation": "Since its label is wrong, that box holds only one kind of fruit. Whatever you draw tells you which, and the other two boxes then follow from the wrongness of their labels. Drawing from the 'Apples' box leaves two possibilities open.",
+      "tags": [
+        "deduction",
+        "constraint-puzzle",
+        "classic",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-logic-118",
+      "domain": "logic",
+      "type": "self",
+      "difficulty": 4,
+      "prompt": "Prove that in any group of $n \\ge 2$ people, where friendship is mutual, there must be two people with exactly the same number of friends within the group. Work out the argument, then reveal and compare.",
+      "answer": "Each person has between 0 and $n-1$ friends. But a person with 0 friends and a person with $n-1$ friends cannot both be present (the second would be friends with the first). So only $n-1$ distinct values are actually possible for $n$ people, and by the pigeonhole principle two people share a value.",
+      "explanation": "It's a pigeonhole argument once you notice that the extreme values 0 and $n-1$ are mutually exclusive.",
+      "tags": [
+        "proof",
+        "pigeonhole",
+        "graph-theory",
+        "generated"
+      ]
+    }
+  ]
+}

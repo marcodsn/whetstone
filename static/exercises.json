@@ -3186,6 +3186,126 @@
 		}
 	},
 	{
+		"id": "gen-code-111",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This Python code is meant to print 'primary' only when the user types `red` or `blue`. Why does it print 'primary' for any input at all?",
+		"code": {
+			"lang": "python",
+			"src": "color = input()\nif color == 'red' or 'blue':\n    print('primary')"
+		},
+		"choices": [
+			"`'blue'` alone is a non-empty string, which is always truthy, so the condition is always true",
+			"`or` only works on booleans, so Python converts the whole condition to `True`",
+			"`input()` returns bytes in Python 3, so the equality test is skipped"
+		],
+		"answer": "`'blue'` alone is a non-empty string, which is always truthy, so the condition is always true",
+		"explanation": "The condition parses as `(color == 'red') or 'blue'`. Because the right operand is a truthy string, the `if` always passes. The fix is `color in ('red', 'blue')`.",
+		"tags": [
+			"python",
+			"spot-the-bug",
+			"gotcha",
+			"truthiness",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-112",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the worst-case time complexity of `drain` as a function of $n$ = `len(items)`?",
+		"code": {
+			"lang": "python",
+			"src": "def drain(items):\n    out = []\n    while items:\n        out.append(items.pop(0))\n    return out"
+		},
+		"choices": [
+			"$O(n)$",
+			"$O(n \\log n)$",
+			"$O(n^2)$",
+			"$O(2^n)$"
+		],
+		"answer": "$O(n^2)$",
+		"explanation": "`list.pop(0)` must shift every remaining element left, so it costs $O(n)$ each call. Done $n$ times that totals $O(n^2)$. A `collections.deque` with `popleft()` makes it $O(n)$.",
+		"tags": [
+			"python",
+			"complexity",
+			"lists",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-113",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this Python code print? (Give both lists on one line, in order, separated by a space.)",
+		"code": {
+			"lang": "python",
+			"src": "a = [1, 2, 3]\nb = a\nb += [4]\nc = a\nc = c + [5]\nprint(a, c)"
+		},
+		"answer": "[1, 2, 3, 4] [1, 2, 3, 4, 5]",
+		"accepted": [
+			"[1,2,3,4] [1,2,3,4,5]"
+		],
+		"explanation": "`b += [4]` extends the shared list in place, so `a` sees it. `c + [5]` builds a brand-new list and rebinds `c`, leaving `a` alone.",
+		"tags": [
+			"python",
+			"mutation",
+			"aliasing",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-114",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this C++ program print? (Give the full output, with a single space between the words and number.)",
+		"code": {
+			"lang": "cpp",
+			"src": "std::map<std::string, int> m;\nif (m[\"x\"] == 0)\n    std::cout << \"none \";\nstd::cout << m.size();"
+		},
+		"answer": "none 1",
+		"accepted": [
+			"none1"
+		],
+		"explanation": "`operator[]` on a `std::map` inserts a default-constructed value when the key is missing. So `m[\"x\"]` creates the entry with value 0 (the test passes), and the size is then 1.",
+		"tags": [
+			"cpp",
+			"stl",
+			"map",
+			"gotcha",
+			"predict-output",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-115",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "For ints `0 <= a <= b`, both close to `INT_MAX`, which expression correctly computes `(a + b) / 2` (rounded down) without ever overflowing?",
+		"choices": [
+			"`(a + b) / 2`",
+			"`a / 2 + b / 2`",
+			"`a + (b - a) / 2`",
+			"`(a + b) >> 1`"
+		],
+		"answer": "`a + (b - a) / 2`",
+		"explanation": "`b - a` can't overflow when `0 <= a <= b`, so this form is safe. `(a + b)` overflows, and `a / 2 + b / 2` loses a 1 whenever both are odd (for `a = b = 3` it gives 2).",
+		"tags": [
+			"c",
+			"integer-overflow",
+			"binary-search",
+			"spot-the-bug",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -6275,6 +6395,213 @@
 		]
 	},
 	{
+		"id": "gen-general-161",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "The Great Dane dog breed is named for Denmark, but which country did the breed actually come from?",
+		"choices": [
+			"Denmark",
+			"Germany",
+			"Netherlands",
+			"Sweden"
+		],
+		"answer": "Germany",
+		"explanation": "Despite the name, the breed was developed in Germany (where it is called the 'Deutsche Dogge'); the 'Dane' label is a historical misnomer.",
+		"tags": [
+			"trivia",
+			"naming-trap",
+			"geography",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-162",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how long is one million seconds?",
+		"choices": [
+			"About 11.5 days",
+			"About 1 day",
+			"About 3 months",
+			"About 2 years"
+		],
+		"answer": "About 11.5 days",
+		"explanation": "1,000,000 / 86,400 seconds per day is about 11.6 days. A million feels like a short wait, while a billion seconds is over 31 years.",
+		"tags": [
+			"estimation",
+			"scale",
+			"fermi-estimate",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-163",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Which is larger: the number of possible orderings of a shuffled 52-card deck ($52!$), or the number of seconds that have passed since the Big Bang (about $4\\times10^{17}$)?",
+		"choices": [
+			"The number of orderings, by roughly 50 orders of magnitude",
+			"The number of seconds, by a factor of about 1,000",
+			"They are roughly equal",
+			"The number of seconds, by roughly 50 orders of magnitude"
+		],
+		"answer": "The number of orderings, by roughly 50 orders of magnitude",
+		"explanation": "$52! \\approx 8\\times10^{67}$, versus about $4\\times10^{17}$ seconds. Any well-shuffled deck has almost certainly never occurred before in history.",
+		"tags": [
+			"estimation",
+			"scale",
+			"combinatorics",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-164",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What can you hold in your right hand but never in your left hand?",
+		"answer": "your left hand",
+		"accepted": [
+			"left hand",
+			"left elbow",
+			"your left elbow",
+			"left"
+		],
+		"explanation": "Your left hand can't be held in your left hand, though your right hand can easily hold it. The riddle sounds like it's about objects, but it's about the hand itself.",
+		"tags": [
+			"riddle",
+			"lateral",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-165",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A rooster lays an egg on the very peak of a slanted barn roof. Which way does the egg roll?",
+		"choices": [
+			"Down the left side",
+			"Down the right side",
+			"Neither — roosters don't lay eggs",
+			"It stays balanced at the peak"
+		],
+		"answer": "Neither — roosters don't lay eggs",
+		"explanation": "The trap is in the reading: the question presupposes a rooster lays eggs. Only hens do.",
+		"tags": [
+			"riddle",
+			"trick",
+			"reading-trap",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-166",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A town has two hospitals. About 45 babies are born each day in the larger one and about 15 in the smaller one. Roughly 50% of all babies are boys, but on any given day the exact share varies. Over a year, which hospital records more days on which more than 60% of the babies born were boys?",
+		"choices": [
+			"The larger hospital",
+			"The smaller hospital",
+			"About the same number of days",
+			"It's impossible to tell"
+		],
+		"answer": "The smaller hospital",
+		"explanation": "Small samples fluctuate more. A 15-baby day swings past 60% boys much more often than a 45-baby day does, which is the 'law of small numbers' trap.",
+		"tags": [
+			"probability",
+			"probability-intuition",
+			"statistics",
+			"cognitive-bias",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-167",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: swallowed chewing gum stays in your stomach for seven years.",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "False",
+		"explanation": "Gum base resists digestion, but the gut moves it along like other indigestible material, and it normally passes within a few days.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-168",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which statement about the hair and fingernails of a dead body is accurate?",
+		"choices": [
+			"Both keep growing for weeks after death",
+			"Neither grows; the skin dehydrates and retracts, making them look longer",
+			"Hair keeps growing but nails stop",
+			"Nails keep growing but hair stops"
+		],
+		"answer": "Neither grows; the skin dehydrates and retracts, making them look longer",
+		"explanation": "Growth needs living cells and a supply of glucose and oxygen. After death the skin around the nails and chin shrinks back, exposing more of the nail or stubble.",
+		"tags": [
+			"myth-busting",
+			"biology",
+			"trivia",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-169",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What gets bigger the more you take away from it?",
+		"answer": "a hole",
+		"accepted": [
+			"hole",
+			"hole in the ground",
+			"a hole in the ground"
+		],
+		"explanation": "A hole grows as material is removed from it. It's the classic example of an object defined by absence.",
+		"tags": [
+			"riddle",
+			"wordplay",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-general-170",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which of these cities lies farther north: Seattle (USA) or Montreal (Canada)?",
+		"choices": [
+			"Seattle",
+			"Montreal",
+			"They are at almost exactly the same latitude"
+		],
+		"answer": "Seattle",
+		"explanation": "Seattle is at about 47.6°N and Montreal at about 45.5°N. Most of Canada's big cities hug the southern border, and many sit further south than expected.",
+		"tags": [
+			"geography",
+			"trivia",
+			"naming-trap",
+			"generated"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -7136,6 +7463,61 @@
 			"operators",
 			"sum",
 			"norms",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-049",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command produces the cursive script letter $\\ell$, often used instead of a plain 'l' for lengths and as a loop variable?",
+		"answer": "\\ell",
+		"accepted": [
+			"ell",
+			"\\ell "
+		],
+		"explanation": "`\\ell` typesets a script lowercase l that can't be mistaken for the digit 1 or capital I, unlike a plain `l` in math mode.",
+		"tags": [
+			"symbols",
+			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-050",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which source typesets the least common multiple with an upright operator name, $\\operatorname{lcm}(a,b)$, with correct spacing?",
+		"choices": [
+			"`\\operatorname{lcm}(a,b)`",
+			"`lcm(a,b)`",
+			"`\\lcm(a,b)`",
+			"`\\mathit{lcm}(a,b)`"
+		],
+		"answer": "`\\operatorname{lcm}(a,b)`",
+		"explanation": "Plain `lcm` is typeset as the italic product of l, c and m. `\\lcm` doesn't exist in standard LaTeX, and `\\mathit` gives italic letters. `\\operatorname` makes an upright operator name with operator spacing.",
+		"tags": [
+			"operators",
+			"gotcha",
+			"commands",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-051",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for this display, with parentheses that grow to fit the fraction. Then reveal and compare. $$\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^n = e$$",
+		"answer": "\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^n = e",
+		"explanation": "`\\left(` and `\\right)` size the delimiters to their contents, and the exponent goes after `\\right)`. `\\to` gives the arrow in the limit subscript.",
+		"tags": [
+			"writing",
+			"delimiters",
+			"sizing",
+			"operators",
 			"generated"
 		]
 	},
@@ -9260,6 +9642,119 @@
 			"reading-trap",
 			"deduction",
 			"trick",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-113",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which statement is the logical negation of \"All the students passed the exam\"?",
+		"choices": [
+			"At least one student did not pass the exam",
+			"No student passed the exam",
+			"All the students failed the exam",
+			"At least one student passed the exam"
+		],
+		"answer": "At least one student did not pass the exam",
+		"explanation": "The negation of 'all are P' is 'at least one is not P'. 'No student passed' is a much stronger claim, and is not the opposite.",
+		"tags": [
+			"deduction",
+			"quantifiers",
+			"negation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-114",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "In a class of 30 students, 18 take French, 15 take Spanish, and 5 take neither. How many students take both languages?",
+		"answer": "8",
+		"accepted": [
+			"eight"
+		],
+		"explanation": "25 students take at least one language. By inclusion-exclusion, $18 + 15 - \\text{both} = 25$, so both $= 8$.",
+		"tags": [
+			"deduction",
+			"set-logic",
+			"inclusion-exclusion",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-115",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "You have four weights of 1 kg, 3 kg, 9 kg and 27 kg, and a balance scale. Weights may go on either pan, along with the object. What is the largest whole number $N$ such that every load from 1 kg to $N$ kg can be weighed exactly?",
+		"answer": "40",
+		"accepted": [
+			"40 kg",
+			"forty"
+		],
+		"explanation": "Each weight can go on the left, the right, or not be used, which is balanced ternary. Four digits cover every integer from $-40$ to $40$, since $1+3+9+27 = 40$.",
+		"tags": [
+			"puzzle",
+			"classic",
+			"number-systems",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-116",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What comes next in this sequence? $1,\\ 2,\\ 4,\\ 7,\\ 11,\\ 16,\\ ?$",
+		"answer": "22",
+		"accepted": [
+			"twenty-two",
+			"twenty two"
+		],
+		"explanation": "The gaps are $1, 2, 3, 4, 5$, so the next gap is 6 and the next term is $16 + 6 = 22$.",
+		"tags": [
+			"sequences",
+			"pattern-recognition",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-117",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three boxes are labelled 'Apples', 'Oranges' and 'Apples & Oranges'. You know every label is wrong. You may take one fruit from one box without looking inside. Which box should you pick from to work out the contents of all three?",
+		"choices": [
+			"The box labelled 'Apples'",
+			"The box labelled 'Oranges'",
+			"The box labelled 'Apples & Oranges'",
+			"Any box works equally well"
+		],
+		"answer": "The box labelled 'Apples & Oranges'",
+		"explanation": "Since its label is wrong, that box holds only one kind of fruit. Whatever you draw tells you which, and the other two boxes then follow from the wrongness of their labels. Drawing from the 'Apples' box leaves two possibilities open.",
+		"tags": [
+			"deduction",
+			"constraint-puzzle",
+			"classic",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-118",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Prove that in any group of $n \\ge 2$ people, where friendship is mutual, there must be two people with exactly the same number of friends within the group. Work out the argument, then reveal and compare.",
+		"answer": "Each person has between 0 and $n-1$ friends. But a person with 0 friends and a person with $n-1$ friends cannot both be present (the second would be friends with the first). So only $n-1$ distinct values are actually possible for $n$ people, and by the pigeonhole principle two people share a value.",
+		"explanation": "It's a pigeonhole argument once you notice that the extreme values 0 and $n-1$ are mutually exclusive.",
+		"tags": [
+			"proof",
+			"pigeonhole",
+			"graph-theory",
 			"generated"
 		]
 	},
@@ -12303,6 +12798,141 @@
 			"percentages",
 			"geometry",
 			"trick",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-163",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "You cut a long log into 5 pieces, using straight cuts. How many cuts do you need?",
+		"answer": "4",
+		"accepted": [
+			"four"
+		],
+		"explanation": "Each cut adds exactly one piece to the one you started with, so 5 pieces need 4 cuts. This is the fence-post counting trap.",
+		"tags": [
+			"recreational",
+			"counting",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-164",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A jacket's price is raised by 50%, and then the new price is reduced by 50%. Compared with the original price, the final price is:",
+		"choices": [
+			"The same as the original",
+			"25% lower than the original",
+			"25% higher than the original",
+			"50% lower than the original"
+		],
+		"answer": "25% lower than the original",
+		"explanation": "$100 \\to 150 \\to 75$. The second percentage applies to a bigger base, so the changes don't cancel.",
+		"tags": [
+			"percentages",
+			"trick",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-165",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What is the sum of all the digits of the number $10^{20} - 1$?",
+		"answer": "180",
+		"accepted": [],
+		"explanation": "$10^{20}-1$ is a string of twenty 9s, so the digit sum is $20 \\times 9 = 180$.",
+		"tags": [
+			"recreational",
+			"arithmetic-trick",
+			"aha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-166",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Exactly one of these numbers has an odd number of positive divisors. Which one?",
+		"choices": [
+			"36",
+			"40",
+			"45",
+			"48"
+		],
+		"answer": "36",
+		"explanation": "Divisors pair up as $d$ and $n/d$, so the count is odd only when some $d = n/d$, meaning $n$ is a perfect square. 36 has 9 divisors; 40 has 8, 45 has 6, 48 has 10.",
+		"tags": [
+			"number-theory",
+			"divisibility",
+			"aha",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-167",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A rectangle has a perimeter of 28 cm and an area of 48 cm². How long, in cm, is its longer side?",
+		"answer": "8",
+		"accepted": [
+			"8 cm"
+		],
+		"explanation": "The semi-perimeter is $l + w = 14$ and $lw = 48$. The pair $6$ and $8$ satisfies both, so the longer side is 8.",
+		"tags": [
+			"geometry",
+			"algebra",
+			"word-problem",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-168",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Evaluate $$\\frac{1}{1\\cdot 2}+\\frac{1}{2\\cdot 3}+\\frac{1}{3\\cdot 4}+\\dots+\\frac{1}{99\\cdot 100}$$ Give the answer as a fraction.",
+		"answer": "99/100",
+		"accepted": [
+			"0.99",
+			"99 / 100",
+			"\\frac{99}{100}"
+		],
+		"explanation": "Each term is $\\frac1k - \\frac1{k+1}$, so the sum telescopes to $1 - \\frac1{100} = \\frac{99}{100}$.",
+		"tags": [
+			"series",
+			"telescoping",
+			"aha",
+			"recreational",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-math-169",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Think of any number. Double it, add 6, halve the result, then subtract your original number. What number do you end up with?",
+		"answer": "3",
+		"accepted": [
+			"three"
+		],
+		"explanation": "$(2n+6)/2 - n = n + 3 - n = 3$, whatever $n$ you started with. This is how most 'mind-reading' number tricks work.",
+		"tags": [
+			"number-trick",
+			"algebra",
 			"recreational",
 			"generated"
 		]
