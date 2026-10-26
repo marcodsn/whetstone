@@ -1,0 +1,113 @@
+{
+  "pack": "gen-logic-20261026",
+  "exercises": [
+    {
+      "id": "gen-logic-119",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Three facts: if Rita comes to the party, then Sam comes. Sam comes only if Tom does not come. Tom comes. What follows?",
+      "choices": [
+        "Neither Rita nor Sam comes",
+        "Rita comes but Sam does not",
+        "Sam comes but Rita does not",
+        "Nothing can be concluded about Rita"
+      ],
+      "answer": "Neither Rita nor Sam comes",
+      "explanation": "Tom comes, so Sam (who comes only if Tom doesn't) stays away. Then Rita can't come either, since her coming would force Sam to come (the contrapositive).",
+      "tags": [
+        "generated",
+        "deduction",
+        "conditionals",
+        "contrapositive"
+      ]
+    },
+    {
+      "id": "gen-logic-120",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What comes next in this sequence? ACE, BDF, CEG, ?",
+      "answer": "DFH",
+      "explanation": "Each group is three letters two apart, and each group starts one letter later than the previous one: D, F, H.",
+      "tags": [
+        "generated",
+        "pattern-recognition",
+        "sequences"
+      ],
+      "accepted": [
+        "dfh",
+        "DFH"
+      ]
+    },
+    {
+      "id": "gen-logic-121",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A square sheet of paper is folded in half three times (each fold lies flat on the previous ones). You punch a single hole through all the layers, then unfold the sheet. How many holes does it have?",
+      "answer": "8",
+      "explanation": "Each fold doubles the number of layers: 2, 4, 8. One punch goes through every layer, so unfolding reveals 8 holes.",
+      "tags": [
+        "generated",
+        "spatial",
+        "paper-folding"
+      ],
+      "accepted": [
+        "eight"
+      ]
+    },
+    {
+      "id": "gen-logic-122",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "A standard deck has 52 cards in 4 suits. You draw cards one at a time without looking. What is the smallest number of cards you must draw to be absolutely guaranteed three cards of the same suit?",
+      "answer": "9",
+      "explanation": "Worst case: 2 cards of each suit with no suit reaching three, which is 8 cards. The 9th card must give some suit its third (pigeonhole principle).",
+      "tags": [
+        "generated",
+        "pigeonhole",
+        "counting"
+      ],
+      "accepted": [
+        "nine"
+      ]
+    },
+    {
+      "id": "gen-logic-123",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "Place $n$ points on a circle and join every pair with a chord, choosing the points so that no three chords meet at one interior point. The number of regions inside the circle is 1, 2, 4, 8, 16, 31 for $n = 1, \\dots, 6$. How many regions for $n = 7$?",
+      "answer": "57",
+      "explanation": "The pattern breaks the powers-of-two guess: the count is $\\binom{n}{4} + \\binom{n}{2} + 1$, giving 35 + 21 + 1 = 57 for $n = 7$ (and 31 for $n = 6$).",
+      "tags": [
+        "generated",
+        "pattern-recognition",
+        "trap",
+        "sequences"
+      ]
+    },
+    {
+      "id": "gen-logic-124",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Some wugs are blicks. All blicks are zorps. No zorps are dax. Which conclusion must be true?",
+      "choices": [
+        "Some wugs are zorps",
+        "All wugs are zorps",
+        "Some blicks are dax",
+        "No wugs are zorps"
+      ],
+      "answer": "Some wugs are zorps",
+      "explanation": "The wugs that are blicks are zorps too, so some wugs are zorps. Nothing forces every wug to be a blick, and blicks are never dax since they are zorps.",
+      "tags": [
+        "generated",
+        "syllogism",
+        "deduction"
+      ]
+    }
+  ]
+}

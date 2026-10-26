@@ -1,0 +1,184 @@
+{
+  "pack": "gen-general-20261026",
+  "exercises": [
+    {
+      "id": "gen-general-171",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "You walk the entire length of the Earth's equator (about 40,000 km) at a steady 5 km/h, 24 hours a day with no breaks (ignore oceans). Roughly how long does it take?",
+      "choices": [
+        "About 3 weeks",
+        "About 3 months",
+        "About 11 months",
+        "About 8 years"
+      ],
+      "answer": "About 11 months",
+      "explanation": "40,000 km ÷ 5 km/h = 8,000 hours, and 8,000 ÷ 24 ≈ 333 days. Walking only 8 hours a day it would take about three years.",
+      "tags": [
+        "generated",
+        "estimation",
+        "scale"
+      ]
+    },
+    {
+      "id": "gen-general-172",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "If you could drive straight up to the Moon (about 384,000 km away) at a constant 100 km/h without ever stopping, roughly how long would the trip take?",
+      "choices": [
+        "About 5 months",
+        "About 5 weeks",
+        "About 5 years",
+        "About 5 days"
+      ],
+      "answer": "About 5 months",
+      "explanation": "384,000 ÷ 100 = 3,840 hours, which is 160 days — a little over five months.",
+      "tags": [
+        "generated",
+        "estimation",
+        "scale"
+      ]
+    },
+    {
+      "id": "gen-general-173",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "An Olympic swimming pool is 50 m long, 25 m wide and at least 2 m deep. Roughly how many liters of water does it hold? (1 cubic meter = 1,000 liters.)",
+      "choices": [
+        "About 25,000 liters",
+        "About 250,000 liters",
+        "About 2.5 million liters",
+        "About 25 million liters"
+      ],
+      "answer": "About 2.5 million liters",
+      "explanation": "50 × 25 × 2 = 2,500 cubic meters, and each cubic meter is 1,000 liters, so 2.5 million liters.",
+      "tags": [
+        "generated",
+        "estimation",
+        "scale"
+      ]
+    },
+    {
+      "id": "gen-general-174",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "The digits 0-9 we use in the West are usually called 'Arabic numerals'. In which region did this positional system with a symbol for zero originally develop?",
+      "choices": [
+        "India",
+        "Arabia",
+        "Greece",
+        "China"
+      ],
+      "answer": "India",
+      "explanation": "The system arose in India and was transmitted to Europe through Arabic-language mathematicians such as al-Khwarizmi — hence 'Hindu-Arabic' numerals. The name credits the messengers, not the inventors.",
+      "tags": [
+        "generated",
+        "naming-trap",
+        "history"
+      ]
+    },
+    {
+      "id": "gen-general-175",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which came first on Earth: sharks or trees?",
+      "choices": [
+        "Sharks, by tens of millions of years",
+        "Trees, by tens of millions of years",
+        "They appeared at roughly the same time",
+        "Trees, but only by a few thousand years"
+      ],
+      "answer": "Sharks, by tens of millions of years",
+      "explanation": "The first sharks appeared roughly 450 million years ago; the earliest true trees only about 385 million years ago.",
+      "tags": [
+        "generated",
+        "trivia",
+        "biology",
+        "aha"
+      ]
+    },
+    {
+      "id": "gen-general-176",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Exactly one letter of the alphabet does not appear in the name of any of the 50 US states. Which letter is it?",
+      "answer": "Q",
+      "explanation": "Every other letter shows up somewhere, from J (New Jersey) and X (Texas, New Mexico) to Z (Arizona); Q is the only letter that never appears.",
+      "tags": [
+        "generated",
+        "trivia",
+        "geography",
+        "wordplay"
+      ],
+      "accepted": [
+        "q"
+      ]
+    },
+    {
+      "id": "gen-general-177",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "True or false: shaving makes hair grow back thicker and darker.",
+      "choices": [
+        "False — it only looks that way because a cut hair has a blunt tip",
+        "True — the follicle responds to the cut",
+        "True, but only for dark hair",
+        "False — shaving makes hair grow back thinner"
+      ],
+      "answer": "False — it only looks that way because a cut hair has a blunt tip",
+      "explanation": "Shaving doesn't touch the follicle beneath the skin. The stubble feels coarser because the blunt cut end hasn't been tapered by growth or wear.",
+      "tags": [
+        "generated",
+        "myth-busting",
+        "biology"
+      ]
+    },
+    {
+      "id": "gen-general-178",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "True or false: you lose most of your body heat through your head.",
+      "choices": [
+        "False — the head loses heat roughly in proportion to its small share of body surface",
+        "True — about 80% of heat escapes through the head",
+        "True — the brain generates most of the body's heat",
+        "False — the head loses no heat at all"
+      ],
+      "answer": "False — the head loses heat roughly in proportion to its small share of body surface",
+      "explanation": "The head is about 7-10% of body surface area and loses heat in proportion. The myth stems from a flawed old military study in which subjects wore cold-weather gear on everything except their heads.",
+      "tags": [
+        "generated",
+        "myth-busting",
+        "biology"
+      ]
+    },
+    {
+      "id": "gen-general-179",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "In a group of 5 people, what is the probability that at least two of them were born in the same calendar month? (Assume all 12 months are equally likely.)",
+      "choices": [
+        "About 62%",
+        "About 42%",
+        "About 25%",
+        "About 83%"
+      ],
+      "answer": "About 62%",
+      "explanation": "The chance that all five months differ is (12·11·10·9·8)/12^5 ≈ 0.382, so at least one match has probability ≈ 0.618 — the birthday paradox in miniature.",
+      "tags": [
+        "generated",
+        "probability-intuition",
+        "birthday"
+      ]
+    }
+  ]
+}

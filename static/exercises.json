@@ -3306,6 +3306,133 @@
 		]
 	},
 	{
+		"id": "gen-code-116",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This Python function is meant to remove every even number from the list in place. It prints a list that still contains an even number. Why?",
+		"code": {
+			"lang": "python",
+			"src": "nums = [1, 2, 2, 3, 4]\nfor n in nums:\n    if n % 2 == 0:\n        nums.remove(n)\nprint(nums)"
+		},
+		"choices": [
+			"Removing items while iterating shifts the remaining elements, so the loop skips the element right after each removal",
+			"`list.remove` removes every matching value, so the loop ends early",
+			"The loop variable `n` is a copy, so `nums` is never changed",
+			"`n % 2 == 0` is true for odd numbers in Python"
+		],
+		"answer": "Removing items while iterating shifts the remaining elements, so the loop skips the element right after each removal",
+		"explanation": "After the first 2 is removed, the second 2 slides into its index and the iterator moves past it, so the list ends as `[1, 2, 3]`. Iterate over a copy or build a new list instead.",
+		"tags": [
+			"python",
+			"spot-the-bug",
+			"gotcha",
+			"mutation",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-117",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This C program should print `a is longer` only when `a` is longer than `b`. With the strings below it prints `a is longer` anyway. What is wrong?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    const char *a = \"hi\", *b = \"hello\";\n    if (strlen(a) - strlen(b) > 0)\n        puts(\"a is longer\");\n    else\n        puts(\"not longer\");\n}"
+		},
+		"choices": [
+			"`strlen` returns an unsigned `size_t`, so 2 - 5 wraps around to a huge positive value",
+			"`strlen` counts the terminating null, so the lengths are off by one",
+			"`>` compares the string pointers, not the lengths",
+			"The `if` needs braces to compare the two lengths"
+		],
+		"answer": "`strlen` returns an unsigned `size_t`, so 2 - 5 wraps around to a huge positive value",
+		"explanation": "Unsigned subtraction never goes negative; it wraps modulo 2^N, so the difference is always `> 0` unless the lengths are equal. Compare directly: `strlen(a) > strlen(b)`.",
+		"tags": [
+			"c",
+			"spot-the-bug",
+			"unsigned",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-118",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What is the time complexity of `g` as a function of `n`?",
+		"code": {
+			"lang": "python",
+			"src": "def g(n):\n    count = 0\n    for i in range(1, n + 1):\n        for j in range(i, n + 1, i):\n            count += 1\n    return count"
+		},
+		"choices": [
+			"$O(n \\log n)$",
+			"$O(n)$",
+			"$O(n^2)$",
+			"$O(n \\sqrt{n})$"
+		],
+		"answer": "$O(n \\log n)$",
+		"explanation": "The inner loop runs about $n/i$ times for each $i$, so the total is $n(1 + 1/2 + 1/3 + \\dots + 1/n) \\approx n \\ln n$ — the harmonic series.",
+		"tags": [
+			"python",
+			"complexity",
+			"harmonic-series",
+			"algorithms",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-119",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "JavaScript's `Date` months are zero-indexed, and a day of 0 means 'the day before the 1st'. Which expression returns the number of days in February 2024?",
+		"choices": [
+			"`new Date(2024, 2, 0).getDate()`",
+			"`new Date(2024, 1, 0).getDate()`",
+			"`new Date(2024, 1, 31).getDate()`",
+			"`new Date(2024, 2, 1).getDate()`"
+		],
+		"answer": "`new Date(2024, 2, 0).getDate()`",
+		"explanation": "Month 2 is March, and day 0 of March is the last day of February, which is 29 in 2024. The second option gives 31 (January's last day), the third rolls over to March 2 and gives 2, and the fourth gives 1.",
+		"tags": [
+			"javascript",
+			"dates",
+			"gotcha",
+			"zero-indexed",
+			"generated"
+		]
+	},
+	{
+		"id": "gen-code-120",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does this Python snippet print?",
+		"code": {
+			"lang": "python",
+			"src": "d = {}\nd[1] = 'a'\nd[1.0] = 'b'\nd[True] = 'c'\nprint(len(d), d)"
+		},
+		"choices": [
+			"1 {1: 'c'}",
+			"3 {1: 'a', 1.0: 'b', True: 'c'}",
+			"3 {1: 'c', 1.0: 'c', True: 'c'}",
+			"TypeError"
+		],
+		"answer": "1 {1: 'c'}",
+		"explanation": "`1`, `1.0` and `True` are equal and share a hash, so they are the same dictionary key. The key stays as the first one inserted (`1`) but the value is overwritten each time, ending as `'c'`.",
+		"tags": [
+			"python",
+			"predict-output",
+			"dictionaries",
+			"hashing",
+			"gotcha",
+			"generated"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -6602,6 +6729,185 @@
 		]
 	},
 	{
+		"id": "gen-general-171",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You walk the entire length of the Earth's equator (about 40,000 km) at a steady 5 km/h, 24 hours a day with no breaks (ignore oceans). Roughly how long does it take?",
+		"choices": [
+			"About 3 weeks",
+			"About 3 months",
+			"About 11 months",
+			"About 8 years"
+		],
+		"answer": "About 11 months",
+		"explanation": "40,000 km ÷ 5 km/h = 8,000 hours, and 8,000 ÷ 24 ≈ 333 days. Walking only 8 hours a day it would take about three years.",
+		"tags": [
+			"generated",
+			"estimation",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-172",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If you could drive straight up to the Moon (about 384,000 km away) at a constant 100 km/h without ever stopping, roughly how long would the trip take?",
+		"choices": [
+			"About 5 months",
+			"About 5 weeks",
+			"About 5 years",
+			"About 5 days"
+		],
+		"answer": "About 5 months",
+		"explanation": "384,000 ÷ 100 = 3,840 hours, which is 160 days — a little over five months.",
+		"tags": [
+			"generated",
+			"estimation",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-173",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "An Olympic swimming pool is 50 m long, 25 m wide and at least 2 m deep. Roughly how many liters of water does it hold? (1 cubic meter = 1,000 liters.)",
+		"choices": [
+			"About 25,000 liters",
+			"About 250,000 liters",
+			"About 2.5 million liters",
+			"About 25 million liters"
+		],
+		"answer": "About 2.5 million liters",
+		"explanation": "50 × 25 × 2 = 2,500 cubic meters, and each cubic meter is 1,000 liters, so 2.5 million liters.",
+		"tags": [
+			"generated",
+			"estimation",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-174",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The digits 0-9 we use in the West are usually called 'Arabic numerals'. In which region did this positional system with a symbol for zero originally develop?",
+		"choices": [
+			"India",
+			"Arabia",
+			"Greece",
+			"China"
+		],
+		"answer": "India",
+		"explanation": "The system arose in India and was transmitted to Europe through Arabic-language mathematicians such as al-Khwarizmi — hence 'Hindu-Arabic' numerals. The name credits the messengers, not the inventors.",
+		"tags": [
+			"generated",
+			"naming-trap",
+			"history"
+		]
+	},
+	{
+		"id": "gen-general-175",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which came first on Earth: sharks or trees?",
+		"choices": [
+			"Sharks, by tens of millions of years",
+			"Trees, by tens of millions of years",
+			"They appeared at roughly the same time",
+			"Trees, but only by a few thousand years"
+		],
+		"answer": "Sharks, by tens of millions of years",
+		"explanation": "The first sharks appeared roughly 450 million years ago; the earliest true trees only about 385 million years ago.",
+		"tags": [
+			"generated",
+			"trivia",
+			"biology",
+			"aha"
+		]
+	},
+	{
+		"id": "gen-general-176",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Exactly one letter of the alphabet does not appear in the name of any of the 50 US states. Which letter is it?",
+		"answer": "Q",
+		"explanation": "Every other letter shows up somewhere, from J (New Jersey) and X (Texas, New Mexico) to Z (Arizona); Q is the only letter that never appears.",
+		"tags": [
+			"generated",
+			"trivia",
+			"geography",
+			"wordplay"
+		],
+		"accepted": [
+			"q"
+		]
+	},
+	{
+		"id": "gen-general-177",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: shaving makes hair grow back thicker and darker.",
+		"choices": [
+			"False — it only looks that way because a cut hair has a blunt tip",
+			"True — the follicle responds to the cut",
+			"True, but only for dark hair",
+			"False — shaving makes hair grow back thinner"
+		],
+		"answer": "False — it only looks that way because a cut hair has a blunt tip",
+		"explanation": "Shaving doesn't touch the follicle beneath the skin. The stubble feels coarser because the blunt cut end hasn't been tapered by growth or wear.",
+		"tags": [
+			"generated",
+			"myth-busting",
+			"biology"
+		]
+	},
+	{
+		"id": "gen-general-178",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "True or false: you lose most of your body heat through your head.",
+		"choices": [
+			"False — the head loses heat roughly in proportion to its small share of body surface",
+			"True — about 80% of heat escapes through the head",
+			"True — the brain generates most of the body's heat",
+			"False — the head loses no heat at all"
+		],
+		"answer": "False — the head loses heat roughly in proportion to its small share of body surface",
+		"explanation": "The head is about 7-10% of body surface area and loses heat in proportion. The myth stems from a flawed old military study in which subjects wore cold-weather gear on everything except their heads.",
+		"tags": [
+			"generated",
+			"myth-busting",
+			"biology"
+		]
+	},
+	{
+		"id": "gen-general-179",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In a group of 5 people, what is the probability that at least two of them were born in the same calendar month? (Assume all 12 months are equally likely.)",
+		"choices": [
+			"About 62%",
+			"About 42%",
+			"About 25%",
+			"About 83%"
+		],
+		"answer": "About 62%",
+		"explanation": "The chance that all five months differ is (12·11·10·9·8)/12^5 ≈ 0.382, so at least one match has probability ≈ 0.618 — the birthday paradox in miniature.",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"birthday"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -7519,6 +7825,61 @@
 			"sizing",
 			"operators",
 			"generated"
+		]
+	},
+	{
+		"id": "gen-latex-052",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What command typesets the congruence symbol in $a \\equiv b \\pmod{n}$?",
+		"answer": "\\equiv",
+		"explanation": "`\\equiv` produces ≡ and is the standard relation for modular congruence; `\\pmod{n}` adds the parenthesised modulus.",
+		"tags": [
+			"generated",
+			"symbols",
+			"commands",
+			"modular-arithmetic"
+		],
+		"accepted": [
+			"equiv",
+			"\\equiv "
+		]
+	},
+	{
+		"id": "gen-latex-053",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which source typesets the sum with centered dots, $1 + 2 + \\cdots + n$, the way it is normally written between operators?",
+		"choices": [
+			"`$1 + 2 + \\cdots + n$`",
+			"`$1 + 2 + \\ldots + n$`",
+			"`$1 + 2 + ... + n$`",
+			"`$1 + 2 + \\dot + n$`"
+		],
+		"answer": "`$1 + 2 + \\cdots + n$`",
+		"explanation": "`\\cdots` gives dots centered on the math axis, matching the operators on either side. `\\ldots` sits on the baseline and is for comma lists such as $x_1, \\ldots, x_n$.",
+		"tags": [
+			"generated",
+			"symbols",
+			"gotcha",
+			"spacing"
+		]
+	},
+	{
+		"id": "gen-latex-054",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Write the LaTeX source for this estimator definition, matching the target exactly:\n\n$$\\hat{\\theta} = \\arg\\max_{\\theta}\\, L(\\theta \\mid x)$$\n\nWrite it by hand or in your head, then reveal the answer and compare.",
+		"answer": "\\hat{\\theta} = \\arg\\max_{\\theta}\\, L(\\theta \\mid x)",
+		"explanation": "`\\arg` and `\\max` are operator names (upright), and `\\max` puts its subscript underneath in display mode. `\\mid` gives proper spacing around the conditioning bar, and `\\,` adds a thin space before `L`.",
+		"tags": [
+			"generated",
+			"writing",
+			"operators",
+			"statistics"
 		]
 	},
 	{
@@ -9756,6 +10117,114 @@
 			"pigeonhole",
 			"graph-theory",
 			"generated"
+		]
+	},
+	{
+		"id": "gen-logic-119",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Three facts: if Rita comes to the party, then Sam comes. Sam comes only if Tom does not come. Tom comes. What follows?",
+		"choices": [
+			"Neither Rita nor Sam comes",
+			"Rita comes but Sam does not",
+			"Sam comes but Rita does not",
+			"Nothing can be concluded about Rita"
+		],
+		"answer": "Neither Rita nor Sam comes",
+		"explanation": "Tom comes, so Sam (who comes only if Tom doesn't) stays away. Then Rita can't come either, since her coming would force Sam to come (the contrapositive).",
+		"tags": [
+			"generated",
+			"deduction",
+			"conditionals",
+			"contrapositive"
+		]
+	},
+	{
+		"id": "gen-logic-120",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What comes next in this sequence? ACE, BDF, CEG, ?",
+		"answer": "DFH",
+		"explanation": "Each group is three letters two apart, and each group starts one letter later than the previous one: D, F, H.",
+		"tags": [
+			"generated",
+			"pattern-recognition",
+			"sequences"
+		],
+		"accepted": [
+			"dfh",
+			"DFH"
+		]
+	},
+	{
+		"id": "gen-logic-121",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A square sheet of paper is folded in half three times (each fold lies flat on the previous ones). You punch a single hole through all the layers, then unfold the sheet. How many holes does it have?",
+		"answer": "8",
+		"explanation": "Each fold doubles the number of layers: 2, 4, 8. One punch goes through every layer, so unfolding reveals 8 holes.",
+		"tags": [
+			"generated",
+			"spatial",
+			"paper-folding"
+		],
+		"accepted": [
+			"eight"
+		]
+	},
+	{
+		"id": "gen-logic-122",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A standard deck has 52 cards in 4 suits. You draw cards one at a time without looking. What is the smallest number of cards you must draw to be absolutely guaranteed three cards of the same suit?",
+		"answer": "9",
+		"explanation": "Worst case: 2 cards of each suit with no suit reaching three, which is 8 cards. The 9th card must give some suit its third (pigeonhole principle).",
+		"tags": [
+			"generated",
+			"pigeonhole",
+			"counting"
+		],
+		"accepted": [
+			"nine"
+		]
+	},
+	{
+		"id": "gen-logic-123",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "Place $n$ points on a circle and join every pair with a chord, choosing the points so that no three chords meet at one interior point. The number of regions inside the circle is 1, 2, 4, 8, 16, 31 for $n = 1, \\dots, 6$. How many regions for $n = 7$?",
+		"answer": "57",
+		"explanation": "The pattern breaks the powers-of-two guess: the count is $\\binom{n}{4} + \\binom{n}{2} + 1$, giving 35 + 21 + 1 = 57 for $n = 7$ (and 31 for $n = 6$).",
+		"tags": [
+			"generated",
+			"pattern-recognition",
+			"trap",
+			"sequences"
+		]
+	},
+	{
+		"id": "gen-logic-124",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Some wugs are blicks. All blicks are zorps. No zorps are dax. Which conclusion must be true?",
+		"choices": [
+			"Some wugs are zorps",
+			"All wugs are zorps",
+			"Some blicks are dax",
+			"No wugs are zorps"
+		],
+		"answer": "Some wugs are zorps",
+		"explanation": "The wugs that are blicks are zorps too, so some wugs are zorps. Nothing forces every wug to be a blick, and blicks are never dax since they are zorps.",
+		"tags": [
+			"generated",
+			"syllogism",
+			"deduction"
 		]
 	},
 	{
@@ -12935,6 +13404,116 @@
 			"algebra",
 			"recreational",
 			"generated"
+		]
+	},
+	{
+		"id": "gen-math-170",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which of these numbers is the largest?",
+		"choices": [
+			"$3^{64}$",
+			"$2^{100}$",
+			"$5^{40}$",
+			"They are all roughly equal"
+		],
+		"answer": "$3^{64}$",
+		"explanation": "Compare logarithms: $100\\log 2 \\approx 30.1$, $64\\log 3 \\approx 30.5$, $40\\log 5 \\approx 28.0$. So $3^{64}$ wins narrowly.",
+		"tags": [
+			"generated",
+			"recreational",
+			"powers",
+			"estimation"
+		]
+	},
+	{
+		"id": "gen-math-171",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How many whole numbers from 1 to 100 are divisible by exactly one of 3 and 5 (that is, by 3 or by 5 but not by both)?",
+		"answer": "41",
+		"explanation": "Multiples of 3: 33, of 5: 20, of 15: 6. Exactly one means (33 − 6) + (20 − 6) = 41.",
+		"tags": [
+			"generated",
+			"inclusion-exclusion",
+			"counting",
+			"divisibility"
+		]
+	},
+	{
+		"id": "gen-math-172",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What is $25 \\times 36$?",
+		"answer": "900",
+		"explanation": "Rewrite as $25 \\times 4 \\times 9 = 100 \\times 9 = 900$ — multiplying by 25 is dividing by 4 and appending 00.",
+		"tags": [
+			"generated",
+			"mental-math",
+			"arithmetic-trick"
+		]
+	},
+	{
+		"id": "gen-math-173",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "In 6 years Mia will be twice as old as she was 4 years ago. How old is Mia now?",
+		"answer": "14",
+		"explanation": "With age $x$: $x + 6 = 2(x - 4)$, so $x = 14$. Check: 20 = 2 × 10.",
+		"tags": [
+			"generated",
+			"word-problem",
+			"algebra",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-174",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "If you write out every whole number from 1 to 99 and add up all the digits that appear (so 10 contributes 1 + 0), what is the total?",
+		"answer": "900",
+		"explanation": "Treat 0-99 as two-digit strings 00-99: each digit 0-9 appears 10 times in the tens place and 10 times in the ones place, so the total is $2 \\times 10 \\times 45 = 900$.",
+		"tags": [
+			"generated",
+			"recreational",
+			"aha",
+			"counting"
+		]
+	},
+	{
+		"id": "gen-math-175",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A staircase has 12 steps. You climb it taking either 1 or 2 steps at a time. In how many different ways can you reach the top?",
+		"answer": "233",
+		"explanation": "Let $f(n) = f(n-1) + f(n-2)$ with $f(1)=1, f(2)=2$: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233. The ways are Fibonacci numbers.",
+		"tags": [
+			"generated",
+			"recreational",
+			"combinatorics",
+			"sequences"
+		]
+	},
+	{
+		"id": "gen-math-176",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "The average of five numbers is 12. When one of the numbers is removed, the average of the remaining four is 10. What number was removed?",
+		"answer": "20",
+		"explanation": "The five numbers sum to 60 and the remaining four to 40, so the removed number is 60 − 40 = 20.",
+		"tags": [
+			"generated",
+			"word-problem",
+			"averages",
+			"recreational"
 		]
 	},
 	{

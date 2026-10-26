@@ -1,0 +1,132 @@
+{
+  "pack": "gen-code-20261026",
+  "exercises": [
+    {
+      "id": "gen-code-116",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This Python function is meant to remove every even number from the list in place. It prints a list that still contains an even number. Why?",
+      "code": {
+        "lang": "python",
+        "src": "nums = [1, 2, 2, 3, 4]\nfor n in nums:\n    if n % 2 == 0:\n        nums.remove(n)\nprint(nums)"
+      },
+      "choices": [
+        "Removing items while iterating shifts the remaining elements, so the loop skips the element right after each removal",
+        "`list.remove` removes every matching value, so the loop ends early",
+        "The loop variable `n` is a copy, so `nums` is never changed",
+        "`n % 2 == 0` is true for odd numbers in Python"
+      ],
+      "answer": "Removing items while iterating shifts the remaining elements, so the loop skips the element right after each removal",
+      "explanation": "After the first 2 is removed, the second 2 slides into its index and the iterator moves past it, so the list ends as `[1, 2, 3]`. Iterate over a copy or build a new list instead.",
+      "tags": [
+        "python",
+        "spot-the-bug",
+        "gotcha",
+        "mutation",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-117",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This C program should print `a is longer` only when `a` is longer than `b`. With the strings below it prints `a is longer` anyway. What is wrong?",
+      "code": {
+        "lang": "c",
+        "src": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    const char *a = \"hi\", *b = \"hello\";\n    if (strlen(a) - strlen(b) > 0)\n        puts(\"a is longer\");\n    else\n        puts(\"not longer\");\n}"
+      },
+      "choices": [
+        "`strlen` returns an unsigned `size_t`, so 2 - 5 wraps around to a huge positive value",
+        "`strlen` counts the terminating null, so the lengths are off by one",
+        "`>` compares the string pointers, not the lengths",
+        "The `if` needs braces to compare the two lengths"
+      ],
+      "answer": "`strlen` returns an unsigned `size_t`, so 2 - 5 wraps around to a huge positive value",
+      "explanation": "Unsigned subtraction never goes negative; it wraps modulo 2^N, so the difference is always `> 0` unless the lengths are equal. Compare directly: `strlen(a) > strlen(b)`.",
+      "tags": [
+        "c",
+        "spot-the-bug",
+        "unsigned",
+        "gotcha",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-118",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "What is the time complexity of `g` as a function of `n`?",
+      "code": {
+        "lang": "python",
+        "src": "def g(n):\n    count = 0\n    for i in range(1, n + 1):\n        for j in range(i, n + 1, i):\n            count += 1\n    return count"
+      },
+      "choices": [
+        "$O(n \\log n)$",
+        "$O(n)$",
+        "$O(n^2)$",
+        "$O(n \\sqrt{n})$"
+      ],
+      "answer": "$O(n \\log n)$",
+      "explanation": "The inner loop runs about $n/i$ times for each $i$, so the total is $n(1 + 1/2 + 1/3 + \\dots + 1/n) \\approx n \\ln n$ — the harmonic series.",
+      "tags": [
+        "python",
+        "complexity",
+        "harmonic-series",
+        "algorithms",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-119",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "JavaScript's `Date` months are zero-indexed, and a day of 0 means 'the day before the 1st'. Which expression returns the number of days in February 2024?",
+      "choices": [
+        "`new Date(2024, 2, 0).getDate()`",
+        "`new Date(2024, 1, 0).getDate()`",
+        "`new Date(2024, 1, 31).getDate()`",
+        "`new Date(2024, 2, 1).getDate()`"
+      ],
+      "answer": "`new Date(2024, 2, 0).getDate()`",
+      "explanation": "Month 2 is March, and day 0 of March is the last day of February, which is 29 in 2024. The second option gives 31 (January's last day), the third rolls over to March 2 and gives 2, and the fourth gives 1.",
+      "tags": [
+        "javascript",
+        "dates",
+        "gotcha",
+        "zero-indexed",
+        "generated"
+      ]
+    },
+    {
+      "id": "gen-code-120",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What does this Python snippet print?",
+      "code": {
+        "lang": "python",
+        "src": "d = {}\nd[1] = 'a'\nd[1.0] = 'b'\nd[True] = 'c'\nprint(len(d), d)"
+      },
+      "choices": [
+        "1 {1: 'c'}",
+        "3 {1: 'a', 1.0: 'b', True: 'c'}",
+        "3 {1: 'c', 1.0: 'c', True: 'c'}",
+        "TypeError"
+      ],
+      "answer": "1 {1: 'c'}",
+      "explanation": "`1`, `1.0` and `True` are equal and share a hash, so they are the same dictionary key. The key stays as the first one inserted (`1`) but the value is overwritten each time, ending as `'c'`.",
+      "tags": [
+        "python",
+        "predict-output",
+        "dictionaries",
+        "hashing",
+        "gotcha",
+        "generated"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "pack": "gen-latex-20261026",
+  "exercises": [
+    {
+      "id": "gen-latex-052",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What command typesets the congruence symbol in $a \\equiv b \\pmod{n}$?",
+      "answer": "\\equiv",
+      "explanation": "`\\equiv` produces ≡ and is the standard relation for modular congruence; `\\pmod{n}` adds the parenthesised modulus.",
+      "tags": [
+        "generated",
+        "symbols",
+        "commands",
+        "modular-arithmetic"
+      ],
+      "accepted": [
+        "equiv",
+        "\\equiv "
+      ]
+    },
+    {
+      "id": "gen-latex-053",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which source typesets the sum with centered dots, $1 + 2 + \\cdots + n$, the way it is normally written between operators?",
+      "choices": [
+        "`$1 + 2 + \\cdots + n$`",
+        "`$1 + 2 + \\ldots + n$`",
+        "`$1 + 2 + ... + n$`",
+        "`$1 + 2 + \\dot + n$`"
+      ],
+      "answer": "`$1 + 2 + \\cdots + n$`",
+      "explanation": "`\\cdots` gives dots centered on the math axis, matching the operators on either side. `\\ldots` sits on the baseline and is for comma lists such as $x_1, \\ldots, x_n$.",
+      "tags": [
+        "generated",
+        "symbols",
+        "gotcha",
+        "spacing"
+      ]
+    },
+    {
+      "id": "gen-latex-054",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 4,
+      "prompt": "Write the LaTeX source for this estimator definition, matching the target exactly:\n\n$$\\hat{\\theta} = \\arg\\max_{\\theta}\\, L(\\theta \\mid x)$$\n\nWrite it by hand or in your head, then reveal the answer and compare.",
+      "answer": "\\hat{\\theta} = \\arg\\max_{\\theta}\\, L(\\theta \\mid x)",
+      "explanation": "`\\arg` and `\\max` are operator names (upright), and `\\max` puts its subscript underneath in display mode. `\\mid` gives proper spacing around the conditioning bar, and `\\,` adds a thin space before `L`.",
+      "tags": [
+        "generated",
+        "writing",
+        "operators",
+        "statistics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "pack": "gen-math-20261026",
+  "exercises": [
+    {
+      "id": "gen-math-170",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which of these numbers is the largest?",
+      "choices": [
+        "$3^{64}$",
+        "$2^{100}$",
+        "$5^{40}$",
+        "They are all roughly equal"
+      ],
+      "answer": "$3^{64}$",
+      "explanation": "Compare logarithms: $100\\log 2 \\approx 30.1$, $64\\log 3 \\approx 30.5$, $40\\log 5 \\approx 28.0$. So $3^{64}$ wins narrowly.",
+      "tags": [
+        "generated",
+        "recreational",
+        "powers",
+        "estimation"
+      ]
+    },
+    {
+      "id": "gen-math-171",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "How many whole numbers from 1 to 100 are divisible by exactly one of 3 and 5 (that is, by 3 or by 5 but not by both)?",
+      "answer": "41",
+      "explanation": "Multiples of 3: 33, of 5: 20, of 15: 6. Exactly one means (33 − 6) + (20 − 6) = 41.",
+      "tags": [
+        "generated",
+        "inclusion-exclusion",
+        "counting",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "gen-math-172",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What is $25 \\times 36$?",
+      "answer": "900",
+      "explanation": "Rewrite as $25 \\times 4 \\times 9 = 100 \\times 9 = 900$ — multiplying by 25 is dividing by 4 and appending 00.",
+      "tags": [
+        "generated",
+        "mental-math",
+        "arithmetic-trick"
+      ]
+    },
+    {
+      "id": "gen-math-173",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "In 6 years Mia will be twice as old as she was 4 years ago. How old is Mia now?",
+      "answer": "14",
+      "explanation": "With age $x$: $x + 6 = 2(x - 4)$, so $x = 14$. Check: 20 = 2 × 10.",
+      "tags": [
+        "generated",
+        "word-problem",
+        "algebra",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-174",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "If you write out every whole number from 1 to 99 and add up all the digits that appear (so 10 contributes 1 + 0), what is the total?",
+      "answer": "900",
+      "explanation": "Treat 0-99 as two-digit strings 00-99: each digit 0-9 appears 10 times in the tens place and 10 times in the ones place, so the total is $2 \\times 10 \\times 45 = 900$.",
+      "tags": [
+        "generated",
+        "recreational",
+        "aha",
+        "counting"
+      ]
+    },
+    {
+      "id": "gen-math-175",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "A staircase has 12 steps. You climb it taking either 1 or 2 steps at a time. In how many different ways can you reach the top?",
+      "answer": "233",
+      "explanation": "Let $f(n) = f(n-1) + f(n-2)$ with $f(1)=1, f(2)=2$: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233. The ways are Fibonacci numbers.",
+      "tags": [
+        "generated",
+        "recreational",
+        "combinatorics",
+        "sequences"
+      ]
+    },
+    {
+      "id": "gen-math-176",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "The average of five numbers is 12. When one of the numbers is removed, the average of the remaining four is 10. What number was removed?",
+      "answer": "20",
+      "explanation": "The five numbers sum to 60 and the remaining four to 40, so the removed number is 60 − 40 = 20.",
+      "tags": [
+        "generated",
+        "word-problem",
+        "averages",
+        "recreational"
+      ]
+    }
+  ]
+}
