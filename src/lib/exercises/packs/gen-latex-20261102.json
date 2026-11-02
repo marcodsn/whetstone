@@ -1,0 +1,68 @@
+{
+  "pack": "gen-latex-20261102",
+  "exercises": [
+    {
+      "id": "gen-latex-055",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A student types `$2^10 = 1024$` and the output shows a 1 as the exponent followed by a normal 0. Which source fixes it?",
+      "choices": [
+        "$2^{10} = 1024$",
+        "$2^(10) = 1024$",
+        "$2^[10] = 1024$",
+        "$2 ^ 10 = 1024$"
+      ],
+      "answer": "$2^{10} = 1024$",
+      "explanation": "Without braces, `^` applies only to the next single token, so `2^10` raises 2 to the power 1 and sets the 0 on the baseline. Wrap multi-character exponents in braces: `2^{10}`.",
+      "tags": [
+        "generated",
+        "gotcha",
+        "superscript",
+        "spot-the-bug"
+      ]
+    },
+    {
+      "id": "gen-latex-056",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Inside an `align` environment every line gets an equation number by default. Which command, placed at the end of a line, suppresses the number on that line?",
+      "answer": "\\nonumber",
+      "accepted": [
+        "\\nonumber",
+        "nonumber",
+        "\\notag",
+        "notag"
+      ],
+      "explanation": "`\\nonumber` (or the equivalent `\\notag` from amsmath) turns off the number for the line it appears on.",
+      "tags": [
+        "generated",
+        "commands",
+        "environments",
+        "align"
+      ]
+    },
+    {
+      "id": "gen-latex-057",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which source typesets the quoted word “hello” correctly in ordinary LaTeX text, with proper opening and closing quotation marks?",
+      "choices": [
+        "``hello''",
+        "\"hello\"",
+        "''hello``",
+        "`hello'"
+      ],
+      "answer": "``hello''",
+      "explanation": "LaTeX uses two backticks for the opening quote and two apostrophes for the closing quote. Typing the straight `\"` produces two identical closing marks.",
+      "tags": [
+        "generated",
+        "text-mode",
+        "typography",
+        "gotcha"
+      ]
+    }
+  ]
+}

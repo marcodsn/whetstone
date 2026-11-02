@@ -1,0 +1,145 @@
+{
+  "pack": "gen-math-20261102",
+  "exercises": [
+    {
+      "id": "gen-math-177",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "Compute mentally: $101 \\times 99$",
+      "answer": "9999",
+      "accepted": [
+        "9999",
+        "9,999"
+      ],
+      "explanation": "$101 \\times 99 = (100+1)(100-1) = 100^2 - 1 = 9999$.",
+      "tags": [
+        "generated",
+        "recreational",
+        "mental-math",
+        "arithmetic-trick"
+      ]
+    },
+    {
+      "id": "gen-math-178",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Quantity $A$ is 25% more than quantity $B$. By what percent is $B$ less than $A$?",
+      "choices": [
+        "25%",
+        "20%",
+        "15%",
+        "30%"
+      ],
+      "answer": "20%",
+      "explanation": "If $B=100$ then $A=125$, and $B$ is $25/125 = 20\\%$ below $A$. Percent changes aren't symmetric because the base changes.",
+      "tags": [
+        "generated",
+        "recreational",
+        "percentages",
+        "word-problem"
+      ]
+    },
+    {
+      "id": "gen-math-179",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which statement about the repeating decimal $0.999\\ldots$ (nines forever) is correct?",
+      "choices": [
+        "It equals 1 exactly",
+        "It is slightly less than 1",
+        "It approaches 1 but never reaches it",
+        "It is undefined"
+      ],
+      "answer": "It equals 1 exactly",
+      "explanation": "With $x = 0.999\\ldots$, $10x - x = 9$, so $x = 1$. There is no number between $0.999\\ldots$ and 1, so they are the same number written two ways.",
+      "tags": [
+        "generated",
+        "recreational",
+        "aha",
+        "decimals"
+      ]
+    },
+    {
+      "id": "gen-math-180",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "How many two-digit whole numbers (10 to 99) have digits that add up to 9?",
+      "answer": "9",
+      "accepted": [
+        "9",
+        "nine"
+      ],
+      "explanation": "They are 18, 27, 36, 45, 54, 63, 72, 81, 90 — the tens digit runs from 1 to 9 and fixes the units digit.",
+      "tags": [
+        "generated",
+        "recreational",
+        "counting",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "gen-math-181",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What is $1 + 3 + 5 + 7 + \\dots + 19$, the sum of the first ten odd numbers?",
+      "answer": "100",
+      "accepted": [
+        "100"
+      ],
+      "explanation": "The sum of the first $n$ odd numbers is $n^2$ (add an L-shaped border to each square), so ten of them give $10^2 = 100$.",
+      "tags": [
+        "generated",
+        "recreational",
+        "patterns",
+        "aha"
+      ]
+    },
+    {
+      "id": "gen-math-182",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "You roll two fair six-sided dice. What is the probability that at least one of them shows a six?",
+      "choices": [
+        "1/3",
+        "11/36",
+        "5/18",
+        "25/36"
+      ],
+      "answer": "11/36",
+      "explanation": "Count the complement: neither die is a six in $5\\times5=25$ of 36 outcomes, leaving $11/36$. Simply adding $1/6+1/6$ double-counts the (6,6) outcome.",
+      "tags": [
+        "generated",
+        "recreational",
+        "probability",
+        "dice"
+      ]
+    },
+    {
+      "id": "gen-math-183",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Using the rule of 72, roughly how many years does money take to double at 8% annual compound interest?",
+      "answer": "9",
+      "accepted": [
+        "9",
+        "9 years",
+        "nine",
+        "nine years"
+      ],
+      "explanation": "The rule of 72 says doubling time ≈ 72 ÷ rate in percent, so 72 ÷ 8 = 9 years (the exact value is about 9.01).",
+      "tags": [
+        "generated",
+        "recreational",
+        "estimation",
+        "finance"
+      ]
+    }
+  ]
+}

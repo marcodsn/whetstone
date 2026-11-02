@@ -1,0 +1,118 @@
+{
+  "pack": "gen-logic-20261102",
+  "exercises": [
+    {
+      "id": "gen-logic-125",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What letter comes next in this sequence? $M,\\ T,\\ W,\\ T,\\ F,\\ ?$",
+      "answer": "S",
+      "accepted": [
+        "S",
+        "s",
+        "Saturday",
+        "saturday"
+      ],
+      "explanation": "The letters are the first letters of the weekdays Monday through Friday, so the next is Saturday: S.",
+      "tags": [
+        "generated",
+        "sequences",
+        "pattern-recognition"
+      ]
+    },
+    {
+      "id": "gen-logic-126",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which is right more often: a clock that has stopped completely, or a clock that loses exactly one minute every day?",
+      "choices": [
+        "The stopped clock: twice a day, versus once every 720 days",
+        "The slow clock: it is almost always close",
+        "They are right equally often",
+        "The slow clock: once a day"
+      ],
+      "answer": "The stopped clock: twice a day, versus once every 720 days",
+      "explanation": "A stopped 12-hour clock shows the correct time twice a day. The slow clock is only right when its error reaches a full 12 hours (720 minutes), i.e. once every 720 days.",
+      "tags": [
+        "generated",
+        "trick",
+        "reasoning",
+        "aha"
+      ]
+    },
+    {
+      "id": "gen-logic-127",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Twenty-one matchsticks lie on a table. Two players alternate removing 1, 2, or 3 sticks, and whoever takes the last stick wins. You move first. How many sticks should you take to guarantee a win?",
+      "answer": "1",
+      "accepted": [
+        "1",
+        "one"
+      ],
+      "explanation": "Take 1, leaving 20, a multiple of 4. Whatever your opponent takes ($k$), you take $4-k$, so you always leave a multiple of 4 and end up taking the last stick.",
+      "tags": [
+        "generated",
+        "game-theory",
+        "strategy",
+        "backward-induction"
+      ]
+    },
+    {
+      "id": "gen-logic-128",
+      "domain": "logic",
+      "type": "self",
+      "difficulty": 5,
+      "prompt": "100 prisoners stand in a line, all facing forward, so each can see the hats of everyone in front of them but not their own or anyone behind. Each hat is black or white, assigned at random. Starting from the back, each prisoner must call out a colour (black or white) for their own hat; everyone hears the calls, but nobody learns whether a call was right until the end. They may agree on a strategy beforehand. Find a strategy that guarantees at least 99 of the 100 survive. Work it out, then reveal and compare.",
+      "answer": "The last prisoner calls 'black' if he sees an even number of black hats and 'white' if odd, sacrificing himself with a 50% chance. Each later prisoner counts the black hats ahead of them and the black hats already confirmed by earlier correct calls, compares that parity with the announced one, and deduces their own colour.",
+      "explanation": "The first call encodes the parity of black hats in front of him; every other prisoner can decode their own hat from that parity, minus the hats they see and the colours already called. So all but the first are saved with certainty.",
+      "tags": [
+        "generated",
+        "strategy",
+        "puzzle",
+        "parity",
+        "classic"
+      ]
+    },
+    {
+      "id": "gen-logic-129",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What number comes next? $1,\\ 3,\\ 7,\\ 15,\\ 31,\\ ?$",
+      "answer": "63",
+      "accepted": [
+        "63"
+      ],
+      "explanation": "Each term is double the previous plus 1 (equivalently $2^n - 1$), so after 31 comes $2\\cdot31+1 = 63$.",
+      "tags": [
+        "generated",
+        "sequences",
+        "pattern-recognition"
+      ]
+    },
+    {
+      "id": "gen-logic-130",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A farmer has 3 haystacks in one field and 4 haystacks in another. If he combines them all into one field, how many haystacks does he have?",
+      "answer": "1",
+      "accepted": [
+        "1",
+        "one",
+        "a single haystack",
+        "one haystack"
+      ],
+      "explanation": "Combining haystacks makes them one big haystack — the trap is reflexively adding 3 + 4.",
+      "tags": [
+        "generated",
+        "trick",
+        "reading-trap"
+      ]
+    }
+  ]
+}
