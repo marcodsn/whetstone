@@ -1,0 +1,190 @@
+{
+  "pack": "gen-general-20261109",
+  "exercises": [
+    {
+      "id": "gen-general-189",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "If all 8 billion people on Earth stood together, packed at about 4 people per square metre, roughly how big a square would they fill?",
+      "choices": [
+        "About 4.5 km on a side",
+        "About 45 km on a side",
+        "About 450 km on a side",
+        "About 4,500 km on a side"
+      ],
+      "answer": "About 45 km on a side",
+      "explanation": "8 billion ÷ 4 per m² = 2 billion m² = 2,000 km², and √2,000 ≈ 45 km. All of humanity would fit in a square smaller than many large cities' metro areas.",
+      "tags": [
+        "generated",
+        "estimation",
+        "scale",
+        "fermi-estimate"
+      ]
+    },
+    {
+      "id": "gen-general-190",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "In Disney's 1958 nature film 'White Wilderness', lemmings appear to hurl themselves off a cliff in a mass suicide. What actually happened on set?",
+      "choices": [
+        "The crew herded them onto a turntable and launched them off the edge",
+        "A real migration caused them to overshoot and fall",
+        "Starvation drove them into a frenzy that the crew filmed",
+        "The footage was filmed in a zoo and the lemmings fell by accident"
+      ],
+      "answer": "The crew herded them onto a turntable and launched them off the edge",
+      "explanation": "Lemmings do not commit mass suicide. The famous scene was staged: the animals were brought in, placed on a turntable and flung off the cliff for the camera, which cemented a myth that persists to this day.",
+      "tags": [
+        "generated",
+        "myth-busting",
+        "trivia",
+        "biology"
+      ]
+    },
+    {
+      "id": "gen-general-191",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "You interview 100 candidates one at a time in random order. After each interview you must hire or reject on the spot (no recall), and you win only if you hire the single best candidate. Using the best strategy (reject the first batch, then take the first candidate better than everyone seen so far), roughly what is your chance of winning?",
+      "choices": [
+        "About 10%",
+        "About 25%",
+        "About 37%",
+        "About 50%"
+      ],
+      "answer": "About 37%",
+      "explanation": "The optimal rule rejects the first n/e ≈ 37 candidates, then picks the first one who beats all of them. The resulting win probability tends to 1/e ≈ 37%, even for huge n — a surprisingly large number.",
+      "tags": [
+        "generated",
+        "probability-intuition",
+        "secretary-problem",
+        "optimal-stopping"
+      ]
+    },
+    {
+      "id": "gen-general-192",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "I have one eye but cannot see. What am I?",
+      "answer": "needle",
+      "accepted": [
+        "a needle",
+        "needle",
+        "sewing needle",
+        "a sewing needle"
+      ],
+      "explanation": "A needle has an eye (the hole for the thread) but no sight.",
+      "tags": [
+        "generated",
+        "riddle",
+        "wordplay"
+      ]
+    },
+    {
+      "id": "gen-general-193",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "The Jerusalem artichoke is neither from Jerusalem nor an artichoke. What is it actually?",
+      "choices": [
+        "The edible tuber of a kind of sunflower native to North America",
+        "A mild-tasting cousin of the globe artichoke",
+        "A type of potato from the Middle East",
+        "A hybrid of a turnip and a thistle"
+      ],
+      "answer": "The edible tuber of a kind of sunflower native to North America",
+      "explanation": "Helianthus tuberosus is a sunflower native to North America. 'Jerusalem' is probably a corruption of the Italian 'girasole' (sunflower), and the flavour reminded people of artichokes.",
+      "tags": [
+        "generated",
+        "naming-trap",
+        "trivia",
+        "biology"
+      ]
+    },
+    {
+      "id": "gen-general-194",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Squeeze Earth's 4.5-billion-year history into a single 24-hour day, with the planet forming at midnight. Modern humans (about 300,000 years old) appear roughly when?",
+      "choices": [
+        "About 6 seconds before midnight",
+        "About 6 minutes before midnight",
+        "About 1 hour before midnight",
+        "About 6 hours before midnight"
+      ],
+      "answer": "About 6 seconds before midnight",
+      "explanation": "300,000 ÷ 4.5 billion ≈ 0.0000667, and that fraction of 86,400 seconds is about 5.8 seconds. Humanity is a very recent arrival.",
+      "tags": [
+        "generated",
+        "estimation",
+        "scale",
+        "astronomy"
+      ]
+    },
+    {
+      "id": "gen-general-195",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "What building has the most stories?",
+      "answer": "library",
+      "accepted": [
+        "a library",
+        "the library",
+        "libraries"
+      ],
+      "explanation": "A library holds the most stories — a pun on 'stories' as floors versus tales.",
+      "tags": [
+        "generated",
+        "riddle",
+        "wordplay"
+      ]
+    },
+    {
+      "id": "gen-general-196",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What can you break without ever touching or dropping it?",
+      "answer": "promise",
+      "accepted": [
+        "a promise",
+        "promises",
+        "a vow",
+        "vow"
+      ],
+      "explanation": "A promise (or a vow) can be broken without any physical contact.",
+      "tags": [
+        "generated",
+        "riddle",
+        "wordplay"
+      ]
+    },
+    {
+      "id": "gen-general-197",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A man shaves several times a day, yet he always has a beard. How is that possible?",
+      "answer": "barber",
+      "accepted": [
+        "a barber",
+        "he is a barber",
+        "he's a barber",
+        "hairdresser"
+      ],
+      "explanation": "He shaves other people — he is a barber — so his own beard is untouched.",
+      "tags": [
+        "generated",
+        "riddle",
+        "lateral",
+        "wordplay"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "pack": "gen-latex-20261109",
+  "exercises": [
+    {
+      "id": "gen-latex-058",
+      "domain": "latex",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What command places a brace underneath part of a formula, with a label attached as a subscript, as in $\\underbrace{a+b+c}_{\\text{three terms}}$?",
+      "answer": "\\underbrace",
+      "accepted": [
+        "underbrace"
+      ],
+      "explanation": "`\\underbrace{...}_{label}` draws a brace below its argument, and the subscript becomes the label beneath it. Its sibling `\\overbrace` goes above.",
+      "tags": [
+        "generated",
+        "symbols",
+        "commands",
+        "annotation"
+      ]
+    },
+    {
+      "id": "gen-latex-059",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "A student writes `$\\bar{AB}$` for a line segment, but the bar sits over the middle instead of stretching across both letters. Which command fixes it?",
+      "choices": [
+        "$\\overline{AB}$",
+        "$\\underline{AB}$",
+        "$\\hat{AB}$",
+        "$\\vec{AB}$"
+      ],
+      "answer": "$\\overline{AB}$",
+      "explanation": "`\\bar` is an accent for a single character, while `\\overline` draws a rule that stretches over the whole argument.",
+      "tags": [
+        "generated",
+        "gotcha",
+        "spot-the-bug",
+        "accents"
+      ]
+    },
+    {
+      "id": "gen-latex-060",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 3,
+      "prompt": "Write the LaTeX source for the formula for the sum of the first $n$ squares, matching this display, then reveal and compare. $$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$",
+      "answer": "\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}",
+      "explanation": "Limits on `\\sum` use `_` and `^` with braces for multi-character bounds, and the fraction is `\\frac{numerator}{denominator}`.",
+      "tags": [
+        "generated",
+        "writing",
+        "sum",
+        "fractions"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "pack": "gen-code-20261109",
+  "exercises": [
+    {
+      "id": "gen-code-126",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This function should return the average of every window of `k` consecutive items. For `moving_avg([1, 2, 3, 4], 2)` it should give `[1.5, 2.5, 3.5]`, but it returns four values, the last being `2.0`. What is the fix?",
+      "code": {
+        "lang": "python",
+        "src": "def moving_avg(xs, k):\n    return [sum(xs[i:i + k]) / k for i in range(len(xs))]"
+      },
+      "choices": [
+        "Change the loop to `range(len(xs) - k + 1)`",
+        "Divide by `len(xs[i:i + k])` instead of `k`",
+        "Change the slice to `xs[i:i + k + 1]`",
+        "Use integer division `//` instead of `/`"
+      ],
+      "answer": "Change the loop to `range(len(xs) - k + 1)`",
+      "explanation": "The last window starts at index `len(xs) - k`. Starting positions beyond that give short slices (`[4]`), which are then wrongly divided by `k`; the loop must stop before them.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "off-by-one",
+        "python",
+        "lists"
+      ]
+    },
+    {
+      "id": "gen-code-127",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What is the time complexity of `reverse_copy` as a function of `n = len(items)`?",
+      "code": {
+        "lang": "python",
+        "src": "def reverse_copy(items):\n    out = []\n    for x in items:\n        out.insert(0, x)\n    return out"
+      },
+      "choices": [
+        "$O(n)$",
+        "$O(n \\log n)$",
+        "$O(n^2)$",
+        "$O(2^n)$"
+      ],
+      "answer": "$O(n^2)$",
+      "explanation": "`list.insert(0, x)` shifts every existing element one slot to the right, costing $O(\\text{len(out)})$. Over $n$ inserts that adds up to $1+2+\\dots+n = O(n^2)$.",
+      "tags": [
+        "generated",
+        "complexity",
+        "python",
+        "lists",
+        "performance"
+      ]
+    },
+    {
+      "id": "gen-code-128",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "This C program is meant to print `Jello`. What is wrong with it?",
+      "code": {
+        "lang": "c",
+        "src": "#include <stdio.h>\n\nint main(void) {\n    char *s = \"hello\";\n    s[0] = 'J';\n    printf(\"%s\\n\", s);\n    return 0;\n}"
+      },
+      "choices": [
+        "String literals are read-only; writing to one is undefined behavior (typically a crash)",
+        "`'J'` is a `char`, which cannot be assigned to `s[0]`",
+        "`printf` cannot print a `char *` with `%s`",
+        "`s` must be declared `const char *` or the program will not compile"
+      ],
+      "answer": "String literals are read-only; writing to one is undefined behavior (typically a crash)",
+      "explanation": "`char *s = \"hello\"` points at a string literal stored in read-only memory. Declare an array instead — `char s[] = \"hello\";` — to get a modifiable copy.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "c",
+        "undefined-behavior",
+        "strings"
+      ]
+    },
+    {
+      "id": "gen-code-129",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "A programmer expects this program to print `1`. What is the problem?",
+      "code": {
+        "lang": "cpp",
+        "src": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::vector<int> v = {1, 2, 3};\n    int &first = v[0];\n    v.push_back(4);\n    std::cout << first << \"\\n\";\n}"
+      },
+      "choices": [
+        "`push_back` may reallocate the vector, leaving `first` dangling; reading it is undefined behavior",
+        "References to vector elements cannot be created with `&`",
+        "`first` aliases the last element, so it prints `4`",
+        "It does not compile because `v` is modified while a reference to it exists"
+      ],
+      "answer": "`push_back` may reallocate the vector, leaving `first` dangling; reading it is undefined behavior",
+      "explanation": "When a vector grows past its capacity it moves its elements to new storage, invalidating all references, pointers, and iterators into the old buffer. Take the reference after the `push_back`, or copy the value.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "cpp",
+        "undefined-behavior",
+        "iterator-invalidation"
+      ]
+    },
+    {
+      "id": "gen-code-130",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "How many elements does this set contain? (Give a single number.)",
+      "code": {
+        "lang": "python",
+        "src": "print(len({1, 1.0, True, \"1\"}))"
+      },
+      "answer": "2",
+      "accepted": [
+        "two"
+      ],
+      "explanation": "`1 == 1.0 == True` and they hash equally, so they collapse into one element; only `\"1\"` (a string) stays distinct. The set is `{1, '1'}`.",
+      "tags": [
+        "generated",
+        "predict-output",
+        "python",
+        "sets",
+        "equality"
+      ]
+    }
+  ]
+}

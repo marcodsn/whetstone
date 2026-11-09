@@ -1,0 +1,121 @@
+{
+  "pack": "gen-logic-20261109",
+  "exercises": [
+    {
+      "id": "gen-logic-131",
+      "domain": "logic",
+      "type": "self",
+      "difficulty": 4,
+      "prompt": "Ten stacks of ten identical-looking coins sit on a table. Every coin in exactly one stack is a fake, and each fake weighs 1 g less than a real coin (real coins weigh 10 g). You have a precise digital scale and may use it only once. How can you tell which stack holds the fakes? Describe your method, then reveal the answer and compare.",
+      "answer": "Take 1 coin from stack 1, 2 coins from stack 2, ..., 10 coins from stack 10 (55 coins in all) and weigh them together. All real would weigh 550 g; if the reading is k grams short, stack k is the fake one.",
+      "explanation": "Taking a different number of coins from each stack turns the weight shortfall into a label: k fakes make the total exactly k grams light.",
+      "tags": [
+        "generated",
+        "puzzle",
+        "weighing",
+        "aha",
+        "self"
+      ]
+    },
+    {
+      "id": "gen-logic-132",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "You have 12 identical-looking balls. One is either heavier or lighter than the other 11 (you do not know which). Using only a two-pan balance scale, what is the minimum number of weighings that is guaranteed to find the odd ball and tell whether it is heavy or light?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "3",
+      "explanation": "Each weighing has 3 outcomes, so 3 weighings distinguish up to 27 cases and the problem has $12 \\times 2 = 24$ cases; 2 weighings give only 9. Three is achievable with the standard strategy: weigh 4 against 4 first, then branch on the result.",
+      "tags": [
+        "generated",
+        "puzzle",
+        "weighing",
+        "information-theory"
+      ]
+    },
+    {
+      "id": "gen-logic-133",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Being a square is ___ for a shape to be a rectangle.",
+      "choices": [
+        "sufficient but not necessary",
+        "necessary but not sufficient",
+        "both necessary and sufficient",
+        "neither necessary nor sufficient"
+      ],
+      "answer": "sufficient but not necessary",
+      "explanation": "Every square is a rectangle (so being a square guarantees it), but many rectangles are not squares.",
+      "tags": [
+        "generated",
+        "necessary-sufficient",
+        "conditionals",
+        "formal-logic"
+      ]
+    },
+    {
+      "id": "gen-logic-134",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Five runners finish a race with no ties. Eli finished ahead of Fay. Gus finished behind Fay but ahead of Hal. Ivy finished ahead of Eli. Who finished third?",
+      "answer": "Fay",
+      "accepted": [
+        "fay"
+      ],
+      "explanation": "The clues chain into a single order: Ivy, Eli, Fay, Gus, Hal. Fay is third.",
+      "tags": [
+        "generated",
+        "deduction",
+        "ordering",
+        "constraint-puzzle"
+      ]
+    },
+    {
+      "id": "gen-logic-135",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "Four people must cross a bridge at night with a single torch. At most two can cross at a time, and they must carry the torch. They take 1, 2, 5, and 10 minutes to cross alone; a pair moves at the slower person's pace. What is the shortest total time, in minutes, for all four to get across?",
+      "answer": "17",
+      "accepted": [
+        "17 minutes",
+        "seventeen"
+      ],
+      "explanation": "Send 1 and 2 (2 min), 1 returns (1), send 5 and 10 (10), 2 returns (2), send 1 and 2 (2): 2+1+10+2+2 = 17. The trick is not to let the fastest person escort everyone.",
+      "tags": [
+        "generated",
+        "puzzle",
+        "optimization",
+        "classic"
+      ]
+    },
+    {
+      "id": "gen-logic-136",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "A team tests 200 unrelated foods against a disease in one dataset, finds one food with a 'significant' link (p < 0.05), and publishes it as if they had predicted it in advance. About 10 false positives are expected by chance alone. Which reasoning error is this?",
+      "choices": [
+        "Texas sharpshooter fallacy (choosing the hypothesis after seeing the data)",
+        "Gambler's fallacy",
+        "Ad hominem",
+        "Begging the question"
+      ],
+      "answer": "Texas sharpshooter fallacy (choosing the hypothesis after seeing the data)",
+      "explanation": "Painting the target around the bullet holes: with enough comparisons some pattern always appears, so it only counts if the hypothesis was fixed before looking.",
+      "tags": [
+        "generated",
+        "fallacy",
+        "statistics",
+        "informal-logic"
+      ]
+    }
+  ]
+}

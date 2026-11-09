@@ -1,0 +1,143 @@
+{
+  "pack": "gen-math-20261109",
+  "exercises": [
+    {
+      "id": "gen-math-184",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Ann can paint a room in 4 hours working alone, and Ben can paint the same room in 12 hours. Working together at their usual speeds, how many hours do they need?",
+      "answer": "3",
+      "accepted": [
+        "3 hours",
+        "three hours",
+        "3h",
+        "three"
+      ],
+      "explanation": "Their rates add: $\\frac14 + \\frac1{12} = \\frac{3}{12}+\\frac1{12} = \\frac13$ of a room per hour, so the job takes 3 hours.",
+      "tags": [
+        "generated",
+        "rate-problems",
+        "word-problem",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-185",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "How many times do the hour hand and the minute hand of an analog clock overlap during a full 12-hour cycle (from 12:00 up to, but not including, the next 12:00)?",
+      "answer": "11",
+      "accepted": [
+        "eleven"
+      ],
+      "explanation": "The minute hand laps the hour hand once per $\\frac{12}{11}$ hours, so they meet 11 times in 12 hours, not 12 — the 12th meeting coincides with the next 12:00.",
+      "tags": [
+        "generated",
+        "clock",
+        "aha",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-186",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which is larger: $2^{30}$ or one billion ($10^9$)?",
+      "choices": [
+        "$2^{30}$",
+        "$10^9$",
+        "They are exactly equal"
+      ],
+      "answer": "$2^{30}$",
+      "explanation": "$2^{10} = 1024 > 10^3$, so $2^{30} = (2^{10})^3 > (10^3)^3 = 10^9$. In fact $2^{30} = 1{,}073{,}741{,}824$.",
+      "tags": [
+        "generated",
+        "powers",
+        "estimation",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-187",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "A city's streets form a square grid. You walk from the south-west corner to the north-east corner of a $3 \\times 3$ block area, always moving either east or north along streets. How many different shortest routes are there?",
+      "answer": "20",
+      "accepted": [
+        "twenty"
+      ],
+      "explanation": "Every shortest route has 6 steps, 3 east and 3 north, so the number of routes is $\\binom{6}{3} = 20$.",
+      "tags": [
+        "generated",
+        "combinatorics",
+        "counting",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-188",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Today is Monday. What day of the week will it be 100 days from now?",
+      "answer": "Wednesday",
+      "accepted": [
+        "wed",
+        "wednesday"
+      ],
+      "explanation": "$100 = 14\\cdot 7 + 2$, so the weekday shifts by 2: Monday + 2 = Wednesday.",
+      "tags": [
+        "generated",
+        "modular-arithmetic",
+        "calendar",
+        "recreational"
+      ]
+    },
+    {
+      "id": "gen-math-189",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "A car uses 6 litres of fuel per 100 km. How many litres does it need for a 250 km trip?",
+      "answer": "15",
+      "accepted": [
+        "15 l",
+        "15 litres",
+        "15 liters",
+        "15L"
+      ],
+      "explanation": "250 km is 2.5 hundreds, and $2.5 \\times 6 = 15$ litres.",
+      "tags": [
+        "generated",
+        "mental-math",
+        "rates",
+        "word-problem"
+      ]
+    },
+    {
+      "id": "gen-math-190",
+      "domain": "math",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "You roll two fair six-sided dice and multiply the numbers. What is the probability that the product is even?",
+      "choices": [
+        "1/2",
+        "2/3",
+        "3/4",
+        "5/6"
+      ],
+      "answer": "3/4",
+      "explanation": "The product is odd only if both dice are odd: $\\frac12\\cdot\\frac12 = \\frac14$. So it is even with probability $1-\\frac14 = \\frac34$.",
+      "tags": [
+        "generated",
+        "probability",
+        "dice",
+        "complement"
+      ]
+    }
+  ]
+}

@@ -3560,6 +3560,133 @@
 		]
 	},
 	{
+		"id": "gen-code-126",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This function should return the average of every window of `k` consecutive items. For `moving_avg([1, 2, 3, 4], 2)` it should give `[1.5, 2.5, 3.5]`, but it returns four values, the last being `2.0`. What is the fix?",
+		"code": {
+			"lang": "python",
+			"src": "def moving_avg(xs, k):\n    return [sum(xs[i:i + k]) / k for i in range(len(xs))]"
+		},
+		"choices": [
+			"Change the loop to `range(len(xs) - k + 1)`",
+			"Divide by `len(xs[i:i + k])` instead of `k`",
+			"Change the slice to `xs[i:i + k + 1]`",
+			"Use integer division `//` instead of `/`"
+		],
+		"answer": "Change the loop to `range(len(xs) - k + 1)`",
+		"explanation": "The last window starts at index `len(xs) - k`. Starting positions beyond that give short slices (`[4]`), which are then wrongly divided by `k`; the loop must stop before them.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"off-by-one",
+			"python",
+			"lists"
+		]
+	},
+	{
+		"id": "gen-code-127",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `reverse_copy` as a function of `n = len(items)`?",
+		"code": {
+			"lang": "python",
+			"src": "def reverse_copy(items):\n    out = []\n    for x in items:\n        out.insert(0, x)\n    return out"
+		},
+		"choices": [
+			"$O(n)$",
+			"$O(n \\log n)$",
+			"$O(n^2)$",
+			"$O(2^n)$"
+		],
+		"answer": "$O(n^2)$",
+		"explanation": "`list.insert(0, x)` shifts every existing element one slot to the right, costing $O(\\text{len(out)})$. Over $n$ inserts that adds up to $1+2+\\dots+n = O(n^2)$.",
+		"tags": [
+			"generated",
+			"complexity",
+			"python",
+			"lists",
+			"performance"
+		]
+	},
+	{
+		"id": "gen-code-128",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "This C program is meant to print `Jello`. What is wrong with it?",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint main(void) {\n    char *s = \"hello\";\n    s[0] = 'J';\n    printf(\"%s\\n\", s);\n    return 0;\n}"
+		},
+		"choices": [
+			"String literals are read-only; writing to one is undefined behavior (typically a crash)",
+			"`'J'` is a `char`, which cannot be assigned to `s[0]`",
+			"`printf` cannot print a `char *` with `%s`",
+			"`s` must be declared `const char *` or the program will not compile"
+		],
+		"answer": "String literals are read-only; writing to one is undefined behavior (typically a crash)",
+		"explanation": "`char *s = \"hello\"` points at a string literal stored in read-only memory. Declare an array instead — `char s[] = \"hello\";` — to get a modifiable copy.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"c",
+			"undefined-behavior",
+			"strings"
+		]
+	},
+	{
+		"id": "gen-code-129",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A programmer expects this program to print `1`. What is the problem?",
+		"code": {
+			"lang": "cpp",
+			"src": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::vector<int> v = {1, 2, 3};\n    int &first = v[0];\n    v.push_back(4);\n    std::cout << first << \"\\n\";\n}"
+		},
+		"choices": [
+			"`push_back` may reallocate the vector, leaving `first` dangling; reading it is undefined behavior",
+			"References to vector elements cannot be created with `&`",
+			"`first` aliases the last element, so it prints `4`",
+			"It does not compile because `v` is modified while a reference to it exists"
+		],
+		"answer": "`push_back` may reallocate the vector, leaving `first` dangling; reading it is undefined behavior",
+		"explanation": "When a vector grows past its capacity it moves its elements to new storage, invalidating all references, pointers, and iterators into the old buffer. Take the reference after the `push_back`, or copy the value.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"cpp",
+			"undefined-behavior",
+			"iterator-invalidation"
+		]
+	},
+	{
+		"id": "gen-code-130",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How many elements does this set contain? (Give a single number.)",
+		"code": {
+			"lang": "python",
+			"src": "print(len({1, 1.0, True, \"1\"}))"
+		},
+		"answer": "2",
+		"accepted": [
+			"two"
+		],
+		"explanation": "`1 == 1.0 == True` and they hash equally, so they collapse into one element; only `\"1\"` (a string) stays distinct. The set is `{1, '1'}`.",
+		"tags": [
+			"generated",
+			"predict-output",
+			"python",
+			"sets",
+			"equality"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -7224,6 +7351,191 @@
 		]
 	},
 	{
+		"id": "gen-general-189",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "If all 8 billion people on Earth stood together, packed at about 4 people per square metre, roughly how big a square would they fill?",
+		"choices": [
+			"About 4.5 km on a side",
+			"About 45 km on a side",
+			"About 450 km on a side",
+			"About 4,500 km on a side"
+		],
+		"answer": "About 45 km on a side",
+		"explanation": "8 billion ÷ 4 per m² = 2 billion m² = 2,000 km², and √2,000 ≈ 45 km. All of humanity would fit in a square smaller than many large cities' metro areas.",
+		"tags": [
+			"generated",
+			"estimation",
+			"scale",
+			"fermi-estimate"
+		]
+	},
+	{
+		"id": "gen-general-190",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In Disney's 1958 nature film 'White Wilderness', lemmings appear to hurl themselves off a cliff in a mass suicide. What actually happened on set?",
+		"choices": [
+			"The crew herded them onto a turntable and launched them off the edge",
+			"A real migration caused them to overshoot and fall",
+			"Starvation drove them into a frenzy that the crew filmed",
+			"The footage was filmed in a zoo and the lemmings fell by accident"
+		],
+		"answer": "The crew herded them onto a turntable and launched them off the edge",
+		"explanation": "Lemmings do not commit mass suicide. The famous scene was staged: the animals were brought in, placed on a turntable and flung off the cliff for the camera, which cemented a myth that persists to this day.",
+		"tags": [
+			"generated",
+			"myth-busting",
+			"trivia",
+			"biology"
+		]
+	},
+	{
+		"id": "gen-general-191",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "You interview 100 candidates one at a time in random order. After each interview you must hire or reject on the spot (no recall), and you win only if you hire the single best candidate. Using the best strategy (reject the first batch, then take the first candidate better than everyone seen so far), roughly what is your chance of winning?",
+		"choices": [
+			"About 10%",
+			"About 25%",
+			"About 37%",
+			"About 50%"
+		],
+		"answer": "About 37%",
+		"explanation": "The optimal rule rejects the first n/e ≈ 37 candidates, then picks the first one who beats all of them. The resulting win probability tends to 1/e ≈ 37%, even for huge n — a surprisingly large number.",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"secretary-problem",
+			"optimal-stopping"
+		]
+	},
+	{
+		"id": "gen-general-192",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "I have one eye but cannot see. What am I?",
+		"answer": "needle",
+		"accepted": [
+			"a needle",
+			"needle",
+			"sewing needle",
+			"a sewing needle"
+		],
+		"explanation": "A needle has an eye (the hole for the thread) but no sight.",
+		"tags": [
+			"generated",
+			"riddle",
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-general-193",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The Jerusalem artichoke is neither from Jerusalem nor an artichoke. What is it actually?",
+		"choices": [
+			"The edible tuber of a kind of sunflower native to North America",
+			"A mild-tasting cousin of the globe artichoke",
+			"A type of potato from the Middle East",
+			"A hybrid of a turnip and a thistle"
+		],
+		"answer": "The edible tuber of a kind of sunflower native to North America",
+		"explanation": "Helianthus tuberosus is a sunflower native to North America. 'Jerusalem' is probably a corruption of the Italian 'girasole' (sunflower), and the flavour reminded people of artichokes.",
+		"tags": [
+			"generated",
+			"naming-trap",
+			"trivia",
+			"biology"
+		]
+	},
+	{
+		"id": "gen-general-194",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Squeeze Earth's 4.5-billion-year history into a single 24-hour day, with the planet forming at midnight. Modern humans (about 300,000 years old) appear roughly when?",
+		"choices": [
+			"About 6 seconds before midnight",
+			"About 6 minutes before midnight",
+			"About 1 hour before midnight",
+			"About 6 hours before midnight"
+		],
+		"answer": "About 6 seconds before midnight",
+		"explanation": "300,000 ÷ 4.5 billion ≈ 0.0000667, and that fraction of 86,400 seconds is about 5.8 seconds. Humanity is a very recent arrival.",
+		"tags": [
+			"generated",
+			"estimation",
+			"scale",
+			"astronomy"
+		]
+	},
+	{
+		"id": "gen-general-195",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "What building has the most stories?",
+		"answer": "library",
+		"accepted": [
+			"a library",
+			"the library",
+			"libraries"
+		],
+		"explanation": "A library holds the most stories — a pun on 'stories' as floors versus tales.",
+		"tags": [
+			"generated",
+			"riddle",
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-general-196",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What can you break without ever touching or dropping it?",
+		"answer": "promise",
+		"accepted": [
+			"a promise",
+			"promises",
+			"a vow",
+			"vow"
+		],
+		"explanation": "A promise (or a vow) can be broken without any physical contact.",
+		"tags": [
+			"generated",
+			"riddle",
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-general-197",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A man shaves several times a day, yet he always has a beard. How is that possible?",
+		"answer": "barber",
+		"accepted": [
+			"a barber",
+			"he is a barber",
+			"he's a barber",
+			"hairdresser"
+		],
+		"explanation": "He shaves other people — he is a barber — so his own beard is untouched.",
+		"tags": [
+			"generated",
+			"riddle",
+			"lateral",
+			"wordplay"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -8259,6 +8571,60 @@
 			"text-mode",
 			"typography",
 			"gotcha"
+		]
+	},
+	{
+		"id": "gen-latex-058",
+		"domain": "latex",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What command places a brace underneath part of a formula, with a label attached as a subscript, as in $\\underbrace{a+b+c}_{\\text{three terms}}$?",
+		"answer": "\\underbrace",
+		"accepted": [
+			"underbrace"
+		],
+		"explanation": "`\\underbrace{...}_{label}` draws a brace below its argument, and the subscript becomes the label beneath it. Its sibling `\\overbrace` goes above.",
+		"tags": [
+			"generated",
+			"symbols",
+			"commands",
+			"annotation"
+		]
+	},
+	{
+		"id": "gen-latex-059",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A student writes `$\\bar{AB}$` for a line segment, but the bar sits over the middle instead of stretching across both letters. Which command fixes it?",
+		"choices": [
+			"$\\overline{AB}$",
+			"$\\underline{AB}$",
+			"$\\hat{AB}$",
+			"$\\vec{AB}$"
+		],
+		"answer": "$\\overline{AB}$",
+		"explanation": "`\\bar` is an accent for a single character, while `\\overline` draws a rule that stretches over the whole argument.",
+		"tags": [
+			"generated",
+			"gotcha",
+			"spot-the-bug",
+			"accents"
+		]
+	},
+	{
+		"id": "gen-latex-060",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the formula for the sum of the first $n$ squares, matching this display, then reveal and compare. $$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$",
+		"answer": "\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}",
+		"explanation": "Limits on `\\sum` use `_` and `^` with braces for multi-character bounds, and the fraction is `\\frac{numerator}{denominator}`.",
+		"tags": [
+			"generated",
+			"writing",
+			"sum",
+			"fractions"
 		]
 	},
 	{
@@ -10717,6 +11083,122 @@
 			"generated",
 			"trick",
 			"reading-trap"
+		]
+	},
+	{
+		"id": "gen-logic-131",
+		"domain": "logic",
+		"type": "self",
+		"difficulty": 4,
+		"prompt": "Ten stacks of ten identical-looking coins sit on a table. Every coin in exactly one stack is a fake, and each fake weighs 1 g less than a real coin (real coins weigh 10 g). You have a precise digital scale and may use it only once. How can you tell which stack holds the fakes? Describe your method, then reveal the answer and compare.",
+		"answer": "Take 1 coin from stack 1, 2 coins from stack 2, ..., 10 coins from stack 10 (55 coins in all) and weigh them together. All real would weigh 550 g; if the reading is k grams short, stack k is the fake one.",
+		"explanation": "Taking a different number of coins from each stack turns the weight shortfall into a label: k fakes make the total exactly k grams light.",
+		"tags": [
+			"generated",
+			"puzzle",
+			"weighing",
+			"aha",
+			"self"
+		]
+	},
+	{
+		"id": "gen-logic-132",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "You have 12 identical-looking balls. One is either heavier or lighter than the other 11 (you do not know which). Using only a two-pan balance scale, what is the minimum number of weighings that is guaranteed to find the odd ball and tell whether it is heavy or light?",
+		"choices": [
+			"2",
+			"3",
+			"4",
+			"6"
+		],
+		"answer": "3",
+		"explanation": "Each weighing has 3 outcomes, so 3 weighings distinguish up to 27 cases and the problem has $12 \\times 2 = 24$ cases; 2 weighings give only 9. Three is achievable with the standard strategy: weigh 4 against 4 first, then branch on the result.",
+		"tags": [
+			"generated",
+			"puzzle",
+			"weighing",
+			"information-theory"
+		]
+	},
+	{
+		"id": "gen-logic-133",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Being a square is ___ for a shape to be a rectangle.",
+		"choices": [
+			"sufficient but not necessary",
+			"necessary but not sufficient",
+			"both necessary and sufficient",
+			"neither necessary nor sufficient"
+		],
+		"answer": "sufficient but not necessary",
+		"explanation": "Every square is a rectangle (so being a square guarantees it), but many rectangles are not squares.",
+		"tags": [
+			"generated",
+			"necessary-sufficient",
+			"conditionals",
+			"formal-logic"
+		]
+	},
+	{
+		"id": "gen-logic-134",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Five runners finish a race with no ties. Eli finished ahead of Fay. Gus finished behind Fay but ahead of Hal. Ivy finished ahead of Eli. Who finished third?",
+		"answer": "Fay",
+		"accepted": [
+			"fay"
+		],
+		"explanation": "The clues chain into a single order: Ivy, Eli, Fay, Gus, Hal. Fay is third.",
+		"tags": [
+			"generated",
+			"deduction",
+			"ordering",
+			"constraint-puzzle"
+		]
+	},
+	{
+		"id": "gen-logic-135",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "Four people must cross a bridge at night with a single torch. At most two can cross at a time, and they must carry the torch. They take 1, 2, 5, and 10 minutes to cross alone; a pair moves at the slower person's pace. What is the shortest total time, in minutes, for all four to get across?",
+		"answer": "17",
+		"accepted": [
+			"17 minutes",
+			"seventeen"
+		],
+		"explanation": "Send 1 and 2 (2 min), 1 returns (1), send 5 and 10 (10), 2 returns (2), send 1 and 2 (2): 2+1+10+2+2 = 17. The trick is not to let the fastest person escort everyone.",
+		"tags": [
+			"generated",
+			"puzzle",
+			"optimization",
+			"classic"
+		]
+	},
+	{
+		"id": "gen-logic-136",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "A team tests 200 unrelated foods against a disease in one dataset, finds one food with a 'significant' link (p < 0.05), and publishes it as if they had predicted it in advance. About 10 false positives are expected by chance alone. Which reasoning error is this?",
+		"choices": [
+			"Texas sharpshooter fallacy (choosing the hypothesis after seeing the data)",
+			"Gambler's fallacy",
+			"Ad hominem",
+			"Begging the question"
+		],
+		"answer": "Texas sharpshooter fallacy (choosing the hypothesis after seeing the data)",
+		"explanation": "Painting the target around the bullet holes: with enough comparisons some pattern always appears, so it only counts if the hypothesis was fixed before looking.",
+		"tags": [
+			"generated",
+			"fallacy",
+			"statistics",
+			"informal-logic"
 		]
 	},
 	{
@@ -14146,6 +14628,144 @@
 			"recreational",
 			"estimation",
 			"finance"
+		]
+	},
+	{
+		"id": "gen-math-184",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Ann can paint a room in 4 hours working alone, and Ben can paint the same room in 12 hours. Working together at their usual speeds, how many hours do they need?",
+		"answer": "3",
+		"accepted": [
+			"3 hours",
+			"three hours",
+			"3h",
+			"three"
+		],
+		"explanation": "Their rates add: $\\frac14 + \\frac1{12} = \\frac{3}{12}+\\frac1{12} = \\frac13$ of a room per hour, so the job takes 3 hours.",
+		"tags": [
+			"generated",
+			"rate-problems",
+			"word-problem",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-185",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "How many times do the hour hand and the minute hand of an analog clock overlap during a full 12-hour cycle (from 12:00 up to, but not including, the next 12:00)?",
+		"answer": "11",
+		"accepted": [
+			"eleven"
+		],
+		"explanation": "The minute hand laps the hour hand once per $\\frac{12}{11}$ hours, so they meet 11 times in 12 hours, not 12 — the 12th meeting coincides with the next 12:00.",
+		"tags": [
+			"generated",
+			"clock",
+			"aha",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-186",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which is larger: $2^{30}$ or one billion ($10^9$)?",
+		"choices": [
+			"$2^{30}$",
+			"$10^9$",
+			"They are exactly equal"
+		],
+		"answer": "$2^{30}$",
+		"explanation": "$2^{10} = 1024 > 10^3$, so $2^{30} = (2^{10})^3 > (10^3)^3 = 10^9$. In fact $2^{30} = 1{,}073{,}741{,}824$.",
+		"tags": [
+			"generated",
+			"powers",
+			"estimation",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-187",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A city's streets form a square grid. You walk from the south-west corner to the north-east corner of a $3 \\times 3$ block area, always moving either east or north along streets. How many different shortest routes are there?",
+		"answer": "20",
+		"accepted": [
+			"twenty"
+		],
+		"explanation": "Every shortest route has 6 steps, 3 east and 3 north, so the number of routes is $\\binom{6}{3} = 20$.",
+		"tags": [
+			"generated",
+			"combinatorics",
+			"counting",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-188",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Today is Monday. What day of the week will it be 100 days from now?",
+		"answer": "Wednesday",
+		"accepted": [
+			"wed",
+			"wednesday"
+		],
+		"explanation": "$100 = 14\\cdot 7 + 2$, so the weekday shifts by 2: Monday + 2 = Wednesday.",
+		"tags": [
+			"generated",
+			"modular-arithmetic",
+			"calendar",
+			"recreational"
+		]
+	},
+	{
+		"id": "gen-math-189",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "A car uses 6 litres of fuel per 100 km. How many litres does it need for a 250 km trip?",
+		"answer": "15",
+		"accepted": [
+			"15 l",
+			"15 litres",
+			"15 liters",
+			"15L"
+		],
+		"explanation": "250 km is 2.5 hundreds, and $2.5 \\times 6 = 15$ litres.",
+		"tags": [
+			"generated",
+			"mental-math",
+			"rates",
+			"word-problem"
+		]
+	},
+	{
+		"id": "gen-math-190",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You roll two fair six-sided dice and multiply the numbers. What is the probability that the product is even?",
+		"choices": [
+			"1/2",
+			"2/3",
+			"3/4",
+			"5/6"
+		],
+		"answer": "3/4",
+		"explanation": "The product is odd only if both dice are odd: $\\frac12\\cdot\\frac12 = \\frac14$. So it is even with probability $1-\\frac14 = \\frac34$.",
+		"tags": [
+			"generated",
+			"probability",
+			"dice",
+			"complement"
 		]
 	},
 	{
