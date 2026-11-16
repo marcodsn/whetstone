@@ -1,0 +1,131 @@
+{
+  "pack": "gen-logic-20261116",
+  "exercises": [
+    {
+      "id": "gen-logic-137",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A man builds a rectangular house, and every one of its four walls has a window facing south. A bear walks past the house. What colour is the bear?",
+      "answer": "white",
+      "accepted": [
+        "White",
+        "polar bear",
+        "a polar bear",
+        "white (polar bear)"
+      ],
+      "explanation": "A house where every wall faces south can only stand at the North Pole. The only bears there are polar bears, so the bear is white.",
+      "tags": [
+        "generated",
+        "lateral",
+        "spatial",
+        "classic"
+      ]
+    },
+    {
+      "id": "gen-logic-138",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Pulley A is joined to pulley B by a belt crossed in a figure-8. Pulley B is joined to pulley C by an ordinary belt that is not crossed. If A turns clockwise, which way does C turn?",
+      "choices": [
+        "Clockwise",
+        "Counterclockwise",
+        "It cannot turn — the system jams",
+        "It depends on the pulley sizes"
+      ],
+      "answer": "Counterclockwise",
+      "explanation": "A crossed belt reverses the direction of rotation, so B turns counterclockwise. An uncrossed belt keeps the direction, so C also turns counterclockwise.",
+      "tags": [
+        "generated",
+        "spatial",
+        "mechanical",
+        "deduction"
+      ]
+    },
+    {
+      "id": "gen-logic-139",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "House rule: \"The alarm sounds unless the correct code is entered.\" The rule is always obeyed. Tonight, someone opened the door and the alarm did not sound. What must be true?",
+      "choices": [
+        "The correct code was entered",
+        "The alarm is broken",
+        "Nothing can be concluded",
+        "The wrong code was entered"
+      ],
+      "answer": "The correct code was entered",
+      "explanation": "\"A unless B\" means \"if not B, then A\". Here: if the code isn't entered, the alarm sounds. The alarm didn't sound, so by the contrapositive (modus tollens), the code was entered.",
+      "tags": [
+        "generated",
+        "conditionals",
+        "propositional",
+        "unless"
+      ]
+    },
+    {
+      "id": "gen-logic-140",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which ONE of these groups of statements could all be true at the same time?",
+      "choices": [
+        "Ben is taller than Cy. Cy is taller than Dee. Dee is taller than Ben.",
+        "No pets can fly. Some birds are pets. All birds can fly.",
+        "Some birds cannot fly. All penguins are birds. No penguin can fly.",
+        "Every guest is older than Ann. Ann is a guest."
+      ],
+      "answer": "Some birds cannot fly. All penguins are birds. No penguin can fly.",
+      "explanation": "Penguins can be the birds that can't fly, so nothing clashes. The others contradict themselves: the taller-than chain loops back on itself, the birds that are pets would be flying pets, and Ann can't be older than herself.",
+      "tags": [
+        "generated",
+        "consistency",
+        "syllogism",
+        "deduction"
+      ]
+    },
+    {
+      "id": "gen-logic-141",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "A monk starts up a mountain path at 6 a.m. and reaches the temple at the top by 6 p.m., walking at varying speeds and resting often. The next day he leaves the temple at 6 a.m. and walks back down the same path, arriving at the bottom by 6 p.m., again at irregular speeds. Is there definitely some spot on the path that he passes at exactly the same time of day on both days?",
+      "choices": [
+        "Yes, always",
+        "Only if he walks at a constant speed both days",
+        "Only if both trips take exactly the same time",
+        "No, not necessarily"
+      ],
+      "answer": "Yes, always",
+      "explanation": "Picture both days happening at once: one monk walking up while a copy walks down. They must meet somewhere on the path, and where they meet is a spot he reaches at the same time on both days. (This is the intermediate value theorem.)",
+      "tags": [
+        "generated",
+        "lateral",
+        "aha",
+        "continuity",
+        "classic"
+      ]
+    },
+    {
+      "id": "gen-logic-142",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 4,
+      "prompt": "What number comes next in this sequence? It only uses the whole numbers one to ten. $$8,\\ 5,\\ 4,\\ 9,\\ 1,\\ 7,\\ 6,\\ ?$$",
+      "answer": "10",
+      "accepted": [
+        "ten",
+        "Ten"
+      ],
+      "explanation": "These are the numbers one to ten in alphabetical order of their English names: eight, five, four, nine, one, seven, six, then ten (before three and two).",
+      "tags": [
+        "generated",
+        "pattern-recognition",
+        "sequences",
+        "lateral",
+        "wordplay"
+      ]
+    }
+  ]
+}

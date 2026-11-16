@@ -3687,6 +3687,129 @@
 		]
 	},
 	{
+		"id": "gen-code-131",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this C program print? (Give both numbers, separated by a space.)",
+		"code": {
+			"lang": "c",
+			"src": "#include <stdio.h>\n\nint main(void) {\n    int a = 5, b = 3, c = 1;\n    printf(\"%d %d\\n\", a > b > c, c < b < a);\n    return 0;\n}"
+		},
+		"answer": "0 1",
+		"accepted": [
+			"0, 1"
+		],
+		"explanation": "C has no chained comparisons. `a > b > c` means `(a > b) > c`, which is `1 > 1` and gives 0. `c < b < a` is `(c < b) < a`, which is `1 < 5` and gives 1.",
+		"tags": [
+			"generated",
+			"predict-output",
+			"c",
+			"operators",
+			"gotcha"
+		]
+	},
+	{
+		"id": "gen-code-132",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`total([5, 10, 20])` should return `35`, but it returns the string `\"0012\"`. What is the fix?",
+		"code": {
+			"lang": "javascript",
+			"src": "function total(prices) {\n  let sum = 0;\n  for (const p in prices) sum += p;\n  return sum;\n}"
+		},
+		"choices": [
+			"Change `for (const p in prices)` to `for (const p of prices)`",
+			"Write `sum = sum + Number(p)` instead of `sum += p`",
+			"Declare the loop variable with `let` instead of `const`",
+			"Start with `let sum = 0.0` so the addition stays numeric"
+		],
+		"answer": "Change `for (const p in prices)` to `for (const p of prices)`",
+		"explanation": "`for...in` loops over an array's keys, which are the index strings `\"0\"`, `\"1\"`, `\"2\"`. Adding a string to a number joins them as text. `for...of` loops over the values.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"javascript",
+			"iteration",
+			"coercion"
+		]
+	},
+	{
+		"id": "gen-code-133",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What is the time complexity of `longest_run` as a function of `n = len(xs)`?",
+		"code": {
+			"lang": "python",
+			"src": "def longest_run(xs):\n    best = i = 0\n    while i < len(xs):\n        j = i\n        while j < len(xs) and xs[j] == xs[i]:\n            j += 1\n        best = max(best, j - i)\n        i = j\n    return best"
+		},
+		"choices": [
+			"$O(n)$",
+			"$O(n \\log n)$",
+			"$O(n^2)$",
+			"$O(n^3)$"
+		],
+		"answer": "$O(n)$",
+		"explanation": "The loops are nested, but `i` jumps straight to `j` after each run. So every index is visited by the inner loop only once in total, which is $O(n)$ work overall.",
+		"tags": [
+			"generated",
+			"complexity",
+			"python",
+			"two-pointers",
+			"amortized"
+		]
+	},
+	{
+		"id": "gen-code-134",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "`is_leap` is meant to follow the Gregorian rule: a year is a leap year if it is divisible by 4, except century years, which are leap years only if divisible by 400. For which of these inputs does it return the WRONG answer?",
+		"code": {
+			"lang": "python",
+			"src": "def is_leap(y):\n    return y % 4 == 0 and y % 100 != 0"
+		},
+		"choices": [
+			"`1900`",
+			"`2000`",
+			"`2023`",
+			"`2024`"
+		],
+		"answer": "`2000`",
+		"explanation": "2000 is divisible by 400, so it is a leap year, but `2000 % 100 != 0` is false and the function returns `False`. 1900 really isn't a leap year, so `False` is correct there. The `or y % 400 == 0` case is missing.",
+		"tags": [
+			"generated",
+			"find-the-input",
+			"python",
+			"edge-cases",
+			"spot-the-bug"
+		]
+	},
+	{
+		"id": "gen-code-135",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In C, with a normal two's-complement `int x`, which of these \"is `x` odd?\" tests gives the WRONG result for some values of `x`?",
+		"choices": [
+			"`x % 2 != 0`",
+			"`(x & 1) == 1`",
+			"`x % 2 == 1`",
+			"`x % 2 == 1 || x % 2 == -1`"
+		],
+		"answer": "`x % 2 == 1`",
+		"explanation": "In C, `%` takes the sign of the left operand, so `-3 % 2` is `-1`, not `1`. That makes `x % 2 == 1` false for every negative odd number. The other three tests handle negative numbers correctly.",
+		"tags": [
+			"generated",
+			"equivalence",
+			"c",
+			"integer-division",
+			"edge-cases"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -7536,6 +7659,210 @@
 		]
 	},
 	{
+		"id": "gen-general-198",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "I have a thumb and four fingers, but I am not alive. What am I?",
+		"answer": "a glove",
+		"accepted": [
+			"glove",
+			"gloves",
+			"a glove"
+		],
+		"explanation": "A glove has a thumb and four fingers in shape only — nothing inside it is alive.",
+		"tags": [
+			"generated",
+			"riddle",
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-general-199",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Say the word 'silk' out loud five times. Now, quickly: what do cows drink?",
+		"answer": "water",
+		"accepted": [
+			"Water"
+		],
+		"explanation": "The rhyme primes 'milk', but cows drink water; milk is what they produce (calves drink it, adult cows don't).",
+		"tags": [
+			"generated",
+			"reading-trap",
+			"trick",
+			"priming"
+		]
+	},
+	{
+		"id": "gen-general-200",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Why are most manhole covers round rather than square?",
+		"choices": [
+			"Round shapes are cheaper to cast in iron",
+			"A round cover can't fall through its own opening, whatever way it is turned",
+			"Round holes resist the pressure of the surrounding soil better",
+			"Round covers are easier for cars to drive over"
+		],
+		"answer": "A round cover can't fall through its own opening, whatever way it is turned",
+		"explanation": "A square cover can be tilted and dropped through the hole along its diagonal, which is longer than its side. A circle has the same width in every direction, so it can never slip through.",
+		"tags": [
+			"generated",
+			"lateral",
+			"aha",
+			"engineering"
+		]
+	},
+	{
+		"id": "gen-general-201",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "How can you drop a raw egg onto a concrete floor without cracking it?",
+		"choices": [
+			"Freeze the egg solid before dropping it",
+			"Drop it so it lands exactly on its pointed end",
+			"Drop it any way you like — a concrete floor is very hard to crack",
+			"Spin it fast as you let go"
+		],
+		"answer": "Drop it any way you like — a concrete floor is very hard to crack",
+		"explanation": "The question asks about cracking the floor, not the egg. The egg will smash, but the concrete will be fine.",
+		"tags": [
+			"generated",
+			"lateral",
+			"reading-trap",
+			"riddle"
+		]
+	},
+	{
+		"id": "gen-general-202",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Botanically speaking, what is a peanut?",
+		"choices": [
+			"A true nut, like a hazelnut",
+			"A legume — the seed of a plant in the pea and bean family",
+			"The seed of a palm tree",
+			"A root tuber, like a potato"
+		],
+		"answer": "A legume — the seed of a plant in the pea and bean family",
+		"explanation": "Peanuts grow in pods underground and are legumes, closer relatives of peas and lentils than of walnuts or almonds.",
+		"tags": [
+			"generated",
+			"naming-trap",
+			"biology",
+			"myth-busting"
+		]
+	},
+	{
+		"id": "gen-general-203",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Light is the fastest thing there is. Roughly how far does it travel in one nanosecond (a billionth of a second)?",
+		"choices": [
+			"About 3 mm",
+			"About 30 cm (roughly a foot)",
+			"About 300 m",
+			"About 300 km"
+		],
+		"answer": "About 30 cm (roughly a foot)",
+		"explanation": "Light covers about $3 \\times 10^8$ m per second, so in $10^{-9}$ s it goes about 0.3 m. Grace Hopper famously handed out 30 cm lengths of wire as 'nanoseconds' — one reason chip size limits clock speed.",
+		"tags": [
+			"generated",
+			"estimation",
+			"physics",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-204",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "True or false: woolly mammoths were still alive on Earth when the Great Pyramid of Giza was built (around 2560 BC).",
+		"choices": [
+			"True",
+			"False"
+		],
+		"answer": "True",
+		"explanation": "Most mammoths died out about 10,000 years ago, but a small population on Russia's Wrangel Island survived until roughly 2000 BC — centuries after the Great Pyramid was finished.",
+		"tags": [
+			"generated",
+			"trivia",
+			"history",
+			"biology",
+			"timeline"
+		]
+	},
+	{
+		"id": "gen-general-205",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Roughly how much does the water in a typical fluffy, white cumulus cloud weigh?",
+		"choices": [
+			"Less than 1 kg",
+			"About 5 tonnes",
+			"About 500 tonnes",
+			"About 500 million tonnes"
+		],
+		"answer": "About 500 tonnes",
+		"explanation": "A modest cumulus cloud holds roughly 0.5 g of water per cubic metre over about a cubic kilometre ($10^9$ m³), which comes to about $5 \\times 10^8$ g, or 500 tonnes. It stays up because those droplets are tiny and spread out.",
+		"tags": [
+			"generated",
+			"estimation",
+			"fermi-estimate",
+			"scale",
+			"physics"
+		]
+	},
+	{
+		"id": "gen-general-206",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "You flip a fair coin 10 times. Which is more likely: getting exactly 5 heads, or getting any number of heads other than 5?",
+		"choices": [
+			"Exactly 5 heads",
+			"Any number other than 5",
+			"They are equally likely"
+		],
+		"answer": "Any number other than 5",
+		"explanation": "Exactly 5 is the single most likely count, but it still only happens $\\binom{10}{5}/2^{10} = 252/1024 \\approx 25\\%$ of the time. All the other counts together make up about 75%.",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"probability",
+			"statistics"
+		]
+	},
+	{
+		"id": "gen-general-207",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "In a country where boys and girls are equally likely at each birth, every family keeps having children until they have their first girl, then stops. Over the whole country, what will the ratio of boys to girls among newborns be, roughly?",
+		"choices": [
+			"About 1 : 1",
+			"More girls than boys",
+			"More boys than girls",
+			"It depends on how many families there are"
+		],
+		"answer": "About 1 : 1",
+		"explanation": "Every birth is still an independent 50/50 event, and no stopping rule can change that. Each family has exactly one girl and, on average, one boy ($\\tfrac12 + \\tfrac14 + \\dots = 1$).",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"probability",
+			"aha"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -8625,6 +8952,71 @@
 			"writing",
 			"sum",
 			"fractions"
+		]
+	},
+	{
+		"id": "gen-latex-061",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which source produces the centred multiplication dot in $a \\cdot b$?",
+		"choices": [
+			"`a . b`",
+			"`a \\cdot b`",
+			"`a \\dot b`",
+			"`a * b`"
+		],
+		"answer": "`a \\cdot b`",
+		"explanation": "`\\cdot` is the centred dot operator. A plain `.` is a full stop sitting on the baseline, `*` gives an asterisk, and `\\dot b` is an accent that puts a dot above the b ($\\dot b$).",
+		"tags": [
+			"generated",
+			"which-source",
+			"operators",
+			"symbols"
+		]
+	},
+	{
+		"id": "gen-latex-062",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A student writes `$A = {1, 2, 3}$` and the output shows $A = 1, 2, 3$, with no braces. What is the fix?",
+		"choices": [
+			"Escape the braces: `$A = \\{1, 2, 3\\}$`",
+			"Double the braces: `$A = {{1, 2, 3}}$`",
+			"Use `\\left{` and `\\right}`",
+			"Switch to display math with `$$...$$`"
+		],
+		"answer": "Escape the braces: `$A = \\{1, 2, 3\\}$`",
+		"explanation": "Bare `{` `}` only group things in LaTeX and never print. To get literal braces, write `\\{` and `\\}` (or `\\lbrace` and `\\rbrace`).",
+		"tags": [
+			"generated",
+			"gotcha",
+			"delimiters",
+			"set-theory",
+			"spot-the-bug"
+		]
+	},
+	{
+		"id": "gen-latex-063",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "What does the source `$\\frac123$` render as?",
+		"choices": [
+			"$\\frac{1}{2}3$",
+			"$\\frac{1}{23}$",
+			"$\\frac{12}{3}$",
+			"A compile error"
+		],
+		"answer": "$\\frac{1}{2}3$",
+		"explanation": "If no braces are given, `\\frac` takes the next two single tokens as numerator and denominator, so here it uses `1` and `2`. The `3` is just printed after the fraction. Shortcuts like `\\frac12` only work for single characters.",
+		"tags": [
+			"generated",
+			"gotcha",
+			"fractions",
+			"render-prediction",
+			"syntax"
 		]
 	},
 	{
@@ -11199,6 +11591,132 @@
 			"fallacy",
 			"statistics",
 			"informal-logic"
+		]
+	},
+	{
+		"id": "gen-logic-137",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A man builds a rectangular house, and every one of its four walls has a window facing south. A bear walks past the house. What colour is the bear?",
+		"answer": "white",
+		"accepted": [
+			"White",
+			"polar bear",
+			"a polar bear",
+			"white (polar bear)"
+		],
+		"explanation": "A house where every wall faces south can only stand at the North Pole. The only bears there are polar bears, so the bear is white.",
+		"tags": [
+			"generated",
+			"lateral",
+			"spatial",
+			"classic"
+		]
+	},
+	{
+		"id": "gen-logic-138",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Pulley A is joined to pulley B by a belt crossed in a figure-8. Pulley B is joined to pulley C by an ordinary belt that is not crossed. If A turns clockwise, which way does C turn?",
+		"choices": [
+			"Clockwise",
+			"Counterclockwise",
+			"It cannot turn — the system jams",
+			"It depends on the pulley sizes"
+		],
+		"answer": "Counterclockwise",
+		"explanation": "A crossed belt reverses the direction of rotation, so B turns counterclockwise. An uncrossed belt keeps the direction, so C also turns counterclockwise.",
+		"tags": [
+			"generated",
+			"spatial",
+			"mechanical",
+			"deduction"
+		]
+	},
+	{
+		"id": "gen-logic-139",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "House rule: \"The alarm sounds unless the correct code is entered.\" The rule is always obeyed. Tonight, someone opened the door and the alarm did not sound. What must be true?",
+		"choices": [
+			"The correct code was entered",
+			"The alarm is broken",
+			"Nothing can be concluded",
+			"The wrong code was entered"
+		],
+		"answer": "The correct code was entered",
+		"explanation": "\"A unless B\" means \"if not B, then A\". Here: if the code isn't entered, the alarm sounds. The alarm didn't sound, so by the contrapositive (modus tollens), the code was entered.",
+		"tags": [
+			"generated",
+			"conditionals",
+			"propositional",
+			"unless"
+		]
+	},
+	{
+		"id": "gen-logic-140",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which ONE of these groups of statements could all be true at the same time?",
+		"choices": [
+			"Ben is taller than Cy. Cy is taller than Dee. Dee is taller than Ben.",
+			"No pets can fly. Some birds are pets. All birds can fly.",
+			"Some birds cannot fly. All penguins are birds. No penguin can fly.",
+			"Every guest is older than Ann. Ann is a guest."
+		],
+		"answer": "Some birds cannot fly. All penguins are birds. No penguin can fly.",
+		"explanation": "Penguins can be the birds that can't fly, so nothing clashes. The others contradict themselves: the taller-than chain loops back on itself, the birds that are pets would be flying pets, and Ann can't be older than herself.",
+		"tags": [
+			"generated",
+			"consistency",
+			"syllogism",
+			"deduction"
+		]
+	},
+	{
+		"id": "gen-logic-141",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "A monk starts up a mountain path at 6 a.m. and reaches the temple at the top by 6 p.m., walking at varying speeds and resting often. The next day he leaves the temple at 6 a.m. and walks back down the same path, arriving at the bottom by 6 p.m., again at irregular speeds. Is there definitely some spot on the path that he passes at exactly the same time of day on both days?",
+		"choices": [
+			"Yes, always",
+			"Only if he walks at a constant speed both days",
+			"Only if both trips take exactly the same time",
+			"No, not necessarily"
+		],
+		"answer": "Yes, always",
+		"explanation": "Picture both days happening at once: one monk walking up while a copy walks down. They must meet somewhere on the path, and where they meet is a spot he reaches at the same time on both days. (This is the intermediate value theorem.)",
+		"tags": [
+			"generated",
+			"lateral",
+			"aha",
+			"continuity",
+			"classic"
+		]
+	},
+	{
+		"id": "gen-logic-142",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 4,
+		"prompt": "What number comes next in this sequence? It only uses the whole numbers one to ten. $$8,\\ 5,\\ 4,\\ 9,\\ 1,\\ 7,\\ 6,\\ ?$$",
+		"answer": "10",
+		"accepted": [
+			"ten",
+			"Ten"
+		],
+		"explanation": "These are the numbers one to ten in alphabetical order of their English names: eight, five, four, nine, one, seven, six, then ten (before three and two).",
+		"tags": [
+			"generated",
+			"pattern-recognition",
+			"sequences",
+			"lateral",
+			"wordplay"
 		]
 	},
 	{
@@ -14766,6 +15284,139 @@
 			"probability",
 			"dice",
 			"complement"
+		]
+	},
+	{
+		"id": "gen-math-191",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "Divide 30 by a half, then add 10. What do you get?",
+		"answer": "70",
+		"explanation": "Dividing by $\\tfrac12$ means multiplying by 2: $30 \\div \\tfrac12 = 60$, then $60 + 10 = 70$. The trap is halving 30 instead, which gives 25.",
+		"tags": [
+			"generated",
+			"recreational",
+			"trick",
+			"fractions",
+			"mental-math"
+		]
+	},
+	{
+		"id": "gen-math-192",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A brick weighs 1 kg plus half a brick. How many kilograms does one brick weigh?",
+		"answer": "2",
+		"accepted": [
+			"2 kg",
+			"2kg",
+			"two"
+		],
+		"explanation": "Let the brick weigh $b$. Then $b = 1 + \\tfrac{b}{2}$, so $\\tfrac{b}{2} = 1$ and $b = 2$. The quick answer of 1.5 kg ignores that the 'half a brick' is half of the full weight.",
+		"tags": [
+			"generated",
+			"recreational",
+			"algebra",
+			"word-problem",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-math-193",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "In a printed book, page 1 is a right-hand page and every sheet carries a page number on each side. If you tear out the sheet that has page 7 on it, what other page number comes out with it?",
+		"answer": "8",
+		"accepted": [
+			"page 8"
+		],
+		"explanation": "Odd pages sit on the right, so page 7 is the front of its sheet, and the back of that same sheet is page 8. (Pages 6 and 7 face each other but are on different sheets.)",
+		"tags": [
+			"generated",
+			"recreational",
+			"aha",
+			"spatial",
+			"parity"
+		]
+	},
+	{
+		"id": "gen-math-194",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Euro coins come in 1, 2, 5, 10, 20 and 50 cents. What is the fewest number of coins that make exactly 99 cents?",
+		"answer": "6",
+		"accepted": [
+			"six"
+		],
+		"explanation": "$50 + 20 + 20 + 5 + 2 + 2 = 99$, which is 6 coins. Taking the biggest coin that fits each time works here, and you can't do it with 5 coins.",
+		"tags": [
+			"generated",
+			"recreational",
+			"arithmetic",
+			"optimization",
+			"money"
+		]
+	},
+	{
+		"id": "gen-math-195",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A train 100 m long travels at 10 m/s and passes through a tunnel 400 m long. How many seconds pass from the moment the front of the train enters the tunnel until the back of the train comes out?",
+		"answer": "50",
+		"accepted": [
+			"50 s",
+			"50 seconds"
+		],
+		"explanation": "The front has to travel the tunnel's 400 m and then another 100 m for the back to clear it, 500 m in total. At 10 m/s that takes 50 s. Forgetting the train's own length gives 40.",
+		"tags": [
+			"generated",
+			"recreational",
+			"word-problem",
+			"rates"
+		]
+	},
+	{
+		"id": "gen-math-196",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "Draw a regular five-pointed star (a pentagram) with five straight lines. What is the sum, in degrees, of the five angles at its points?",
+		"answer": "180",
+		"accepted": [
+			"180°",
+			"180 degrees"
+		],
+		"explanation": "Each point of a regular pentagram is $36^\\circ$, and $5 \\times 36^\\circ = 180^\\circ$. In fact the tips of any five-pointed star drawn this way add up to $180^\\circ$, because the turns made while tracing it add up to two full turns.",
+		"tags": [
+			"generated",
+			"recreational",
+			"geometry",
+			"aha",
+			"angles"
+		]
+	},
+	{
+		"id": "gen-math-197",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "A 24-hour digital clock shows times as HH:MM, with leading zeros (so 01:10, 23:32). How many times in one day does the display read the same forwards and backwards, like 12:21?",
+		"answer": "16",
+		"accepted": [
+			"sixteen"
+		],
+		"explanation": "The palindrome HH:MM must have the minutes equal to the hour reversed, and those minutes must be valid. So the hour's second digit must be 0–5. That allows 00–05, 10–15 and 20–23: $6 + 6 + 4 = 16$ times.",
+		"tags": [
+			"generated",
+			"recreational",
+			"counting",
+			"combinatorics",
+			"time"
 		]
 	},
 	{

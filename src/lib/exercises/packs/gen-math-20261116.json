@@ -1,0 +1,138 @@
+{
+  "pack": "gen-math-20261116",
+  "exercises": [
+    {
+      "id": "gen-math-191",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "Divide 30 by a half, then add 10. What do you get?",
+      "answer": "70",
+      "explanation": "Dividing by $\\tfrac12$ means multiplying by 2: $30 \\div \\tfrac12 = 60$, then $60 + 10 = 70$. The trap is halving 30 instead, which gives 25.",
+      "tags": [
+        "generated",
+        "recreational",
+        "trick",
+        "fractions",
+        "mental-math"
+      ]
+    },
+    {
+      "id": "gen-math-192",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A brick weighs 1 kg plus half a brick. How many kilograms does one brick weigh?",
+      "answer": "2",
+      "accepted": [
+        "2 kg",
+        "2kg",
+        "two"
+      ],
+      "explanation": "Let the brick weigh $b$. Then $b = 1 + \\tfrac{b}{2}$, so $\\tfrac{b}{2} = 1$ and $b = 2$. The quick answer of 1.5 kg ignores that the 'half a brick' is half of the full weight.",
+      "tags": [
+        "generated",
+        "recreational",
+        "algebra",
+        "word-problem",
+        "trick"
+      ]
+    },
+    {
+      "id": "gen-math-193",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "In a printed book, page 1 is a right-hand page and every sheet carries a page number on each side. If you tear out the sheet that has page 7 on it, what other page number comes out with it?",
+      "answer": "8",
+      "accepted": [
+        "page 8"
+      ],
+      "explanation": "Odd pages sit on the right, so page 7 is the front of its sheet, and the back of that same sheet is page 8. (Pages 6 and 7 face each other but are on different sheets.)",
+      "tags": [
+        "generated",
+        "recreational",
+        "aha",
+        "spatial",
+        "parity"
+      ]
+    },
+    {
+      "id": "gen-math-194",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "Euro coins come in 1, 2, 5, 10, 20 and 50 cents. What is the fewest number of coins that make exactly 99 cents?",
+      "answer": "6",
+      "accepted": [
+        "six"
+      ],
+      "explanation": "$50 + 20 + 20 + 5 + 2 + 2 = 99$, which is 6 coins. Taking the biggest coin that fits each time works here, and you can't do it with 5 coins.",
+      "tags": [
+        "generated",
+        "recreational",
+        "arithmetic",
+        "optimization",
+        "money"
+      ]
+    },
+    {
+      "id": "gen-math-195",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "A train 100 m long travels at 10 m/s and passes through a tunnel 400 m long. How many seconds pass from the moment the front of the train enters the tunnel until the back of the train comes out?",
+      "answer": "50",
+      "accepted": [
+        "50 s",
+        "50 seconds"
+      ],
+      "explanation": "The front has to travel the tunnel's 400 m and then another 100 m for the back to clear it, 500 m in total. At 10 m/s that takes 50 s. Forgetting the train's own length gives 40.",
+      "tags": [
+        "generated",
+        "recreational",
+        "word-problem",
+        "rates"
+      ]
+    },
+    {
+      "id": "gen-math-196",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "Draw a regular five-pointed star (a pentagram) with five straight lines. What is the sum, in degrees, of the five angles at its points?",
+      "answer": "180",
+      "accepted": [
+        "180°",
+        "180 degrees"
+      ],
+      "explanation": "Each point of a regular pentagram is $36^\\circ$, and $5 \\times 36^\\circ = 180^\\circ$. In fact the tips of any five-pointed star drawn this way add up to $180^\\circ$, because the turns made while tracing it add up to two full turns.",
+      "tags": [
+        "generated",
+        "recreational",
+        "geometry",
+        "aha",
+        "angles"
+      ]
+    },
+    {
+      "id": "gen-math-197",
+      "domain": "math",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "A 24-hour digital clock shows times as HH:MM, with leading zeros (so 01:10, 23:32). How many times in one day does the display read the same forwards and backwards, like 12:21?",
+      "answer": "16",
+      "accepted": [
+        "sixteen"
+      ],
+      "explanation": "The palindrome HH:MM must have the minutes equal to the hour reversed, and those minutes must be valid. So the hour's second digit must be 0–5. That allows 00–05, 10–15 and 20–23: $6 + 6 + 4 = 16$ times.",
+      "tags": [
+        "generated",
+        "recreational",
+        "counting",
+        "combinatorics",
+        "time"
+      ]
+    }
+  ]
+}

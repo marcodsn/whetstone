@@ -1,0 +1,209 @@
+{
+  "pack": "gen-general-20261116",
+  "exercises": [
+    {
+      "id": "gen-general-198",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "I have a thumb and four fingers, but I am not alive. What am I?",
+      "answer": "a glove",
+      "accepted": [
+        "glove",
+        "gloves",
+        "a glove"
+      ],
+      "explanation": "A glove has a thumb and four fingers in shape only — nothing inside it is alive.",
+      "tags": [
+        "generated",
+        "riddle",
+        "wordplay"
+      ]
+    },
+    {
+      "id": "gen-general-199",
+      "domain": "general",
+      "type": "input",
+      "difficulty": 1,
+      "prompt": "Say the word 'silk' out loud five times. Now, quickly: what do cows drink?",
+      "answer": "water",
+      "accepted": [
+        "Water"
+      ],
+      "explanation": "The rhyme primes 'milk', but cows drink water; milk is what they produce (calves drink it, adult cows don't).",
+      "tags": [
+        "generated",
+        "reading-trap",
+        "trick",
+        "priming"
+      ]
+    },
+    {
+      "id": "gen-general-200",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Why are most manhole covers round rather than square?",
+      "choices": [
+        "Round shapes are cheaper to cast in iron",
+        "A round cover can't fall through its own opening, whatever way it is turned",
+        "Round holes resist the pressure of the surrounding soil better",
+        "Round covers are easier for cars to drive over"
+      ],
+      "answer": "A round cover can't fall through its own opening, whatever way it is turned",
+      "explanation": "A square cover can be tilted and dropped through the hole along its diagonal, which is longer than its side. A circle has the same width in every direction, so it can never slip through.",
+      "tags": [
+        "generated",
+        "lateral",
+        "aha",
+        "engineering"
+      ]
+    },
+    {
+      "id": "gen-general-201",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "How can you drop a raw egg onto a concrete floor without cracking it?",
+      "choices": [
+        "Freeze the egg solid before dropping it",
+        "Drop it so it lands exactly on its pointed end",
+        "Drop it any way you like — a concrete floor is very hard to crack",
+        "Spin it fast as you let go"
+      ],
+      "answer": "Drop it any way you like — a concrete floor is very hard to crack",
+      "explanation": "The question asks about cracking the floor, not the egg. The egg will smash, but the concrete will be fine.",
+      "tags": [
+        "generated",
+        "lateral",
+        "reading-trap",
+        "riddle"
+      ]
+    },
+    {
+      "id": "gen-general-202",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Botanically speaking, what is a peanut?",
+      "choices": [
+        "A true nut, like a hazelnut",
+        "A legume — the seed of a plant in the pea and bean family",
+        "The seed of a palm tree",
+        "A root tuber, like a potato"
+      ],
+      "answer": "A legume — the seed of a plant in the pea and bean family",
+      "explanation": "Peanuts grow in pods underground and are legumes, closer relatives of peas and lentils than of walnuts or almonds.",
+      "tags": [
+        "generated",
+        "naming-trap",
+        "biology",
+        "myth-busting"
+      ]
+    },
+    {
+      "id": "gen-general-203",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Light is the fastest thing there is. Roughly how far does it travel in one nanosecond (a billionth of a second)?",
+      "choices": [
+        "About 3 mm",
+        "About 30 cm (roughly a foot)",
+        "About 300 m",
+        "About 300 km"
+      ],
+      "answer": "About 30 cm (roughly a foot)",
+      "explanation": "Light covers about $3 \\times 10^8$ m per second, so in $10^{-9}$ s it goes about 0.3 m. Grace Hopper famously handed out 30 cm lengths of wire as 'nanoseconds' — one reason chip size limits clock speed.",
+      "tags": [
+        "generated",
+        "estimation",
+        "physics",
+        "scale"
+      ]
+    },
+    {
+      "id": "gen-general-204",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "True or false: woolly mammoths were still alive on Earth when the Great Pyramid of Giza was built (around 2560 BC).",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Most mammoths died out about 10,000 years ago, but a small population on Russia's Wrangel Island survived until roughly 2000 BC — centuries after the Great Pyramid was finished.",
+      "tags": [
+        "generated",
+        "trivia",
+        "history",
+        "biology",
+        "timeline"
+      ]
+    },
+    {
+      "id": "gen-general-205",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Roughly how much does the water in a typical fluffy, white cumulus cloud weigh?",
+      "choices": [
+        "Less than 1 kg",
+        "About 5 tonnes",
+        "About 500 tonnes",
+        "About 500 million tonnes"
+      ],
+      "answer": "About 500 tonnes",
+      "explanation": "A modest cumulus cloud holds roughly 0.5 g of water per cubic metre over about a cubic kilometre ($10^9$ m³), which comes to about $5 \\times 10^8$ g, or 500 tonnes. It stays up because those droplets are tiny and spread out.",
+      "tags": [
+        "generated",
+        "estimation",
+        "fermi-estimate",
+        "scale",
+        "physics"
+      ]
+    },
+    {
+      "id": "gen-general-206",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "You flip a fair coin 10 times. Which is more likely: getting exactly 5 heads, or getting any number of heads other than 5?",
+      "choices": [
+        "Exactly 5 heads",
+        "Any number other than 5",
+        "They are equally likely"
+      ],
+      "answer": "Any number other than 5",
+      "explanation": "Exactly 5 is the single most likely count, but it still only happens $\\binom{10}{5}/2^{10} = 252/1024 \\approx 25\\%$ of the time. All the other counts together make up about 75%.",
+      "tags": [
+        "generated",
+        "probability-intuition",
+        "probability",
+        "statistics"
+      ]
+    },
+    {
+      "id": "gen-general-207",
+      "domain": "general",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "In a country where boys and girls are equally likely at each birth, every family keeps having children until they have their first girl, then stops. Over the whole country, what will the ratio of boys to girls among newborns be, roughly?",
+      "choices": [
+        "About 1 : 1",
+        "More girls than boys",
+        "More boys than girls",
+        "It depends on how many families there are"
+      ],
+      "answer": "About 1 : 1",
+      "explanation": "Every birth is still an independent 50/50 event, and no stopping rule can change that. Each family has exactly one girl and, on average, one boy ($\\tfrac12 + \\tfrac14 + \\dots = 1$).",
+      "tags": [
+        "generated",
+        "probability-intuition",
+        "probability",
+        "aha"
+      ]
+    }
+  ]
+}

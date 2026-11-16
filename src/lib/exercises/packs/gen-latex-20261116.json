@@ -1,0 +1,70 @@
+{
+  "pack": "gen-latex-20261116",
+  "exercises": [
+    {
+      "id": "gen-latex-061",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which source produces the centred multiplication dot in $a \\cdot b$?",
+      "choices": [
+        "`a . b`",
+        "`a \\cdot b`",
+        "`a \\dot b`",
+        "`a * b`"
+      ],
+      "answer": "`a \\cdot b`",
+      "explanation": "`\\cdot` is the centred dot operator. A plain `.` is a full stop sitting on the baseline, `*` gives an asterisk, and `\\dot b` is an accent that puts a dot above the b ($\\dot b$).",
+      "tags": [
+        "generated",
+        "which-source",
+        "operators",
+        "symbols"
+      ]
+    },
+    {
+      "id": "gen-latex-062",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "A student writes `$A = {1, 2, 3}$` and the output shows $A = 1, 2, 3$, with no braces. What is the fix?",
+      "choices": [
+        "Escape the braces: `$A = \\{1, 2, 3\\}$`",
+        "Double the braces: `$A = {{1, 2, 3}}$`",
+        "Use `\\left{` and `\\right}`",
+        "Switch to display math with `$$...$$`"
+      ],
+      "answer": "Escape the braces: `$A = \\{1, 2, 3\\}$`",
+      "explanation": "Bare `{` `}` only group things in LaTeX and never print. To get literal braces, write `\\{` and `\\}` (or `\\lbrace` and `\\rbrace`).",
+      "tags": [
+        "generated",
+        "gotcha",
+        "delimiters",
+        "set-theory",
+        "spot-the-bug"
+      ]
+    },
+    {
+      "id": "gen-latex-063",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What does the source `$\\frac123$` render as?",
+      "choices": [
+        "$\\frac{1}{2}3$",
+        "$\\frac{1}{23}$",
+        "$\\frac{12}{3}$",
+        "A compile error"
+      ],
+      "answer": "$\\frac{1}{2}3$",
+      "explanation": "If no braces are given, `\\frac` takes the next two single tokens as numerator and denominator, so here it uses `1` and `2`. The `3` is just printed after the fraction. Shortcuts like `\\frac12` only work for single characters.",
+      "tags": [
+        "generated",
+        "gotcha",
+        "fractions",
+        "render-prediction",
+        "syntax"
+      ]
+    }
+  ]
+}

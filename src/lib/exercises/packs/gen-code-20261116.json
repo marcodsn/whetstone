@@ -1,0 +1,128 @@
+{
+  "pack": "gen-code-20261116",
+  "exercises": [
+    {
+      "id": "gen-code-131",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What does this C program print? (Give both numbers, separated by a space.)",
+      "code": {
+        "lang": "c",
+        "src": "#include <stdio.h>\n\nint main(void) {\n    int a = 5, b = 3, c = 1;\n    printf(\"%d %d\\n\", a > b > c, c < b < a);\n    return 0;\n}"
+      },
+      "answer": "0 1",
+      "accepted": [
+        "0, 1"
+      ],
+      "explanation": "C has no chained comparisons. `a > b > c` means `(a > b) > c`, which is `1 > 1` and gives 0. `c < b < a` is `(c < b) < a`, which is `1 < 5` and gives 1.",
+      "tags": [
+        "generated",
+        "predict-output",
+        "c",
+        "operators",
+        "gotcha"
+      ]
+    },
+    {
+      "id": "gen-code-132",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "`total([5, 10, 20])` should return `35`, but it returns the string `\"0012\"`. What is the fix?",
+      "code": {
+        "lang": "javascript",
+        "src": "function total(prices) {\n  let sum = 0;\n  for (const p in prices) sum += p;\n  return sum;\n}"
+      },
+      "choices": [
+        "Change `for (const p in prices)` to `for (const p of prices)`",
+        "Write `sum = sum + Number(p)` instead of `sum += p`",
+        "Declare the loop variable with `let` instead of `const`",
+        "Start with `let sum = 0.0` so the addition stays numeric"
+      ],
+      "answer": "Change `for (const p in prices)` to `for (const p of prices)`",
+      "explanation": "`for...in` loops over an array's keys, which are the index strings `\"0\"`, `\"1\"`, `\"2\"`. Adding a string to a number joins them as text. `for...of` loops over the values.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "javascript",
+        "iteration",
+        "coercion"
+      ]
+    },
+    {
+      "id": "gen-code-133",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "What is the time complexity of `longest_run` as a function of `n = len(xs)`?",
+      "code": {
+        "lang": "python",
+        "src": "def longest_run(xs):\n    best = i = 0\n    while i < len(xs):\n        j = i\n        while j < len(xs) and xs[j] == xs[i]:\n            j += 1\n        best = max(best, j - i)\n        i = j\n    return best"
+      },
+      "choices": [
+        "$O(n)$",
+        "$O(n \\log n)$",
+        "$O(n^2)$",
+        "$O(n^3)$"
+      ],
+      "answer": "$O(n)$",
+      "explanation": "The loops are nested, but `i` jumps straight to `j` after each run. So every index is visited by the inner loop only once in total, which is $O(n)$ work overall.",
+      "tags": [
+        "generated",
+        "complexity",
+        "python",
+        "two-pointers",
+        "amortized"
+      ]
+    },
+    {
+      "id": "gen-code-134",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "`is_leap` is meant to follow the Gregorian rule: a year is a leap year if it is divisible by 4, except century years, which are leap years only if divisible by 400. For which of these inputs does it return the WRONG answer?",
+      "code": {
+        "lang": "python",
+        "src": "def is_leap(y):\n    return y % 4 == 0 and y % 100 != 0"
+      },
+      "choices": [
+        "`1900`",
+        "`2000`",
+        "`2023`",
+        "`2024`"
+      ],
+      "answer": "`2000`",
+      "explanation": "2000 is divisible by 400, so it is a leap year, but `2000 % 100 != 0` is false and the function returns `False`. 1900 really isn't a leap year, so `False` is correct there. The `or y % 400 == 0` case is missing.",
+      "tags": [
+        "generated",
+        "find-the-input",
+        "python",
+        "edge-cases",
+        "spot-the-bug"
+      ]
+    },
+    {
+      "id": "gen-code-135",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "In C, with a normal two's-complement `int x`, which of these \"is `x` odd?\" tests gives the WRONG result for some values of `x`?",
+      "choices": [
+        "`x % 2 != 0`",
+        "`(x & 1) == 1`",
+        "`x % 2 == 1`",
+        "`x % 2 == 1 || x % 2 == -1`"
+      ],
+      "answer": "`x % 2 == 1`",
+      "explanation": "In C, `%` takes the sign of the left operand, so `-3 % 2` is `-1`, not `1`. That makes `x % 2 == 1` false for every negative odd number. The other three tests handle negative numbers correctly.",
+      "tags": [
+        "generated",
+        "equivalence",
+        "c",
+        "integer-division",
+        "edge-cases"
+      ]
+    }
+  ]
+}
