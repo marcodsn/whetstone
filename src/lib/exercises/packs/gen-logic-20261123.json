@@ -1,0 +1,119 @@
+{
+  "pack": "gen-logic-20261123",
+  "exercises": [
+    {
+      "id": "gen-logic-143",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 2,
+      "prompt": "What number comes next in this sequence? $31,\\ 28,\\ 31,\\ 30,\\ 31,\\ ?$",
+      "answer": "30",
+      "explanation": "These are the number of days in each month from January (31, 28, 31, 30, 31). June has 30 days.",
+      "tags": [
+        "generated",
+        "sequences",
+        "pattern-recognition",
+        "calendar"
+      ]
+    },
+    {
+      "id": "gen-logic-144",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "No trels are quams. Some quams are vibs. Which conclusion necessarily follows?",
+      "choices": [
+        "Some vibs are not trels",
+        "No vibs are trels",
+        "Some vibs are trels",
+        "None of these necessarily follows"
+      ],
+      "answer": "Some vibs are not trels",
+      "explanation": "Take the quams that are vibs. They are quams, so none of them is a trel. That gives at least some vibs that aren't trels. Nothing tells us whether *other* vibs are trels, so 'No vibs are trels' does not follow.",
+      "tags": [
+        "generated",
+        "syllogism",
+        "quantifiers",
+        "deduction"
+      ]
+    },
+    {
+      "id": "gen-logic-145",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "An ant sits on one corner of a cube and wants to reach the diagonally opposite corner, walking only along the cube's edges. How many different shortest routes are there?",
+      "answer": "6",
+      "accepted": [
+        "six"
+      ],
+      "explanation": "Every shortest route uses exactly three edges, one in each of the three directions (x, y, z). The routes differ only in the order of the directions, and there are $3! = 6$ orders.",
+      "tags": [
+        "generated",
+        "spatial",
+        "counting",
+        "3d"
+      ]
+    },
+    {
+      "id": "gen-logic-146",
+      "domain": "logic",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "You have 1,000 bottles of wine and exactly one is poisoned. A test strip dipped in a sample shows the result after 24 hours, and you may dip a strip into a mix of samples from many bottles. You only have time for one round of testing. What is the minimum number of strips that guarantees finding the poisoned bottle?",
+      "answer": "10",
+      "accepted": [
+        "ten"
+      ],
+      "explanation": "Number the bottles in binary. Strip $k$ gets a drop from every bottle whose $k$-th bit is 1. The pattern of positive strips spells out the poisoned bottle's number. 10 strips give $2^{10} = 1024 \\ge 1000$ patterns, and 9 strips give only 512.",
+      "tags": [
+        "generated",
+        "information",
+        "binary",
+        "strategy"
+      ]
+    },
+    {
+      "id": "gen-logic-147",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "Which of these statements is a tautology (true for every assignment of truth values to $P$ and $Q$)?",
+      "choices": [
+        "$(P \\to Q) \\lor (Q \\to P)$",
+        "$P \\to (P \\land Q)$",
+        "$(P \\lor Q) \\to P$",
+        "$(P \\to Q) \\to (Q \\to P)$"
+      ],
+      "answer": "$(P \\to Q) \\lor (Q \\to P)$",
+      "explanation": "For $P \\to Q$ to be false you need $P$ true and $Q$ false, and then $Q \\to P$ is true. So at least one of the two always holds. Each of the others fails somewhere, for example $P$ false and $Q$ true breaks the last two.",
+      "tags": [
+        "generated",
+        "propositional",
+        "tautology",
+        "formal-logic"
+      ]
+    },
+    {
+      "id": "gen-logic-148",
+      "domain": "logic",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "Two players take turns claiming numbers from 1 to 9. Each number can be claimed only once. The first player to hold three numbers that add up to exactly 15 wins. If both players play perfectly, what happens?",
+      "choices": [
+        "It's a draw: the game is tic-tac-toe in disguise",
+        "The first player always wins",
+        "The second player always wins",
+        "It can't be known without checking every possible game by computer"
+      ],
+      "answer": "It's a draw: the game is tic-tac-toe in disguise",
+      "explanation": "Arrange 1 to 9 in a $3\\times3$ magic square (2 7 6 / 9 5 1 / 4 3 8). The eight triples that sum to 15 are exactly its eight rows, columns and diagonals. So claiming numbers is the same as placing marks in tic-tac-toe, which is a draw with perfect play.",
+      "tags": [
+        "generated",
+        "game-theory",
+        "isomorphism",
+        "aha"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "pack": "gen-code-20261123",
+  "exercises": [
+    {
+      "id": "gen-code-136",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "`group([\"ann\", \"bob\", \"amy\"])` should return `{'a': ['ann', 'amy'], 'b': ['bob']}`. Instead, *both* keys map to `['ann', 'bob', 'amy']`. What is the bug?",
+      "code": {
+        "lang": "python",
+        "src": "def group(names):\n    groups = dict.fromkeys({n[0] for n in names}, [])\n    for n in names:\n        groups[n[0]].append(n)\n    return groups"
+      },
+      "choices": [
+        "`dict.fromkeys` gives every key the *same* list object; build it with `{k: [] for k in ...}` instead",
+        "The set comprehension loses the order of the names, so they land under the wrong keys",
+        "`append` should be `extend`, because `n` is a string",
+        "`n[0]` should be `n[:1]`, because indexing a string returns a copy"
+      ],
+      "answer": "`dict.fromkeys` gives every key the *same* list object; build it with `{k: [] for k in ...}` instead",
+      "explanation": "`dict.fromkeys(keys, [])` evaluates `[]` once and stores that one list under every key. Appending through any key changes the list they all share. A dict comprehension creates a new list for each key.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "python",
+        "aliasing",
+        "dictionaries"
+      ]
+    },
+    {
+      "id": "gen-code-137",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 4,
+      "prompt": "What is the time complexity of `shrink(n)` as a function of `n`?",
+      "code": {
+        "lang": "javascript",
+        "src": "function shrink(n) {\n  let steps = 0;\n  while (n > 2) {\n    n = Math.floor(Math.sqrt(n));\n    steps++;\n  }\n  return steps;\n}"
+      },
+      "choices": [
+        "$O(\\log \\log n)$",
+        "$O(\\log n)$",
+        "$O(\\sqrt{n})$",
+        "$O(1)$"
+      ],
+      "answer": "$O(\\log \\log n)$",
+      "explanation": "Taking a square root halves the number of digits (the exponent): $n = 2^{k}$ becomes $2^{k/2}$. Halving $k = \\log n$ down to a constant takes $\\log k = \\log \\log n$ steps.",
+      "tags": [
+        "generated",
+        "complexity",
+        "javascript",
+        "logarithms"
+      ]
+    },
+    {
+      "id": "gen-code-138",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "`is_power_of_two` is meant to return `True` exactly when `n` is a power of two ($1, 2, 4, 8, \\dots$). For which of these inputs does it give the **wrong** answer?",
+      "code": {
+        "lang": "python",
+        "src": "def is_power_of_two(n):\n    return n & (n - 1) == 0"
+      },
+      "choices": [
+        "`0`",
+        "`1`",
+        "`2`",
+        "`6`"
+      ],
+      "answer": "`0`",
+      "explanation": "`n & (n - 1)` clears the lowest set bit, so the result is 0 when `n` has at most one bit set. That covers the powers of two, but also `0`, which has no bits set: `0 & -1 == 0` returns `True`. The usual fix is `n > 0 and n & (n - 1) == 0`. (In Python `&` binds tighter than `==`, so precedence is not the problem here.)",
+      "tags": [
+        "generated",
+        "find-the-input",
+        "python",
+        "bitwise",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "gen-code-139",
+      "domain": "code",
+      "type": "choice",
+      "difficulty": 3,
+      "prompt": "`items` is always a list. Three of these conditions behave exactly like `if not items:`. Which one does **not**?",
+      "choices": [
+        "`if items is []:`",
+        "`if len(items) == 0:`",
+        "`if items == []:`",
+        "`if not len(items):`"
+      ],
+      "answer": "`if items is []:`",
+      "explanation": "`is` checks identity, and the literal `[]` creates a brand-new list that can never be the same object as `items`. So the condition is always `False`, even for an empty list. Recent Python versions show a SyntaxWarning for it. `==` compares contents, which is what the other options do.",
+      "tags": [
+        "generated",
+        "equivalence",
+        "python",
+        "identity",
+        "gotcha"
+      ]
+    },
+    {
+      "id": "gen-code-140",
+      "domain": "code",
+      "type": "input",
+      "difficulty": 3,
+      "prompt": "What does this JavaScript print?",
+      "code": {
+        "lang": "javascript",
+        "src": "console.log(Math.max() < Math.min());"
+      },
+      "answer": "true",
+      "accepted": [
+        "True"
+      ],
+      "explanation": "With no arguments, `Math.max()` returns `-Infinity` and `Math.min()` returns `Infinity`. These are the identity values for max and min, so that `max(max(a), max(b))` works even when a list is empty. $-\\infty < \\infty$ is `true`.",
+      "tags": [
+        "generated",
+        "predict-output",
+        "javascript",
+        "math",
+        "edge-case"
+      ]
+    }
+  ]
+}

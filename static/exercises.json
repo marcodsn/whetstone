@@ -3810,6 +3810,128 @@
 		]
 	},
 	{
+		"id": "gen-code-136",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`group([\"ann\", \"bob\", \"amy\"])` should return `{'a': ['ann', 'amy'], 'b': ['bob']}`. Instead, *both* keys map to `['ann', 'bob', 'amy']`. What is the bug?",
+		"code": {
+			"lang": "python",
+			"src": "def group(names):\n    groups = dict.fromkeys({n[0] for n in names}, [])\n    for n in names:\n        groups[n[0]].append(n)\n    return groups"
+		},
+		"choices": [
+			"`dict.fromkeys` gives every key the *same* list object; build it with `{k: [] for k in ...}` instead",
+			"The set comprehension loses the order of the names, so they land under the wrong keys",
+			"`append` should be `extend`, because `n` is a string",
+			"`n[0]` should be `n[:1]`, because indexing a string returns a copy"
+		],
+		"answer": "`dict.fromkeys` gives every key the *same* list object; build it with `{k: [] for k in ...}` instead",
+		"explanation": "`dict.fromkeys(keys, [])` evaluates `[]` once and stores that one list under every key. Appending through any key changes the list they all share. A dict comprehension creates a new list for each key.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"python",
+			"aliasing",
+			"dictionaries"
+		]
+	},
+	{
+		"id": "gen-code-137",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "What is the time complexity of `shrink(n)` as a function of `n`?",
+		"code": {
+			"lang": "javascript",
+			"src": "function shrink(n) {\n  let steps = 0;\n  while (n > 2) {\n    n = Math.floor(Math.sqrt(n));\n    steps++;\n  }\n  return steps;\n}"
+		},
+		"choices": [
+			"$O(\\log \\log n)$",
+			"$O(\\log n)$",
+			"$O(\\sqrt{n})$",
+			"$O(1)$"
+		],
+		"answer": "$O(\\log \\log n)$",
+		"explanation": "Taking a square root halves the number of digits (the exponent): $n = 2^{k}$ becomes $2^{k/2}$. Halving $k = \\log n$ down to a constant takes $\\log k = \\log \\log n$ steps.",
+		"tags": [
+			"generated",
+			"complexity",
+			"javascript",
+			"logarithms"
+		]
+	},
+	{
+		"id": "gen-code-138",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`is_power_of_two` is meant to return `True` exactly when `n` is a power of two ($1, 2, 4, 8, \\dots$). For which of these inputs does it give the **wrong** answer?",
+		"code": {
+			"lang": "python",
+			"src": "def is_power_of_two(n):\n    return n & (n - 1) == 0"
+		},
+		"choices": [
+			"`0`",
+			"`1`",
+			"`2`",
+			"`6`"
+		],
+		"answer": "`0`",
+		"explanation": "`n & (n - 1)` clears the lowest set bit, so the result is 0 when `n` has at most one bit set. That covers the powers of two, but also `0`, which has no bits set: `0 & -1 == 0` returns `True`. The usual fix is `n > 0 and n & (n - 1) == 0`. (In Python `&` binds tighter than `==`, so precedence is not the problem here.)",
+		"tags": [
+			"generated",
+			"find-the-input",
+			"python",
+			"bitwise",
+			"edge-case"
+		]
+	},
+	{
+		"id": "gen-code-139",
+		"domain": "code",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "`items` is always a list. Three of these conditions behave exactly like `if not items:`. Which one does **not**?",
+		"choices": [
+			"`if items is []:`",
+			"`if len(items) == 0:`",
+			"`if items == []:`",
+			"`if not len(items):`"
+		],
+		"answer": "`if items is []:`",
+		"explanation": "`is` checks identity, and the literal `[]` creates a brand-new list that can never be the same object as `items`. So the condition is always `False`, even for an empty list. Recent Python versions show a SyntaxWarning for it. `==` compares contents, which is what the other options do.",
+		"tags": [
+			"generated",
+			"equivalence",
+			"python",
+			"identity",
+			"gotcha"
+		]
+	},
+	{
+		"id": "gen-code-140",
+		"domain": "code",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "What does this JavaScript print?",
+		"code": {
+			"lang": "javascript",
+			"src": "console.log(Math.max() < Math.min());"
+		},
+		"answer": "true",
+		"accepted": [
+			"True"
+		],
+		"explanation": "With no arguments, `Math.max()` returns `-Infinity` and `Math.min()` returns `Infinity`. These are the identity values for max and min, so that `max(max(a), max(b))` works even when a list is empty. $-\\infty < \\infty$ is `true`.",
+		"tags": [
+			"generated",
+			"predict-output",
+			"javascript",
+			"math",
+			"edge-case"
+		]
+	},
+	{
 		"domain": "general",
 		"type": "self",
 		"difficulty": 3,
@@ -7863,6 +7985,206 @@
 		]
 	},
 	{
+		"id": "gen-general-208",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "The birthday paradox says that in a room of just 23 people, there's about a 50% chance that *some* two share a birthday. You walk into a room with 29 other people (30 including you). Roughly what's the probability that at least one of them shares *your* birthday? (Ignore leap years.)",
+		"choices": [
+			"About 8%",
+			"About 25%",
+			"About 50%",
+			"About 70%"
+		],
+		"answer": "About 8%",
+		"explanation": "Matching one fixed date is far harder than matching any pair: the chance is $1 - (364/365)^{29} \\approx 7.6\\%$. The birthday paradox works because 30 people form 435 pairs, but only 29 of those pairs involve you.",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"birthday",
+			"paradox"
+		]
+	},
+	{
+		"id": "gen-general-209",
+		"domain": "general",
+		"type": "self",
+		"difficulty": 2,
+		"prompt": "A man was born in 1975 and died in 1955, at the age of 20. Nobody made a mistake writing down the dates. How is this possible? Think of an explanation, then reveal and compare.",
+		"answer": "The years are BC. Born in 1975 BC and died in 1955 BC, he lived 20 years, with the year numbers counting down.",
+		"explanation": "We assume AD by default. Before year 1, years are counted backwards, so a later death has a smaller year number.",
+		"tags": [
+			"generated",
+			"lateral",
+			"calendar",
+			"reading-trap"
+		]
+	},
+	{
+		"id": "gen-general-210",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Earth orbits the Sun at a distance of about 150 million km, taking one year per lap. Roughly how far does Earth travel along its orbit in a single day?",
+		"choices": [
+			"About 26,000 km",
+			"About 260,000 km",
+			"About 2.6 million km",
+			"About 26 million km"
+		],
+		"answer": "About 2.6 million km",
+		"explanation": "One lap is $2\\pi \\times 150$ million km $\\approx 940$ million km. Dividing by 365 days gives about 2.6 million km per day, which is roughly 30 km every second.",
+		"tags": [
+			"generated",
+			"estimation",
+			"astronomy",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-211",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Two cylindrical glasses: glass A is twice as tall as glass B, and glass C is twice as wide as glass B (same height as B). Compared with B, how much do A and C hold?",
+		"choices": [
+			"A holds 2× as much, C holds 4× as much",
+			"Both hold 2× as much",
+			"A holds 4× as much, C holds 2× as much",
+			"Both hold 4× as much"
+		],
+		"answer": "A holds 2× as much, C holds 4× as much",
+		"explanation": "Volume grows with height but with the *square* of the width, since the base area is $\\pi r^2$. Doubling the width quadruples the base area, so the wide glass holds twice as much as the tall one.",
+		"tags": [
+			"generated",
+			"aha",
+			"geometry",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-212",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "How does the temperature of a lightning bolt compare with the temperature of the Sun's visible surface (about 5,500 °C)?",
+		"choices": [
+			"Lightning is roughly 5 times hotter",
+			"They are about the same",
+			"Lightning is about half as hot",
+			"Lightning is a few hundred degrees at most; it only looks hot"
+		],
+		"answer": "Lightning is roughly 5 times hotter",
+		"explanation": "A lightning channel briefly heats the air to around 30,000 °C, about five times the Sun's surface temperature. It lasts only microseconds, and that rapid heating is what causes the shock wave we hear as thunder.",
+		"tags": [
+			"generated",
+			"myth-busting",
+			"physics",
+			"scale"
+		]
+	},
+	{
+		"id": "gen-general-213",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "Solve this word rebus. The word MIND is written on top of a horizontal line, and the word MATTER is written underneath it. What common phrase does it represent?",
+		"answer": "mind over matter",
+		"accepted": [
+			"Mind over matter",
+			"MIND OVER MATTER"
+		],
+		"explanation": "MIND sits *over* MATTER. Rebuses encode the phrase in the position of the words, not just the words themselves.",
+		"tags": [
+			"generated",
+			"rebus",
+			"wordplay"
+		]
+	},
+	{
+		"id": "gen-general-214",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "A call centre starts rating staff on 'average call length' to make service faster. Soon agents are hanging up on customers with hard problems, and satisfaction drops. Which principle describes this?",
+		"choices": [
+			"Goodhart's law",
+			"Parkinson's law",
+			"Murphy's law",
+			"The Peter principle"
+		],
+		"answer": "Goodhart's law",
+		"explanation": "Goodhart's law: when a measure becomes a target, it stops being a good measure. People optimise the number instead of the thing it was supposed to track. Parkinson's law is about work expanding to fill the time available.",
+		"tags": [
+			"generated",
+			"cognitive-bias",
+			"economics",
+			"concept"
+		]
+	},
+	{
+		"id": "gen-general-215",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Two identical coins lie flat on a table, touching. You hold one still and roll the other all the way around its edge, without slipping, until it returns to where it started. How many full turns does the moving coin make about its own centre?",
+		"choices": [
+			"1",
+			"2",
+			"3",
+			"$\\pi$"
+		],
+		"answer": "2",
+		"explanation": "The edge contact alone would give one turn, but the moving coin's centre also travels in a full circle around the fixed coin, which adds a second turn. This is the coin rotation paradox; try it with two real coins.",
+		"tags": [
+			"generated",
+			"aha",
+			"geometry",
+			"paradox"
+		]
+	},
+	{
+		"id": "gen-general-216",
+		"domain": "general",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "You snap a stick at two points chosen uniformly at random along its length, giving three pieces. What's the probability that the three pieces can form a triangle?",
+		"choices": [
+			"1/4",
+			"1/3",
+			"1/2",
+			"3/4"
+		],
+		"answer": "1/4",
+		"explanation": "The pieces form a triangle exactly when every piece is shorter than half the stick. Plotting the two break points on a unit square, the region where that holds is a quarter of the area.",
+		"tags": [
+			"generated",
+			"probability-intuition",
+			"geometry",
+			"classic"
+		]
+	},
+	{
+		"id": "gen-general-217",
+		"domain": "general",
+		"type": "input",
+		"difficulty": 1,
+		"prompt": "How many birthdays does the average person have?",
+		"answer": "1",
+		"accepted": [
+			"one",
+			"One",
+			"just one"
+		],
+		"explanation": "You are born only once, so you have one birthday. Everything after that is an anniversary of it. The trap is reading 'birthdays' as 'birthday parties'.",
+		"tags": [
+			"generated",
+			"trick",
+			"reading-trap",
+			"wordplay"
+		]
+	},
+	{
 		"domain": "latex",
 		"type": "choice",
 		"difficulty": 2,
@@ -9017,6 +9339,63 @@
 			"fractions",
 			"render-prediction",
 			"syntax"
+		]
+	},
+	{
+		"id": "gen-latex-064",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "This LaTeX fails to compile. What is wrong? `\\begin{align} a &= b + c \\\\ d &= e \\end{aligned}`",
+		"choices": [
+			"The environment is opened as `align` but closed as `aligned`; the names must match",
+			"`align` can't contain `&`; use `=` alone",
+			"Line breaks inside `align` must be written `\\newline`, not `\\\\`",
+			"`align` must be wrapped in `$$ … $$`"
+		],
+		"answer": "The environment is opened as `align` but closed as `aligned`; the names must match",
+		"explanation": "Every `\\begin{name}` needs a matching `\\end{name}`. Here LaTeX reports a mismatch ('\\begin{align} ended by \\end{aligned}'). `&` sets the alignment point and `\\\\` breaks lines, as intended. `align` is already a display environment, so wrapping it in `$$` is itself an error.",
+		"tags": [
+			"generated",
+			"spot-the-bug",
+			"environments",
+			"errors"
+		]
+	},
+	{
+		"id": "gen-latex-065",
+		"domain": "latex",
+		"type": "choice",
+		"difficulty": 2,
+		"prompt": "Which source produces $A \\subseteq B$ (\"A is a subset of or equal to B\")?",
+		"choices": [
+			"`A \\subseteq B`",
+			"`A \\subeq B`",
+			"`A \\subsetequal B`",
+			"`A \\subset= B`"
+		],
+		"answer": "`A \\subseteq B`",
+		"explanation": "The command is `\\subseteq` (subset + eq), with `\\supseteq` as its mirror. `\\subeq` and `\\subsetequal` don't exist, and `\\subset=` gives a plain $\\subset$ followed by a separate equals sign.",
+		"tags": [
+			"generated",
+			"which-source",
+			"symbols",
+			"set-theory"
+		]
+	},
+	{
+		"id": "gen-latex-066",
+		"domain": "latex",
+		"type": "self",
+		"difficulty": 3,
+		"prompt": "Write the LaTeX source for the epsilon–delta definition of a limit, matching this target: $$\\forall \\varepsilon > 0 \\; \\exists \\delta > 0 : \\; 0 < |x - a| < \\delta \\implies |f(x) - L| < \\varepsilon$$ Then reveal and compare.",
+		"answer": "\\forall \\varepsilon > 0 \\; \\exists \\delta > 0 : \\; 0 < |x - a| < \\delta \\implies |f(x) - L| < \\varepsilon",
+		"explanation": "Note `\\varepsilon` (the curly $\\varepsilon$), not `\\epsilon` ($\\epsilon$). `\\implies` gives the long double arrow, and `\\;` adds a medium space so the quantifiers don't run into each other.",
+		"tags": [
+			"generated",
+			"writing",
+			"quantifiers",
+			"analysis"
 		]
 	},
 	{
@@ -11717,6 +12096,120 @@
 			"sequences",
 			"lateral",
 			"wordplay"
+		]
+	},
+	{
+		"id": "gen-logic-143",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "What number comes next in this sequence? $31,\\ 28,\\ 31,\\ 30,\\ 31,\\ ?$",
+		"answer": "30",
+		"explanation": "These are the number of days in each month from January (31, 28, 31, 30, 31). June has 30 days.",
+		"tags": [
+			"generated",
+			"sequences",
+			"pattern-recognition",
+			"calendar"
+		]
+	},
+	{
+		"id": "gen-logic-144",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "No trels are quams. Some quams are vibs. Which conclusion necessarily follows?",
+		"choices": [
+			"Some vibs are not trels",
+			"No vibs are trels",
+			"Some vibs are trels",
+			"None of these necessarily follows"
+		],
+		"answer": "Some vibs are not trels",
+		"explanation": "Take the quams that are vibs. They are quams, so none of them is a trel. That gives at least some vibs that aren't trels. Nothing tells us whether *other* vibs are trels, so 'No vibs are trels' does not follow.",
+		"tags": [
+			"generated",
+			"syllogism",
+			"quantifiers",
+			"deduction"
+		]
+	},
+	{
+		"id": "gen-logic-145",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "An ant sits on one corner of a cube and wants to reach the diagonally opposite corner, walking only along the cube's edges. How many different shortest routes are there?",
+		"answer": "6",
+		"accepted": [
+			"six"
+		],
+		"explanation": "Every shortest route uses exactly three edges, one in each of the three directions (x, y, z). The routes differ only in the order of the directions, and there are $3! = 6$ orders.",
+		"tags": [
+			"generated",
+			"spatial",
+			"counting",
+			"3d"
+		]
+	},
+	{
+		"id": "gen-logic-146",
+		"domain": "logic",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "You have 1,000 bottles of wine and exactly one is poisoned. A test strip dipped in a sample shows the result after 24 hours, and you may dip a strip into a mix of samples from many bottles. You only have time for one round of testing. What is the minimum number of strips that guarantees finding the poisoned bottle?",
+		"answer": "10",
+		"accepted": [
+			"ten"
+		],
+		"explanation": "Number the bottles in binary. Strip $k$ gets a drop from every bottle whose $k$-th bit is 1. The pattern of positive strips spells out the poisoned bottle's number. 10 strips give $2^{10} = 1024 \\ge 1000$ patterns, and 9 strips give only 512.",
+		"tags": [
+			"generated",
+			"information",
+			"binary",
+			"strategy"
+		]
+	},
+	{
+		"id": "gen-logic-147",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Which of these statements is a tautology (true for every assignment of truth values to $P$ and $Q$)?",
+		"choices": [
+			"$(P \\to Q) \\lor (Q \\to P)$",
+			"$P \\to (P \\land Q)$",
+			"$(P \\lor Q) \\to P$",
+			"$(P \\to Q) \\to (Q \\to P)$"
+		],
+		"answer": "$(P \\to Q) \\lor (Q \\to P)$",
+		"explanation": "For $P \\to Q$ to be false you need $P$ true and $Q$ false, and then $Q \\to P$ is true. So at least one of the two always holds. Each of the others fails somewhere, for example $P$ false and $Q$ true breaks the last two.",
+		"tags": [
+			"generated",
+			"propositional",
+			"tautology",
+			"formal-logic"
+		]
+	},
+	{
+		"id": "gen-logic-148",
+		"domain": "logic",
+		"type": "choice",
+		"difficulty": 4,
+		"prompt": "Two players take turns claiming numbers from 1 to 9. Each number can be claimed only once. The first player to hold three numbers that add up to exactly 15 wins. If both players play perfectly, what happens?",
+		"choices": [
+			"It's a draw: the game is tic-tac-toe in disguise",
+			"The first player always wins",
+			"The second player always wins",
+			"It can't be known without checking every possible game by computer"
+		],
+		"answer": "It's a draw: the game is tic-tac-toe in disguise",
+		"explanation": "Arrange 1 to 9 in a $3\\times3$ magic square (2 7 6 / 9 5 1 / 4 3 8). The eight triples that sum to 15 are exactly its eight rows, columns and diagonals. So claiming numbers is the same as placing marks in tic-tac-toe, which is a draw with perfect play.",
+		"tags": [
+			"generated",
+			"game-theory",
+			"isomorphism",
+			"aha"
 		]
 	},
 	{
@@ -15417,6 +15910,140 @@
 			"counting",
 			"combinatorics",
 			"time"
+		]
+	},
+	{
+		"id": "gen-math-198",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 1,
+		"prompt": "Which is larger: one third of a half, or one half of a third?",
+		"choices": [
+			"They are equal",
+			"One third of a half",
+			"One half of a third"
+		],
+		"answer": "They are equal",
+		"explanation": "Both are $\\frac{1}{3} \\times \\frac{1}{2} = \\frac{1}{6}$. Multiplication doesn't care about order.",
+		"tags": [
+			"generated",
+			"recreational",
+			"fractions",
+			"trick"
+		]
+	},
+	{
+		"id": "gen-math-199",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A car's odometer shows 15951 km, a palindrome. How many more kilometres must the car travel before the odometer next shows a palindrome?",
+		"answer": "110",
+		"accepted": [
+			"110 km"
+		],
+		"explanation": "To stay a palindrome above 15951, the middle digit has to roll over: 15951 → 16061. That's 110 km. Raising the middle digit alone (15x51) can't happen, because 9 is already the largest digit.",
+		"tags": [
+			"generated",
+			"recreational",
+			"palindromes",
+			"number-trick"
+		]
+	},
+	{
+		"id": "gen-math-200",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 2,
+		"prompt": "A roulette wheel has pockets numbered 0 to 36. What do all the numbers on the wheel add up to?",
+		"answer": "666",
+		"explanation": "$0 + 1 + \\dots + 36 = \\frac{36 \\times 37}{2} = 666$. This is why roulette is sometimes called 'the devil's game'.",
+		"tags": [
+			"generated",
+			"recreational",
+			"arithmetic",
+			"series"
+		]
+	},
+	{
+		"id": "gen-math-201",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Two volumes of an encyclopedia stand side by side on a shelf, in order (Volume 1 on the left), spines facing you. Each book's pages are 3 cm thick, and each cover is 2 mm thick. A bookworm bores in a straight line from the first page of Volume 1 to the last page of Volume 2. How far does it travel?",
+		"choices": [
+			"4 mm",
+			"3.4 cm",
+			"6.4 cm",
+			"6.8 cm"
+		],
+		"answer": "4 mm",
+		"explanation": "With the spine facing you, Volume 1's first page is on its *right* side, next to Volume 2, and Volume 2's last page is on its *left* side. The worm only goes through the two covers in between: 2 + 2 = 4 mm.",
+		"tags": [
+			"generated",
+			"recreational",
+			"aha",
+			"spatial"
+		]
+	},
+	{
+		"id": "gen-math-202",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "In a 100 m race, Ana beats Ben by 10 m. In a second 100 m race, Ben beats Cy by 10 m. If Ana races Cy over 100 m and everyone runs at the same speeds as before, by how much does Ana win?",
+		"choices": [
+			"19 m",
+			"20 m",
+			"10 m",
+			"21 m"
+		],
+		"answer": "19 m",
+		"explanation": "When Ana runs 100 m, Ben runs 90 m. Cy runs 90% of Ben's distance, so $0.9 \\times 90 = 81$ m. Ana wins by 19 m. The intuitive 20 m adds the gaps, but they should be multiplied.",
+		"tags": [
+			"generated",
+			"recreational",
+			"rates",
+			"word-problem"
+		]
+	},
+	{
+		"id": "gen-math-203",
+		"domain": "math",
+		"type": "input",
+		"difficulty": 3,
+		"prompt": "You want to cut a $3 \\times 3 \\times 3$ wooden cube into 27 unit cubes using straight saw cuts. After each cut you may rearrange and stack the pieces however you like before the next cut. What is the minimum number of cuts?",
+		"answer": "6",
+		"accepted": [
+			"six"
+		],
+		"explanation": "The centre cube has 6 faces, and none of them is on the outside of the original block. Each cut makes at most one face of that cube, so you need at least 6 cuts. The obvious 2 + 2 + 2 grid cuts already achieve 6.",
+		"tags": [
+			"generated",
+			"recreational",
+			"aha",
+			"geometry"
+		]
+	},
+	{
+		"id": "gen-math-204",
+		"domain": "math",
+		"type": "choice",
+		"difficulty": 3,
+		"prompt": "Using $\\log_{10} 2 \\approx 0.301$, how many digits does $2^{100}$ have when written out in full?",
+		"choices": [
+			"31",
+			"30",
+			"100",
+			"301"
+		],
+		"answer": "31",
+		"explanation": "$\\log_{10} 2^{100} = 100 \\times 0.301 = 30.1$, so $2^{100} \\approx 1.26 \\times 10^{30}$. A number between $10^{30}$ and $10^{31}$ has 31 digits.",
+		"tags": [
+			"generated",
+			"recreational",
+			"powers",
+			"estimation"
 		]
 	},
 	{

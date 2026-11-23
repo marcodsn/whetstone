@@ -1,0 +1,62 @@
+{
+  "pack": "gen-latex-20261123",
+  "exercises": [
+    {
+      "id": "gen-latex-064",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "This LaTeX fails to compile. What is wrong? `\\begin{align} a &= b + c \\\\ d &= e \\end{aligned}`",
+      "choices": [
+        "The environment is opened as `align` but closed as `aligned`; the names must match",
+        "`align` can't contain `&`; use `=` alone",
+        "Line breaks inside `align` must be written `\\newline`, not `\\\\`",
+        "`align` must be wrapped in `$$ … $$`"
+      ],
+      "answer": "The environment is opened as `align` but closed as `aligned`; the names must match",
+      "explanation": "Every `\\begin{name}` needs a matching `\\end{name}`. Here LaTeX reports a mismatch ('\\begin{align} ended by \\end{aligned}'). `&` sets the alignment point and `\\\\` breaks lines, as intended. `align` is already a display environment, so wrapping it in `$$` is itself an error.",
+      "tags": [
+        "generated",
+        "spot-the-bug",
+        "environments",
+        "errors"
+      ]
+    },
+    {
+      "id": "gen-latex-065",
+      "domain": "latex",
+      "type": "choice",
+      "difficulty": 2,
+      "prompt": "Which source produces $A \\subseteq B$ (\"A is a subset of or equal to B\")?",
+      "choices": [
+        "`A \\subseteq B`",
+        "`A \\subeq B`",
+        "`A \\subsetequal B`",
+        "`A \\subset= B`"
+      ],
+      "answer": "`A \\subseteq B`",
+      "explanation": "The command is `\\subseteq` (subset + eq), with `\\supseteq` as its mirror. `\\subeq` and `\\subsetequal` don't exist, and `\\subset=` gives a plain $\\subset$ followed by a separate equals sign.",
+      "tags": [
+        "generated",
+        "which-source",
+        "symbols",
+        "set-theory"
+      ]
+    },
+    {
+      "id": "gen-latex-066",
+      "domain": "latex",
+      "type": "self",
+      "difficulty": 3,
+      "prompt": "Write the LaTeX source for the epsilon–delta definition of a limit, matching this target: $$\\forall \\varepsilon > 0 \\; \\exists \\delta > 0 : \\; 0 < |x - a| < \\delta \\implies |f(x) - L| < \\varepsilon$$ Then reveal and compare.",
+      "answer": "\\forall \\varepsilon > 0 \\; \\exists \\delta > 0 : \\; 0 < |x - a| < \\delta \\implies |f(x) - L| < \\varepsilon",
+      "explanation": "Note `\\varepsilon` (the curly $\\varepsilon$), not `\\epsilon` ($\\epsilon$). `\\implies` gives the long double arrow, and `\\;` adds a medium space so the quantifiers don't run into each other.",
+      "tags": [
+        "generated",
+        "writing",
+        "quantifiers",
+        "analysis"
+      ]
+    }
+  ]
+}
